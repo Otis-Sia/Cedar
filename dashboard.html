@@ -29,12 +29,12 @@
     <!-- SideNavBar -->
     <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
         <div class="px-6 mb-10">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
                     C
                 </div>
                 <h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1>
-            </div>
+            </a>
             <div class="mt-6 flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster">
                     <img class="w-full h-full object-cover" data-alt="close-up portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"/>
@@ -48,36 +48,40 @@
         
         <nav class="flex-1 space-y-1">
             <!-- Dashboard Active -->
-            <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="#">
+            <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="dashboard.html">
                 <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
                 <span class="text-sm font-medium">Dashboard</span>
             </a>
-            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="#">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html">
                 <span class="material-symbols-outlined" data-icon="auto_awesome_motion">auto_awesome_motion</span>
-                <span class="text-sm font-medium">Editor</span>
+                <span class="text-sm font-medium">Templates</span>
             </a>
-            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="#">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
                 <span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
                 <span class="text-sm font-medium">Assets</span>
             </a>
-            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="#">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
                 <span class="material-symbols-outlined" data-icon="insights">insights</span>
                 <span class="text-sm font-medium">Insights</span>
             </a>
-            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="#">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
                 <span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
                 <span class="text-sm font-medium">Settings</span>
             </a>
         </nav>
         
         <div class="px-4 mt-auto">
-            <button class="w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm mb-6 shadow-md hover:bg-cedar-forest-dark transition-all">
+            <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm mb-6 shadow-md hover:bg-cedar-forest-dark transition-all text-center">
                 New Portfolio
-            </button>
+            </a>
             <div class="border-t border-black/5 pt-4">
-                <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="#">
+                <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html">
                     <span class="material-symbols-outlined" data-icon="help">help</span>
                     <span class="text-sm font-medium">Help Center</span>
+                </a>
+                <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html">
+                    <span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    <span class="text-sm font-medium">Sign Out</span>
                 </a>
             </div>
         </div>
