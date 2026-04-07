@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cedar | All Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind-config.js"></script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased overflow-hidden">
+<div class="flex h-screen overflow-hidden">
+    <!-- Side Nav using existing design structure -->
+    <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
+        <div class="px-6 mb-10">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">C</div>
+                <h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1>
+            </a>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
+                <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+            <!-- Keep minimal nav for this projects page -->
+        </nav>
+        <div class="px-4 mt-auto">
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
+                <span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                <span class="text-sm font-medium">Back</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 bg-cedar-alabaster overflow-y-auto w-full relative p-8 md:p-12">
+        <header class="mb-10 flex justify-between items-center">
+            <div>
+                <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight text-cedar-forest">All Projects</h2>
+                <p class="text-sm text-cedar-slate mt-1">Your entire curated history.</p>
+            </div>
+            <a href="select_template.html" class="bg-cedar-forest text-white py-2 px-6 rounded-xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all">New</a>
+        </header>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Project Example 1 -->
+            <div class="group relative bg-white border border-black/5 rounded-2xl p-6 transition-all hover:shadow-md">
+                <h4 class="text-cedar-midnight font-bold text-lg">Architectural Lines</h4>
+                <p class="text-cedar-slate text-xs mt-1">Updated 2h ago</p>
+                <div class="mt-4 flex items-center text-cedar-forest text-xs font-bold tracking-widest uppercase gap-2">Live</div>
+            </div>
+            <!-- Project Example 2 -->
+            <div class="group relative bg-white border border-black/5 rounded-2xl p-6 transition-all hover:shadow-md">
+                <h4 class="text-cedar-midnight font-bold text-lg">Vibrant Canvas</h4>
+                <p class="text-cedar-slate text-xs mt-1">Updated 3 days ago</p>
+                <div class="mt-4 flex items-center text-cedar-slate text-xs font-bold tracking-widest uppercase gap-2">Draft</div>
+            </div>
+            <!-- Project Example 3 -->
+            <div class="group relative bg-white border border-black/5 rounded-2xl p-6 transition-all hover:shadow-md">
+                <h4 class="text-cedar-midnight font-bold text-lg">Monochrome V1</h4>
+                <p class="text-cedar-slate text-xs mt-1">Archived</p>
+                <div class="mt-4 flex items-center text-cedar-slate text-xs font-bold tracking-widest uppercase gap-2">Archived</div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

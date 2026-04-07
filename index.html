@@ -52,41 +52,33 @@
     
     <main class="pt-20 overflow-hidden">
         <!-- Hero Section from landing_page.html -->
-        <section class="relative min-h-[90vh] flex items-center px-6 md:px-16 lg:px-24 py-20">
-            <!-- Decorative Elements -->
-            <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-                <div class="absolute top-[10%] right-[-10%] w-[600px] h-[600px] bg-cedar-bronze/10 blur-[120px] rounded-full"></div>
-                <div class="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] bg-cedar-forest/5 blur-[100px] rounded-full"></div>
-            </div>
+        <section class="relative min-h-[95vh] flex items-center px-6 md:px-16 lg:px-24 py-20 bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1770110000509-6c8298224699?auto=format&fit=crop&w=2400&q=80');">
+            <!-- Dark Overlay for foggy forest -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#121415]/50 via-[#121415]/70 to-[#1B3022]/85 z-0"></div>
             
-            <div class="relative z-10 max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-black/5 shadow-sm mb-8">
+            <div class="relative z-10 max-w-3xl pt-10">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-8">
                     <span class="material-symbols-outlined text-cedar-bronze text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-cedar-slate">The New Standard for Creators</span>
+                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white">The New Standard for Creators</span>
                 </div>
                 
-                <h1 class="font-headline text-5xl md:text-[80px] font-bold tracking-tight mb-8 leading-[1.05] text-cedar-midnight">
+                <h1 class="font-headline text-5xl md:text-[80px] font-bold tracking-tight mb-8 leading-[1.05] text-white">
                     Your Story,<br/>
-                    <span class="text-cedar-forest italic">Curated</span> by Intelligence.
+                    <span class="text-cedar-bronze italic">Curated</span> by Intelligence.
                 </h1>
                 
-                <p class="text-lg md:text-xl text-cedar-slate max-w-2xl mb-12 leading-relaxed">
+                <p class="text-lg md:text-xl text-white/80 max-w-2xl mb-12 leading-relaxed">
                     Stop fighting with grids. Cedar analyzes your experience and crafts a high-end, editorial portfolio that commands attention.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-5">
-                    <a href="signup.html" class="inline-flex justify-center items-center bg-cedar-forest text-cedar-alabaster px-10 py-5 rounded-full font-semibold text-[15px] shadow-[0_8px_30px_rgba(27,48,34,0.3)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all w-full sm:w-auto">
+                    <a href="signup.html" class="inline-flex justify-center items-center bg-cedar-forest text-white px-10 py-5 rounded-full font-semibold text-[15px] shadow-[0_8px_30px_rgba(27,48,34,0.5)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all w-full sm:w-auto">
                         Build Your Auto-Portfolio
                     </a>
-                    <a href="#showcase" class="inline-flex justify-center items-center bg-white border text-cedar-midnight border-black/10 px-10 py-5 rounded-full font-semibold text-[15px] shadow-sm hover:border-black/20 hover:bg-gray-50 transition-all w-full sm:w-auto">
+                    <a href="#showcase" class="inline-flex justify-center items-center bg-white/10 border text-white border-white/20 px-10 py-5 rounded-full font-semibold text-[15px] backdrop-blur-sm hover:bg-white/20 transition-all w-full sm:w-auto">
                         View Showcase
                     </a>
                 </div>
-            </div>
-            
-            <!-- Hero Graphic -->
-            <div class="hidden lg:block absolute right-12 lg:right-24 top-1/2 -translate-y-1/2 w-[35%] aspect-[4/5] rounded-[40px] overflow-hidden shadow-2xl border border-black/5">
-                <img class="w-full h-full object-cover" data-alt="abstract elegant interior space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC72iK9ea6YugkWIKJMvCiAGJb5e3GZ6tqmw6a3uiIpubdh-frwlZav_0kldfOk7KCFOEJzdrMjUsCfCMORQkt4RbJCBGmVfxtkPxbHFl8roiorGeL6RLkYfp0P03Bq1o2bnsVR-hb8AHsvv1F-pCvu67Cgs9GhVw1lCkAUzI9abfwcPvpxzHem9o2ZOb2znCjADWk4NANU6kac7ZuaBBXxU8plphO0We2ui-vXPEq5myrRRbWHtcTmyTSeR2Gtg0uTLfQKD5VoViyx"/>
             </div>
         </section>
 
@@ -396,10 +388,10 @@
             </div>
         </div>
         <div class="flex flex-wrap justify-center gap-6 lg:gap-10">
-            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="#">Privacy Policy</a>
-            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="#">Terms of Service</a>
-            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="#">Support</a>
-            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="#">Instagram</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="privacy.html">Privacy Policy</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="terms.html">Terms of Service</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="support.html">Support</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="https://instagram.com/cedar">Instagram</a>
         </div>
     </footer>
 
