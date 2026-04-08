@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cedar-forest: #1B3022;
+  --color-cedar-forest-dark: #122117;
+  --color-cedar-alabaster: #F9F7F2;
+  --color-cedar-bronze: #AA8C55;
+  --color-cedar-bronze-light: #C5AC81;
+  --color-cedar-midnight: #121415;
+  --color-cedar-slate: #4A5568;
+  --color-cedar-glass: rgba(255, 255, 255, 0.8);
+  
+  --font-headline: var(--font-playfair), serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-label: var(--font-inter), sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30;
+  }
+}
+
+@layer utilities {
+  .material-symbols-outlined { 
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; 
+  }
+  .glass-nav { 
+    background: rgba(255, 255, 255, 0.85); 
+    backdrop-filter: blur(20px); 
+    border-bottom: 1px solid rgba(0,0,0,0.05); 
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .ai-pulse {
+    box-shadow: 0 0 0 0 rgba(170, 140, 85, 0.7);
+    animation: pulse-ring 2s infinite;
+  }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(170, 140, 85, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(170, 140, 85, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(170, 140, 85, 0); }
+}

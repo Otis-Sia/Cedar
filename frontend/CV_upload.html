@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cedar | Upload CV</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <!-- Tailwind CSS & Config -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-config.js"></script>
+    
+    <!-- Custom CSS Base -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30 min-h-screen flex flex-col">
+
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 h-20 bg-white/85 backdrop-blur-md border-b border-black/5">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
+                C
+            </div>
+            <div class="font-headline text-2xl font-bold tracking-tight text-cedar-forest group-hover:text-cedar-forest-dark transition-colors">Cedar</div>
+        </a>
+        
+        <div class="hidden md:flex items-center gap-10">
+            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#services">Services</a>
+            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#process">Process</a>
+            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#showcase">Showcase</a>
+            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#pricing">Pricing</a>
+            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#faq">FAQ</a>
+        </div>
+        
+        <div class="flex items-center gap-6">
+            <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
+            <a href="dashboard.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
+                Dashboard
+            </a>
+        </div>
+    </nav>
+    
+    <main class="pt-32 pb-20 px-6 flex-grow flex flex-col items-center justify-center max-w-[1280px] mx-auto w-full">
+        <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div class="lg:col-span-5 space-y-8 pt-8">
+                <div class="space-y-6">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/10 text-cedar-bronze font-semibold text-xs tracking-[0.2em] uppercase shadow-sm">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        AI Personalization
+                    </span>
+                    <h1 class="font-headline text-4xl md:text-5xl font-bold text-cedar-midnight tracking-tight leading-[1.1]">
+                        Let AI Curate Your <span class="text-cedar-bronze italic">Masterpiece.</span>
+                    </h1>
+                    <p class="text-cedar-slate text-lg leading-relaxed max-w-sm">
+                        Upload your CV, and our engine will distill your career into a high-end editorial portfolio in seconds.
+                    </p>
+                </div>
+                
+                <div class="space-y-8 pt-4">
+                    <div class="flex gap-5 items-start">
+                        <div class="mt-1 w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center flex-shrink-0 text-cedar-bronze shadow-sm">
+                            <span class="material-symbols-outlined text-xl">description</span>
+                        </div>
+                        <div>
+                            <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Smart Parsing</h4>
+                            <p class="text-cedar-slate text-sm leading-relaxed">We extract roles, skills, and achievements with 99% accuracy from your document.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-5 items-start">
+                        <div class="mt-1 w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center flex-shrink-0 text-cedar-forest shadow-sm">
+                            <span class="material-symbols-outlined text-xl">palette</span>
+                        </div>
+                        <div>
+                            <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Visual Synthesis</h4>
+                            <p class="text-cedar-slate text-sm leading-relaxed">Your professional history is seamlessly mapped to our exclusive editorial layouts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-7 w-full">
+                <div class="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)] border border-black/5 relative overflow-hidden">
+                    <!-- Subtle background decoration -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-cedar-bronze/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 space-y-8">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-headline text-2xl font-bold text-cedar-midnight">Import CV/Resume</h3>
+                            <div class="flex gap-1.5">
+                                <div class="w-2.5 h-2.5 rounded-full bg-cedar-bronze"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-black/10"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-black/10"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="group relative border-2 border-dashed border-black/10 rounded-3xl p-12 transition-all duration-300 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/30 cursor-pointer flex flex-col items-center justify-center text-center">
+                            <div class="w-16 h-16 rounded-full bg-cedar-alabaster flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border border-black/5 shadow-sm text-cedar-bronze">
+                                <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                            </div>
+                            <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Drag and drop your file here</h4>
+                            <p class="text-cedar-slate text-sm mb-6">Or click to browse from your computer</p>
+                            <div class="flex gap-3">
+                                <span class="px-4 py-1.5 rounded-lg bg-white text-cedar-slate text-[10px] font-bold tracking-widest uppercase border border-black/10 shadow-sm">PDF</span>
+                                <span class="px-4 py-1.5 rounded-lg bg-white text-cedar-slate text-[10px] font-bold tracking-widest uppercase border border-black/10 shadow-sm">DOCX</span>
+                            </div>
+                            <input class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" type="file" aria-label="File upload" />
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- Show simulated file for layout purposes -->
+                            <div class="bg-cedar-alabaster rounded-2xl p-5 border border-black/5">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="flex items-center gap-4">
+                                        <div class="w-10 h-10 rounded-lg bg-white border border-black/5 flex items-center justify-center text-cedar-forest shadow-sm">
+                                            <span class="material-symbols-outlined">picture_as_pdf</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-sm font-bold text-cedar-midnight">Alex_Chen_Senior_Designer.pdf</p>
+                                            <p class="text-[10px] text-cedar-slate uppercase font-semibold tracking-wider mt-0.5">4.2 MB • Ready</p>
+                                        </div>
+                                    </div>
+                                    <div class="w-6 h-6 rounded-full bg-cedar-forest flex items-center justify-center text-white">
+                                        <span class="material-symbols-outlined text-sm font-bold">check</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <a href="select_template.html" class="w-full bg-cedar-forest text-white font-semibold text-[15px] py-4 rounded-full flex items-center justify-center gap-2 hover:bg-cedar-forest-dark active:scale-[0.98] transition-all shadow-md group">
+                                <span class="material-symbols-outlined text-lg">bolt</span>
+                                START AI SCAN
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                        
+                        <p class="text-center text-xs text-cedar-slate/70 font-medium px-4">
+                            By uploading, you agree to our <a class="underline hover:text-cedar-forest transition-colors" href="terms.html">Data Processing Agreement</a>. Your data is encrypted and used only for portfolio generation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Trusted By Section -->
+        <div class="w-full mt-24 mb-10 pt-16 border-t border-black/5">
+            <h5 class="text-center font-semibold text-[10px] tracking-[0.3em] text-cedar-slate uppercase mb-10">Trusted by world-class creators from</h5>
+            <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                <img alt="Adobe" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgd3UdcT9wJQx2EbsVSlCMcaz-LmLzYsOfOk_1-_W35Z1hAtNBkv4mcGuK517WcM1mcdpOMFNgG2DRnsHRkArGExiEkIM8xO89rVftnWXRdqlRXbxpN5xnuEoA0TbPsHdP_vmqFk0JuDGs6CahsfqLou3MdQyqA96b-3srsvjyFz9mZ_kD-kdfSrq3C9WyOYYuXJ7nOWEW2s4fquZivjpHjCp5tyHfDwR4MS-xC1iNKJlWFONMvHItQq3-UuWEX_nOFzJaRo2PipIf"/>
+                <img alt="Figma" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPG5bgHnhNkNemKaaerygve3OtkJn0J-oL9wcT4iWm6cf9N8vEDRnS5kEr1Ue3zlk6TO4ZeKKMUGzFOI5a0I37zdpMuAbUnXlaXHZZ_tZhRXeteAdi08n-Owo1tuKb8DAgWdHT1ViqN92cuZR2rRExPEfXknr5osk-Rs9g9Ff5cTDwJhQ9EkLfqzH0adCiiCpYThnFHn-1gJ9aWg_FAZYsZBhFEEZNnVT16ALojmvoRy_v8ef-yCR6NoGwXCm4N6PrxREBHVeaXNdh"/>
+                <img alt="Netflix" class="h-5 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmeLztM3AtYiisXzm--wz-ne_H77zjEOF_hyMzVSS0ChnLg5104dJVO6nkPwhDZerv99om9P_cR_wVvC9VRKdZeQS9qgWhcQRwHltfdLPuTUnKNfzWZyGQ3H-JLukeQQQ_7RP7DCqyGn3EuUZCnsxPlBg6M1U_S-1K04L0AujbEVWR7mEM37B_x8JNJ1gwUUIiGSdOhK4oSfC8i3Z45O-MDFp5c2Y_Pm5jbZPJNLLAy9NDal210LVz8p7hL2xWbxwBpTH_GFYEP99e"/>
+                <img alt="Notion" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwBSzO0JHbsID0YgiJ_CuHZPU4I-o1JSUtEPwemEIgUhG60kezfZX64Ac6vos0orartFjhANVHP41rIiVlE4vWE7Iv3PUvJ1-7Fc3r7rVQT1t3xu94vemUbk7pKSi7S4CLliVGQ-dqzmuKI04FwLPDx6sV--AGcA_msCG7Iz27rxog5AYrgC7jLW4QwARESKRPAX3fTxMi0wWyFYM_8VvNAtoTR-xBqSHSegNkBN3AJpGQT5KORLeaL_XOCP3kin5VjFPwBpLU0zlF"/>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-8 w-full border-t border-black/5 mt-auto">
+        <div class="flex items-center gap-3 mb-6 md:mb-0">
+            <div class="w-6 h-6 rounded bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">
+                C
+            </div>
+            <div class="text-[13px] font-medium text-cedar-slate">
+                © 2026 Cedar. Curated with excellence in Nairobi.
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6 lg:gap-10">
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="privacy.html">Privacy Policy</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="terms.html">Terms of Service</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="support.html">Support</a>
+            <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="https://instagram.com/cedar">Instagram</a>
+        </div>
+    </footer>
+
+    <!-- Fixed Floating Status Indicator -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <div class="bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl flex items-center gap-3 border border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+            <div class="w-2.5 h-2.5 rounded-full bg-cedar-forest animate-pulse shadow-[0_0_8px_rgba(27,48,34,0.5)]"></div>
+            <p class="text-xs font-bold text-cedar-midnight tracking-wide uppercase">Engine Ready</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
