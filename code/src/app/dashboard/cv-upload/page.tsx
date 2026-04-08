@@ -178,7 +178,7 @@ export default function CVUploadPage() {
             <div className="flex items-center justify-center gap-2 pt-2">
               <span className="material-symbols-outlined text-[18px] text-cedar-bronze">shield</span>
               <p className="text-[11px] text-cedar-slate/70 font-semibold tracking-wide uppercase px-4 text-center">
-                Encrypted &amp; Secure. View <Link href="/privacy" className="underline hover:text-cedar-forest transition-colors">Privacy Policy</Link>.
+                Encrypted & Secure. View <Link href="/privacy" className="underline hover:text-cedar-forest transition-colors">Privacy Policy</Link>.
               </p>
             </div>
           </div>

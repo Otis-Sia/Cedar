@@ -241,7 +241,7 @@ export default function PortfolioBuilder() {
                 <div className="flex items-center gap-2 text-sm font-bold text-cedar-midnight mb-1">
                   <span className="material-symbols-outlined text-cedar-bronze text-[16px]">lock</span> Custom Domain
                 </div>
-                <p className="text-xs text-cedar-slate">Upgrade to Elite to use your own custom domain.</p>
+                <p className="text-xs text-cedar-slate">Upgrade to Business to use your own custom domain.</p>
               </div>
             )}
           </div>
