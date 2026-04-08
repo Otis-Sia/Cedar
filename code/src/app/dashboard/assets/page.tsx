@@ -1,15 +1,6 @@
 "use client";
 
 import React, { useState } from 'react';
-import { 
-  Plus, 
-  Search, 
-  FileText, 
-  MoreVertical, 
-  Download, 
-  ExternalLink,
-  FolderOpen
-} from 'lucide-react';
 
 export default function AssetsPage() {
   const [activeTab, setActiveTab] = useState('All');
@@ -32,7 +23,7 @@ export default function AssetsPage() {
       <header className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
         <div className="space-y-4">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-bronze font-bold text-[10px] uppercase tracking-widest">
-            <FolderOpen className="w-3 h-3" />
+            <span className="material-symbols-outlined text-sm">folder_open</span>
             Digital Sanctuary
           </div>
           <h1 className="font-headline text-5xl font-bold tracking-tight text-cedar-midnight">Your Assets</h1>
@@ -40,7 +31,7 @@ export default function AssetsPage() {
         </div>
         
         <button className="bg-cedar-forest text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl hover:bg-cedar-forest-dark hover:-translate-y-1 transition-all active:scale-95 flex items-center gap-3">
-          <Plus className="w-4 h-4" />
+          <span className="material-symbols-outlined text-[18px]">add</span>
           Upload New Asset
         </button>
       </header>
@@ -64,7 +55,7 @@ export default function AssetsPage() {
         </div>
 
         <div className="relative w-full md:w-96 group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-cedar-slate transition-colors group-focus-within:text-cedar-forest" />
+          <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[18px] text-cedar-slate transition-colors group-focus-within:text-cedar-forest">search</span>
           <input 
             type="text" 
             placeholder="Search your collection..."
@@ -84,7 +75,7 @@ export default function AssetsPage() {
               ) : (
                 <div className="space-y-4 text-center group-hover:scale-110 transition-transform duration-500">
                   <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center mx-auto shadow-sm text-cedar-forest">
-                    <FileText className="w-8 h-8" />
+                    <span className="material-symbols-outlined text-3xl">description</span>
                   </div>
                   <span className="text-[10px] font-bold text-cedar-slate uppercase tracking-[0.2em]">PDF Document</span>
                 </div>
@@ -93,10 +84,10 @@ export default function AssetsPage() {
               {/* Overlay Actions */}
               <div className="absolute inset-0 bg-cedar-forest/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                 <button className="p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-cedar-forest transition-all">
-                  <Download className="w-5 h-5" />
+                  <span className="material-symbols-outlined text-[20px]">download</span>
                 </button>
                 <button className="p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-cedar-forest transition-all">
-                  <ExternalLink className="w-5 h-5" />
+                  <span className="material-symbols-outlined text-[20px]">open_in_new</span>
                 </button>
               </div>
             </div>
@@ -106,7 +97,7 @@ export default function AssetsPage() {
               <div className="flex justify-between items-start mb-2">
                 <h3 className="font-bold text-cedar-midnight text-sm truncate pr-4">{asset.name}</h3>
                 <button className="text-cedar-slate hover:text-cedar-midnight">
-                  <MoreVertical className="w-4 h-4" />
+                  <span className="material-symbols-outlined text-[18px]">more_vert</span>
                 </button>
               </div>
               <div className="flex items-center gap-3">
@@ -123,7 +114,7 @@ export default function AssetsPage() {
       {filteredAssets.length === 0 && (
         <div className="mt-20 flex flex-col items-center justify-center text-center space-y-6 animate-in fade-in duration-700">
           <div className="w-24 h-24 rounded-full bg-white border border-black/5 flex items-center justify-center text-cedar-bronze/30 shadow-sm">
-            <Plus className="w-10 h-10" />
+            <span className="material-symbols-outlined text-[40px]">add</span>
           </div>
           <div className="space-y-2">
             <h3 className="font-headline text-2xl font-bold text-cedar-midnight italic">The Sanctuary is Empty</h3>
