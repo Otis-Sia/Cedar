@@ -18,8 +18,8 @@ export default function ForgotPasswordPage() {
     try {
       await resetPassword(email);
       setIsSubmitted(true);
-    } catch (err: any) {
-      setError(err.message || 'Failed to send reset email. Please check your address.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to send reset email. Please check your address.');
     } finally {
       setIsLoading(false);
     }

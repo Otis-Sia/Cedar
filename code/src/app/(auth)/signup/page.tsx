@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -19,8 +20,8 @@ export default function SignupPage() {
     try {
       await signUp(email, password, name);
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Failed to create account. Please try again.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to create account. Please try again.');
     }
   };
 
@@ -28,7 +29,7 @@ export default function SignupPage() {
     <div className="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30 overflow-hidden h-screen flex w-full">
       {/* Left: Visual Cover */}
       <div className="hidden lg:flex flex-1 relative bg-white flex-col justify-between p-12 overflow-hidden border-r border-black/5">
-        <img className="absolute inset-0 w-full h-full object-cover filter brightness-[0.95]" alt="clean tech design showcase" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"/>
+        <Image fill className="object-cover filter brightness-[0.95]" alt="clean tech design showcase" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"/>
         
         <div className="absolute inset-0 bg-gradient-to-t from-cedar-midnight/60 via-transparent to-transparent"></div>
         
@@ -50,7 +51,7 @@ export default function SignupPage() {
             Let your work dictate the layout.
           </h2>
           <p className="text-white/80 text-sm leading-relaxed">
-            Join thousands of designers, developers, and visionaries building their digital sanctuaries with Cedar's intelligent portfolio engine.
+            Join thousands of designers, developers, and visionaries building their digital sanctuaries with Cedar&apos;s intelligent portfolio engine.
           </p>
         </div>
       </div>
@@ -133,7 +134,7 @@ export default function SignupPage() {
             <div className="flex items-start pt-2 mb-2 w-full">
               <input id="terms" type="checkbox" required className="w-4 h-4 mt-0.5 rounded border-black/20 text-cedar-forest focus:ring-cedar-bronze/30 bg-cedar-alabaster shrink-0" />
               <label htmlFor="terms" className="ml-3 text-xs text-cedar-slate leading-relaxed">
-                By creating an account, you agree to Cedar's <Link href="/legal/terms" className="text-cedar-midnight font-semibold underline">Terms of Service</Link> and <Link href="/legal/privacy" className="text-cedar-midnight font-semibold underline">Privacy Policy</Link>.
+                By creating an account, you agree to Cedar&apos;s <Link href="/legal/terms" className="text-cedar-midnight font-semibold underline">Terms of Service</Link> and <Link href="/legal/privacy" className="text-cedar-midnight font-semibold underline">Privacy Policy</Link>.
               </label>
             </div>
             

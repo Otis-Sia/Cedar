@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
@@ -18,8 +19,8 @@ export default function LoginPage() {
     try {
       await login(email, password);
       router.push('/dashboard');
-    } catch (err: any) {
-      setError(err.message || 'Failed to sign in. Please check your credentials.');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Failed to sign in. Please check your credentials.');
     }
   };
 
@@ -107,7 +108,7 @@ export default function LoginPage() {
             </div>
             
             <div className="pt-6 text-center text-sm text-cedar-slate">
-              Don't have an account yet? 
+              Don&apos;t have an account yet? 
               <Link href="/signup" className="ml-1 font-bold text-cedar-forest hover:underline">Create an account</Link>
             </div>
           </form>
@@ -121,7 +122,7 @@ export default function LoginPage() {
       
       {/* Right: Visual Cover */}
       <div className="hidden lg:flex flex-1 relative bg-cedar-forest flex-col justify-between p-12 overflow-hidden border-l border-black/5">
-        <img className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-overlay" alt="architectural clean interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC72iK9ea6YugkWIKJMvCiAGJb5e3GZ6tqmw6a3uiIpubdh-frwlZav_0kldfOk7KCFOEJzdrMjUsCfCMORQkt4RbJCBGmVfxtkPxbHFl8roiorGeL6RLkYfp0P03Bq1o2bnsVR-hb8AHsvv1F-pCvu67Cgs9GhVw1lCkAUzI9abfwcPvpxzHem9o2ZOb2znCjADWk4NANU6kac7ZuaBBXxU8plphO0We2ui-vXPEq5myrRRbWHtcTmyTSeR2Gtg0uTLfQKD5VoViyx"/>
+        <Image fill className="object-cover opacity-80 mix-blend-overlay" alt="architectural clean interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC72iK9ea6YugkWIKJMvCiAGJb5e3GZ6tqmw6a3uiIpubdh-frwlZav_0kldfOk7KCFOEJzdrMjUsCfCMORQkt4RbJCBGmVfxtkPxbHFl8roiorGeL6RLkYfp0P03Bq1o2bnsVR-hb8AHsvv1F-pCvu67Cgs9GhVw1lCkAUzI9abfwcPvpxzHem9o2ZOb2znCjADWk4NANU6kac7ZuaBBXxU8plphO0We2ui-vXPEq5myrRRbWHtcTmyTSeR2Gtg0uTLfQKD5VoViyx"/>
         
         <div className="absolute inset-0 bg-gradient-to-t from-cedar-midnight/90 via-transparent to-transparent"></div>
         
@@ -134,11 +135,11 @@ export default function LoginPage() {
         
         <div className="relative z-10 mb-10 max-w-lg">
           <h2 className="font-headline text-4xl font-bold text-white mb-4 line-clamp-3">
-            "The only builder that respects the negative space."
+            &quot;The only builder that respects the negative space.&quot;
           </h2>
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-white/20 overflow-hidden backdrop-blur-sm">
-              <img className="w-full h-full object-cover grayscale" alt="portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"/>
+              <Image width={40} height={40} className="w-full h-full object-cover grayscale" alt="portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"/>
             </div>
             <div>
               <p className="text-sm font-bold text-white">Sarah Jenkins</p>

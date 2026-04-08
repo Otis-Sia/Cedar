@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TemplatesPage() {
   return (
@@ -42,7 +43,7 @@ export default function TemplatesPage() {
         {/* Large Feature Card */}
         <div className="lg:col-span-8 group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
           <div className="aspect-[16/9] w-full relative overflow-hidden bg-gray-100">
-            <img alt="Creative Director Template Preview" className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcC5MivyEEPqfs4JlfP9endAXvPFetgDAOfgeli06NIo781gOYj8bqle3sKB6NrsRRfY4REdNPROjt5xCtpjB49leCwbYZRT8WVeGV7HWP_rt5uQcCwssZGyQ9MsTD9JyApaLbIKOerJU4ahYYD_xnVTxR3sn1fzbxLNSg3jPzKXe0KTRgnOmhMutr8PcdeO-F6DoiEdBIlry8BWTzWQ8F0Dq8U6mRKaWjzr84S3P_s_EtSKberwln-5oGMKtOWtsve9WD-aZs6oIb"/>
+            <Image fill alt="Creative Director Template Preview" className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcC5MivyEEPqfs4JlfP9endAXvPFetgDAOfgeli06NIo781gOYj8bqle3sKB6NrsRRfY4REdNPROjt5xCtpjB49leCwbYZRT8WVeGV7HWP_rt5uQcCwssZGyQ9MsTD9JyApaLbIKOerJU4ahYYD_xnVTxR3sn1fzbxLNSg3jPzKXe0KTRgnOmhMutr8PcdeO-F6DoiEdBIlry8BWTzWQ8F0Dq8U6mRKaWjzr84S3P_s_EtSKberwln-5oGMKtOWtsve9WD-aZs6oIb"/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 z-10"></div>
           </div>
           
@@ -61,7 +62,7 @@ export default function TemplatesPage() {
         {/* Secondary Card */}
         <div className="lg:col-span-4 group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
           <div className="aspect-[4/5] w-full relative overflow-hidden bg-gray-100">
-            <img alt="Minimalist Template Preview" className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOMJw5GWZh1ebScLwnRO5Bph0HQ7ZDwB2_jvDEMDlpFXOkj2S0q92cg5R-991gG2m-KlxSn8L333HmeFyDam6N58oxPjgtlRHJpckDxXoSwusZBudpKA8x7ZM_CTzR7wU2Io02oKYgogF5IZOuAqhaOUCHd6jFSMcepr118TnbJgj-NKmI4em-eIsdYWMQHTVKRwxWHj8O-aRBz3E6scGYz4VLdFYmi2nqoG8a_HKl1IpCyn2cdPZWdoK_95OESrPH3TPK8laSYYGv"/>
+            <Image fill alt="Minimalist Template Preview" className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOMJw5GWZh1ebScLwnRO5Bph0HQ7ZDwB2_jvDEMDlpFXOkj2S0q92cg5R-991gG2m-KlxSn8L333HmeFyDam6N58oxPjgtlRHJpckDxXoSwusZBudpKA8x7ZM_CTzR7wU2Io02oKYgogF5IZOuAqhaOUCHd6jFSMcepr118TnbJgj-NKmI4em-eIsdYWMQHTVKRwxWHj8O-aRBz3E6scGYz4VLdFYmi2nqoG8a_HKl1IpCyn2cdPZWdoK_95OESrPH3TPK8laSYYGv"/>
           </div>
           
           <div className="p-6 border-t border-black/5 bg-white flex-grow flex flex-col justify-end">
@@ -76,7 +77,7 @@ export default function TemplatesPage() {
         {/* Row 2 */}
         <div className="lg:col-span-4 group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
           <div className="aspect-[4/5] w-full relative overflow-hidden bg-gray-100">
-            <img alt="Corporate Tech Template Preview" className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB5wo4G9NfGZln-cZk_2YF7neuJZMcfZ2zhlHIbIJMajzLNsJOXAk9mRAmgJWsiJ-qFU46tCyeJCX7HY399A8sfEnhCFBj9Z1tMY0Lo5novg2X4ty_iEHFyzhZUw3ye52iwHOdvAKm5k9kfaqr8wINcId0FgLL8Nj65ioObbYfrN-pPGAq8gIbk8fvKiq7GafBMTc_8kLd-DC71covwt8hI3LH3WlTDXpQ2xIDd4Whn6wvS3Do5wKU-f4J5RB6Esuu1JxB_SMR7MlU"/>
+            <Image fill alt="Corporate Tech Template Preview" className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB5wo4G9NfGZln-cZk_2YF7neuJZMcfZ2zhlHIbIJMajzLNsJOXAk9mRAmgJWsiJ-qFU46tCyeJCX7HY399A8sfEnhCFBj9Z1tMY0Lo5novg2X4ty_iEHFyzhZUw3ye52iwHOdvAKm5k9kfaqr8wINcId0FgLL8Nj65ioObbYfrN-pPGAq8gIbk8fvKiq7GafBMTc_8kLd-DC71covwt8hI3LH3WlTDXpQ2xIDd4Whn6wvS3Do5wKU-f4J5RB6Esuu1JxB_SMR7MlU"/>
           </div>
           
           <div className="p-6 border-t border-black/5 bg-white flex-grow flex flex-col justify-end">
@@ -90,7 +91,7 @@ export default function TemplatesPage() {
         
         <div className="lg:col-span-4 group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
           <div className="aspect-[4/5] w-full relative overflow-hidden bg-gray-100">
-            <img alt="Experimental Template Preview" className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmWvv7kaCzGEh4vL7LcCzrTRAn9GYXgA63axMSi4RFxuhMcjzlLJKqaZ6r0YEwpSUGi5jw4oJST3Zr6VRAEWyv8fL1bRePNV7OXGbcqGKTdjF7m1fEpF8SzBQzBNdiEAIXwbOlTzY7e6-2A_q9E6ciKaGPX42Fdheco914LNCdW8rkSZWswvAjRtKvuisUZXe-q5bcNjJo5LKd_D7WKObCHiws6V5KLIJU0UMY5xkhjKuYU8-U4Nr_XbjQsFUmw4sLNtJ9dWqw09za"/>
+            <Image fill alt="Experimental Template Preview" className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmWvv7kaCzGEh4vL7LcCzrTRAn9GYXgA63axMSi4RFxuhMcjzlLJKqaZ6r0YEwpSUGi5jw4oJST3Zr6VRAEWyv8fL1bRePNV7OXGbcqGKTdjF7m1fEpF8SzBQzBNdiEAIXwbOlTzY7e6-2A_q9E6ciKaGPX42Fdheco914LNCdW8rkSZWswvAjRtKvuisUZXe-q5bcNjJo5LKd_D7WKObCHiws6V5KLIJU0UMY5xkhjKuYU8-U4Nr_XbjQsFUmw4sLNtJ9dWqw09za"/>
           </div>
           
           <div className="p-6 border-t border-black/5 bg-white flex-grow flex flex-col justify-end">
@@ -104,7 +105,7 @@ export default function TemplatesPage() {
         
         <div className="lg:col-span-4 group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
           <div className="aspect-[4/5] w-full relative overflow-hidden bg-gray-100">
-            <img alt="Product Showcase Template Preview" className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDYYEUvaZAZe8wpNpMF3ZRclOVX_E3BJXvptylXbTyqxuMPhUfwitLDderuz9gy2i0vOtAbraFDlX2cHkOIXSOtexzAi6JatFfcBQ3CJI4IOoe3WjPDAiJ6RwHGQmIbG298Htl9u2-WLOs-wkWdjB43NcfwuA0RhQnJs3iq83Q0ifM9-pucTT4sDPT-YvWENT8pXZFm3i41iv-AeCvcnvZRDbnSx2_coLQjA2YLr_mCTLvqKBRnkaridT821KSd-Bw84AaxKD56ewQ"/>
+            <Image fill alt="Product Showcase Template Preview" className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDYYEUvaZAZe8wpNpMF3ZRclOVX_E3BJXvptylXbTyqxuMPhUfwitLDderuz9gy2i0vOtAbraFDlX2cHkOIXSOtexzAi6JatFfcBQ3CJI4IOoe3WjPDAiJ6RwHGQmIbG298Htl9u2-WLOs-wkWdjB43NcfwuA0RhQnJs3iq83Q0ifM9-pucTT4sDPT-YvWENT8pXZFm3i41iv-AeCvcnvZRDbnSx2_coLQjA2YLr_mCTLvqKBRnkaridT821KSd-Bw84AaxKD56ewQ"/>
           </div>
           
           <div className="p-6 border-t border-black/5 bg-white flex-grow flex flex-col justify-end">
@@ -125,7 +126,7 @@ export default function TemplatesPage() {
         </div>
         <div className="hidden sm:block h-6 w-px bg-black/10"></div>
         <span className="text-[13px] font-medium text-cedar-slate italic max-w-[300px] text-center sm:text-left leading-tight">
-          "I recommend 'Creative Director' based on your recent workflow."
+          &quot;I recommend &apos;Creative Director&apos; based on your recent workflow.&quot;
         </span>
         <button className="text-[13px] font-bold text-cedar-forest hover:text-cedar-forest-dark shrink-0 ml-2">Analyze More</button>
       </div>

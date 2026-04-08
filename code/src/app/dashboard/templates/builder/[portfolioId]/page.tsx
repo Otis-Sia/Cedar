@@ -6,13 +6,56 @@ import { db, handleFirestoreError, OperationType } from '../../../../../lib/fire
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { ArrowLeft, Save, Globe, Lock, LayoutTemplate, Trash2, ExternalLink, Share2, Mail, Phone, MapPin, Link as LinkIcon } from 'lucide-react';
 
+interface ExperienceItem {
+  role: string;
+  company: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+}
+
+interface EducationItem {
+  year: string;
+  degree: string;
+  institution: string;
+}
+
+interface ContactInfo {
+  email?: string;
+  phone?: string;
+  location?: string;
+  linkedin?: string;
+  website?: string;
+}
+
+interface PortfolioData {
+  name: string;
+  title: string;
+  bio: string;
+  skills: string[];
+  contactInfo?: ContactInfo;
+  experience?: ExperienceItem[];
+  education?: EducationItem[];
+}
+
+interface Portfolio {
+  id: string;
+  userId: string;
+  title: string;
+  templateId: string;
+  isPublic: boolean;
+  customDomain?: string;
+  data: string;
+  updatedAt?: string;
+}
+
 export default function PortfolioBuilder() {
   const params = useParams();
   const portfolioId = params?.portfolioId as string;
   const { user, tier } = useAuth();
   const router = useRouter();
   
-  const [portfolio, setPortfolio] = useState<any>(null);
+  const [portfolio, setPortfolio] = useState<Portfolio | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -26,7 +69,7 @@ export default function PortfolioBuilder() {
         const docSnap = await getDoc(docRef);
         
         if (docSnap.exists() && docSnap.data().userId === user.uid) {
-          setPortfolio({ id: docSnap.id, ...docSnap.data() });
+          setPortfolio({ id: docSnap.id, ...docSnap.data() } as Portfolio);
         }
       } catch (error) {
         handleFirestoreError(error, OperationType.GET, `portfolios/${portfolioId}`);
@@ -272,7 +315,7 @@ export default function PortfolioBuilder() {
 }
 
 // Simple template renderer for preview
-export function TemplateRenderer({ templateId, data }: { templateId: string, data: any }) {
+export function TemplateRenderer({ templateId, data }: { templateId: string, data: PortfolioData }) {
   if (templateId === 'modern') {
     return (
       <div className="font-sans text-slate-900">
@@ -308,7 +351,7 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
           <section>
             <h2 className="text-2xl font-bold border-b-2 border-indigo-100 pb-2 mb-6 text-indigo-900">Experience</h2>
             <div className="space-y-8">
-              {data.experience?.map((exp: any, i: number) => (
+              {data.experience?.map((exp: ExperienceItem, i: number) => (
                 <div key={i} className="relative pl-8 border-l-2 border-indigo-100">
                   <div className="absolute w-4 h-4 bg-indigo-600 rounded-full -left-[9px] top-1"></div>
                   <h3 className="text-xl font-bold">{exp.role}</h3>
@@ -362,7 +405,7 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
             <section>
               <h2 className="text-white text-xl border-b border-slate-700 pb-2 mb-4"># EXPERIENCE</h2>
               <div className="space-y-6">
-                {data.experience?.map((exp: any, i: number) => (
+                {data.experience?.map((exp: ExperienceItem, i: number) => (
                   <div key={i}>
                     <h3 className="text-white font-bold">{exp.role} @ {exp.company}</h3>
                     <div className="text-xs text-slate-500 mb-2">[{exp.startDate} - {exp.endDate}]</div>
@@ -403,7 +446,7 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
         <section>
           <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Experience</h2>
           <div className="space-y-8">
-            {data.experience?.map((exp: any, i: number) => (
+            {data.experience?.map((exp: ExperienceItem, i: number) => (
               <div key={i} className="grid md:grid-cols-4 gap-4">
                 <div className="text-sm text-slate-500 pt-1">
                   {exp.startDate} — {exp.endDate}
@@ -421,7 +464,7 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
         <section>
           <h2 className="text-sm font-bold uppercase tracking-widest text-slate-400 mb-6">Education</h2>
           <div className="space-y-6">
-            {data.education?.map((edu: any, i: number) => (
+            {data.education?.map((edu: EducationItem, i: number) => (
               <div key={i} className="grid md:grid-cols-4 gap-4">
                 <div className="text-sm text-slate-500 pt-1">{edu.year}</div>
                 <div className="md:col-span-3">

@@ -4,12 +4,9 @@ import React, { useState } from 'react';
 import { 
   Plus, 
   Search, 
-  Filter, 
-  Image as ImageIcon, 
   FileText, 
   MoreVertical, 
   Download, 
-  Trash2, 
   ExternalLink,
   FolderOpen
 } from 'lucide-react';

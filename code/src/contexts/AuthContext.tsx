@@ -53,7 +53,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const [isAuthenticating, setIsAuthenticating] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   const signUp = async (email: string, pass: string, name: string) => {
     setIsAuthenticating(true);
@@ -71,11 +70,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       };
       await setDoc(userDocRef, newProfile);
       setTier('free');
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Sign up error:', err);
       throw err;
     } finally {
-      setIsAuthenticating(true);
+      setIsAuthenticating(false);
     }
   };
 
@@ -83,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsAuthenticating(true);
     try {
       await signInWithEmailAndPassword(auth, email, pass);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Login error:', err);
       throw err;
     } finally {
@@ -94,7 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const resetPassword = async (email: string) => {
     try {
       await sendPasswordResetEmail(auth, email);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Password reset error:', err);
       throw err;
     }
@@ -103,7 +102,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = async () => {
     try {
       await signOut(auth);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error signing out', err);
     }
   };

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -79,7 +80,7 @@ export default function LandingPage() {
           <div className="text-center max-w-[700px] mx-auto mb-20">
             <span className="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Our Services</span>
             <h2 className="font-headline text-4xl md:text-5xl font-bold text-cedar-forest mt-4 mb-4">Everything you need to look professional online</h2>
-            <p className="text-cedar-slate text-lg">We don't just build websites. We curate your professional presence with a focus on authority, speed, and elegance.</p>
+            <p className="text-cedar-slate text-lg">We don&apos;t just build websites. We curate your professional presence with a focus on authority, speed, and elegance.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -91,7 +92,7 @@ export default function LandingPage() {
             <div className="bg-white p-12 rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
               <div className="w-16 h-16 bg-cedar-alabaster rounded-2xl mb-8 flex items-center justify-center text-2xl">☁️</div>
               <h3 className="font-headline text-2xl font-bold mb-4 text-cedar-midnight">Concierge Hosting</h3>
-              <p className="text-cedar-slate text-sm leading-relaxed">We host your site so it stays online, fast, secure, and ready to share at a moment's notice.</p>
+              <p className="text-cedar-slate text-sm leading-relaxed">We host your site so it stays online, fast, secure, and ready to share at a moment&apos;s notice.</p>
             </div>
             <div className="bg-white p-12 rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
               <div className="w-16 h-16 bg-cedar-alabaster rounded-2xl mb-8 flex items-center justify-center text-2xl">📱</div>
@@ -101,7 +102,7 @@ export default function LandingPage() {
             <div className="bg-white p-12 rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
               <div className="w-16 h-16 bg-cedar-alabaster rounded-2xl mb-8 flex items-center justify-center text-2xl">🔄</div>
               <h3 className="font-headline text-2xl font-bold mb-4 text-cedar-midnight">Seamless Updates</h3>
-              <p className="text-cedar-slate text-sm leading-relaxed">Send us your new projects, and we'll update your site within hours. No tech stress required.</p>
+              <p className="text-cedar-slate text-sm leading-relaxed">Send us your new projects, and we&apos;ll update your site within hours. No tech stress required.</p>
             </div>
           </div>
         </section>
@@ -130,7 +131,7 @@ export default function LandingPage() {
                 <div className="relative z-10">
                   <span className="font-headline font-bold text-6xl text-white/20 group-hover:text-cedar-bronze transition-colors">02</span>
                   <h3 className="font-headline text-3xl font-bold mt-6 mb-4 text-white">AI Scan & Strategy</h3>
-                  <p className="text-white/80 text-base max-w-md leading-relaxed">Our AI doesn't just read text; it understands your industry context, identifying your unique selling points to structure your narrative.</p>
+                  <p className="text-white/80 text-base max-w-md leading-relaxed">Our AI doesn&apos;t just read text; it understands your industry context, identifying your unique selling points to structure your narrative.</p>
                 </div>
                 <div className="absolute bottom-[-10%] right-[-5%] opacity-10">
                   <span className="material-symbols-outlined text-[300px] text-white" style={{ fontVariationSettings: "'FILL' 1" }}>neurology</span>
@@ -141,14 +142,14 @@ export default function LandingPage() {
                 <div className="flex-1">
                   <span className="font-headline font-bold text-6xl text-cedar-forest/20 group-hover:text-cedar-bronze transition-colors">03</span>
                   <h3 className="font-headline text-3xl font-bold mt-6 mb-4 text-cedar-midnight">Choose Template</h3>
-                  <p className="text-cedar-slate text-base leading-relaxed">Select from a curated collection of editorial-grade layouts designed by the world's leading UI directors.</p>
+                  <p className="text-cedar-slate text-base leading-relaxed">Select from a curated collection of editorial-grade layouts designed by the world&apos;s leading UI directors.</p>
                 </div>
                 <div className="flex-1 grid grid-cols-2 gap-4 w-full">
-                  <div className="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm">
-                    <img className="w-full h-full object-cover" alt="minimal UI setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_XdtiQZf_9fYuO86YLL-lMNedL5xdgvBVY007zU9yQPGeDdvw0599YrqIvSA7sRlDLuh1iGmFgudBvgkVeSdHZ__b2-WIhPdHp8aZsujA4FXtVOwee_AL4gZP72YE_ooEdKwPK2OKNXNhNuf_ShVL472WqH0lT_VlR8af8ZGsUP9E8OlHkW1-bc_6EJTdzCsiKGSXU3RgHzoy1e2q9pxPpa2LGeYZjmgFz2JUn2cg32Nf53a9OcEkwMWpWtQ0uUsqSjXEL1p6KcmT"/>
+                  <div className="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm relative">
+                    <Image fill className="object-cover" alt="minimal UI setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_XdtiQZf_9fYuO86YLL-lMNedL5xdgvBVY007zU9yQPGeDdvw0599YrqIvSA7sRlDLuh1iGmFgudBvgkVeSdHZ__b2-WIhPdHp8aZsujA4FXtVOwee_AL4gZP72YE_ooEdKwPK2OKNXNhNuf_ShVL472WqH0lT_VlR8af8ZGsUP9E8OlHkW1-bc_6EJTdzCsiKGSXU3RgHzoy1e2q9pxPpa2LGeYZjmgFz2JUn2cg32Nf53a9OcEkwMWpWtQ0uUsqSjXEL1p6KcmT"/>
                   </div>
-                  <div className="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm mt-6">
-                    <img className="w-full h-full object-cover" alt="dashboard ui mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxNpdni3tVFgLkCBsQkLiBxdSZPOFSuVxKDJR7IDaS-ZPVgVf5FgRm-Vef1BXXphD9mbNZHxIs_rQX-Ffk5KY5YeweLSis4g1mfJfakfmbE75L5N_js7LR1j4XdWIAJVBP0B-tIU0088VJ8RE-NNsjgaNfPYOWaQdRkrY4phi-Q19vhQIh_kqm7QP-a3iPmI64188nGZmQ18fsqdhBHdYYG_i3XjLtDJvMXlb4aDJS7FixhD7SSOZfGZ7Us5TQq9lksL2hmiqsgbb9"/>
+                  <div className="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm mt-6 relative">
+                    <Image fill className="object-cover" alt="dashboard ui mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxNpdni3tVFgLkCBsQkLiBxdSZPOFSuVxKDJR7IDaS-ZPVgVf5FgRm-Vef1BXXphD9mbNZHxIs_rQX-Ffk5KY5YeweLSis4g1mfJfakfmbE75L5N_js7LR1j4XdWIAJVBP0B-tIU0088VJ8RE-NNsjgaNfPYOWaQdRkrY4phi-Q19vhQIh_kqm7QP-a3iPmI64188nGZmQ18fsqdhBHdYYG_i3XjLtDJvMXlb4aDJS7FixhD7SSOZfGZ7Us5TQq9lksL2hmiqsgbb9"/>
                   </div>
                 </div>
               </div>
@@ -179,7 +180,7 @@ export default function LandingPage() {
           <div className="flex gap-8 overflow-x-auto pb-12 pt-4 px-6 lg:px-0 max-w-[1280px] mx-auto no-scrollbar snap-x">
             <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
               <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="high-end fashion portfolio layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05_snhJLPD4RWwvY5WrXK_v1EKrY3_UfsyrH5kALM4YUSGmHJ43qUt0O1a4tA9jmC-4NSK35XTS_teLpMSYAeqq3RcTPEp_S-l9JlUNEuMgiuErds9CHeGaDgOOf_G-VaBSMgtQ3l8iHT5dZOqTNz5NLjE3bjdnoNYCpKxtovwcZ_HosPk8UOttwI8P_zplNedFpCReBNMHhO5GYAJEADlQbrhiK3Ze5k4pj68E-KOrdDMxIhiV9j3_0rOTGuHF266cXVrnqygleZ"/>
+                <Image fill className="object-cover group-hover:scale-105 transition-transform duration-700" alt="high-end fashion portfolio layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05_snhJLPD4RWwvY5WrXK_v1EKrY3_UfsyrH5kALM4YUSGmHJ43qUt0O1a4tA9jmC-4NSK35XTS_teLpMSYAeqq3RcTPEp_S-l9JlUNEuMgiuErds9CHeGaDgOOf_G-VaBSMgtQ3l8iHT5dZOqTNz5NLjE3bjdnoNYCpKxtovwcZ_HosPk8UOttwI8P_zplNedFpCReBNMHhO5GYAJEADlQbrhiK3Ze5k4pj68E-KOrdDMxIhiV9j3_0rOTGuHF266cXVrnqygleZ"/>
                 <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                 </div>
@@ -190,7 +191,7 @@ export default function LandingPage() {
             
             <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0 md:mt-24">
               <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="clean tech design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"/>
+                <Image fill className="object-cover group-hover:scale-105 transition-transform duration-700" alt="clean tech design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"/>
                 <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                 </div>
@@ -201,7 +202,7 @@ export default function LandingPage() {
             
             <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
               <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="modern bold web layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zJh5mUz9dE2ajcuvUZB6XpehcQsXSfypUsUWYC8DttAskH4lMpsTVYwpZoxjRcYaLGEQ63uCAKN5-hnV_BvRof-awnvNSAMqXEfKMImVqfVMKexiyhjk5QSgW_ZCGr-XS0xhKXVOu6oIy9FbZYo6g6jq_64_FkFzuZBT2lCcnJsUza7V38eOjbqkTNqaPEQ_uPxOoFfEn51LnKdG7u2WxwegYqVZ4PO685Q_UJlkdD33bw5HpdGfFS0YzN5HC5oVyBE2vTxiFhGC"/>
+                <Image fill className="object-cover group-hover:scale-105 transition-transform duration-700" alt="modern bold web layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zJh5mUz9dE2ajcuvUZB6XpehcQsXSfypUsUWYC8DttAskH4lMpsTVYwpZoxjRcYaLGEQ63uCAKN5-hnV_BvRof-awnvNSAMqXEfKMImVqfVMKexiyhjk5QSgW_ZCGr-XS0xhKXVOu6oIy9FbZYo6g6jq_64_FkFzuZBT2lCcnJsUza7V38eOjbqkTNqaPEQ_uPxOoFfEn51LnKdG7u2WxwegYqVZ4PO685Q_UJlkdD33bw5HpdGfFS0YzN5HC5oVyBE2vTxiFhGC"/>
                 <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                   <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                 </div>
@@ -322,7 +323,7 @@ export default function LandingPage() {
                   Ready to let your <br/><span className="text-cedar-bronze italic">work speak louder?</span>
                 </h2>
                 <p className="text-white/80 leading-relaxed text-lg mb-8 max-w-lg mx-auto lg:mx-0">
-                  Let's build a digital sanctuary for your professional work. Our team is ready to curate your legacy.
+                  Let&apos;s build a digital sanctuary for your professional work. Our team is ready to curate your legacy.
                 </p>
               </div>
               

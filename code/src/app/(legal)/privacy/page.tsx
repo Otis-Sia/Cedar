@@ -8,7 +8,7 @@ export default function PrivacyPage() {
       
       <div className="text-cedar-slate space-y-10 leading-relaxed font-body">
         <p className="text-lg md:text-xl font-medium text-cedar-midnight/80 italic">
-          Your privacy is at the core of Cedar's philosophy. We believe in providing a secure, transparent ecosystem for your professional digital life.
+          Your privacy is at the core of Cedar&apos;s philosophy. We believe in providing a secure, transparent ecosystem for your professional digital life.
         </p>
 
         <section>
