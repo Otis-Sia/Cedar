@@ -104,7 +104,7 @@ export default function DashboardPage() {
               <div className="relative z-10">
                 <span className="text-cedar-bronze uppercase tracking-[0.2em] font-bold text-[10px]">Membership</span>
                 <h3 className="font-headline text-2xl text-cedar-midnight mt-2 font-bold">Elite Tier</h3>
-                <p className="text-cedar-slate text-sm mt-4 leading-relaxed">You're currently using our complete concierge service for unlimited portfolio refinement.</p>
+                <p className="text-cedar-slate text-sm mt-4 leading-relaxed">You&apos;re currently using our complete concierge service for unlimited portfolio refinement.</p>
               </div>
               <div className="mt-8 pt-6 border-t border-black/5 relative z-10">
                 <div className="flex justify-between items-center mb-3">
