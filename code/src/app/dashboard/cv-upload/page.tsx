@@ -2,18 +2,8 @@
 
 import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { 
-  CloudUpload, 
-  FileText, 
-  Check, 
-  Sparkles, 
-  Palette, 
-  ArrowRight,
-  Zap,
-  ShieldCheck,
-  FileIcon as FilePdf
-} from 'lucide-react';
 
 export default function CVUploadPage() {
   const [dragActive, setDragActive] = useState(false);
@@ -57,12 +47,13 @@ export default function CVUploadPage() {
   };
 
   return (
-    <div className="min-h-full flex flex-col md:flex-row items-stretch gap-12 lg:gap-20 p-8 md:p-12 lg:p-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <div className="min-h-full flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="flex flex-col md:flex-row items-stretch gap-12 lg:gap-20 p-8 md:p-12 lg:p-16">
       {/* Left Column: Context & Vision */}
       <div className="flex-1 space-y-10 py-4 max-w-xl">
         <div className="space-y-6">
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-cedar-bronze/20 text-cedar-bronze font-bold text-[10px] uppercase tracking-[0.2em] shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
+            <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>auto_awesome</span>
             AI Personalization
           </div>
           <h1 className="font-headline text-5xl lg:text-6xl font-bold text-cedar-midnight tracking-tight leading-[1.05]">
@@ -76,7 +67,7 @@ export default function CVUploadPage() {
         <div className="space-y-10 pt-4">
           <div className="flex gap-6 items-start group">
             <div className="w-12 h-12 rounded-2xl bg-white border border-black/5 flex items-center justify-center shrink-0 text-cedar-bronze shadow-sm group-hover:scale-110 transition-transform duration-500">
-              <FileText className="w-6 h-6" />
+              <span className="material-symbols-outlined text-[24px]">description</span>
             </div>
             <div>
               <h4 className="font-headline text-xl font-bold text-cedar-midnight mb-2">Smart Parsing</h4>
@@ -85,7 +76,7 @@ export default function CVUploadPage() {
           </div>
           <div className="flex gap-6 items-start group">
             <div className="w-12 h-12 rounded-2xl bg-white border border-black/5 flex items-center justify-center shrink-0 text-cedar-forest shadow-sm group-hover:scale-110 transition-transform duration-500">
-              <Palette className="w-6 h-6" />
+              <span className="material-symbols-outlined text-[24px]">palette</span>
             </div>
             <div>
               <h4 className="font-headline text-xl font-bold text-cedar-midnight mb-2">Visual Synthesis</h4>
@@ -124,7 +115,7 @@ export default function CVUploadPage() {
             >
               <div className={`w-20 h-20 rounded-full bg-cedar-alabaster flex items-center justify-center mb-8 transition-all duration-500 shadow-sm text-cedar-bronze
                 ${dragActive ? 'scale-110 shadow-md' : 'group-hover:-translate-y-2 group-hover:shadow-md'}`}>
-                <CloudUpload className="w-10 h-10" />
+                <span className="material-symbols-outlined text-[40px]">cloud_upload</span>
               </div>
               <h4 className="font-headline text-2xl font-bold text-cedar-midnight mb-3">Drag and drop your file</h4>
               <p className="text-cedar-slate text-base mb-8">Or click to browse from your computer</p>
@@ -149,7 +140,7 @@ export default function CVUploadPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-5">
                       <div className="w-12 h-12 rounded-xl bg-white border border-black/5 flex items-center justify-center text-cedar-forest shadow-sm">
-                        <FilePdf className="w-6 h-6" />
+                        <span className="material-symbols-outlined text-[24px]">picture_as_pdf</span>
                       </div>
                       <div>
                         <p className="text-sm font-bold text-cedar-midnight truncate max-w-[200px]">{file.name}</p>
@@ -160,7 +151,7 @@ export default function CVUploadPage() {
                       <div className="w-6 h-6 border-2 border-cedar-bronze border-t-transparent rounded-full animate-spin"></div>
                     ) : (
                       <div className="w-8 h-8 rounded-full bg-cedar-forest flex items-center justify-center text-white">
-                        <Check className="w-4 h-4 font-bold" />
+                        <span className="material-symbols-outlined text-[18px]">check</span>
                       </div>
                     )}
                   </div>
@@ -176,21 +167,41 @@ export default function CVUploadPage() {
                   <>Synthesizing Portfolio...</>
                 ) : (
                   <>
-                    <Zap className="w-5 h-5 fill-current" />
+                    <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>bolt</span>
                     START AI SCAN
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+                    <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1.5 transition-transform">arrow_forward</span>
                   </>
                 )}
               </button>
             </div>
             
             <div className="flex items-center justify-center gap-2 pt-2">
-              <ShieldCheck className="w-4 h-4 text-cedar-bronze" />
+              <span className="material-symbols-outlined text-[18px] text-cedar-bronze">shield</span>
               <p className="text-[11px] text-cedar-slate/70 font-semibold tracking-wide uppercase px-4 text-center">
                 Encrypted & Secure. View <Link href="/privacy" className="underline hover:text-cedar-forest transition-colors">Privacy Policy</Link>.
               </p>
             </div>
           </div>
+        </div>
+      </div>
+      </div>
+
+      {/* Trusted By Section */}
+      <div className="px-8 md:px-12 lg:px-16 pb-12 pt-8 border-t border-black/5">
+        <h5 className="text-center font-semibold text-[10px] tracking-[0.3em] text-cedar-slate uppercase mb-8">Trusted by world-class creators from</h5>
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+          <Image alt="Adobe" className="h-6 object-contain" width={80} height={24} src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgd3UdcT9wJQx2EbsVSlCMcaz-LmLzYsOfOk_1-_W35Z1hAtNBkv4mcGuK517WcM1mcdpOMFNgG2DRnsHRkArGExiEkIM8xO89rVftnWXRdqlRXbxpN5xnuEoA0TbPsHdP_vmqFk0JuDGs6CahsfqLou3MdQyqA96b-3srsvjyFz9mZ_kD-kdfSrq3C9WyOYYuXJ7nOWEW2s4fquZivjpHjCp5tyHfDwR4MS-xC1iNKJlWFONMvHItQq3-UuWEX_nOFzJaRo2PipIf"/>
+          <Image alt="Figma" className="h-6 object-contain" width={80} height={24} src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPG5bgHnhNkNemKaaerygve3OtkJn0J-oL9wcT4iWm6cf9N8vEDRnS5kEr1Ue3zlk6TO4ZeKKMUGzFOI5a0I37zdpMuAbUnXlaXHZZ_tZhRXeteAdi08n-Owo1tuKb8DAgWdHT1ViqN92cuZR2rRExPEfXknr5osk-Rs9g9Ff5cTDwJhQ9EkLfqzH0adCiiCpYThnFHn-1gJ9aWg_FAZYsZBhFEEZNnVT16ALojmvoRy_v8ef-yCR6NoGwXCm4N6PrxREBHVeaXNdh"/>
+          <Image alt="Netflix" className="h-5 object-contain" width={80} height={20} src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmeLztM3AtYiisXzm--wz-ne_H77zjEOF_hyMzVSS0ChnLg5104dJVO6nkPwhDZerv99om9P_cR_wVvC9VRKdZeQS9qgWhcQRwHltfdLPuTUnKNfzWZyGQ3H-JLukeQQQ_7RP7DCqyGn3EuUZCnsxPlBg6M1U_S-1K04L0AujbEVWR7mEM37B_x8JNJ1gwUUIiGSdOhK4oSfC8i3Z45O-MDFp5c2Y_Pm5jbZPJNLLAy9NDal210LVz8p7hL2xWbxwBpTH_GFYEP99e"/>
+          <Image alt="Notion" className="h-6 object-contain" width={80} height={24} src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwBSzO0JHbsID0YgiJ_CuHZPU4I-o1JSUtEPwemEIgUhG60kezfZX64Ac6vos0orartFjhANVHP41rIiVlE4vWE7Iv3PUvJ1-7Fc3r7rVQT1t3xu94vemUbk7pKSi7S4CLliVGQ-dqzmuKI04FwLPDx6sV--AGcA_msCG7Iz27rxog5AYrgC7jLW4QwARESKRPAX3fTxMi0wWyFYM_8VvNAtoTR-xBqSHSegNkBN3AJpGQT5KORLeaL_XOCP3kin5VjFPwBpLU0zlF"/>
+        </div>
+      </div>
+
+      {/* Fixed Floating Status Indicator */}
+      <div className="fixed bottom-8 right-8 z-50">
+        <div className="bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl flex items-center gap-3 border border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
+          <div className="w-2.5 h-2.5 rounded-full bg-cedar-forest animate-pulse shadow-[0_0_8px_rgba(27,48,34,0.5)]"></div>
+          <p className="text-xs font-bold text-cedar-midnight tracking-wide uppercase">Engine Ready</p>
         </div>
       </div>
     </div>

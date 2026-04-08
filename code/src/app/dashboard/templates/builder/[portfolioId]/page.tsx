@@ -4,7 +4,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '../../../../../contexts/AuthContext';
 import { db, handleFirestoreError, OperationType } from '../../../../../lib/firebase';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { ArrowLeft, Save, Globe, Lock, LayoutTemplate, Trash2, ExternalLink, Share2, Mail, Phone, MapPin, Link as LinkIcon } from 'lucide-react';
 
 interface ExperienceItem {
   role: string;
@@ -112,7 +111,14 @@ export default function PortfolioBuilder() {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-slate-50">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-cedar-alabaster">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-4 border-cedar-forest/20 border-t-cedar-forest rounded-full animate-spin"></div>
+          <p className="text-cedar-slate text-sm font-medium">Loading portfolio...</p>
+        </div>
+      </div>
+    );
   }
 
   if (!portfolio) return null;
@@ -127,19 +133,19 @@ export default function PortfolioBuilder() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+    <div className="min-h-screen bg-cedar-alabaster flex flex-col font-body">
       {/* Topbar */}
-      <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
+      <header className="bg-white border-b border-black/5 sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <button onClick={() => router.push('/dashboard')} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-              <ArrowLeft className="w-5 h-5 text-slate-600" />
+            <button onClick={() => router.push('/dashboard')} className="p-2 hover:bg-cedar-alabaster rounded-full transition-colors">
+              <span className="material-symbols-outlined text-cedar-slate">arrow_back</span>
             </button>
             <input 
               type="text" 
               value={portfolio.title}
               onChange={(e) => setPortfolio({...portfolio, title: e.target.value})}
-              className="text-lg font-bold text-slate-900 bg-transparent border-none focus:ring-0 p-0 w-64"
+              className="text-lg font-bold text-cedar-midnight bg-transparent border-none focus:ring-0 p-0 w-64"
             />
           </div>
           <div className="flex items-center gap-3">
@@ -147,31 +153,31 @@ export default function PortfolioBuilder() {
               <div className="relative">
                 <button 
                   onClick={() => setShowShareMenu(!showShareMenu)}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-cedar-slate hover:text-cedar-forest transition-colors px-3 py-2 rounded-lg hover:bg-cedar-alabaster"
                 >
-                  <Share2 className="w-4 h-4" /> Share
+                  <span className="material-symbols-outlined text-[18px]">share</span> Share
                 </button>
                 {showShareMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50">
-                    <a href={shareLinks.twitter} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-sm text-slate-700">
-                      <Globe className="w-4 h-4 text-blue-400" /> Twitter
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-black/5 py-2 z-50">
+                    <a href={shareLinks.twitter} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-cedar-alabaster text-sm text-cedar-slate hover:text-cedar-midnight">
+                      <span className="material-symbols-outlined text-[16px]">language</span> Twitter
                     </a>
-                    <a href={shareLinks.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-sm text-slate-700">
-                      <Globe className="w-4 h-4 text-blue-700" /> LinkedIn
+                    <a href={shareLinks.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-cedar-alabaster text-sm text-cedar-slate hover:text-cedar-midnight">
+                      <span className="material-symbols-outlined text-[16px]">language</span> LinkedIn
                     </a>
-                    <a href={shareLinks.facebook} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-sm text-slate-700">
-                      <Globe className="w-4 h-4 text-blue-600" /> Facebook
+                    <a href={shareLinks.facebook} target="_blank" rel="noreferrer" className="flex items-center gap-3 px-4 py-2 hover:bg-cedar-alabaster text-sm text-cedar-slate hover:text-cedar-midnight">
+                      <span className="material-symbols-outlined text-[16px]">language</span> Facebook
                     </a>
-                    <div className="h-px bg-slate-100 my-2"></div>
+                    <div className="h-px bg-black/5 my-2"></div>
                     <button 
                       onClick={() => {
                         navigator.clipboard.writeText(publicUrl);
                         alert('Link copied to clipboard!');
                         setShowShareMenu(false);
                       }}
-                      className="w-full flex items-center gap-3 px-4 py-2 hover:bg-slate-50 text-sm text-slate-700 text-left"
+                      className="w-full flex items-center gap-3 px-4 py-2 hover:bg-cedar-alabaster text-sm text-cedar-slate hover:text-cedar-midnight text-left"
                     >
-                      <LinkIcon className="w-4 h-4 text-slate-400" /> Copy Link
+                      <span className="material-symbols-outlined text-[16px]">link</span> Copy Link
                     </button>
                   </div>
                 )}
@@ -182,17 +188,17 @@ export default function PortfolioBuilder() {
                 href={`/p/${portfolio.id}`} 
                 target="_blank" 
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors px-3 py-2 rounded-lg hover:bg-slate-100"
+                className="inline-flex items-center gap-2 text-sm font-medium text-cedar-slate hover:text-cedar-forest transition-colors px-3 py-2 rounded-lg hover:bg-cedar-alabaster"
               >
-                <ExternalLink className="w-4 h-4" /> View Live
+                <span className="material-symbols-outlined text-[18px]">open_in_new</span> View Live
               </a>
             )}
             <button 
               onClick={handleSave}
               disabled={saving}
-              className="inline-flex items-center gap-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors disabled:opacity-50"
+              className="inline-flex items-center gap-2 bg-cedar-forest text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-cedar-forest-dark transition-colors disabled:opacity-50 shadow-md"
             >
-              <Save className="w-4 h-4" /> {saving ? 'Saving...' : 'Save Changes'}
+              <span className="material-symbols-outlined text-[18px]">save</span> {saving ? 'Saving...' : 'Save Changes'}
             </button>
           </div>
         </div>
@@ -202,12 +208,12 @@ export default function PortfolioBuilder() {
         {/* Sidebar Controls */}
         <aside className="w-80 shrink-0 space-y-6">
           {/* Publishing */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
-              <Globe className="w-4 h-4" /> Publishing
+          <div className="bg-white p-6 rounded-2xl border border-black/5 shadow-sm">
+            <h3 className="font-bold text-cedar-midnight mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+              <span className="material-symbols-outlined text-cedar-bronze text-[18px]">language</span> Publishing
             </h3>
             <div className="flex items-center justify-between mb-4">
-              <span className="text-sm text-slate-600">Public Access</span>
+              <span className="text-sm text-cedar-slate">Public Access</span>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
                   type="checkbox" 
@@ -215,63 +221,63 @@ export default function PortfolioBuilder() {
                   checked={portfolio.isPublic}
                   onChange={(e) => setPortfolio({...portfolio, isPublic: e.target.checked})}
                 />
-                <div className="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
+                <div className="w-11 h-6 bg-cedar-alabaster peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-cedar-slate/20 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-cedar-forest"></div>
               </label>
             </div>
             
             {tier === 'business' ? (
               <div className="space-y-2">
-                <label className="text-sm text-slate-600 block">Custom Domain</label>
+                <label className="text-sm text-cedar-slate block">Custom Domain</label>
                 <input 
                   type="text" 
                   placeholder="e.g., myportfolio.com"
                   value={portfolio.customDomain || ''}
                   onChange={(e) => setPortfolio({...portfolio, customDomain: e.target.value})}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-indigo-600 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-black/10 rounded-xl text-sm focus:ring-2 focus:ring-cedar-bronze/20 focus:border-cedar-bronze/30 bg-cedar-alabaster/50 text-cedar-midnight"
                 />
               </div>
             ) : (
-              <div className="bg-slate-50 p-3 rounded-lg border border-slate-200 mt-4">
-                <div className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-1">
-                  <Lock className="w-4 h-4 text-amber-500" /> Custom Domain
+              <div className="bg-cedar-alabaster p-3 rounded-xl border border-black/5 mt-4">
+                <div className="flex items-center gap-2 text-sm font-bold text-cedar-midnight mb-1">
+                  <span className="material-symbols-outlined text-cedar-bronze text-[16px]">lock</span> Custom Domain
                 </div>
-                <p className="text-xs text-slate-500">Upgrade to Premium to use your own custom domain.</p>
+                <p className="text-xs text-cedar-slate">Upgrade to Business to use your own custom domain.</p>
               </div>
             )}
           </div>
 
           {/* Templates */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <h3 className="font-semibold text-slate-900 mb-4 flex items-center gap-2">
-              <LayoutTemplate className="w-4 h-4" /> Templates
+          <div className="bg-white p-6 rounded-2xl border border-black/5 shadow-sm">
+            <h3 className="font-bold text-cedar-midnight mb-4 flex items-center gap-2 text-sm uppercase tracking-widest">
+              <span className="material-symbols-outlined text-cedar-bronze text-[18px]">view_quilt</span> Templates
             </h3>
             <div className="space-y-3">
-              <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'minimal' ? 'border-indigo-600 bg-indigo-50 ring-1 ring-indigo-600' : 'border-slate-200 hover:border-indigo-300'}`}>
+              <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'minimal' ? 'border-cedar-forest bg-cedar-forest/5 ring-1 ring-cedar-forest' : 'border-black/5 hover:border-cedar-forest/30'}`}>
                 <input type="radio" name="template" className="sr-only" checked={portfolio.templateId === 'minimal'} onChange={() => setPortfolio({...portfolio, templateId: 'minimal'})} />
-                <div className="font-medium text-slate-900">Minimal</div>
-                <div className="text-xs text-slate-500">Clean, typography-focused design.</div>
+                <div className="font-bold text-cedar-midnight text-sm">Minimal</div>
+                <div className="text-xs text-cedar-slate">Clean, typography-focused design.</div>
               </label>
               
-              <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'modern' ? 'border-indigo-600 bg-indigo-50 ring-1 ring-indigo-600' : 'border-slate-200 hover:border-indigo-300'}`}>
+              <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'modern' ? 'border-cedar-forest bg-cedar-forest/5 ring-1 ring-cedar-forest' : 'border-black/5 hover:border-cedar-forest/30'}`}>
                 <input type="radio" name="template" className="sr-only" checked={portfolio.templateId === 'modern'} onChange={() => setPortfolio({...portfolio, templateId: 'modern'})} />
-                <div className="font-medium text-slate-900">Modern</div>
-                <div className="text-xs text-slate-500">Bold colors and structured layout.</div>
+                <div className="font-bold text-cedar-midnight text-sm">Modern</div>
+                <div className="text-xs text-cedar-slate">Bold colors and structured layout.</div>
               </label>
 
               {(tier === 'professional' || tier === 'business') ? (
-                <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'developer' ? 'border-indigo-600 bg-indigo-50 ring-1 ring-indigo-600' : 'border-slate-200 hover:border-indigo-300'}`}>
+                <label className={`block cursor-pointer border rounded-xl p-3 transition-all ${portfolio.templateId === 'developer' ? 'border-cedar-forest bg-cedar-forest/5 ring-1 ring-cedar-forest' : 'border-black/5 hover:border-cedar-forest/30'}`}>
                   <input type="radio" name="template" className="sr-only" checked={portfolio.templateId === 'developer'} onChange={() => setPortfolio({...portfolio, templateId: 'developer'})} />
-                  <div className="font-medium text-slate-900 flex items-center justify-between">
-                    Developer <span className="text-[10px] uppercase tracking-wider bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">Pro</span>
+                  <div className="font-bold text-cedar-midnight text-sm flex items-center justify-between">
+                    Developer <span className="text-[10px] uppercase tracking-wider bg-cedar-bronze/10 text-cedar-bronze px-2 py-0.5 rounded-full">Pro</span>
                   </div>
-                  <div className="text-xs text-slate-500">Terminal-inspired dark mode theme.</div>
+                  <div className="text-xs text-cedar-slate">Terminal-inspired dark mode theme.</div>
                 </label>
               ) : (
-                <div className="block border border-slate-200 rounded-xl p-3 opacity-60 bg-slate-50">
-                  <div className="font-medium text-slate-900 flex items-center justify-between">
-                    Developer <Lock className="w-3 h-3 text-slate-400" />
+                <div className="block border border-black/5 rounded-xl p-3 opacity-60 bg-cedar-alabaster">
+                  <div className="font-bold text-cedar-midnight text-sm flex items-center justify-between">
+                    Developer <span className="material-symbols-outlined text-cedar-slate text-[14px]">lock</span>
                   </div>
-                  <div className="text-xs text-slate-500">Upgrade to Pro to unlock.</div>
+                  <div className="text-xs text-cedar-slate">Upgrade to Pro to unlock.</div>
                 </div>
               )}
             </div>
@@ -279,32 +285,32 @@ export default function PortfolioBuilder() {
 
           {/* Danger Zone */}
           <div className="bg-red-50 p-6 rounded-2xl border border-red-100">
-            <h3 className="font-semibold text-red-900 mb-2">Danger Zone</h3>
+            <h3 className="font-bold text-red-900 mb-2 text-sm uppercase tracking-widest">Danger Zone</h3>
             <p className="text-xs text-red-700 mb-4">Once you delete a portfolio, there is no going back. Please be certain.</p>
             <button 
               onClick={handleDelete}
-              className="w-full inline-flex items-center justify-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-red-200 transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-xl text-sm font-bold hover:bg-red-200 transition-colors"
             >
-              <Trash2 className="w-4 h-4" /> Delete Portfolio
+              <span className="material-symbols-outlined text-[18px]">delete</span> Delete Portfolio
             </button>
           </div>
         </aside>
 
         {/* Preview Area */}
-        <main className="flex-1 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
-          <div className="bg-slate-100 border-b border-slate-200 px-4 py-2 flex items-center gap-2 text-xs text-slate-500 font-mono">
+        <main className="flex-1 bg-white rounded-2xl border border-black/5 shadow-sm overflow-hidden flex flex-col">
+          <div className="bg-cedar-alabaster border-b border-black/5 px-4 py-2 flex items-center gap-2 text-xs text-cedar-slate font-mono">
             <div className="flex gap-1.5">
               <div className="w-3 h-3 rounded-full bg-red-400"></div>
               <div className="w-3 h-3 rounded-full bg-amber-400"></div>
               <div className="w-3 h-3 rounded-full bg-green-400"></div>
             </div>
-            <div className="ml-4 bg-white px-3 py-1 rounded-md border border-slate-200 shadow-sm flex-1 max-w-md truncate">
+            <div className="ml-4 bg-white px-3 py-1 rounded-md border border-black/5 shadow-sm flex-1 max-w-md truncate">
               {publicUrl}
             </div>
           </div>
-          <div className="flex-1 overflow-y-auto p-8 bg-slate-50">
+          <div className="flex-1 overflow-y-auto p-8 bg-cedar-alabaster/50">
             {/* Render a scaled-down preview based on the template */}
-            <div className="bg-white shadow-xl rounded-xl overflow-hidden min-h-[800px] border border-slate-200 pointer-events-none">
+            <div className="bg-white shadow-xl rounded-xl overflow-hidden min-h-[800px] border border-black/5 pointer-events-none">
               <TemplateRenderer templateId={portfolio.templateId} data={portfolioData} />
             </div>
           </div>
@@ -325,11 +331,11 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
           
           {data.contactInfo && (
             <div className="flex flex-wrap justify-center gap-6 text-indigo-100 text-sm">
-              {data.contactInfo.email && <div className="flex items-center gap-2"><Mail className="w-4 h-4"/> {data.contactInfo.email}</div>}
-              {data.contactInfo.phone && <div className="flex items-center gap-2"><Phone className="w-4 h-4"/> {data.contactInfo.phone}</div>}
-              {data.contactInfo.location && <div className="flex items-center gap-2"><MapPin className="w-4 h-4"/> {data.contactInfo.location}</div>}
-              {data.contactInfo.linkedin && <a href={data.contactInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white"><Globe className="w-4 h-4"/> LinkedIn</a>}
-              {data.contactInfo.website && <a href={data.contactInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white"><Globe className="w-4 h-4"/> Website</a>}
+              {data.contactInfo.email && <div className="flex items-center gap-2"><span className="material-symbols-outlined text-[16px]">mail</span> {data.contactInfo.email}</div>}
+              {data.contactInfo.phone && <div className="flex items-center gap-2"><span className="material-symbols-outlined text-[16px]">phone</span> {data.contactInfo.phone}</div>}
+              {data.contactInfo.location && <div className="flex items-center gap-2"><span className="material-symbols-outlined text-[16px]">location_on</span> {data.contactInfo.location}</div>}
+              {data.contactInfo.linkedin && <a href={data.contactInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white"><span className="material-symbols-outlined text-[16px]">language</span> LinkedIn</a>}
+              {data.contactInfo.website && <a href={data.contactInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-white"><span className="material-symbols-outlined text-[16px]">language</span> Website</a>}
             </div>
           )}
         </header>
@@ -429,11 +435,11 @@ export function TemplateRenderer({ templateId, data }: { templateId: string, dat
         
         {data.contactInfo && (
           <div className="flex flex-wrap gap-4 text-sm text-slate-600">
-            {data.contactInfo.email && <a href={`mailto:${data.contactInfo.email}`} className="flex items-center gap-1.5 hover:text-slate-900"><Mail className="w-4 h-4"/> {data.contactInfo.email}</a>}
-            {data.contactInfo.phone && <span className="flex items-center gap-1.5"><Phone className="w-4 h-4"/> {data.contactInfo.phone}</span>}
-            {data.contactInfo.location && <span className="flex items-center gap-1.5"><MapPin className="w-4 h-4"/> {data.contactInfo.location}</span>}
-            {data.contactInfo.linkedin && <a href={data.contactInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-slate-900"><Globe className="w-4 h-4"/> LinkedIn</a>}
-            {data.contactInfo.website && <a href={data.contactInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-slate-900"><Globe className="w-4 h-4"/> Website</a>}
+            {data.contactInfo.email && <a href={`mailto:${data.contactInfo.email}`} className="flex items-center gap-1.5 hover:text-slate-900"><span className="material-symbols-outlined text-[16px]">mail</span> {data.contactInfo.email}</a>}
+            {data.contactInfo.phone && <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px]">phone</span> {data.contactInfo.phone}</span>}
+            {data.contactInfo.location && <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[16px]">location_on</span> {data.contactInfo.location}</span>}
+            {data.contactInfo.linkedin && <a href={data.contactInfo.linkedin} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-slate-900"><span className="material-symbols-outlined text-[16px]">language</span> LinkedIn</a>}
+            {data.contactInfo.website && <a href={data.contactInfo.website} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-slate-900"><span className="material-symbols-outlined text-[16px]">language</span> Website</a>}
           </div>
         )}
       </header>
