@@ -1,91 +1,214 @@
 ```markdown
-# Design System Strategy: The Intelligent Muse
+# Cedar Design System
 
-## 1. Overview & Creative North Star
-This design system is built to transform the often-tedious process of portfolio creation into a high-end, editorial experience. Our Creative North Star is **"The Digital Curator."** 
+## 1. Visual Direction
+Cedar's current visual language is warm, editorial, and premium. The site feels closer to a concierge studio than a generic SaaS dashboard: soft cream backgrounds, deep forest green actions, bronze accents, generous whitespace, rounded cards, and restrained motion. The overall tone is calm and polished, with enough contrast to keep the UI crisp.
 
-Unlike standard "site builders" that rely on rigid, boxy grids, this system treats the interface as a living gallery. We move beyond the "template" look by utilizing **intentional asymmetry, overlapping depth, and high-contrast typography scales.** The goal is to make the user feel like they are collaborating with an elite design director, not just a software tool. By leveraging tonal depth and sophisticated layering, we create a workspace that feels premium, quiet, and infinitely professional.
-
----
-
-## 2. Colors: Tonal Depth & The "No-Line" Rule
-The palette is rooted in the deep obsidian and slate of high-end hardware, punctuated by the "electric" energy of AI.
-
-### Core Palette
-- **Deep Navy Base:** `background: #0b1326` (The void in which creativity happens).
-- **The AI Spark:** `primary: #d2bbff` (A soft, electric lavender for guidance and focus).
-- **The Precision Teal:** `tertiary: #3cddc7` (Used for data-driven insights and success states).
-- **Muted Slates:** `secondary: #b9c7e0` (For secondary information and architectural stability).
-
-### The "No-Line" Rule
-**Designers are prohibited from using 1px solid borders for sectioning.** 
-Structural containment must be achieved solely through background color shifts. To separate a sidebar from a main workspace, use `surface-container-low` against the `surface` background. The eye should perceive boundaries through "value changes," not "drawn lines."
-
-### Surface Hierarchy & Nesting
-Treat the UI as a physical stack of semi-translucent materials.
-- **Base Layer:** `surface` (#0b1326).
-- **Sectioning:** Use `surface-container-low` (#131b2e) for broad regions.
-- **Interactive Containers:** Use `surface-container-high` (#222a3d) or `highest` (#2d3449) for cards or panels to bring them "closer" to the user.
-
-### The "Glass & Gradient" Rule
-To escape a flat, "SaaS-standard" look:
-- **Glassmorphism:** Use `surface_variant` with a 60% opacity and `backdrop-blur: 20px` for floating navigation or modals.
-- **Signature Gradients:** For primary CTAs or "AI Generating" states, use a linear gradient from `primary` (#d2bbff) to `inverse_primary` (#732ee4) at a 135-degree angle.
+The design favors a handcrafted, high-trust feel over futuristic neon styling. It uses structured layouts, quiet shadows, and subtle overlays rather than loud gradients or heavy glass effects.
 
 ---
 
-## 3. Typography: Editorial Authority
-We utilize two distinct sans-serifs to create a hierarchy that feels like a premium magazine.
+## 2. Color Palette
+The production palette is defined in `tailwind-config.js` and used consistently across the site.
 
-*   **Display & Headlines (Manrope):** Our "Voice." Manrope provides a tech-forward, geometric feel. 
-    *   *Usage:* Use `display-lg` (3.5rem) with tighter letter-spacing (-0.02em) to create a bold, authoritative presence in hero sections.
-*   **Body & Labels (Inter):** Our "Engine." Inter provides unparalleled readability at small sizes.
-    *   *Usage:* Use `body-md` (0.875rem) for most interface text to keep the UI feeling "streamlined" and professional.
+| Token | Value | Usage |
+| --- | --- | --- |
+| `cedar-forest` | `#1B3022` | Primary brand color, CTAs, active nav states, key headings, progress bars |
+| `cedar-forest-dark` | `#122117` | Hover and pressed state for primary actions |
+| `cedar-alabaster` | `#F9F7F2` | Main page background, subtle panels, soft surface fill |
+| `cedar-midnight` | `#121415` | Main text color, dark overlays, strong contrast sections |
+| `cedar-slate` | `#4A5568` | Secondary text, metadata, supporting labels |
+| `cedar-bronze` | `#AA8C55` | Accent color, badges, AI indicators, emphasis highlights |
+| `cedar-bronze-light` | `#C5AC81` | Softer bronze accent for warm panels and gradients |
+| `cedar-glass` | `rgba(255, 255, 255, 0.8)` | Translucent navigation and floating surfaces |
 
-**The Hierarchy Rule:** Always pair a `headline-lg` with a significantly smaller `label-md` or `body-sm`. This high contrast in scale is what separates "standard tools" from "curated experiences."
+### Color Rules
+- Use `forest` for primary actions and brand anchors.
+- Use `alabaster` as the default canvas instead of pure white or pure black backgrounds.
+- Use `bronze` sparingly for emphasis, AI signals, and featured states.
+- Keep supporting text in `slate` so the interface stays readable without looking heavy.
+- Borders are usually very light, often `black/5` or `black/10`, so surfaces feel separated without looking harsh.
+
+### Overlays and Gradients
+- Hero sections rely on dark overlays over photography, usually blending `midnight` with `forest`.
+- Glass-style bars use a white surface with high opacity and blur, not neon transparency.
+- Bronze gradients appear in promotional or celebratory states, but they are secondary to the solid palette.
 
 ---
 
-## 4. Elevation & Depth: Tonal Layering
-Traditional drop shadows are largely replaced by **Tonal Layering**.
+## 3. Typography
+Cedar uses two fonts throughout the site:
 
-- **The Layering Principle:** Depth is achieved by "stacking." A `surface-container-lowest` (#060e20) card placed on a `surface-container-low` (#131b2e) background creates a "recessed" look, while a `surface-container-highest` card creates a "lifted" look.
-- **Ambient Shadows:** When a true float is required (e.g., a context menu), use a shadow with a 40px blur and 6% opacity, tinted with the `on_surface` color.
-- **The Ghost Border Fallback:** If a border is required for accessibility, use the `outline_variant` (#45464d) at **20% opacity**. Never use a 100% opaque border.
+- `Playfair Display` for headlines, hero copy, logo treatments, and editorial quotes.
+- `Inter` for body copy, labels, forms, navigation, and dashboard UI.
+
+### Type Behavior
+- Headings are large, bold, and tight in letter spacing.
+- Serif headlines are used to give the site an editorial, premium voice.
+- Body text stays clean and highly legible, usually at small-to-medium sizes with relaxed line height.
+- Labels often use uppercase tracking for a more structured system feel.
+
+### Typography Rules
+- Use `Playfair Display` when a section needs authority or emotional weight.
+- Use `Inter` anywhere speed, clarity, or utility matters.
+- Keep body text left-aligned.
+- Pair large display text with smaller supporting copy to create clear hierarchy.
 
 ---
 
-## 5. Components: Precision & Minimalist Sophistication
+## 4. Layout and Structure
+The site is built from simple but carefully arranged page shells rather than dense application chrome.
+
+### Common Layout Patterns
+- Landing pages use a large hero, followed by full-width editorial sections.
+- Dashboard and gallery views use a fixed left sidebar with a scrollable content canvas.
+- Auth pages use split-screen layouts with a white form column and a visual storytelling panel.
+- Upload and onboarding screens combine a content explanation panel with a single dominant action area.
+
+### Surface Hierarchy
+- The base canvas is usually `cedar-alabaster`.
+- Panels and cards are typically white with soft borders.
+- Important containers use larger radii, especially `rounded-3xl` and `rounded-[40px]`.
+- Rounded pills are used for status, filters, and primary actions.
+
+### Spacing and Density
+- The system prefers generous spacing and clear separation between modules.
+- Sections are often separated with large vertical padding and thin divider lines.
+- Dashboard content uses bento-style grids, asymmetric card sizes, and occasional horizontal scrolling for showcase content.
+
+---
+
+## 5. Elevation and Surfaces
+Depth is handled with light borders, gentle shadows, and occasional blur rather than dramatic stacking.
+
+### Surface Treatment
+- White cards with `border-black/5` are the default building block.
+- Secondary cards often use `cedar-alabaster` to feel slightly recessed.
+- Sticky bars and floating controls use translucent white with `backdrop-blur-md` or `backdrop-blur-xl`.
+
+### Shadow Style
+- Shadows stay soft and low-opacity.
+- Cards typically use `shadow-sm`, `shadow-md`, or a custom shadow with a small blur radius.
+- The strongest shadows appear on primary CTAs, hero buttons, and selected template cards.
+
+### Border Style
+- Borders are present and intentional, but subtle.
+- Most shells use `border-black/5`.
+- Inputs and interactive surfaces use `border-black/10` or a bronze-tinted focus state.
+- Dashed borders are reserved for drop zones and placeholders.
+
+---
+
+## 6. Motion and Animation
+The motion system is restrained but deliberate. It is used to signal hierarchy, affordance, and state changes rather than decoration.
+
+### Global Motion Conventions
+- `scroll-behavior: smooth` is enabled globally.
+- Most interactive elements use `transition-all` or `transition-colors` with short-to-medium durations.
+- Hover states usually combine a small upward lift with a shadow change.
+- Images often scale slightly on hover to suggest depth and polish.
+
+### Scripted Interactions
+- Elements with the `reveal` class animate into view using IntersectionObserver and gain an `active` state when they enter the viewport.
+- The header gains a `scrolled` class on scroll to support sticky-state styling.
+- FAQ items toggle an `active` state on click so only one item stays open.
+- Anchor links smooth-scroll to section targets.
+- The contact form has a mock submit state that changes button text, disables interaction, and restores itself after a short delay.
+
+### Repeating Motions
+- `animate-pulse` is used for bronze status dots and AI indicators.
+- Hover motion is usually subtle: `-translate-y-0.5`, `-translate-y-1`, or a small scale on media.
+- Template previews and gallery imagery use longer hover transitions to feel premium.
+
+---
+
+## 7. Core Components
+
+### Navigation
+- Landing pages use a floating glass navbar with a blurred white background.
+- Dashboard and gallery views use a left sidebar with a white surface and active forest-highlighted item.
+- Active navigation items are filled with `cedar-forest` and white text.
 
 ### Buttons
-- **Primary:** Gradient background (`primary` to `inverse_primary`), `on_primary` text, `xl` (0.75rem) corner radius. No border.
-- **Secondary:** `surface-container-highest` background. Subtle "Ghost Border" on hover.
-- **Tertiary:** Text-only using `primary` color. High-contrast underlays on hover.
+- Primary buttons are forest green, rounded-full or rounded-xl, and usually have a soft shadow.
+- Primary hover states darken to `cedar-forest-dark` and lift slightly.
+- Secondary buttons are white or alabaster with light borders.
+- Text links are muted by default and become forest green on hover.
 
-### Input Fields
-- **Styling:** Use `surface-container-lowest` for the field background. No bottom line.
-- **States:** On focus, the background shifts to `surface-container-high` with a subtle `primary` glow (glow radius: 4px).
-- **Labels:** Use `label-md` in `on_surface_variant` (#c6c6cd), positioned 8px above the input.
+### Forms
+- Inputs use a white or alabaster background, light borders, and generous padding.
+- Focus states use bronze borders and a soft bronze ring.
+- Labels are uppercase, compact, and heavily tracked.
+- Checkboxes and toggles keep the same restrained palette instead of introducing system default blue.
 
-### Cards & Lists
-- **Zero-Divider Policy:** Forbid the use of divider lines between list items. Use 16px or 24px of vertical white space from our spacing scale or subtle background shifts (`surface-container-low` vs `surface-container-high`) to define groups.
-- **Asymmetric Layouts:** In portfolio galleries, alternate between `lg` (0.5rem) and `xl` (0.75rem) roundedness for different content types to break the "grid monotony."
+### Cards
+- Cards are the main structural unit across the site.
+- Most cards are white with rounded corners, thin borders, and a low shadow.
+- Feature cards may use forest fills, gradient overlays, or image-backed compositions.
+- Showcase cards use hover overlays and image zooms to communicate interactivity.
 
-### AI Contextual Floating Bar
-- **Description:** A persistent floating element for AI prompts.
-- **Style:** Glassmorphism (`surface_variant` @ 70% opacity), `backdrop-blur: 12px`, with a `tertiary` (#3cddc7) "pulse" indicator to show the AI is "thinking."
+### Badges and Status Pills
+- Badges are small, uppercase, and tightly tracked.
+- Bronze is used for premium, AI, or active indicators.
+- Forest is used for live, ready, and primary states.
+- Muted slate is used for draft, secondary, and informational states.
+
+### Floating Elements
+- AI status bars and helper chips float above the canvas with blurred white surfaces.
+- These elements usually sit near the bottom of the viewport and use bronze pulse dots to indicate activity.
 
 ---
 
-## 6. Do's and Don'ts
+## 8. Page-Level Styling Patterns
+
+### Home Page
+- Large forest-and-midnight hero treatment with photography and dark overlays.
+- Serif hero headline with one bronze-highlighted word.
+- Strong, rounded primary CTA paired with a lighter secondary CTA.
+- Sections alternate between alabaster, white, and forest-backed layouts for rhythm.
+
+### Dashboard
+- Fixed sidebar, top header, and bento grid content area.
+- White summary cards, subtle icons, and compact status elements.
+- Forest is the dominant active state, bronze is used for premium markers.
+
+### Template Gallery
+- Sticky filter bar with blur and soft background.
+- Large feature card plus smaller supporting cards.
+- Hover-driven previews with image scaling and overlay buttons.
+
+### Auth Screens
+- Split-screen layout with a strong visual panel and a simple white form panel.
+- Forms are minimal and focused, with one clear primary action.
+- Copy is concise and centered or left-aligned depending on screen width.
+
+### Upload Screen
+- Hero copy on the left, file drop zone on the right.
+- Dashed upload region, file metadata chip, and a single dominant scan action.
+- Bronze is used to reinforce the AI-driven nature of the workflow.
+
+---
+
+## 9. Responsive Behavior
+- Desktop views use wider layouts, sidebars, and larger type scales.
+- Mobile views collapse navigation into simpler vertical flows.
+- Cards stack into single-column layouts at smaller breakpoints.
+- Horizontal scrolling is used only when it improves browsing, such as the showcase strip.
+
+---
+
+## 10. Do's and Don'ts
 
 ### Do
-- **Do** use generous white space. If you think there's enough space, add 16px more.
-- **Do** use `tertiary` (#3cddc7) sparingly as a "surgical" accent for AI-generated suggestions.
-- **Do** use asymmetric margins (e.g., a wider left margin than right) to create an editorial, non-templated layout.
+- Do use `cedar-forest` for primary actions and active states.
+- Do keep surfaces soft, rounded, and lightly bordered.
+- Do use `cedar-bronze` as a sparse accent, not a dominant theme color.
+- Do keep motion subtle and purposeful.
+- Do preserve the editorial balance between serif headlines and clean sans-serif UI text.
 
 ### Don't
-- **Don't** use 100% black (#000000). Always use `surface` (#0b1326) to maintain the sophisticated navy undertone.
-- **Don't** use sharp corners. Everything must use at least the `DEFAULT` (0.25rem) radius to feel "approachable."
-- **Don't** use standard "Select" dropdowns. Design custom, layered overlays that respect the Glassmorphism rules.
-- **Don't** use center-aligned text for body copy. Keep it left-aligned for a professional, "high-end tool" feel.```
+- Don't introduce neon, purple, or teal-heavy palettes that conflict with the current brand.
+- Don't use harsh black panels or heavy shadows.
+- Don't make borders prominent unless they are part of a form, drop zone, or structural shell.
+- Don't replace the current serif/sans pairing with a single generic font stack.
+- Don't flatten the layout into a generic SaaS grid; keep the bento rhythm and asymmetry.

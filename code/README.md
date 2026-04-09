@@ -34,3 +34,21 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Local Backend
+
+This app now exposes local backend routes through the Next.js server:
+
+- `GET /api/health` checks whether the backend is running.
+- `POST /api/parse-cv` accepts `{ cvText, fileName }` and returns structured portfolio data.
+
+To run it on your device:
+
+```bash
+cd code
+npm install
+set GEMINI_API_KEY=your_key_here
+npm run dev
+```
+
+Then open `http://localhost:3000` and upload a CV from the dashboard.

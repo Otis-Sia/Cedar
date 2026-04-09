@@ -1,10 +1,37 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+interface DraftPortfolio {
+  sourceFile: string;
+  generatedAt: string;
+  portfolio: {
+    name?: string;
+    title?: string;
+    bio?: string;
+    skills?: string[];
+  };
+}
+
 export default function TemplatesPage() {
+  const [draft, setDraft] = useState<DraftPortfolio | null>(null);
+
+  useEffect(() => {
+    const storedDraft = sessionStorage.getItem('cedar:portfolio-draft');
+
+    if (!storedDraft) {
+      return;
+    }
+
+    try {
+      setDraft(JSON.parse(storedDraft) as DraftPortfolio);
+    } catch {
+      sessionStorage.removeItem('cedar:portfolio-draft');
+    }
+  }, []);
+
   return (
     <>
       {/* Header Section */}
@@ -19,6 +46,29 @@ export default function TemplatesPage() {
             <p className="text-cedar-slate text-base lg:text-lg max-w-2xl leading-relaxed">Our system has analyzed your creative profile. These layouts are engineered to amplify your specific aesthetic signature.</p>
           </div>
         </div>
+
+        {draft && (
+          <div className="mt-8 rounded-3xl bg-white border border-black/5 shadow-sm p-6 md:p-8">
+            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-cedar-bronze mb-3">Latest backend scan</p>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <h2 className="font-headline text-2xl md:text-3xl font-bold text-cedar-midnight">
+                  {draft.portfolio.name || 'Untitled profile'}
+                </h2>
+                <p className="text-cedar-slate mt-1">
+                  {draft.portfolio.title || 'No title extracted'} from {draft.sourceFile}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {(draft.portfolio.skills || []).slice(0, 4).map((skill) => (
+                  <span key={skill} className="px-3 py-1 rounded-full bg-cedar-alabaster text-cedar-slate text-xs font-medium">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Sticky Filter Bar */}

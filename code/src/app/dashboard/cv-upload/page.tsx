@@ -4,11 +4,13 @@ import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { extractTextFromFile } from '@/lib/fileParser';
 
 export default function CVUploadPage() {
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState<File | null>(null);
   const [isScanning, setIsScanning] = useState(false);
+  const [scanError, setScanError] = useState<string | null>(null);
   const router = useRouter();
 
   const handleDrag = useCallback((e: React.DragEvent) => {
@@ -37,13 +39,45 @@ export default function CVUploadPage() {
     }
   };
 
-  const startScan = () => {
+  const startScan = async () => {
     if (!file) return;
+
     setIsScanning(true);
-    // Simulate AI scanning process
-    setTimeout(() => {
+
+    try {
+      const cvText = await extractTextFromFile(file);
+      const response = await fetch('/api/parse-cv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cvText,
+          fileName: file.name,
+        }),
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to parse the uploaded CV.');
+      }
+
+      sessionStorage.setItem(
+        'cedar:portfolio-draft',
+        JSON.stringify({
+          sourceFile: file.name,
+          generatedAt: new Date().toISOString(),
+          portfolio: payload.portfolio,
+        })
+      );
+
       router.push('/dashboard/templates');
-    }, 2500);
+    } catch (error) {
+      setScanError(error instanceof Error ? error.message : 'Failed to scan CV.');
+    } finally {
+      setIsScanning(false);
+    }
   };
 
   return (
@@ -135,6 +169,12 @@ export default function CVUploadPage() {
 
             {/* File Status & Actions */}
             <div className="space-y-6">
+              {scanError && (
+                <div className="rounded-2xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
+                  {scanError}
+                </div>
+              )}
+
               {file && (
                 <div className="bg-cedar-alabaster/50 rounded-2xl p-6 border border-black/5 animate-in slide-in-from-top-4 duration-500">
                   <div className="flex items-center justify-between">
