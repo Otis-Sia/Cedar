@@ -5,6 +5,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { extractTextFromFile } from '@/lib/fileParser';
+import { parseCVToPortfolio } from '@/lib/gemini';
+
+// Limit CV text to avoid exceeding the Gemini API context window
+const MAX_CV_TEXT_LENGTH = 30000;
 
 export default function CVUploadPage() {
   const [dragActive, setDragActive] = useState(false);
@@ -46,29 +50,14 @@ export default function CVUploadPage() {
 
     try {
       const cvText = await extractTextFromFile(file);
-      const response = await fetch('/api/parse-cv', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          cvText,
-          fileName: file.name,
-        }),
-      });
-
-      const payload = await response.json();
-
-      if (!response.ok) {
-        throw new Error(payload?.error || 'Failed to parse the uploaded CV.');
-      }
+      const portfolio = await parseCVToPortfolio(cvText.slice(0, MAX_CV_TEXT_LENGTH));
 
       sessionStorage.setItem(
         'cedar:portfolio-draft',
         JSON.stringify({
           sourceFile: file.name,
           generatedAt: new Date().toISOString(),
-          portfolio: payload.portfolio,
+          portfolio,
         })
       );
 

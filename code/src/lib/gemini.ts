@@ -1,8 +1,8 @@
 import { GoogleGenAI, Type } from '@google/genai';
 
 // Initialize the Gemini API client
-// The API key is automatically injected into process.env.GEMINI_API_KEY
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+// Set NEXT_PUBLIC_GEMINI_API_KEY in your environment to enable AI features
+const ai = new GoogleGenAI({ apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY });
 
 export interface PortfolioData {
   name: string;
