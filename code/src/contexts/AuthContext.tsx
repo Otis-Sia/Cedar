@@ -1,11 +1,20 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db, handleFirestoreError, OperationType } from '../lib/firebase';
+
+const AUTH_STORAGE_KEY = 'cedar:auth-user';
+
+interface MockUser {
+  uid: string;
+  email: string;
+  displayName: string | null;
+  emailVerified: boolean;
+  isAnonymous: boolean;
+  tenantId: string | null;
+  providerData: { providerId: string; displayName: string | null; email: string | null; photoURL: string | null }[];
+}
 
 interface AuthContextType {
-  user: User | null;
+  user: MockUser | null;
   tier: 'free' | 'professional' | 'business';
   loading: boolean;
   isAuthenticating: boolean;
@@ -18,93 +27,72 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [tier, setTier] = useState<'free' | 'professional' | 'business'>('free');
+  const [user, setUser] = useState<MockUser | null>(null);
+  const [tier] = useState<'free' | 'professional' | 'business'>('free');
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      if (currentUser) {
-        try {
-          const userDocRef = doc(db, 'users', currentUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          
-          if (userDoc.exists()) {
-            setTier(userDoc.data().tier as 'free' | 'professional' | 'business');
-          } else {
-            // Create user profile
-            const newProfile = {
-              email: currentUser.email || '',
-              tier: 'free',
-              createdAt: new Date().toISOString()
-            };
-            await setDoc(userDocRef, newProfile);
-            setTier('free');
-          }
-        } catch (error) {
-          handleFirestoreError(error, OperationType.GET, `users/${currentUser.uid}`);
-        }
-      }
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
-  const signUp = async (email: string, pass: string, name: string) => {
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(AUTH_STORAGE_KEY);
+      if (stored) {
+        setUser(JSON.parse(stored) as MockUser);
+      }
+    } catch {
+      // ignore parse errors
+    }
+    setLoading(false);
+  }, []);
+
+  const signUp = async (email: string, _pass: string, name: string) => {
     setIsAuthenticating(true);
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, pass);
-      const newUser = userCredential.user;
-      
-      // Create user profile in Firestore
-      const userDocRef = doc(db, 'users', newUser.uid);
-      const newProfile = {
-        name,
+      const newUser: MockUser = {
+        uid: `user-${Date.now()}`,
         email,
-        tier: 'free',
-        createdAt: new Date().toISOString()
+        displayName: name,
+        emailVerified: false,
+        isAnonymous: false,
+        tenantId: null,
+        providerData: [],
       };
-      await setDoc(userDocRef, newProfile);
-      setTier('free');
-    } catch (err: unknown) {
-      console.error('Sign up error:', err);
-      throw err;
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(newUser));
+      setUser(newUser);
     } finally {
       setIsAuthenticating(false);
     }
   };
 
-  const login = async (email: string, pass: string) => {
+  const login = async (email: string, _pass: string) => {
     setIsAuthenticating(true);
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
-    } catch (err: unknown) {
-      console.error('Login error:', err);
-      throw err;
+      const existingRaw = localStorage.getItem(AUTH_STORAGE_KEY);
+      const existing = existingRaw ? (JSON.parse(existingRaw) as MockUser) : null;
+      const loggedIn: MockUser = existing?.email === email
+        ? existing
+        : {
+            uid: `user-${email}`,
+            email,
+            displayName: null,
+            emailVerified: true,
+            isAnonymous: false,
+            tenantId: null,
+            providerData: [],
+          };
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(loggedIn));
+      setUser(loggedIn);
     } finally {
       setIsAuthenticating(false);
     }
   };
 
-  const resetPassword = async (email: string) => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-    } catch (err: unknown) {
-      console.error('Password reset error:', err);
-      throw err;
-    }
+  const resetPassword = async (_email: string) => {
+    // No-op in frontend-only mode
   };
 
   const logout = async () => {
-    try {
-      await signOut(auth);
-    } catch (err: unknown) {
-      console.error('Error signing out', err);
-    }
+    localStorage.removeItem(AUTH_STORAGE_KEY);
+    setUser(null);
   };
 
   return (

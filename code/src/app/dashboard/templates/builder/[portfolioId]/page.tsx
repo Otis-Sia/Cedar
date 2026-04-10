@@ -2,8 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useAuth } from '../../../../../contexts/AuthContext';
-import { db, handleFirestoreError, OperationType } from '../../../../../lib/firebase';
-import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 interface ExperienceItem {
   role: string;
@@ -48,6 +46,41 @@ interface Portfolio {
   updatedAt?: string;
 }
 
+const HARDCODED_PORTFOLIO_DATA = {
+  name: 'Sarah Jenkins',
+  title: 'Creative Director',
+  bio: 'Passionate about minimalist architecture and clean digital experiences. Nairobi based.',
+  skills: ['UI Design', 'Brand Strategy', 'Typography', 'Photography', 'Creative Direction'],
+  contactInfo: {
+    email: 'sarah@example.com',
+    location: 'Nairobi, Kenya',
+    linkedin: 'https://linkedin.com/in/sarahjenkins',
+  },
+  experience: [
+    {
+      role: 'Creative Director',
+      company: 'Studio Meridian',
+      startDate: '2022',
+      endDate: 'Present',
+      description: 'Leading creative strategy for global brand campaigns and identity systems.',
+    },
+    {
+      role: 'Senior Designer',
+      company: 'Apex Creative',
+      startDate: '2019',
+      endDate: '2022',
+      description: 'Designed award-winning visual identities for Fortune 500 clients.',
+    },
+  ],
+  education: [
+    {
+      year: '2018',
+      degree: 'BA in Visual Communication',
+      institution: 'University of Nairobi',
+    },
+  ],
+};
+
 export default function PortfolioBuilder() {
   const params = useParams();
   const portfolioId = params?.portfolioId as string;
@@ -62,39 +95,49 @@ export default function PortfolioBuilder() {
   useEffect(() => {
     if (!user || !portfolioId) return;
 
-    const fetchPortfolio = async () => {
+    const storageKey = `cedar:portfolio-${portfolioId}`;
+    const stored = localStorage.getItem(storageKey);
+    if (stored) {
       try {
-        const docRef = doc(db, 'portfolios', portfolioId);
-        const docSnap = await getDoc(docRef);
-        
-        if (docSnap.exists() && docSnap.data().userId === user.uid) {
-          setPortfolio({ id: docSnap.id, ...docSnap.data() } as Portfolio);
-        }
-      } catch (error) {
-        handleFirestoreError(error, OperationType.GET, `portfolios/${portfolioId}`);
-      } finally {
+        setPortfolio(JSON.parse(stored) as Portfolio);
         setLoading(false);
+        return;
+      } catch {
+        // ignore
       }
-    };
+    }
 
-    fetchPortfolio();
-  }, [user, portfolioId, router]);
+    // Try sessionStorage for draft from CV upload
+    let portfolioData = HARDCODED_PORTFOLIO_DATA;
+    const draft = sessionStorage.getItem('cedar:portfolio-draft');
+    if (draft) {
+      try {
+        const parsed = JSON.parse(draft) as { portfolio?: typeof HARDCODED_PORTFOLIO_DATA };
+        if (parsed.portfolio) portfolioData = parsed.portfolio;
+      } catch {
+        // ignore
+      }
+    }
+
+    const defaultPortfolio: Portfolio = {
+      id: portfolioId,
+      userId: user.uid,
+      title: 'My Portfolio',
+      templateId: 'minimal',
+      isPublic: false,
+      data: JSON.stringify(portfolioData),
+    };
+    setPortfolio(defaultPortfolio);
+    setLoading(false);
+  }, [user, portfolioId]);
 
   const handleSave = async () => {
     if (!portfolio) return;
     setSaving(true);
     try {
-      const docRef = doc(db, 'portfolios', portfolio.id);
-      await updateDoc(docRef, {
-        title: portfolio.title,
-        templateId: portfolio.templateId,
-        isPublic: portfolio.isPublic,
-        customDomain: portfolio.customDomain || null,
-        updatedAt: new Date().toISOString()
-      });
-      // Show success toast or something
-    } catch (error) {
-      handleFirestoreError(error, OperationType.UPDATE, `portfolios/${portfolio.id}`);
+      const updated = { ...portfolio, updatedAt: new Date().toISOString() };
+      localStorage.setItem(`cedar:portfolio-${portfolio.id}`, JSON.stringify(updated));
+      setPortfolio(updated);
     } finally {
       setSaving(false);
     }
@@ -102,12 +145,8 @@ export default function PortfolioBuilder() {
 
   const handleDelete = async () => {
     if (!portfolio || !window.confirm('Are you sure you want to delete this portfolio?')) return;
-    try {
-      await deleteDoc(doc(db, 'portfolios', portfolio.id));
-      router.push('/dashboard');
-    } catch (error) {
-      handleFirestoreError(error, OperationType.DELETE, `portfolios/${portfolio.id}`);
-    }
+    localStorage.removeItem(`cedar:portfolio-${portfolio.id}`);
+    router.push('/dashboard');
   };
 
   if (loading) {
@@ -123,8 +162,14 @@ export default function PortfolioBuilder() {
 
   if (!portfolio) return null;
 
-  const portfolioData = JSON.parse(portfolio.data);
-  const publicUrl = portfolio.customDomain ? `https://${portfolio.customDomain}` : `${window.location.origin}/p/${portfolio.id}`;
+  let portfolioData: PortfolioData;
+  try {
+    portfolioData = JSON.parse(portfolio.data) as PortfolioData;
+  } catch {
+    portfolioData = HARDCODED_PORTFOLIO_DATA as PortfolioData;
+  }
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  const publicUrl = portfolio.customDomain ? `https://${portfolio.customDomain}` : `${origin}/p/${portfolio.id}`;
 
   const shareLinks = {
     twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(publicUrl)}&text=${encodeURIComponent(`Check out my portfolio: ${portfolio.title}`)}`,
