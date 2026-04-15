@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#beee00",
+                    "on-secondary-fixed": "#003f43",
+                    "on-secondary": "#005359",
+                    "inverse-surface": "#fff8f7",
+                    "on-tertiary-fixed": "#3a4a00",
+                    "outline": "#a16565",
+                    "on-primary": "#5e1100",
+                    "surface-container-high": "#3f0e11",
+                    "background": "#240305",
+                    "tertiary-fixed": "#cafd00",
+                    "primary": "#ff8f73",
+                    "on-tertiary-fixed-variant": "#526900",
+                    "surface-bright": "#52171b",
+                    "on-error": "#490013",
+                    "outline-variant": "#6c393a",
+                    "tertiary-dim": "#beee00",
+                    "surface-container-highest": "#491216",
+                    "surface-container-low": "#2c0508",
+                    "on-primary-container": "#490b00",
+                    "primary-fixed": "#ff7856",
+                    "on-surface": "#ffdedd",
+                    "surface-container": "#36090c",
+                    "on-error-container": "#ffb2b9",
+                    "on-secondary-container": "#e3fdff",
+                    "tertiary": "#f3ffca",
+                    "secondary": "#00eefc",
+                    "inverse-primary": "#b52900",
+                    "on-tertiary": "#516700",
+                    "error": "#ff6e84",
+                    "on-primary-fixed": "#000000",
+                    "error-container": "#a70138",
+                    "inverse-on-surface": "#7b4646",
+                    "surface-tint": "#ff8f73",
+                    "primary-fixed-dim": "#ff5d33",
+                    "primary-container": "#ff7856",
+                    "secondary-container": "#006970",
+                    "secondary-dim": "#00deec",
+                    "on-surface-variant": "#dd9a99",
+                    "error-dim": "#d73357",
+                    "surface-dim": "#240305",
+                    "on-primary-fixed-variant": "#5a1000",
+                    "primary-dim": "#db3400",
+                    "tertiary-container": "#cafd00",
+                    "surface-variant": "#491216",
+                    "surface": "#240305",
+                    "on-background": "#ffdedd",
+                    "surface-container-lowest": "#000000",
+                    "secondary-fixed-dim": "#00deec",
+                    "on-tertiary-container": "#4a5e00",
+                    "secondary-fixed": "#00eefc",
+                    "on-secondary-fixed-variant": "#005e64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #240305;
+            color: #ffdedd;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#240305]/70 backdrop-blur-3xl shadow-[0px_24px_48px_rgba(0,0,0,0.4)] flex justify-between items-center px-6 md:px-12 py-6">
+<div class="text-3xl font-black tracking-tighter text-[#ff8f73] font-['Epilogue'] uppercase">CURATOR</div>
+<div class="hidden md:flex gap-12">
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-[#ff8f73] border-b-2 border-[#ff8f73] pb-1 hover:scale-105 transition-transform duration-300" href="#">Home</a>
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-white/60 hover:text-white transition-colors hover:scale-105 transition-transform duration-300" href="#">Projects</a>
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-white/60 hover:text-white transition-colors hover:scale-105 transition-transform duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-[#ff8f73] hover:scale-105 transition-transform">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="md:hidden p-2 text-white/60">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-6 md:px-12 mb-32 min-h-[819px] flex flex-col justify-center">
+<div class="max-w-6xl">
+<h1 class="font-headline text-6xl md:text-[10rem] font-black tracking-tighter leading-[0.85] text-on-surface mb-8">
+                    VISCERAL <br/> <span class="text-primary">IDENTITY.</span>
+</h1>
+<p class="font-body text-xl md:text-2xl text-on-surface-variant max-w-2xl mb-12 leading-relaxed">
+                    Rejecting the template aesthetic. We build high-impact digital experiences for creators who move with urgency and intention.
+                </p>
+<div class="flex flex-wrap gap-6">
+<button class="px-12 py-6 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-black text-xl rounded-full hover:scale-105 transition-transform shadow-2xl">
+                        START BUILDING
+                    </button>
+<button class="px-12 py-6 border-2 border-outline-variant text-on-surface font-headline font-black text-xl rounded-full hover:bg-surface-container-highest transition-all">
+                        VIEW ARCHIVE
+                    </button>
+</div>
+</div>
+</section>
+<!-- Featured Projects Bento Grid -->
+<section class="px-6 md:px-12 mb-40">
+<div class="flex justify-between items-end mb-16">
+<h2 class="font-headline text-4xl md:text-6xl font-black tracking-tight text-on-surface uppercase">Curated Works</h2>
+<div class="hidden md:block h-px flex-1 mx-12 bg-outline-variant opacity-20"></div>
+<span class="font-label tracking-widest text-secondary uppercase">2024 Collection</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Large Feature Card -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[16/10] mb-6">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="High-impact editorial portrait of a Black creator with dynamic lighting and visceral textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwlfu96JcBJG7A0OGR6a2hmO1wW0JECUP5BKWsS6YiWvAdglZSRD4OV0lOpQguDGfTsb63wRCTHI3LKtmHc4gpyOPtizVmd_aq6MLAEiAKbtzazDr6x8vyojhWbyq70zxJPv2L82lZJ81mdxDK0jFdlkDFtfaKcbCIN7dvG3kIGSP0wc4nD9XytnfmiDgKpUJmVR3E7lPTX21bqjdWLF4h4sOkTYj_Ar7JVUosoSZZdqdvplaPvwUlxu-L6OITcuQ1lbcX97OtzNSZ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline text-3xl font-black uppercase text-on-surface group-hover:text-primary transition-colors">Kinetic Motion</h3>
+<p class="font-label text-on-surface-variant uppercase tracking-widest">Brand Experience • 2024</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="north_east">north_east</span>
+</div>
+</div>
+<!-- Small Secondary Card -->
+<div class="md:col-span-4 group cursor-pointer md:mt-24">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[4/5] mb-6">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Moody high-contrast portrait of an Asian artist against brutalist concrete structures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnWiiCFBx-l3tslp-bF13C62pEKjSvUD37-JQ7ECtoMfENX-ctmlNdE8Y3T3VATWuTW9pzFchBm1lgrsOx0yEc7wPb9EhGcGV7CDfiJKigtNCnisMW_camtswqxsGERZKWwF4k_BoLmQNPIedToayxS-_mxVYQobPR6u0ZTicoV9J_2k-7qgIFb5vHYn8VRnLCHEcWG-LCf6kOuBTEDenYGP5PEV4Q3Qs-605NPwbB2YkIlaqPw6FR1Qs3tq8rgSgX4ORyQdc3MDRn"/>
+</div>
+<h3 class="font-headline text-2xl font-black uppercase text-on-surface group-hover:text-primary transition-colors">Shadow Logic</h3>
+<p class="font-label text-on-surface-variant uppercase tracking-widest">Editorial Design</p>
+</div>
+<!-- Reverse Layout Row -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[4/5] mb-6">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Cinematic shot of a Hispanic creator in a neon-lit futuristic urban environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIt0ztusbRdwAXSKxorchBo4n-rr7bDlK9KTYPxpj6uTpF_e1Jrjn0vLB8HQ3NtooOuJ-8kGPnCQUgApmR3Ot53oyPp79vJx2H30EjpUodBuTW19FENWR0MT4oUBTl4tRxI27iFgvv2cQYqPBGBTxSkHMUKxKjg8oQKls-btoBQJKp2FcRQC_Nhw5dYxqXE96xyjg3R6JQk1KbBsHHuEsHlC9e30Lr6FhtCtCjnmAh_PwA8glc04AkdU81rCEvdsnVu-Y7ADCG0IQ9"/>
+</div>
+<h3 class="font-headline text-2xl font-black uppercase text-on-surface group-hover:text-primary transition-colors">Electric Pulse</h3>
+<p class="font-label text-on-surface-variant uppercase tracking-widest">Digital Platform</p>
+</div>
+<div class="md:col-span-8 group cursor-pointer md:-mt-12">
+<div class="relative overflow-hidden bg-surface-container-low aspect-[16/10] mb-6">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100" data-alt="Close-up of a South Asian designer's hand interacting with high-end metallic interface hardware" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBERj3gUM70hszq_bJOrupYlFhf-QgUP8kSOwjaOpjhfnfn1ozaQAfN_29VlIP0jaAmIb76r0BgdrrN9yLyQwa_G8l_X5AJWqSJspYGriYj_TmndSXJogdY8yBWlm69bVzeHpZU6d_jKhvv18j9Ls36_aouRa2NT1-PzffSoBkVaeOLt6gSNwOm2xCM3wnLgUz_tssDXyjSVrinZ3E5w1i8NTDKHrnM2YKaY4HLnUL4SU7bq-Pep-96qvPbNueS3exR-rudphw4tDyc"/>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline text-3xl font-black uppercase text-on-surface group-hover:text-primary transition-colors">Chronos Dial</h3>
+<p class="font-label text-on-surface-variant uppercase tracking-widest">Product Identity • 2023</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="north_east">north_east</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Dynamic Tension Section -->
+<section class="bg-surface-container-low py-40 mb-40">
+<div class="px-6 md:px-12 grid md:grid-cols-2 gap-24 items-center">
+<div class="relative">
+<div class="absolute -top-12 -left-12 w-48 h-48 border-l-4 border-t-4 border-secondary opacity-30"></div>
+<img class="w-full relative z-10 shadow-[0px_48px_96px_rgba(0,0,0,0.6)]" data-alt="A diverse group of Black, Asian, and Hispanic creators collaborating in a raw brutalist studio space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbGWkzMv2em1HHeCvWKngs8zK2KOEHyvQQuskFm0aqqbeI1UulYOY7pgWEGHcPkz_bu_8AxVmkft1V040T8sax0rHq8kQEgtxWvL6Sv2pvsL_WOtai-XKTkUwYV71L-XISvnTRikT7LSMXaZjrYcYTYMNAmEJEI49-dLUKzfaHHeMmmdEg4px8TedDfWtT4sktlggDG06VeqXAuSJApeF_OyfdowLh8AxgguV7vG1fTVrHJWIAe4sNfIn-y03Xfw41tpymRlKMrpph"/>
+</div>
+<div>
+<span class="font-label tracking-[0.4em] text-primary uppercase mb-6 block">The Philosophy</span>
+<h2 class="font-headline text-5xl md:text-7xl font-black leading-none text-on-surface mb-8 uppercase">NO BORDERS.<br/> NO LIMITS.</h2>
+<p class="font-body text-xl text-on-surface-variant mb-12 leading-relaxed">
+                        We believe in the power of negative space and the weight of massive typography. Our process is a dialogue between raw brutalism and editorial sophistication.
+                    </p>
+<a class="inline-flex items-center gap-4 text-secondary font-headline font-black text-xl hover:translate-x-2 transition-transform" href="#">
+                        EXPLORE THE PROCESS
+                        <span class="material-symbols-outlined" data-icon="trending_flat">trending_flat</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Call to Action -->
+<section class="px-6 md:px-12 py-40 flex flex-col items-center text-center">
+<h2 class="font-headline text-6xl md:text-[12rem] font-black tracking-tighter text-on-surface uppercase mb-12">Let's build.</h2>
+<p class="font-body text-2xl text-on-surface-variant max-w-xl mb-16">
+                Your vision deserves more than a standard grid. Let's create something visceral.
+            </p>
+<button class="group relative px-16 py-8 bg-primary text-on-primary font-headline font-black text-2xl rounded-full hover:scale-105 transition-transform overflow-hidden">
+<span class="relative z-10">KICKSTART PROJECT</span>
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-20 px-6 md:px-12 mt-auto bg-[#240305] flex flex-col md:flex-row justify-between items-end gap-12">
+<div class="flex flex-col gap-6">
+<div class="text-4xl font-black tracking-tighter text-primary font-headline uppercase">CURATOR</div>
+<p class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#6c393a] max-w-xs">
+                © 2024 Kinetic Curator. No Borders. No Limits.
+            </p>
+</div>
+<div class="flex flex-col md:flex-row gap-12 items-end">
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs text-white/20 uppercase tracking-widest">Connect</span>
+<div class="flex gap-8">
+<a class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">Instagram</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">LinkedIn</a>
+<a class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">Dribbble</a>
+</div>
+</div>
+<div class="flex flex-col gap-4 items-end">
+<span class="font-label text-xs text-white/20 uppercase tracking-widest">Location</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#ff8f73]">Remote / NYC / Tokyo</span>
+</div>
+</div>
+</footer>
+</body></html>

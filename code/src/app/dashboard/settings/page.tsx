@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/AuthContext';
 
 export default function SettingsPage() {
   const { user, tier } = useAuth();
+  const tierLabel = tier === 'professional' ? 'Career' : tier === 'business' ? 'Creator Pro' : 'Starter Presence';
 
   return (
     <>
@@ -97,7 +98,7 @@ export default function SettingsPage() {
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-white/5 blur-3xl rounded-full"></div>
               
               <span className="text-cedar-bronze font-bold text-[10px] tracking-[0.3em] uppercase">Subscription</span>
-              <h3 className="font-headline text-3xl font-bold mt-2">{tier.charAt(0).toUpperCase() + tier.slice(1)} Tier</h3>
+              <h3 className="font-headline text-3xl font-bold mt-2">{tierLabel}</h3>
               
               <div className="mt-8 space-y-4">
                 <div className="flex items-center gap-3">

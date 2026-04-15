@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Inter:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "secondary": "#5e5e5e",
+                    "surface-container-high": "#e8e8e8",
+                    "surface-container": "#eeeeee",
+                    "on-secondary-container": "#1b1b1b",
+                    "on-tertiary-fixed-variant": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-container": "#747474",
+                    "on-secondary-fixed": "#1b1b1b",
+                    "on-surface": "#1a1c1c",
+                    "inverse-surface": "#2f3131",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "tertiary": "#3b3b3b",
+                    "secondary-container": "#d4d4d4",
+                    "surface-dim": "#dadada",
+                    "outline": "#777777",
+                    "on-error-container": "#410002",
+                    "on-secondary": "#ffffff",
+                    "surface": "#f9f9f9",
+                    "on-primary-fixed-variant": "#e2e2e2",
+                    "primary-fixed-dim": "#474747",
+                    "primary": "#000000",
+                    "surface-container-low": "#f3f3f4",
+                    "on-tertiary-container": "#ffffff",
+                    "on-surface-variant": "#474747",
+                    "on-primary-fixed": "#ffffff",
+                    "on-primary-container": "#ffffff",
+                    "surface-tint": "#5e5e5e",
+                    "primary-fixed": "#5e5e5e",
+                    "on-tertiary-fixed": "#ffffff",
+                    "outline-variant": "#c6c6c6",
+                    "inverse-on-surface": "#f0f1f1",
+                    "tertiary-fixed": "#5e5e5e",
+                    "on-primary": "#e2e2e2",
+                    "primary-container": "#3b3b3b",
+                    "on-secondary-fixed-variant": "#3b3b3b",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed-dim": "#474747",
+                    "on-tertiary": "#e2e2e2",
+                    "surface-variant": "#e2e2e2",
+                    "surface-container-highest": "#e2e2e2",
+                    "secondary-fixed-dim": "#ababab",
+                    "inverse-primary": "#c6c6c6",
+                    "background": "#f9f9f9",
+                    "secondary-fixed": "#c6c6c6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1a1c1c;
+            overflow-x: hidden;
+        }
+        .dark body {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        ::selection {
+            background: #000000;
+            color: #ffffff;
+        }
+        .dark ::selection {
+            background: #ffffff;
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl flex justify-between items-center px-12 py-4">
+<div class="text-2xl font-headline font-black tracking-tighter text-black dark:text-white">STUDIO_V_</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline tracking-tight uppercase text-sm text-black dark:text-white border-b-2 border-black dark:border-white pb-1 transition-colors duration-300" href="#">WORK</a>
+<a class="font-headline tracking-tight uppercase text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-300" href="#">ARCHIVE</a>
+<a class="font-headline tracking-tight uppercase text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-300" href="#">INFO</a>
+<a class="font-headline tracking-tight uppercase text-sm text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-300" href="#">CONTACT</a>
+</div>
+<button class="text-black dark:text-white transition-transform duration-200 ease-in-out scale-95 hover:scale-105" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</nav>
+<main>
+<section class="min-h-screen flex flex-col justify-center items-start px-8 md:px-24 pt-32 pb-16 bg-surface-container-lowest dark:bg-black">
+<div class="max-w-7xl w-full">
+<h1 class="font-headline font-black text-[12vw] leading-[0.85] tracking-tighter text-primary dark:text-white uppercase">
+                    LESS IS<br/>MORE
+                </h1>
+<div class="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-8">
+<p class="font-body text-xl md:text-2xl max-w-xl text-on-surface-variant dark:text-zinc-400 leading-relaxed">
+                        An architectural approach to digital design. We build monoliths in a world of clutter.
+                    </p>
+<div class="flex items-center gap-4 group cursor-pointer">
+<span class="font-label text-sm tracking-[0.3em] uppercase">Scroll to explore</span>
+<span class="material-symbols-outlined transform group-hover:translate-y-2 transition-transform">arrow_downward</span>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-primary text-on-primary py-32 px-8 md:px-24">
+<div class="max-w-7xl mx-auto">
+<h2 class="font-label text-xs tracking-[0.4em] uppercase mb-24 opacity-60">Selected Works (01-04)</h2>
+<div class="space-y-0">
+<div class="group border-t border-white/10 py-16 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/5 transition-colors px-4 -mx-4">
+<div class="flex flex-col gap-2">
+<span class="font-label text-xs tracking-widest opacity-40 uppercase">01 / Residential</span>
+<h3 class="font-headline text-5xl md:text-8xl font-bold tracking-tighter uppercase transition-all group-hover:pl-4">MONOLITH_01</h3>
+</div>
+<div class="mt-8 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
+<img class="w-64 grayscale aspect-[4/5] object-cover" data-alt="Brutalist concrete architecture with sharp angles and dramatic shadows against a clear sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFQEyea84dc1nLxPAhUA6OYc3Sgl5TLQ6H7OkXxKyBi18qzNMYeiq92WnhNGBeHPpWr3hz5k3fKw78N8LirDSb1YywMGO1ZklGhRCOrClRWpvywAUEGGU-0-R_woyVLdSQ04-WfrrR8MWQVkky-W2vw7HZ4GaDHf3eN_wUEnR6AkOcbiPU3licvZqh-DWfO_U8AEUlE0oO1RdzbbcHKFKBuTBbPw_K8kgaEs69dp-R3YuXubdQ7TbTuttU8OoJOi1lE53acS_HDB8n"/>
+</div>
+<div class="mt-8 md:mt-0">
+<span class="material-symbols-outlined text-4xl transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+<div class="group border-t border-white/10 py-16 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/5 transition-colors px-4 -mx-4">
+<div class="flex flex-col gap-2">
+<span class="font-label text-xs tracking-widest opacity-40 uppercase">02 / Editorial</span>
+<h3 class="font-headline text-5xl md:text-8xl font-bold tracking-tighter uppercase transition-all group-hover:pl-4">VOID_SPACE</h3>
+</div>
+<div class="mt-8 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
+<img class="w-64 grayscale aspect-[4/5] object-cover" data-alt="Minimalist interior with white walls, extreme light and shadow play, and a single black chair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCEnH8z40JAPnop4TfxhmtH-1K0cMbbaSavYe-7YGicCxZj4wdONllOSaVAKddzLd4Gi3Q8P79Vgos4JbGjhYcdBrP0xjuimqBqHYY0uf4AgzLS06RfqiMjdotD3KoUYXhjXMh_bPNOYOGVWK2pFQ_wNo89GAPuMPYoXIF3pMRncBIgqxUOUjiavfyd6kILQsejlNrzK-vRLuI_oNmpDvmwDPVsjfX54iZ2ISbxqGti2rWyHZ5rSJFvc2PRIl4BAU45d7ncxDlZafa"/>
+</div>
+<div class="mt-8 md:mt-0">
+<span class="material-symbols-outlined text-4xl transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+<div class="group border-t border-white/10 py-16 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/5 transition-colors px-4 -mx-4">
+<div class="flex flex-col gap-2">
+<span class="font-label text-xs tracking-widest opacity-40 uppercase">03 / Identity</span>
+<h3 class="font-headline text-5xl md:text-8xl font-bold tracking-tighter uppercase transition-all group-hover:pl-4">KINETIC_LAB</h3>
+</div>
+<div class="mt-8 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
+<img class="w-64 grayscale aspect-[4/5] object-cover" data-alt="Abstract macro photography of black liquid ink swirling in water with high contrast" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrpHlMTvGEb00Wg5UOL1JsNvAsIg83GfcqLfS8nJTrer7K_esSnf0dzBEr4JyReTiIz7WLL47quG4uQPozO6bf3UWoyQyjXWH_yzm6qp0-_Z5WqBx4kPUwA0_n5-eFdKwWR_116jd1zF54QCHMkCf5tJs_2K9E0hqngwzyGHvrotE_kUgMdz9GXMyHvK4BIwYNjTLwRL1_iiBKrGhmM3sXBR66dQ7hLJkTFDwRSdJFIrqOGxa27L1YGvGJ_5Ev_M79aaoTKJHWsTy7"/>
+</div>
+<div class="mt-8 md:mt-0">
+<span class="material-symbols-outlined text-4xl transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+<div class="group border-t border-b border-white/10 py-16 flex flex-col md:flex-row md:items-center justify-between hover:bg-white/5 transition-colors px-4 -mx-4">
+<div class="flex flex-col gap-2">
+<span class="font-label text-xs tracking-widest opacity-40 uppercase">04 / Digital</span>
+<h3 class="font-headline text-5xl md:text-8xl font-bold tracking-tighter uppercase transition-all group-hover:pl-4">PURE_CORE</h3>
+</div>
+<div class="mt-8 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">
+<img class="w-64 grayscale aspect-[4/5] object-cover" data-alt="Close up of a sleek, dark metallic surface with minimalist geometric patterns and soft light reflections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO_5FYwAhn0HPysqGhXQ-luy3qX1I9P9rABkiA58YRx_LLl_GBqPqJaykfK0VN_O8IZhwFHhEDwXrMWoV4J9EWBJXw8MtQP65t6q9MNAZurjiREclRtWyXa8q2lMOBXDFrCn3fyIOWrKgkyscfphlQXcpvZbcDnrEgoksSYXQJUkbMhH6P0-SkeXVhWXrlCR6RmmuAPrFVt4C8EjMs2jHxNaM_ShgXBk6fQ0gQIIJ4CyxuWQHKtsWTJZrHJ-3qeGZDOoqCIijnQ7HM"/>
+</div>
+<div class="mt-8 md:mt-0">
+<span class="material-symbols-outlined text-4xl transform -rotate-45">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-bright dark:bg-zinc-950 py-32 px-8 md:px-24">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-start">
+<div>
+<h2 class="font-headline text-6xl md:text-7xl font-black tracking-tighter text-primary dark:text-white uppercase mb-12">EXPERIENCE</h2>
+<p class="font-body text-xl text-on-surface-variant dark:text-zinc-400 leading-relaxed mb-12">
+                        A decade of distilling complex ideas into singular visual statements. Working at the intersection of architecture, typography, and digital logic.
+                    </p>
+<button class="bg-primary dark:bg-white text-on-primary dark:text-black px-12 py-6 font-label tracking-widest uppercase text-sm hover:bg-primary-container dark:hover:bg-zinc-200 transition-colors">
+                        Download CV
+                    </button>
+</div>
+<div class="space-y-12">
+<div class="flex flex-col border-b border-outline-variant/30 pb-8">
+<span class="font-label text-xs text-zinc-500 uppercase tracking-widest mb-2">2020 — PRESENT</span>
+<h4 class="font-headline text-2xl font-bold text-primary dark:text-white">LEAD DESIGNER</h4>
+<p class="font-body text-zinc-600 dark:text-zinc-500">Form &amp; Function Agency, Oslo</p>
+</div>
+<div class="flex flex-col border-b border-outline-variant/30 pb-8">
+<span class="font-label text-xs text-zinc-500 uppercase tracking-widest mb-2">2017 — 2020</span>
+<h4 class="font-headline text-2xl font-bold text-primary dark:text-white">SENIOR ARCHITECT</h4>
+<p class="font-body text-zinc-600 dark:text-zinc-500">Minimalist Collective, Berlin</p>
+</div>
+<div class="flex flex-col border-b border-outline-variant/30 pb-8">
+<span class="font-label text-xs text-zinc-500 uppercase tracking-widest mb-2">2014 — 2017</span>
+<h4 class="font-headline text-2xl font-bold text-primary dark:text-white">VISUAL DESIGNER</h4>
+<p class="font-body text-zinc-600 dark:text-zinc-500">Studio Grid, Tokyo</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-lowest dark:bg-black py-48 px-8 md:px-24 text-center">
+<div class="max-w-4xl mx-auto">
+<h2 class="font-headline text-[8vw] md:text-8xl font-black tracking-tighter text-primary dark:text-white uppercase leading-none mb-12">
+                    LET'S START SOMETHING.
+                </h2>
+<a class="font-headline text-2xl md:text-4xl underline underline-offset-[12px] decoration-1 hover:decoration-4 transition-all" href="mailto:hello@studiov.design">
+                    HELLO@STUDIOV.DESIGN
+                </a>
+</div>
+</section>
+</main>
+<footer class="w-full border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-black">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-7xl mx-auto">
+<div class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-600 mb-8 md:mb-0">
+                ©2024 STUDIO_V_ ALL RIGHTS RESERVED
+            </div>
+<div class="flex gap-12">
+<a class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-600 hover:text-black dark:hover:text-white hover:underline underline-offset-8 transition-opacity" href="#">INSTAGRAM</a>
+<a class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-600 hover:text-black dark:hover:text-white hover:underline underline-offset-8 transition-opacity" href="#">BEHANCE</a>
+<a class="font-sans text-xs tracking-[0.2em] uppercase text-zinc-400 dark:text-zinc-600 hover:text-black dark:hover:text-white hover:underline underline-offset-8 transition-opacity" href="#">LINKEDIN</a>
+</div>
+</div>
+</footer>
+</body></html>

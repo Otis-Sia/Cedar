@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Projects | Architect Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#752121",
+                        "on-secondary-container": "#525252",
+                        "tertiary": "#486272",
+                        "primary-fixed": "#e2e2e2",
+                        "on-surface": "#2d3435",
+                        "surface-container": "#ebeeef",
+                        "surface-container-low": "#f2f4f4",
+                        "on-primary-container": "#525252",
+                        "surface-container-highest": "#dde4e5",
+                        "tertiary-dim": "#3c5666",
+                        "outline-variant": "#adb3b4",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#fff7f6",
+                        "primary": "#5e5e5e",
+                        "on-tertiary-fixed-variant": "#486272",
+                        "tertiary-fixed": "#d0ecff",
+                        "surface-container-high": "#e4e9ea",
+                        "background": "#f9f9f9",
+                        "outline": "#757c7d",
+                        "on-primary": "#f8f8f8",
+                        "inverse-surface": "#0c0f0f",
+                        "on-secondary": "#fbf8f8",
+                        "on-tertiary-fixed": "#2c4655",
+                        "tertiary-fixed-dim": "#c2def0",
+                        "on-secondary-fixed": "#3f3f3f",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-tertiary-container": "#3e5868",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "secondary-fixed": "#e4e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#2d3435",
+                        "surface": "#f9f9f9",
+                        "surface-variant": "#dde4e5",
+                        "tertiary-container": "#d0ecff",
+                        "surface-dim": "#d4dbdd",
+                        "on-primary-fixed-variant": "#5b5b5b",
+                        "primary-dim": "#525252",
+                        "on-surface-variant": "#5a6061",
+                        "error-dim": "#4e0309",
+                        "primary-fixed-dim": "#d4d4d4",
+                        "primary-container": "#e2e2e2",
+                        "secondary-container": "#e4e2e1",
+                        "secondary-dim": "#535353",
+                        "inverse-on-surface": "#9c9d9d",
+                        "surface-tint": "#5e5e5e",
+                        "error": "#9f403d",
+                        "on-primary-fixed": "#3f3f3f",
+                        "error-container": "#fe8983",
+                        "secondary": "#5f5f5f",
+                        "inverse-primary": "#ffffff",
+                        "on-tertiary": "#f4faff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface transition-all duration-500 ease-in-out">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f9f9f9]/70 dark:bg-[#1A1A1A]/70 backdrop-blur-md flex justify-between items-center px-12 py-6 w-full">
+<div class="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-50">Architect Portfolio</div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="font-sans text-sm tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors" href="#">Home</a>
+<a class="font-sans text-sm tracking-widest text-neutral-900 dark:text-neutral-50 border-b border-neutral-900 dark:border-neutral-50 pb-1" href="#">Projects</a>
+<a class="font-sans text-sm tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors" href="#">About</a>
+<a class="font-sans text-sm tracking-widest text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 p-2 transition-all">dark_mode</button>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-[1440px] mx-auto">
+<!-- Header Section -->
+<header class="mb-24 flex flex-col md:flex-row items-baseline justify-between">
+<h1 class="text-6xl md:text-8xl font-headline tracking-tighter text-on-surface">Selected<br/>Works</h1>
+<div class="max-w-md mt-8 md:mt-0">
+<p class="text-body text-on-surface-variant text-lg leading-relaxed">
+                    A synthesis of technical precision and structural intent. These projects represent the intersection of high-performance engineering and aesthetic minimalism.
+                </p>
+</div>
+</header>
+<!-- Projects Grid: Asymmetric Layout -->
+<div class="space-y-32">
+<!-- Project 01: Large Left, Small Right -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-8 group">
+<div class="aspect-[16/9] overflow-hidden bg-surface-container-low">
+<img alt="Brutalist interior with raw concrete and glass" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Monochrome minimalist office space with raw concrete walls, large glass windows, and dramatic directional natural light shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuk0Vk23Xqy3YXejDC0aU__zU1_DJaGG589jvAW9iSOb22pyUJQI8_Tixz6sev68Bf70Ro83AC8SxllCr5gWJAwCMO7I1TOQVWF5dZSbzuwnCRsDv5xNNMvXjyfmscEuU9Vet5Lonaot5XsuG3078s94TSyKQTvNVaWP8vQCFnafkz_JQcCOF463QO8J-CSj7XAtk-aF6X4V8T1T3X-9a9j59TRiKPP-ipLxHN8ppvYKYLCHHzguIwKVBa2dn6SjDEH1HaIrQSBnQk"/>
+</div>
+<div class="mt-8 flex justify-between items-start">
+<div>
+<span class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-2 block">01 / Infrastructure</span>
+<h2 class="text-4xl font-headline mb-4">Neural Grid System</h2>
+<p class="text-on-surface-variant max-w-lg mb-6">A distributed microservices architecture designed for high-concurrency industrial monitoring. Built with a focus on structural redundancy and silent failure recovery.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-primary-container text-on-primary-container px-3 py-1 text-[10px] uppercase font-label">Rust</span>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 text-[10px] uppercase font-label">Kubernetes</span>
+<span class="bg-primary-container text-on-primary-container px-3 py-1 text-[10px] uppercase font-label">gRPC</span>
+</div>
+</div>
+<a class="inline-flex items-center space-x-2 text-primary hover:text-on-surface transition-colors" href="#">
+<span class="font-label text-xs uppercase tracking-widest border-b border-primary/30 pb-1">View Source</span>
+<span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+</div>
+<div class="hidden md:block md:col-span-4 pt-24">
+<div class="aspect-[4/5] bg-surface-container-highest overflow-hidden mb-6">
+<img alt="Server room with blue lighting" class="w-full h-full object-cover" data-alt="Clean futuristic server room rack with minimalist cabling and soft ambient glowing status lights in a grey room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTPrTtdpWms2yTLH52_YGbxkL1Nj5xdqTGx0h3qOaC79T1xtyMcELliCouucjOwPHUYTjeIXOjqtsO9p5FgX1vVb7-PXG9uLazpUAHVNJhAblLrFL4EaXHCjmeXnV1Mdi4CoaCn_k5Q8M4XXZWbEEyZlK9wAS0QS7tHsXp5_AGohSXsm8XufwdwP6aBKJWd_6Apifoi9orf9tOHLJwrx_XRadrV_KOusujNR5TH4srbihg1iCtZoXQzVDTM5v99HdGfgud2nm0Q3K8"/>
+</div>
+<div class="p-6 bg-surface-container-low">
+<h3 class="text-xl font-headline mb-2">Performance Metrics</h3>
+<p class="text-sm text-on-surface-variant italic">99.999% uptime achieved across 12 nodes during the initial pilot phase.</p>
+</div>
+</div>
+</section>
+<!-- Project 02: Single Wide Focused -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center bg-surface-container-low py-16 px-8 md:px-0">
+<div class="md:col-span-5 md:pl-12">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-2 block">02 / Interface</span>
+<h2 class="text-4xl font-headline mb-4">The Monolith OS</h2>
+<p class="text-on-surface-variant mb-8 leading-relaxed">
+                        An experimental operating system interface focused on spatial computing. Removing the desktop metaphor in favor of architectural depth and tonal focus.
+                    </p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="bg-primary text-on-primary px-3 py-1 text-[10px] uppercase font-label">TypeScript</span>
+<span class="bg-primary text-on-primary px-3 py-1 text-[10px] uppercase font-label">Three.js</span>
+<span class="bg-primary text-on-primary px-3 py-1 text-[10px] uppercase font-label">GLSL</span>
+</div>
+<a class="inline-block bg-primary text-on-primary px-8 py-4 font-label text-xs uppercase tracking-widest hover:bg-primary-dim transition-colors" href="#">
+                        Explore Repository
+                    </a>
+</div>
+<div class="md:col-span-7">
+<div class="aspect-[16/10] bg-surface overflow-hidden">
+<img alt="Abstract 3D interface rendering" class="w-full h-full object-cover" data-alt="Abstract 3D architectural rendering of floating glass panes and dark slate surfaces with high-end editorial lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsp6LkwLIJEpojCDAQmj8JXnZyMMSm8Wv3BeR-U8sLp9rHK1fDj-d7p4C_qtGV5129dUSxDqYqBU4eLsFDq6w-YSaiNqDHJ1cAZ8HpQZbN-sm13i9a4aiaNok1a4sA2EGtLf3SMxrvsWRWWnyemrzEy5BA9cbutm03OtTlh-FTEmFS3gdJlzsbtNboFTAP5offagJqDlbNAGSfTLA2zxA-NlAhbjTcTqy_TV7S4IOZpPRcIbZKz3fFXA_C2I98zT6NUt5PLtlQps6r"/>
+</div>
+</div>
+</section>
+<!-- Project 03: Asymmetric Triple -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-12 items-end">
+<div class="md:col-span-4">
+<div class="aspect-square bg-surface-container overflow-hidden mb-8">
+<img alt="Technical drawing on screen" class="w-full h-full object-cover grayscale" data-alt="Macro view of a high-resolution technical blueprint on a professional monitor with crisp white lines on black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDozpuR1Fj1bJrCAPT_sdvrEpe9iji8DVtIN70Q4rECQa4RIjmDV0ajkjLryQEWCzthMWh09JLJtsSyPVj7CUgW69R4jybrOAc-L0NhAXC9qD9GaAyKYRbf9U5sn8bwiK1j88jax748OyzclqHFQRGqeyPt1h0tKL11ehYqYv7IzwCohkOBR4w02gHNPqQYy5WuVk_R8EkGZQxqQzv3EClJTsPUwkJsEYSpufc-4rskRVB7HHbtxX7YsiY3jesUc-XNhgHTk4kPzPXO"/>
+</div>
+<span class="font-label text-xs uppercase tracking-[0.2em] text-outline mb-2 block">03 / Tooling</span>
+<h2 class="text-3xl font-headline mb-4">Blueprint Parser</h2>
+<p class="text-sm text-on-surface-variant">Automated CAD to JSON extraction utility for modern architectural workflows.</p>
+</div>
+<div class="md:col-span-8">
+<div class="aspect-[21/9] bg-surface-container-highest overflow-hidden mb-12">
+<img alt="Modern skyscraper reflection" class="w-full h-full object-cover" data-alt="Geometric reflection of a glass skyscraper against a clear sky with sharp vertical lines and rhythmic patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw89Zu5sa_vaYKpAuPTjnNJU_9lGYckilz1OZnHVap5uA6BGoabhnCTyFnVYrF2UgrYRUK6vKs5gV8yDJWWxaZ1Kl7IMyIuBv9Kx6_G7PgNWRXvZCuJoDQNCer-KVInOQcyv0T2xjVBledmV_LpitKJjBDeftlOlrsZnG_FG0kKwJxNdVysIwlI8j6LaOcZjFDh7URJmQk7y5RmJvOiayroPXklYAPtH47AiYnOluC6jQmTakJT8pRUHjWxnnbkN0XwU61Zn7sKlmt"/>
+</div>
+<div class="flex justify-between border-t border-outline-variant/20 pt-8">
+<div class="flex gap-4 text-outline font-label text-[10px] uppercase">
+<span>Python</span>
+<span>OpenCV</span>
+<span>AWS Lambda</span>
+</div>
+<a class="material-symbols-outlined text-primary hover:text-on-surface transition-transform hover:translate-x-2" href="#">arrow_right_alt</a>
+</div>
+</div>
+</section>
+</div>
+<!-- Custom CTA Section: The "Floorplan" Component -->
+<section class="mt-48 bg-inverse-surface text-on-primary py-24 px-12 flex flex-col md:flex-row items-center justify-between">
+<div class="mb-12 md:mb-0 max-w-xl">
+<h2 class="text-5xl font-headline mb-6">Let's build something enduring.</h2>
+<p class="text-inverse-on-surface text-lg">Currently accepting selected commissions for systems architecture and technical leadership.</p>
+</div>
+<div class="relative group cursor-pointer border border-on-tertiary/10 p-12 hover:border-on-tertiary/30 transition-all">
+<div class="absolute -top-3 -left-3 w-6 h-6 border-t-2 border-l-2 border-tertiary-container"></div>
+<div class="absolute -bottom-3 -right-3 w-6 h-6 border-b-2 border-r-2 border-tertiary-container"></div>
+<span class="font-label text-sm uppercase tracking-widest">Connect for Inquiry</span>
+<div class="mt-4 h-px bg-tertiary-container w-0 group-hover:w-full transition-all duration-500"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#f2f4f4] dark:bg-[#121212] w-full py-12 px-12 mt-auto flex flex-col md:flex-row justify-between items-center">
+<div class="font-sans text-[10px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-6 md:mb-0">
+            © 2024 Silent Monolith Studio
+        </div>
+<div class="flex space-x-12">
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">LinkedIn</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">GitHub</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity opacity-80 hover:opacity-100" href="#">Layers</a>
+</div>
+</footer>
+<!-- Mobile Bottom Navigation (Visible on mobile only) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 bg-surface/90 backdrop-blur-md flex justify-around items-center py-4 z-50 border-t border-outline-variant/10">
+<button class="flex flex-col items-center text-outline">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] uppercase mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="text-[10px] uppercase mt-1">Projects</span>
+</button>
+<button class="flex flex-col items-center text-outline">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] uppercase mt-1">About</span>
+</button>
+<button class="flex flex-col items-center text-outline">
+<span class="material-symbols-outlined">mail</span>
+<span class="text-[10px] uppercase mt-1">Contact</span>
+</button>
+</div>
+</body></html>

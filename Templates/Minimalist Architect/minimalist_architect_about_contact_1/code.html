@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-container": "#171f33",
+                    "on-surface": "#dae2fd",
+                    "primary-fixed": "#c4e7ff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#4d2b00",
+                    "tertiary": "#ffb86e",
+                    "on-secondary-container": "#a9bad3",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#060e20",
+                    "surface": "#0b1326",
+                    "on-background": "#dae2fd",
+                    "on-primary-container": "#00374d",
+                    "surface-container-low": "#131b2e",
+                    "tertiary-container": "#de8712",
+                    "surface-variant": "#2d3449",
+                    "surface-container-highest": "#2d3449",
+                    "on-error": "#690005",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed-variant": "#004c69",
+                    "surface-dim": "#0b1326",
+                    "outline-variant": "#3e4850",
+                    "secondary-container": "#3a4a5f",
+                    "tertiary-fixed": "#ffdcbd",
+                    "primary-container": "#00a7e0",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "primary": "#7bd0ff",
+                    "on-surface-variant": "#bec8d2",
+                    "on-primary": "#00354a",
+                    "outline": "#88929b",
+                    "surface-tint": "#7bd0ff",
+                    "inverse-on-surface": "#283044",
+                    "background": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary": "#492900",
+                    "inverse-primary": "#00668a",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#b7c8e1",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#2c1600",
+                    "on-secondary": "#213145",
+                    "inverse-surface": "#dae2fd",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#001e2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            background: rgba(11, 19, 38, 0.6);
+            backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center px-8 py-6 max-w-full">
+<div class="text-2xl font-bold tracking-tighter text-slate-50 font-headline">ARCHITECT</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-headline" href="#">Home</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-headline" href="#">Projects</a>
+<a class="text-sky-400 font-bold border-b-2 border-sky-400 pb-1 font-headline" href="#">About</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors font-headline" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-white/5 transition-all duration-300 p-2 rounded-full scale-95 active:scale-90">
+<span class="material-symbols-outlined text-sky-400" data-icon="light_mode">light_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Hero Section / About -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-32">
+<!-- Asymmetric Image Column -->
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] bg-surface-container-low rounded-xl overflow-hidden relative z-10">
+<img class="w-full h-full object-cover grayscale contrast-125" data-alt="Professional architect headshot, mid-30s, wearing dark technical apparel, standing against a minimal concrete wall with dramatic architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPR2XT7QOGYcZDjse9zXjMferDxpexbSErELxTf4DqxuDrvptJf6fFucTEj4gKsZzQh17dUW-gv-FpWOkTKPC38qmajkRf-eZeYCluBA3QS1UxArQ6mkSkNxkN07f0mHWVV0jTAZladWc643FoOVW-ba-b7WSiPAh0Rr1sH5WKIUsidaCRQSY3Msc9qkEy4G1tJkfWmvHMkJ9uLyD313xiMeV8wbiGwKZibzVjDmcCbVTL5_1dOeoWSBTBRoyv0_Bo_yKDUf4ZwkD0"/>
+</div>
+<!-- Monolithic Accent -->
+<div class="absolute -bottom-6 -right-6 w-full h-full bg-surface-container-lowest -z-10 rounded-xl"></div>
+<div class="mt-8 space-y-4">
+<div class="flex items-center gap-3">
+<span class="text-primary font-headline text-sm tracking-widest uppercase">01/ Philosophy</span>
+<div class="h-[1px] flex-grow bg-outline-variant/20"></div>
+</div>
+<p class="text-on-surface-variant font-light italic leading-relaxed">
+                        "Structure is not a container for life, but an extension of the logic that governs it."
+                    </p>
+</div>
+</div>
+<!-- Content Column -->
+<div class="lg:col-span-7 flex flex-col justify-center">
+<h1 class="text-6xl md:text-8xl font-headline font-bold tracking-tighter mb-8 leading-none">
+                    DESIGNED BY <span class="text-primary">LOGIC.</span>
+</h1>
+<div class="space-y-6 max-w-2xl">
+<p class="text-xl text-on-surface leading-relaxed">
+                        Based in the digital ether, I build monoliths that stand the test of high-frequency interaction. My approach combines the rigor of structural engineering with the fluidity of modern interface design.
+                    </p>
+<p class="text-on-surface-variant leading-relaxed">
+                        With over a decade of experience in architectural visualization and software development, I bridge the gap between physical spatial awareness and digital user experience. Every line of code is a structural beam; every pixel is a finish material.
+                    </p>
+<div class="grid grid-cols-2 gap-8 pt-8">
+<div>
+<span class="block font-headline text-[10px] tracking-widest uppercase text-primary mb-2">Capabilities</span>
+<ul class="text-sm space-y-1 text-on-surface-variant font-medium">
+<li>System Architecture</li>
+<li>UI Engineering</li>
+<li>3D Visualization</li>
+<li>Spatial Computing</li>
+</ul>
+</div>
+<div>
+<span class="block font-headline text-[10px] tracking-widest uppercase text-primary mb-2">Recognition</span>
+<ul class="text-sm space-y-1 text-on-surface-variant font-medium">
+<li>Awwwards SOTD x4</li>
+<li>CSS Design Awards</li>
+<li>Behance Featured</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact Section -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start" id="contact">
+<div class="lg:col-span-5">
+<h2 class="text-4xl font-headline font-bold tracking-tighter mb-6">INITIATE <br/>CONNECTION</h2>
+<p class="text-on-surface-variant mb-12">
+                    Available for select architectural collaborations and high-impact digital ventures. Reach out to discuss the blueprint of your next project.
+                </p>
+<div class="space-y-8">
+<div class="group cursor-pointer">
+<span class="block font-headline text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-primary transition-colors">Digital Mail</span>
+<span class="text-xl font-headline font-medium">hello@precise-monolith.com</span>
+</div>
+<div class="group cursor-pointer">
+<span class="block font-headline text-[10px] tracking-widest uppercase text-outline mb-1 group-hover:text-primary transition-colors">Physical Presence</span>
+<span class="text-xl font-headline font-medium">Remote / UTC+2</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 bg-surface-container-low p-8 md:p-12 rounded-xl relative overflow-hidden">
+<!-- Form -->
+<form class="space-y-10 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 focus:ring-0 focus:border-primary transition-colors text-on-surface" id="name" placeholder=" " type="text"/>
+<label class="absolute top-3 left-0 text-outline-variant uppercase text-[10px] tracking-widest font-headline pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="name">Name</label>
+</div>
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 focus:ring-0 focus:border-primary transition-colors text-on-surface" id="email" placeholder=" " type="email"/>
+<label class="absolute top-3 left-0 text-outline-variant uppercase text-[10px] tracking-widest font-headline pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="email">Email Address</label>
+</div>
+</div>
+<div class="relative">
+<input class="peer w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 focus:ring-0 focus:border-primary transition-colors text-on-surface" id="subject" placeholder=" " type="text"/>
+<label class="absolute top-3 left-0 text-outline-variant uppercase text-[10px] tracking-widest font-headline pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="subject">Project Type</label>
+</div>
+<div class="relative">
+<textarea class="peer w-full bg-transparent border-0 border-b border-outline-variant/30 py-3 px-0 focus:ring-0 focus:border-primary transition-colors text-on-surface resize-none" id="message" placeholder=" " rows="4"></textarea>
+<label class="absolute top-3 left-0 text-outline-variant uppercase text-[10px] tracking-widest font-headline pointer-events-none transition-all peer-focus:-top-4 peer-focus:text-primary peer-[:not(:placeholder-shown)]:-top-4" for="message">Briefing</label>
+</div>
+<button class="w-full md:w-auto px-12 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-headline font-bold rounded-lg hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-2 group" type="submit">
+                        TRANSMIT INQUIRY
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Architectural Accent Background -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full border-t border-slate-800/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full gap-8">
+<div class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500">
+                © 2024 THE PRECISE MONOLITH. ALL RIGHTS RESERVED.
+            </div>
+<div class="flex gap-12">
+<a class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500 hover:text-sky-400 transition-colors" href="#">Instagram</a>
+<a class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500 hover:text-sky-400 transition-colors" href="#">LinkedIn</a>
+<a class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500 hover:text-sky-400 transition-colors" href="#">Github</a>
+</div>
+</div>
+</footer>
+</body></html>

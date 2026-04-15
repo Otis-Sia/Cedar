@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-container": "#171f33",
+                    "on-surface": "#dae2fd",
+                    "primary-fixed": "#c4e7ff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#4d2b00",
+                    "tertiary": "#ffb86e",
+                    "on-secondary-container": "#a9bad3",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#060e20",
+                    "surface": "#0b1326",
+                    "on-background": "#dae2fd",
+                    "on-primary-container": "#00374d",
+                    "surface-container-low": "#131b2e",
+                    "tertiary-container": "#de8712",
+                    "surface-variant": "#2d3449",
+                    "surface-container-highest": "#2d3449",
+                    "on-error": "#690005",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed-variant": "#004c69",
+                    "surface-dim": "#0b1326",
+                    "outline-variant": "#3e4850",
+                    "secondary-container": "#3a4a5f",
+                    "tertiary-fixed": "#ffdcbd",
+                    "primary-container": "#00a7e0",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "primary": "#7bd0ff",
+                    "on-surface-variant": "#bec8d2",
+                    "on-primary": "#00354a",
+                    "outline": "#88929b",
+                    "surface-tint": "#7bd0ff",
+                    "inverse-on-surface": "#283044",
+                    "background": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary": "#492900",
+                    "inverse-primary": "#00668a",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#b7c8e1",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#2c1600",
+                    "on-secondary": "#213145",
+                    "inverse-surface": "#dae2fd",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#001e2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-3xl">
+<div class="flex justify-between items-center px-8 py-6 max-w-full">
+<div class="text-2xl font-bold tracking-tighter text-slate-50 font-['Space_Grotesk']">
+                ARCHITECT
+            </div>
+<div class="hidden md:flex items-center gap-10 font-['Space_Grotesk'] tracking-tighter">
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Home</a>
+<a class="text-sky-400 font-bold border-b-2 border-sky-400 pb-1" href="#">Projects</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">About</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-sky-400 hover:bg-white/5 transition-all duration-300 scale-95 active:scale-90 rounded-full">
+<span class="material-symbols-outlined" data-icon="light_mode">light_mode</span>
+</button>
+<button class="md:hidden p-2 text-slate-400">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+<!-- Header Section -->
+<header class="mb-20">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="max-w-2xl">
+<span class="font-['Space_Grotesk'] text-primary uppercase tracking-[0.3em] text-xs font-bold mb-4 block">Selected Works</span>
+<h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface leading-none">
+                        ARCHITECTURAL <br/>MONOLITHS
+                    </h1>
+</div>
+<div class="flex gap-4 font-label text-xs tracking-widest text-on-surface-variant">
+<span class="border-b border-primary/30 pb-1">ALL PROJECTS</span>
+<span class="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">RESIDENTIAL</span>
+<span class="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">COMMERCIAL</span>
+</div>
+</div>
+</header>
+<!-- Bento Grid Projects -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Main Featured Project -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low transition-all duration-500 hover:translate-y-[-4px]">
+<img alt="Modern Brutalist skyscraper" class="w-full h-[500px] object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Monolithic concrete and glass skyscraper facade reflecting a deep blue twilight sky with sharp geometric shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYTOIph3UN0wbUi_l24A6ODxZe6fDIrbMcusUdBDcQA9fGMMJsl6UIsJUmbRo3G7g8c1mWViZdyHCt3h6zZ2Ey9BLELHUkvEsmh3FAQb6urBDQZCuCUlzuutNceo2Ycj2ZTr-GQenkOmXNOW_qti0Rm2pqHt7VMIHLU54a2vYUo5u4z-Fpgg59pJ4Ia_lL2niBnwVw3XvNviMsON26sWLUpGkEsO0i4jFhDKrtZY2NoOvoheBDzL86F8JKWBbLjOy5eAgj19FVodlt"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div>
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2">01 / TOKYO, JAPAN</p>
+<h3 class="font-headline text-3xl font-bold tracking-tighter">THE VERTICAL VOID</h3>
+</div>
+<div class="bg-primary/10 backdrop-blur-md p-4 rounded-full border border-primary/20 group-hover:bg-primary transition-colors duration-300">
+<span class="material-symbols-outlined text-primary group-hover:text-on-primary">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Secondary Project -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low h-full transition-all duration-500 hover:translate-y-[-4px]">
+<img alt="Modern desert villa" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Minimalist luxury villa in a desert setting with long horizontal concrete planes and wide glass expanses at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_aIb2PeNjlfxfgNDwf_pjeSSqgv4_GIpi3JFgyg2Eqk8ZaUKgvqtEbgktMyZDKFYnfj8HYKuA-3T0kV4445OOZIWX34_kQUbju5ejae67u3hgao_tM9Eq2jJCu29GnvC2FK0xY598fEnqlFz2U5tFVDdBI85YqogMZYbKga7mkI9airsL80CRfSz68w0HVnHFkBm6dCQYvLYDwvaZ74_UvIZgv_UnfFFxJupG2u7N16ZR6GkTCA09jyYMGhSeL0ndslywKl_0S_0n"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2">02 / ARIZONA, USA</p>
+<h3 class="font-headline text-2xl font-bold tracking-tighter">DESERT HORIZON</h3>
+</div>
+</div>
+</div>
+<!-- Third Project -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low h-[400px] transition-all duration-500 hover:translate-y-[-4px]">
+<img alt="Interior minimalist stairs" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Dramatic interior view of floating black marble stairs against a raw concrete wall with narrow strip lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCBB6qqQihg0q5W6Mto-gMdzn0Ik_NeoPKKagwswlAkazSO_PDRYVa80Pcn3nLzD1QSF_zMZl93Mn44oTPYhwC_S67w-Xzp0Da_aiEbind5EKMthenT2eidFrFOsXm8740Dg6STFWR_iAlG2u-3eF2oXfQ6yQaW2RrZcBoCF2hN_NErI_GnxR_-uMCnqRiEMwoH5T2dwkbFb76D9XeArdqmkLzA-6GDhCI58Efb8i2EdJ8DdIlW1MPRSllyTp7_BP4fKypAezw1YFP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2">03 / BERLIN, GERMANY</p>
+<h3 class="font-headline text-2xl font-bold tracking-tighter">OBSIDIAN ATRIUM</h3>
+</div>
+</div>
+</div>
+<!-- Fourth Project (Text/Technical Insight) -->
+<div class="md:col-span-4 bg-surface-container-low rounded-xl p-8 flex flex-col justify-between border border-outline-variant/10">
+<div class="font-['Fira_Code'] text-xs text-primary/60">
+<div class="flex gap-2 mb-4">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<div class="w-2 h-2 rounded-full bg-primary-container"></div>
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<p class="mb-2">// DESIGN PHILOSOPHY</p>
+<p class="text-on-surface">Precision in every calculation. We don't just build spaces; we compile environments using light as our primary syntax.</p>
+</div>
+<div class="mt-8">
+<h4 class="font-headline text-xl font-bold mb-2">STRUCTURAL INTEGRITY</h4>
+<p class="text-sm text-on-surface-variant font-body">Leveraging advanced computational design to achieve impossible cantilevers.</p>
+</div>
+</div>
+<!-- Fifth Project -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low h-[400px] transition-all duration-500 hover:translate-y-[-4px]">
+<img alt="Abstract architectural curves" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="Close-up of white architectural curves under a bright blue sky with deep rhythmic shadows and smooth surfaces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpzScnCbUawcMsK3C8E946GIdKgMmppUXUFFsf-B9YYQ1tTMAOvieYUbny6ncqiB_m8tQV7xEcYuL93Yg2_J2I74GWO9i0XMDTjd_MiLieSfRREeCDwqOXefL7PVXQh1oSN6DmOX5Yc7VyxZQ3EDPM-7wTdeByijqh1ZciCoUumytJQZv4teox-oP0UKUUT4ULg_HQndXR5lJQcpmZE-Q3pE6QfkVtsI070av92lqgHW4KfG07TGmGSGFZllbGaWmMmX2DJUrNIuFG"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2">04 / VALENCIA, SPAIN</p>
+<h3 class="font-headline text-2xl font-bold tracking-tighter">CURVILINEAR FLOW</h3>
+</div>
+</div>
+</div>
+<!-- Large Bottom Feature -->
+<div class="md:col-span-12 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl bg-surface-container-low h-[600px] transition-all duration-500 hover:translate-y-[-4px]">
+<img alt="Sustainable wooden structure" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700" data-alt="An expansive timber architecture pavilion in a snowy forest clearing with warm interior light glowing through glass slats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0Rz3JC8hw8CZhzGCHHv62-ijkqcxVL-PpiBo3DwQBcSl1z4Q1cCcbo9vGqK4M3ASeGt_b6J5iBJCt_l6y3yD2SS7emKh8qnZjler4xgEMwq7sGh8FrXfMVTetnnfFF-2c9896Ml5XNtAN3YOPfG9arJJ04CqfEFmVquxtQqdKk77Qxrkwx0aPlCN8kimUH6HhmlmMyC9_LCHVdahTLq5M821-ycRpKGH3Pt6u7RVXvpo5FLBmQa6TfTUhg-90o_A3D4eL7MkyhG_v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-12 w-full flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<p class="font-label text-primary text-[10px] tracking-[0.2em] mb-2">05 / OSLO, NORWAY</p>
+<h3 class="font-headline text-5xl font-bold tracking-tighter max-w-xl leading-tight">NORTHERN LIGHT PAVILION</h3>
+<p class="text-on-surface-variant font-body mt-4 max-w-md">Sustainable timber engineering meets thermal optimization in the Arctic Circle.</p>
+</div>
+<button class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-headline font-bold rounded-lg transition-transform active:scale-95">
+                            VIEW CASE STUDY
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Contact Block -->
+<section class="mt-32 p-12 rounded-xl bg-surface-container-low relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-[100px] -mr-32 -mt-32"></div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-headline text-4xl font-bold tracking-tighter mb-6">START A PROJECT</h2>
+<p class="font-body text-on-surface-variant mb-10 leading-relaxed text-lg">
+                    Seeking a partner for your next ambitious development? Let's discuss how we can blend structural precision with functional artistry.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<input class="bg-transparent border-b border-outline-variant/30 py-3 px-0 font-label text-sm tracking-widest focus:outline-none focus:border-primary transition-colors flex-grow" placeholder="YOUR EMAIL ADDRESS" type="email"/>
+<button class="font-label text-xs tracking-widest text-primary border border-outline-variant/20 px-8 py-4 hover:bg-surface-bright transition-all">
+                        INITIATE INQUIRY
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full border-t border-slate-800/15">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full gap-8">
+<div class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500">
+                © 2024 THE PRECISE MONOLITH. ALL RIGHTS RESERVED.
+            </div>
+<div class="flex gap-12 font-['Space_Grotesk'] uppercase text-[10px] tracking-widest">
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">Instagram</a>
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">Github</a>
+</div>
+</div>
+</footer>
+</body></html>

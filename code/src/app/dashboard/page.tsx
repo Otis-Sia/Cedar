@@ -15,7 +15,7 @@ export default function DashboardPage() {
         <div className="flex items-center gap-4 md:gap-6">
           <div className="hidden md:flex items-center bg-white px-4 py-2 rounded-full border border-black/5 shadow-sm">
             <span className="material-symbols-outlined text-cedar-bronze text-sm">bolt</span>
-            <span className="ml-2 text-xs font-bold text-cedar-midnight tracking-widest uppercase">Elite Tier</span>
+            <span className="ml-2 text-xs font-bold text-cedar-midnight tracking-widest uppercase">Creator Pro</span>
           </div>
           <button className="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-black/5 shadow-sm hover:shadow-md transition-all">
             <span className="material-symbols-outlined text-cedar-midnight">notifications</span>
@@ -103,8 +103,8 @@ export default function DashboardPage() {
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-cedar-bronze/5 rounded-full blur-3xl"></div>
               <div className="relative z-10">
                 <span className="text-cedar-bronze uppercase tracking-[0.2em] font-bold text-[10px]">Membership</span>
-                <h3 className="font-headline text-2xl text-cedar-midnight mt-2 font-bold">Elite Tier</h3>
-                <p className="text-cedar-slate text-sm mt-4 leading-relaxed">You&apos;re currently using our complete concierge service for unlimited portfolio refinement.</p>
+                <h3 className="font-headline text-2xl text-cedar-midnight mt-2 font-bold">Creator Pro</h3>
+                <p className="text-cedar-slate text-sm mt-4 leading-relaxed">You are currently on our full creator plan for unlimited pages, lead tools, and advanced growth insights.</p>
               </div>
               <div className="mt-8 pt-6 border-t border-black/5 relative z-10">
                 <div className="flex justify-between items-center mb-3">
@@ -122,12 +122,12 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Custom Domain Section (Elite Tier) */}
+        {/* Custom Domain Section (Creator Pro) */}
         <section className="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
           <div className="md:col-span-4">
             <span className="text-cedar-bronze font-bold text-xs tracking-[0.2em] uppercase">Control</span>
             <h2 className="font-headline text-3xl font-bold text-cedar-midnight mt-2">Custom Domains</h2>
-            <p className="text-cedar-slate text-sm mt-4 leading-relaxed">Take full control of your digital identity. Elite members can link multiple external domains directly to their portfolios.</p>
+            <p className="text-cedar-slate text-sm mt-4 leading-relaxed">Take full control of your digital identity. Creator Pro members can link multiple external domains directly to their portfolios.</p>
             <Link href="/dashboard/settings" className="inline-flex mt-8 items-center gap-3 py-3 px-6 rounded-full bg-cedar-forest text-white hover:bg-cedar-forest-dark transition-colors font-semibold text-sm shadow-md">
               <span className="material-symbols-outlined text-[20px]">add_link</span>
               Connect New Domain

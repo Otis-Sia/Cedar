@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { JSX } from 'react';
 
 export default function LandingPage() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -216,51 +217,102 @@ export default function LandingPage() {
         {/* Pricing */}
         <section id="pricing" className="py-[120px] px-6 lg:px-12 bg-white">
           <div className="max-w-[1280px] mx-auto text-center mb-20">
-            <span className="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Investment</span>
+            <span className="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Plans</span>
             <h2 className="font-headline text-4xl md:text-5xl font-bold mb-6 text-cedar-midnight">Built for Every Stage</h2>
-            <p className="text-cedar-slate text-lg max-w-2xl mx-auto">Scale your online presence as your career evolves. No hidden fees, just pure creativity.</p>
+            <p className="text-cedar-slate text-lg max-w-2xl mx-auto">From first portfolio launch to full client-ready website, choose the tier that fits your growth.</p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1100px] mx-auto">
-            <div className="bg-white border border-black/10 p-10 lg:p-12 rounded-[40px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-              <span className="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Starter</span>
-              <div className="font-headline font-bold text-[40px] text-cedar-midnight mb-2">KSh 3,500</div>
-              <p className="text-cedar-slate text-sm mb-10 h-10">Perfect for students and early-career seekers looking to make a mark.</p>
-              
-              <ul className="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-cedar-midnight">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-[1280px] mx-auto">
+            <div className="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <span className="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Starter Presence</span>
+              <div className="font-headline font-bold text-[38px] text-cedar-midnight mb-2">Free</div>
+              <p className="text-cedar-slate text-sm mb-8">Try Cedar with no pressure and launch your identity fast.</p>
+              <ul className="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
                 <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> 1-page portfolio</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Mobile responsive design</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Basic hosting included</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> 3 clean templates</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> username.cedar.site domain</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Basic contact section</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Cedar branding badge in footer</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> 5 edits per month</li>
               </ul>
-              <Link href="/signup" className="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Begin Here</Link>
+              <Link href="/signup" className="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Start Free</Link>
             </div>
-            
-            <div className="bg-cedar-forest p-10 lg:p-12 rounded-[40px] flex flex-col items-start scale-100 md:scale-105 z-10 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-6 right-6 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">Popular</div>
-              <span className="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Professional</span>
-              <div className="font-headline font-bold text-[40px] text-white mb-2">KSh 7,500</div>
-              <p className="text-white/80 text-sm mb-10 h-10">The standard for freelancers and established professionals.</p>
-              
-              <ul className="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-white">
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Multi-section experience</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Interactive project showcase</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Integrated CV/Resume</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Custom Domains</li>
+
+            <div className="bg-cedar-forest p-8 rounded-[32px] flex flex-col items-start relative overflow-hidden shadow-2xl md:scale-[1.02]">
+              <div className="absolute top-6 right-6 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">Most Popular</div>
+              <span className="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Student Pro</span>
+              <div className="font-headline font-bold text-[38px] text-white mb-1">KES 150</div>
+              <p className="text-white/70 text-xs uppercase tracking-widest mb-2">per month</p>
+              <p className="text-white/85 text-sm mb-8">Built for students who need a strong portfolio before graduation.</p>
+              <ul className="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-white">
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Up to 3 pages</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Student-focused templates</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> No Cedar branding badge</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Basic visits analytics</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Project showcase + contact form</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Student verified badge</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Portfolio guidance prompts</li>
               </ul>
-              <Link href="/signup" className="w-full text-center py-4 rounded-full bg-white text-cedar-forest font-bold shadow-lg hover:bg-cedar-alabaster active:scale-95 transition-all">Select Pro</Link>
+              <Link href="/signup" className="w-full text-center py-4 rounded-full bg-white text-cedar-forest font-bold shadow-lg hover:bg-cedar-alabaster active:scale-95 transition-all">Choose Student Pro</Link>
             </div>
-            
-            <div className="bg-white border border-black/10 p-10 lg:p-12 rounded-[40px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-              <span className="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Premium</span>
-              <div className="font-headline font-bold text-[40px] text-cedar-midnight mb-2">KSh 12,000+</div>
-              <p className="text-cedar-slate text-sm mb-10 h-10">For high-end personal brands requiring a truly unique presence.</p>
-              
-              <ul className="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-cedar-midnight">
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Custom architecture</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Advanced animations</li>
-                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Concierge edits</li>
+
+            <div className="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <span className="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Career</span>
+              <div className="font-headline font-bold text-[38px] text-cedar-midnight mb-1">KES 400</div>
+              <p className="text-cedar-slate text-xs uppercase tracking-widest mb-2">per month</p>
+              <p className="text-cedar-slate text-sm mb-8">For job seekers and serious freelancers optimizing to get hired.</p>
+              <ul className="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Up to 7 pages</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Premium templates + customization</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Analytics dashboard (views + clicks)</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Resume download + social links</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> SEO basics + custom forms</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Hire Me optimized layout</li>
               </ul>
-              <Link href="/signup" className="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Elevate Now</Link>
+              <Link href="/signup" className="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Select Career</Link>
+            </div>
+
+            <div className="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+              <span className="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Business / Creator Pro</span>
+              <div className="font-headline font-bold text-[38px] text-cedar-midnight mb-1">KES 799</div>
+              <p className="text-cedar-slate text-xs uppercase tracking-widest mb-2">per month</p>
+              <p className="text-cedar-slate text-sm mb-8">A lightweight business website for creators, consultants, and side hustlers.</p>
+              <ul className="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Unlimited pages + all templates</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Full customization + priority support</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Advanced analytics + inquiry forms</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> WhatsApp and booking sections</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Service listings + testimonials</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-2xl leading-none">•</span> Get Quote lead form</li>
+              </ul>
+              <Link href="/signup" className="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Go Creator Pro</Link>
+            </div>
+          </div>
+
+          <div className="max-w-[1280px] mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-cedar-alabaster border border-black/5 p-8 rounded-[28px]">
+              <span className="text-cedar-bronze font-semibold text-[10px] uppercase tracking-[0.2em]">Add-On</span>
+              <h3 className="font-headline text-3xl font-bold text-cedar-midnight mt-2">Custom Domain Setup</h3>
+              <p className="text-cedar-slate text-sm mt-3 leading-relaxed">Simple setup without technical confusion. Pro includes free domain setup.</p>
+              <ul className="space-y-3 mt-6 text-sm font-medium text-cedar-midnight">
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> Setup fee: KES 1,500 to 3,000 (one time)</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> Renewal guide: around KES 1,200/year</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> Domain connection + SSL + email setup guide</li>
+              </ul>
+            </div>
+
+            <div className="bg-cedar-forest text-white border border-cedar-forest p-8 rounded-[28px] relative overflow-hidden">
+              <div className="absolute right-0 top-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+              <span className="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em]">Done For You</span>
+              <h3 className="font-headline text-3xl font-bold mt-2">Cedar Concierge</h3>
+              <p className="text-white/85 text-sm mt-3 leading-relaxed">For busy professionals who want the result without the setup work.</p>
+              <div className="font-headline text-3xl font-bold mt-5">KES 2,000 to 5,000</div>
+              <p className="text-white/70 text-xs uppercase tracking-widest mt-1">one-time setup</p>
+              <ul className="space-y-3 mt-6 text-sm font-medium text-white">
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> We build and publish your portfolio</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> We clean project descriptions and structure</li>
+                <li className="flex items-center gap-3"><span className="text-cedar-bronze text-xl leading-none">•</span> We optimize layout and connect your domain</li>
+              </ul>
             </div>
           </div>
         </section>

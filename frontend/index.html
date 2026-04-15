@@ -1,28 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Cedar | Premium Portfolio Creation & Hosting</title>
-    
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
     <!-- Tailwind CSS & Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="tailwind-config.js"></script>
-    
+
     <!-- Custom CSS Base -->
     <link rel="stylesheet" href="style.css">
     <style>
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
-        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
+
 <body class="bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30">
 
     <!-- TopNavBar -->
@@ -33,7 +45,7 @@
             </div>
             <div class="font-headline text-2xl font-bold tracking-tight text-cedar-forest">Cedar</div>
         </div>
-        
+
         <div class="hidden md:flex items-center gap-10">
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="#services">Services</a>
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="templates.html">Templates</a>
@@ -41,7 +53,7 @@
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="#pricing">Pricing</a>
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="#faq">FAQ</a>
         </div>
-        
+
         <div class="flex items-center gap-6">
             <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
             <a href="signup.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
@@ -49,28 +61,28 @@
             </a>
         </div>
     </nav>
-    
+
     <main class="pt-20 overflow-hidden">
         <!-- Hero Section from landing_page.html -->
         <section class="relative min-h-[95vh] flex items-center px-6 md:px-16 lg:px-24 py-20 bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1770110000509-6c8298224699?auto=format&fit=crop&w=2400&q=80');">
             <!-- Dark Overlay for foggy forest -->
             <div class="absolute inset-0 bg-gradient-to-b from-[#121415]/50 via-[#121415]/70 to-[#1B3022]/85 z-0"></div>
-            
+
             <div class="relative z-10 max-w-3xl pt-10">
                 <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-8">
                     <span class="material-symbols-outlined text-cedar-bronze text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
                     <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white">The New Standard for Creators</span>
                 </div>
-                
+
                 <h1 class="font-headline text-5xl md:text-[80px] font-bold tracking-tight mb-8 leading-[1.05] text-white">
                     Your Story,<br/>
                     <span class="text-cedar-bronze italic">Curated</span> by Intelligence.
                 </h1>
-                
+
                 <p class="text-lg md:text-xl text-white/80 max-w-2xl mb-12 leading-relaxed">
                     Stop fighting with grids. Cedar analyzes your experience and crafts a high-end, editorial portfolio that commands attention.
                 </p>
-                
+
                 <div class="flex flex-col sm:flex-row gap-5">
                     <a href="signup.html" class="inline-flex justify-center items-center bg-cedar-forest text-white px-10 py-5 rounded-full font-semibold text-[15px] shadow-[0_8px_30px_rgba(27,48,34,0.5)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all w-full sm:w-auto">
                         Build Your Auto-Portfolio
@@ -89,7 +101,7 @@
                 <h2 class="font-headline text-4xl md:text-5xl font-bold text-cedar-forest mt-4 mb-4">Everything you need to look professional online</h2>
                 <p class="text-cedar-slate text-lg">We don't just build websites. We curate your professional presence with a focus on authority, speed, and elegance.</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Service Card -->
                 <div class="bg-white p-12 rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
@@ -122,7 +134,7 @@
                     <h2 class="font-headline text-4xl md:text-5xl font-bold mb-6 text-cedar-midnight">The Evolution of Effort</h2>
                     <div class="w-24 h-1 bg-cedar-bronze"></div>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:h-[600px]">
                     <!-- Step 1 -->
                     <div class="md:col-span-5 bg-cedar-alabaster rounded-3xl p-10 lg:p-12 border border-black/5 flex flex-col justify-between group hover:-translate-y-1 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
@@ -135,7 +147,7 @@
                             <span class="material-symbols-outlined text-[80px] text-cedar-forest/40 group-hover:text-cedar-forest transition-colors">upload_file</span>
                         </div>
                     </div>
-                    
+
                     <!-- Step 2 -->
                     <div class="md:col-span-7 bg-cedar-forest rounded-3xl p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                         <div class="relative z-10">
@@ -147,7 +159,7 @@
                             <span class="material-symbols-outlined text-[300px] text-white" style="font-variation-settings: 'FILL' 1;">neurology</span>
                         </div>
                     </div>
-                    
+
                     <!-- Step 3 -->
                     <div class="md:col-span-7 bg-white rounded-3xl p-10 lg:p-12 border border-black/5 shadow-sm flex flex-col md:flex-row gap-8 items-center group hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                         <div class="flex-1">
@@ -157,14 +169,16 @@
                         </div>
                         <div class="flex-1 grid grid-cols-2 gap-4 w-full">
                             <div class="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm">
-                                <img class="w-full h-full object-cover" data-alt="minimal UI setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_XdtiQZf_9fYuO86YLL-lMNedL5xdgvBVY007zU9yQPGeDdvw0599YrqIvSA7sRlDLuh1iGmFgudBvgkVeSdHZ__b2-WIhPdHp8aZsujA4FXtVOwee_AL4gZP72YE_ooEdKwPK2OKNXNhNuf_ShVL472WqH0lT_VlR8af8ZGsUP9E8OlHkW1-bc_6EJTdzCsiKGSXU3RgHzoy1e2q9pxPpa2LGeYZjmgFz2JUn2cg32Nf53a9OcEkwMWpWtQ0uUsqSjXEL1p6KcmT"/>
+                                <img class="w-full h-full object-cover" data-alt="minimal UI setup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_XdtiQZf_9fYuO86YLL-lMNedL5xdgvBVY007zU9yQPGeDdvw0599YrqIvSA7sRlDLuh1iGmFgudBvgkVeSdHZ__b2-WIhPdHp8aZsujA4FXtVOwee_AL4gZP72YE_ooEdKwPK2OKNXNhNuf_ShVL472WqH0lT_VlR8af8ZGsUP9E8OlHkW1-bc_6EJTdzCsiKGSXU3RgHzoy1e2q9pxPpa2LGeYZjmgFz2JUn2cg32Nf53a9OcEkwMWpWtQ0uUsqSjXEL1p6KcmT"
+                                />
                             </div>
                             <div class="w-full aspect-[4/5] bg-cedar-alabaster rounded-2xl overflow-hidden border border-black/5 shadow-sm mt-6">
-                                <img class="w-full h-full object-cover" data-alt="dashboard ui mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxNpdni3tVFgLkCBsQkLiBxdSZPOFSuVxKDJR7IDaS-ZPVgVf5FgRm-Vef1BXXphD9mbNZHxIs_rQX-Ffk5KY5YeweLSis4g1mfJfakfmbE75L5N_js7LR1j4XdWIAJVBP0B-tIU0088VJ8RE-NNsjgaNfPYOWaQdRkrY4phi-Q19vhQIh_kqm7QP-a3iPmI64188nGZmQ18fsqdhBHdYYG_i3XjLtDJvMXlb4aDJS7FixhD7SSOZfGZ7Us5TQq9lksL2hmiqsgbb9"/>
+                                <img class="w-full h-full object-cover" data-alt="dashboard ui mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxNpdni3tVFgLkCBsQkLiBxdSZPOFSuVxKDJR7IDaS-ZPVgVf5FgRm-Vef1BXXphD9mbNZHxIs_rQX-Ffk5KY5YeweLSis4g1mfJfakfmbE75L5N_js7LR1j4XdWIAJVBP0B-tIU0088VJ8RE-NNsjgaNfPYOWaQdRkrY4phi-Q19vhQIh_kqm7QP-a3iPmI64188nGZmQ18fsqdhBHdYYG_i3XjLtDJvMXlb4aDJS7FixhD7SSOZfGZ7Us5TQq9lksL2hmiqsgbb9"
+                                />
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Step 4 -->
                     <div class="md:col-span-5 bg-[#C5AC81] rounded-3xl p-10 lg:p-12 flex flex-col justify-center items-center text-center group relative overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
                         <div class="absolute inset-0 bg-gradient-to-br from-cedar-bronze-light to-cedar-bronze/70 mix-blend-multiply opacity-50"></div>
@@ -188,12 +202,13 @@
                 </div>
                 <a class="text-cedar-forest font-semibold text-sm uppercase tracking-widest border-b border-cedar-forest pb-1 mt-6 md:mt-0 hover:text-cedar-forest-dark transition-colors" href="templates.html">Browse All Templates</a>
             </div>
-            
+
             <div class="flex gap-8 overflow-x-auto pb-12 pt-4 px-6 lg:px-0 max-w-[1280px] mx-auto no-scrollbar snap-x">
                 <!-- Template Card 1 -->
                 <div class="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
                     <div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="high-end fashion portfolio layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05_snhJLPD4RWwvY5WrXK_v1EKrY3_UfsyrH5kALM4YUSGmHJ43qUt0O1a4tA9jmC-4NSK35XTS_teLpMSYAeqq3RcTPEp_S-l9JlUNEuMgiuErds9CHeGaDgOOf_G-VaBSMgtQ3l8iHT5dZOqTNz5NLjE3bjdnoNYCpKxtovwcZ_HosPk8UOttwI8P_zplNedFpCReBNMHhO5GYAJEADlQbrhiK3Ze5k4pj68E-KOrdDMxIhiV9j3_0rOTGuHF266cXVrnqygleZ"/>
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="high-end fashion portfolio layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05_snhJLPD4RWwvY5WrXK_v1EKrY3_UfsyrH5kALM4YUSGmHJ43qUt0O1a4tA9jmC-4NSK35XTS_teLpMSYAeqq3RcTPEp_S-l9JlUNEuMgiuErds9CHeGaDgOOf_G-VaBSMgtQ3l8iHT5dZOqTNz5NLjE3bjdnoNYCpKxtovwcZ_HosPk8UOttwI8P_zplNedFpCReBNMHhO5GYAJEADlQbrhiK3Ze5k4pj68E-KOrdDMxIhiV9j3_0rOTGuHF266cXVrnqygleZ"
+                        />
                         <div class="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                             <button class="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                         </div>
@@ -201,11 +216,12 @@
                     <h4 class="font-headline text-2xl font-bold text-cedar-midnight">Vanguard Editorial</h4>
                     <p class="text-cedar-slate text-sm mt-2 uppercase tracking-widest font-medium text-[10px]">Best for Fashion & Lifestyle</p>
                 </div>
-                
+
                 <!-- Template Card 2 -->
                 <div class="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0 md:mt-24">
                     <div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="clean tech design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"/>
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="clean tech design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"
+                        />
                         <div class="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                             <button class="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                         </div>
@@ -213,11 +229,12 @@
                     <h4 class="font-headline text-2xl font-bold text-cedar-midnight">System Neutral</h4>
                     <p class="text-cedar-slate text-sm mt-2 uppercase tracking-widest font-medium text-[10px]">Best for Product Design & UX</p>
                 </div>
-                
+
                 <!-- Template Card 3 -->
                 <div class="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
                     <div class="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="modern bold web layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zJh5mUz9dE2ajcuvUZB6XpehcQsXSfypUsUWYC8DttAskH4lMpsTVYwpZoxjRcYaLGEQ63uCAKN5-hnV_BvRof-awnvNSAMqXEfKMImVqfVMKexiyhjk5QSgW_ZCGr-XS0xhKXVOu6oIy9FbZYo6g6jq_64_FkFzuZBT2lCcnJsUza7V38eOjbqkTNqaPEQ_uPxOoFfEn51LnKdG7u2WxwegYqVZ4PO685Q_UJlkdD33bw5HpdGfFS0YzN5HC5oVyBE2vTxiFhGC"/>
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="modern bold web layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zJh5mUz9dE2ajcuvUZB6XpehcQsXSfypUsUWYC8DttAskH4lMpsTVYwpZoxjRcYaLGEQ63uCAKN5-hnV_BvRof-awnvNSAMqXEfKMImVqfVMKexiyhjk5QSgW_ZCGr-XS0xhKXVOu6oIy9FbZYo6g6jq_64_FkFzuZBT2lCcnJsUza7V38eOjbqkTNqaPEQ_uPxOoFfEn51LnKdG7u2WxwegYqVZ4PO685Q_UJlkdD33bw5HpdGfFS0YzN5HC5oVyBE2vTxiFhGC"
+                        />
                         <div class="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
                             <button class="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Preview Layout</button>
                         </div>
@@ -231,54 +248,102 @@
         <!-- Pricing Section from landing_page.html -->
         <section id="pricing" class="py-[120px] px-6 lg:px-12 bg-white">
             <div class="max-w-[1280px] mx-auto text-center mb-20">
-                <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Investment</span>
+                <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Plans</span>
                 <h2 class="font-headline text-4xl md:text-5xl font-bold mb-6 text-cedar-midnight">Built for Every Stage</h2>
-                <p class="text-cedar-slate text-lg max-w-2xl mx-auto">Scale your online presence as your career evolves. No hidden fees, just pure creativity.</p>
+                <p class="text-cedar-slate text-lg max-w-2xl mx-auto">From first portfolio launch to full client-ready website, choose the tier that fits your growth.</p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-[1100px] mx-auto">
-                <!-- Basic -->
-                <div class="bg-white border border-black/10 p-10 lg:p-12 rounded-[40px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                    <span class="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Starter</span>
-                    <div class="font-headline font-bold text-[40px] text-cedar-midnight mb-2">KSh 3,500</div>
-                    <p class="text-cedar-slate text-sm mb-10 h-10">Perfect for students and early-career seekers looking to make a mark.</p>
-                    
-                    <ul class="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-cedar-midnight">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 max-w-[1280px] mx-auto">
+                <div class="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                    <span class="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Starter Presence</span>
+                    <div class="font-headline font-bold text-[38px] text-cedar-midnight mb-2">Free</div>
+                    <p class="text-cedar-slate text-sm mb-8">Try Cedar with no pressure and launch your identity fast.</p>
+                    <ul class="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
                         <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> 1-page portfolio</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Mobile responsive design</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Basic hosting included</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> 3 clean templates</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> username.cedar.site domain</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Basic contact section</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Cedar branding badge in footer</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> 5 edits per month</li>
                     </ul>
-                    <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Begin Here</a>
+                    <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Start Free</a>
                 </div>
-                
-                <!-- Pro -->
-                <div class="bg-cedar-forest p-10 lg:p-12 rounded-[40px] flex flex-col items-start scale-100 md:scale-105 z-10 shadow-2xl relative overflow-hidden">
-                    <div class="absolute top-6 right-6 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">Popular</div>
-                    <span class="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Professional</span>
-                    <div class="font-headline font-bold text-[40px] text-white mb-2">KSh 7,500</div>
-                    <p class="text-white/80 text-sm mb-10 h-10">The standard for freelancers and established professionals.</p>
-                    
-                    <ul class="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-white">
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Multi-section experience</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Interactive project showcase</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Integrated CV/Resume</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Custom Domains</li>
+
+                <div class="bg-cedar-forest p-8 rounded-[32px] flex flex-col items-start relative overflow-hidden shadow-2xl md:scale-[1.02]">
+                    <div class="absolute top-6 right-6 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">Most Popular</div>
+                    <span class="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Student Pro</span>
+                    <div class="font-headline font-bold text-[38px] text-white mb-1">KES 150</div>
+                    <p class="text-white/70 text-xs uppercase tracking-widest mb-2">per month</p>
+                    <p class="text-white/85 text-sm mb-8">Built for students who need a strong portfolio before graduation.</p>
+                    <ul class="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-white">
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Up to 3 pages</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Student-focused templates</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> No Cedar branding badge</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Basic visits analytics</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Project showcase + contact form</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Student verified badge</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Portfolio guidance prompts</li>
                     </ul>
-                    <a href="signup.html" class="w-full text-center py-4 rounded-full bg-white text-cedar-forest font-bold shadow-lg hover:bg-cedar-alabaster active:scale-95 transition-all">Select Pro</a>
+                    <a href="signup.html" class="w-full text-center py-4 rounded-full bg-white text-cedar-forest font-bold shadow-lg hover:bg-cedar-alabaster active:scale-95 transition-all">Choose Student Pro</a>
                 </div>
-                
-                <!-- Elite -->
-                <div class="bg-white border border-black/10 p-10 lg:p-12 rounded-[40px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
-                    <span class="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Premium</span>
-                    <div class="font-headline font-bold text-[40px] text-cedar-midnight mb-2">KSh 12,000+</div>
-                    <p class="text-cedar-slate text-sm mb-10 h-10">For high-end personal brands requiring a truly unique presence.</p>
-                    
-                    <ul class="space-y-4 mb-10 flex-grow w-full text-sm font-medium text-cedar-midnight">
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Custom architecture</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Advanced animations</li>
-                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Concierge edits</li>
+
+                <div class="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                    <span class="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Career</span>
+                    <div class="font-headline font-bold text-[38px] text-cedar-midnight mb-1">KES 400</div>
+                    <p class="text-cedar-slate text-xs uppercase tracking-widest mb-2">per month</p>
+                    <p class="text-cedar-slate text-sm mb-8">For job seekers and serious freelancers optimizing to get hired.</p>
+                    <ul class="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Up to 7 pages</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Premium templates + customization</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Analytics dashboard (views + clicks)</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Resume download + social links</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> SEO basics + custom forms</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Hire Me optimized layout</li>
                     </ul>
-                    <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Elevate Now</a>
+                    <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Select Career</a>
+                </div>
+
+                <div class="bg-white border border-black/10 p-8 rounded-[32px] flex flex-col items-start hover:-translate-y-2 transition-transform duration-300 shadow-sm">
+                    <span class="text-cedar-slate font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Business / Creator Pro</span>
+                    <div class="font-headline font-bold text-[38px] text-cedar-midnight mb-1">KES 799</div>
+                    <p class="text-cedar-slate text-xs uppercase tracking-widest mb-2">per month</p>
+                    <p class="text-cedar-slate text-sm mb-8">A lightweight business website for creators, consultants, and side hustlers.</p>
+                    <ul class="space-y-3 mb-8 flex-grow w-full text-sm font-medium text-cedar-midnight">
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Unlimited pages + all templates</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Full customization + priority support</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Advanced analytics + inquiry forms</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> WhatsApp and booking sections</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Service listings + testimonials</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-2xl leading-none">•</span> Get Quote lead form</li>
+                    </ul>
+                    <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Go Creator Pro</a>
+                </div>
+            </div>
+
+            <div class="max-w-[1280px] mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-cedar-alabaster border border-black/5 p-8 rounded-[28px]">
+                    <span class="text-cedar-bronze font-semibold text-[10px] uppercase tracking-[0.2em]">Add-On</span>
+                    <h3 class="font-headline text-3xl font-bold text-cedar-midnight mt-2">Custom Domain Setup</h3>
+                    <p class="text-cedar-slate text-sm mt-3 leading-relaxed">Simple setup without technical confusion. Pro includes free domain setup.</p>
+                    <ul class="space-y-3 mt-6 text-sm font-medium text-cedar-midnight">
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> Setup fee: KES 1,500 to 3,000 (one time)</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> Renewal guide: around KES 1,200/year</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> Domain connection + SSL + email setup guide</li>
+                    </ul>
+                </div>
+
+                <div class="bg-cedar-forest text-white border border-cedar-forest p-8 rounded-[28px] relative overflow-hidden">
+                    <div class="absolute right-0 top-0 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
+                    <span class="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em]">Done For You</span>
+                    <h3 class="font-headline text-3xl font-bold mt-2">Cedar Concierge</h3>
+                    <p class="text-white/85 text-sm mt-3 leading-relaxed">For busy professionals who want the result without the setup work.</p>
+                    <div class="font-headline text-3xl font-bold mt-5">KES 2,000 to 5,000</div>
+                    <p class="text-white/70 text-xs uppercase tracking-widest mt-1">one-time setup</p>
+                    <ul class="space-y-3 mt-6 text-sm font-medium text-white">
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> We build and publish your portfolio</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> We clean project descriptions and structure</li>
+                        <li class="flex items-center gap-3"><span class="text-cedar-bronze text-xl leading-none">•</span> We optimize layout and connect your domain</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -289,11 +354,11 @@
                 <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Clarity</span>
                 <h2 class="font-headline text-4xl md:text-5xl font-bold text-cedar-forest mt-4 mb-4">Common Questions</h2>
             </div>
-            
+
             <div class="max-w-[800px] mx-auto divide-y divide-black/10">
                 <div class="py-6 faq-item group cursor-pointer">
                     <div class="flex justify-between items-center font-semibold text-lg text-cedar-midnight group-hover:text-cedar-forest transition-colors">
-                        Do I need any technical knowledge? 
+                        Do I need any technical knowledge?
                         <span class="text-2xl font-light text-cedar-bronze group-[.active]:rotate-45 transition-transform">+</span>
                     </div>
                     <div class="h-0 overflow-hidden text-cedar-slate mt-0 group-[.active]:h-auto group-[.active]:mt-4 transition-all">
@@ -302,7 +367,7 @@
                 </div>
                 <div class="py-6 faq-item group cursor-pointer">
                     <div class="flex justify-between items-center font-semibold text-lg text-cedar-midnight group-hover:text-cedar-forest transition-colors">
-                        How do updates work? 
+                        How do updates work?
                         <span class="text-2xl font-light text-cedar-bronze group-[.active]:rotate-45 transition-transform">+</span>
                     </div>
                     <div class="h-0 overflow-hidden text-cedar-slate mt-0 group-[.active]:h-auto group-[.active]:mt-4 transition-all">
@@ -311,7 +376,7 @@
                 </div>
                 <div class="py-6 faq-item group cursor-pointer">
                     <div class="flex justify-between items-center font-semibold text-lg text-cedar-midnight group-hover:text-cedar-forest transition-colors">
-                        Will I have my own custom domain? 
+                        Will I have my own custom domain?
                         <span class="text-2xl font-light text-cedar-bronze group-[.active]:rotate-45 transition-transform">+</span>
                     </div>
                     <div class="h-0 overflow-hidden text-cedar-slate mt-0 group-[.active]:h-auto group-[.active]:mt-4 transition-all">
@@ -320,7 +385,7 @@
                 </div>
                 <div class="py-6 faq-item group cursor-pointer">
                     <div class="flex justify-between items-center font-semibold text-lg text-cedar-midnight group-hover:text-cedar-forest transition-colors">
-                        How fast is the turnaround? 
+                        How fast is the turnaround?
                         <span class="text-2xl font-light text-cedar-bronze group-[.active]:rotate-45 transition-transform">+</span>
                     </div>
                     <div class="h-0 overflow-hidden text-cedar-slate mt-0 group-[.active]:h-auto group-[.active]:mt-4 transition-all">
@@ -342,7 +407,7 @@
                         <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
                     </svg>
                 </div>
-                
+
                 <div class="relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
                     <div class="lg:w-1/2 text-center lg:text-left">
                         <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Connect</span>
@@ -353,7 +418,7 @@
                             Let's build a digital sanctuary for your professional work. Our team is ready to curate your legacy.
                         </p>
                     </div>
-                    
+
                     <div class="lg:w-1/2 w-full">
                         <div class="bg-white p-8 md:p-10 rounded-[32px] shadow-xl">
                             <form class="space-y-5">
@@ -410,7 +475,8 @@
             <span class="material-symbols-outlined text-cedar-bronze text-xl transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
         </a>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>

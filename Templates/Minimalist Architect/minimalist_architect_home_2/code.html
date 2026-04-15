@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;family=Space+Grotesk:wght@300;400;500;700&amp;family=Fira+Code&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed": "#d3e4fe",
+                    "surface-container": "#171f33",
+                    "on-surface": "#dae2fd",
+                    "primary-fixed": "#c4e7ff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-tertiary-container": "#4d2b00",
+                    "tertiary": "#ffb86e",
+                    "on-secondary-container": "#a9bad3",
+                    "on-error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "surface-container-lowest": "#060e20",
+                    "surface": "#0b1326",
+                    "on-background": "#dae2fd",
+                    "on-primary-container": "#00374d",
+                    "surface-container-low": "#131b2e",
+                    "tertiary-container": "#de8712",
+                    "surface-variant": "#2d3449",
+                    "surface-container-highest": "#2d3449",
+                    "on-error": "#690005",
+                    "surface-bright": "#31394d",
+                    "on-primary-fixed-variant": "#004c69",
+                    "surface-dim": "#0b1326",
+                    "outline-variant": "#3e4850",
+                    "secondary-container": "#3a4a5f",
+                    "tertiary-fixed": "#ffdcbd",
+                    "primary-container": "#00a7e0",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "on-tertiary-fixed-variant": "#693c00",
+                    "primary": "#7bd0ff",
+                    "on-surface-variant": "#bec8d2",
+                    "on-primary": "#00354a",
+                    "outline": "#88929b",
+                    "surface-tint": "#7bd0ff",
+                    "inverse-on-surface": "#283044",
+                    "background": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "on-tertiary": "#492900",
+                    "inverse-primary": "#00668a",
+                    "on-secondary-fixed": "#0b1c30",
+                    "secondary": "#b7c8e1",
+                    "tertiary-fixed-dim": "#ffb86e",
+                    "error-container": "#93000a",
+                    "on-tertiary-fixed": "#2c1600",
+                    "on-secondary": "#213145",
+                    "inverse-surface": "#dae2fd",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed": "#001e2c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "body": ["Inter"],
+                    "label": ["Space Grotesk"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Space Grotesk', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/30">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-slate-950/60 backdrop-blur-3xl flex justify-between items-center px-8 py-6 max-w-full font-['Space_Grotesk'] tracking-tighter">
+<div class="text-2xl font-bold tracking-tighter text-slate-50">ARCHITECT</div>
+<div class="hidden md:flex gap-12 items-center">
+<a class="text-sky-400 font-bold border-b-2 border-sky-400 pb-1" href="#">Home</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Projects</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">About</a>
+<a class="text-slate-400 hover:text-slate-100 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-white/5 transition-all duration-300 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-sky-400" data-icon="light_mode">light_mode</span>
+</button>
+<button class="md:hidden">
+<span class="material-symbols-outlined text-slate-50" data-icon="menu">menu</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex flex-col justify-center px-8 md:px-24 overflow-hidden pt-20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center z-10">
+<div class="md:col-span-7">
+<div class="mb-6 inline-flex items-center gap-3">
+<span class="w-12 h-[1px] bg-primary"></span>
+<span class="font-label text-primary tracking-[0.2em] text-xs uppercase">Est. 2024 / Digital Blueprint</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-bold leading-[0.9] tracking-tighter text-on-background mb-8">
+                        PRECISION <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">MONOLITH</span>
+</h1>
+<p class="text-lg md:text-xl text-on-surface-variant max-w-xl font-body leading-relaxed mb-12">
+                        Architecting digital structures that balance industrial strength with fluid interactivity. We don't just build websites; we design structural experiences.
+                    </p>
+<div class="flex flex-wrap gap-6">
+<button class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed font-bold rounded-lg tracking-tight hover:brightness-110 transition-all">
+                            View Portfolio
+                        </button>
+<button class="px-8 py-4 border border-outline-variant/20 text-on-surface font-medium rounded-lg hover:bg-surface-bright transition-all flex items-center gap-3">
+<span class="font-mono text-xs text-primary">01/</span>
+                            Our Process
+                        </button>
+</div>
+</div>
+<div class="md:col-span-5 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low relative group">
+<img alt="Modern Skyscraper" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80" data-alt="Monolithic modern skyscraper facade with high-contrast sharp angles and blue glass reflections under a clear twilight sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDogvtqWyY-s0rRf7e0g7fbDLTf2MiDBQsVE3-tsNVQTi2LBV5Um30Vhbz1enLAti-3qiVgv59bjGPuPvgPYZKFwYTdjv_6taSv_zL4Y40R-JJMWzRiHPwv-B0dSC2TDQ9CKfcpwASXJ28DdnYqb-g15aEUzB8kH5SnBDukltCWKhHg4G2jBCEHetdwzJtE2FW-SP9ptwPZNKd9viATx8LBWA6ndPedohHCNSR-rp3tOULeUXD0KF0LPew1BLaUU_qfi9jUnsv_PT5x"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent opacity-60"></div>
+<div class="absolute bottom-8 left-8">
+<p class="font-headline text-2xl font-bold text-white">Concrete Void</p>
+<p class="font-label text-primary text-sm uppercase tracking-widest">Brutalist UI Experiment</p>
+</div>
+</div>
+<!-- Technical Detail Overlay -->
+<div class="absolute -bottom-6 -right-6 bg-surface-container-highest p-6 rounded-xl border border-outline-variant/10 backdrop-blur-xl hidden lg:block">
+<div class="flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="architecture">architecture</span>
+</div>
+<div>
+<p class="text-[10px] font-label text-outline tracking-widest uppercase">Coordinates</p>
+<p class="font-mono text-sm text-primary">40.7128° N, 74.0060° W</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-outline-variant/20 to-transparent"></div>
+</section>
+<!-- Stats Section (Surface Shift) -->
+<section class="py-24 bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="space-y-2">
+<p class="text-4xl font-headline font-bold text-on-background">120+</p>
+<p class="font-label text-outline text-xs tracking-[0.2em] uppercase">Modules Built</p>
+</div>
+<div class="space-y-2">
+<p class="text-4xl font-headline font-bold text-on-background">0.08<span class="text-primary">s</span></p>
+<p class="font-label text-outline text-xs tracking-[0.2em] uppercase">Avg Response</p>
+</div>
+<div class="space-y-2">
+<p class="text-4xl font-headline font-bold text-on-background">14</p>
+<p class="font-label text-outline text-xs tracking-[0.2em] uppercase">Industry Awards</p>
+</div>
+<div class="space-y-2">
+<p class="text-4xl font-headline font-bold text-on-background">100%</p>
+<p class="font-label text-outline text-xs tracking-[0.2em] uppercase">Uptime Ratio</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Projects Grid -->
+<section class="py-32 px-8">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-xl">
+<h2 class="text-4xl md:text-5xl font-bold tracking-tighter mb-6">SELECTED <span class="text-outline">WORKS</span></h2>
+<p class="text-on-surface-variant leading-relaxed">A curated selection of digital monuments designed with meticulous attention to grid systems and structural integrity.</p>
+</div>
+<a class="font-label text-primary tracking-widest uppercase text-sm border-b border-primary/30 pb-1 hover:border-primary transition-all" href="#">Explore Full Archives</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Major Project -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="bg-surface-container-low rounded-xl overflow-hidden aspect-[16/9] relative transition-all duration-500 hover:translate-y-[-8px] hover:bg-surface-container-high">
+<img alt="Clean Interior" class="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" data-alt="Ultra-minimalist modern interior design with polished concrete floors, floor-to-ceiling windows, and sharp sunlight shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8JdpoXH7aI3Oz_1x-Rdut_EifiTmyBQoA2Due34kaKMSTj7aii_6OXbAAjp_ICj_AffJ7NXxDDmVEeDXz7yDAxfjWndg6jMKwTFVbzJSASjs75mLR01dk3ZY2X92KFXDWwqDPHhHjRi8ZJy5wKWLyML7cGTc4A6pKdz5K-QejRijoy9y2FpNxulD5d9aKjvULN9BVgXkRaMD4v3KuqkA9vL7Jg2tI7M1mRUt-XL2vieSdAUSwmq4zMCRSptcXeNosA683z8QAElR6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-label text-primary uppercase mb-4 inline-block">Architecture • 2024</span>
+<h3 class="text-3xl font-bold tracking-tight text-white">THE GLASS MONOLITH</h3>
+</div>
+</div>
+</div>
+<!-- Secondary Project -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="bg-surface-container-low rounded-xl overflow-hidden aspect-square md:aspect-auto md:h-full relative transition-all duration-500 hover:translate-y-[-8px] hover:bg-surface-container-high">
+<img alt="Urban Architecture" class="w-full h-full object-cover opacity-60 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700" data-alt="Abstract architectural shot of a modern building featuring repetitive geometric patterns and deep blue metallic textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQ_tOaIkTHGsDGmhCWG7H4Ag6L59Dem8J2R2DGXO4N8at2R06LkfqSaEVKm2b7-3rPOC5gPS1XqEFZKOjh-G9ewhg4uCwgwhuRx5knq9d28hbLNratGr1EcafFX1MDtz1hoSJxGRZ_o-O7o8cQ1hBFqMbqqaBidK-2zu5nT_QK8YB2OyrzlT9NZ838WYIbk4ZoxOQI8bFygmwSm7j2UneWWvOD6OMbtXgxLg9Tf8E8je-VjeCh2ykj8IEKf_DDQxPx7WXRhwLn-_8k"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/90 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8">
+<span class="px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-[10px] font-label text-primary uppercase mb-4 inline-block">Experimental</span>
+<h3 class="text-2xl font-bold tracking-tight text-white">GRID SYSTEM 02</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Technical Block -->
+<section class="py-32 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="bg-surface-container-lowest rounded-xl p-1 md:p-2 border border-outline-variant/10 shadow-2xl">
+<div class="bg-surface-container-low rounded-lg overflow-hidden">
+<!-- IDE Header -->
+<div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/10">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-tertiary/40"></div>
+<div class="w-3 h-3 rounded-full bg-primary/40"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant/40"></div>
+</div>
+<div class="text-[10px] font-mono text-outline uppercase tracking-widest">Architect_Manifesto.ts</div>
+<div class="w-12"></div>
+</div>
+<!-- IDE Content -->
+<div class="p-8 font-mono text-sm leading-relaxed overflow-x-auto">
+<div class="flex gap-6">
+<div class="text-outline/40 text-right select-none">
+                                    01<br/>02<br/>03<br/>04<br/>05<br/>06<br/>07<br/>08
+                                </div>
+<div class="text-on-surface-variant">
+<span class="text-primary-container">const</span> <span class="text-primary">Philosophy</span> = {<br/>
+                                      structure: <span class="text-tertiary">"Unyielding"</span>,<br/>
+                                      aesthetic: <span class="text-tertiary">"Precise"</span>,<br/>
+                                      delivery: <span class="text-tertiary">"Flawless"</span>,<br/>
+                                      rules: [<br/>
+                                        <span class="text-tertiary">"No borders, only tonal shifts"</span>,<br/>
+                                        <span class="text-tertiary">"Editorial typography dominance"</span><br/>
+                                      ]<br/>
+                                    };
+                                </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full border-t border-slate-800/15 flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 font-['Space_Grotesk'] uppercase text-[10px] tracking-widest">
+<div class="text-slate-500">© 2024 THE PRECISE MONOLITH. ALL RIGHTS RESERVED.</div>
+<div class="flex gap-10">
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">Instagram</a>
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-500 hover:text-sky-400 transition-colors" href="#">Github</a>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-on-surface-variant">System Online</span>
+</div>
+</footer>
+</body></html>

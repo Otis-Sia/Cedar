@@ -4,6 +4,7 @@ import React, { useState, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { extractTextFromFile } from '@/lib/fileParser';
 
 export default function CVUploadPage() {
   const [dragActive, setDragActive] = useState(false);
@@ -44,49 +45,30 @@ export default function CVUploadPage() {
     setIsScanning(true);
 
     try {
-      // Simulate a brief processing delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      const cvText = await extractTextFromFile(file);
+      const response = await fetch('/api/parse-cv', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cvText,
+          fileName: file.name,
+        }),
+      });
+
+      const payload = await response.json();
+
+      if (!response.ok) {
+        throw new Error(payload?.error || 'Failed to parse the uploaded CV.');
+      }
 
       sessionStorage.setItem(
         'cedar:portfolio-draft',
         JSON.stringify({
           sourceFile: file.name,
           generatedAt: new Date().toISOString(),
-          portfolio: {
-            name: 'Sarah Jenkins',
-            title: 'Creative Director',
-            bio: 'Passionate about minimalist architecture and clean digital experiences. Nairobi based.',
-            skills: ['UI Design', 'Brand Strategy', 'Typography', 'Photography', 'Creative Direction'],
-            contactInfo: {
-              email: 'sarah@example.com',
-              location: 'Nairobi, Kenya',
-              linkedin: 'https://linkedin.com/in/sarahjenkins',
-            },
-            experience: [
-              {
-                role: 'Creative Director',
-                company: 'Studio Meridian',
-                startDate: '2022',
-                endDate: 'Present',
-                description: 'Leading creative strategy for global brand campaigns and identity systems.',
-              },
-              {
-                role: 'Senior Designer',
-                company: 'Apex Creative',
-                startDate: '2019',
-                endDate: '2022',
-                description: 'Designed award-winning visual identities for Fortune 500 clients.',
-              },
-            ],
-            education: [
-              {
-                institution: 'University of Nairobi',
-                degree: 'BA in Visual Communication',
-                year: '2018',
-              },
-            ],
-            projects: [],
-          },
+          portfolio: payload.portfolio,
         })
       );
 

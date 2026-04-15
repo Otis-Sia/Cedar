@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Noto+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#752121",
+                    "on-secondary-container": "#525252",
+                    "tertiary": "#486272",
+                    "primary-fixed": "#e2e2e2",
+                    "on-surface": "#2d3435",
+                    "surface-container": "#ebeeef",
+                    "surface-container-low": "#f2f4f4",
+                    "on-primary-container": "#525252",
+                    "surface-container-highest": "#dde4e5",
+                    "tertiary-dim": "#3c5666",
+                    "outline-variant": "#adb3b4",
+                    "surface-bright": "#f9f9f9",
+                    "on-error": "#fff7f6",
+                    "primary": "#5e5e5e",
+                    "on-tertiary-fixed-variant": "#486272",
+                    "tertiary-fixed": "#d0ecff",
+                    "surface-container-high": "#e4e9ea",
+                    "background": "#f9f9f9",
+                    "outline": "#757c7d",
+                    "on-primary": "#f8f8f8",
+                    "inverse-surface": "#0c0f0f",
+                    "on-secondary": "#fbf8f8",
+                    "on-tertiary-fixed": "#2c4655",
+                    "tertiary-fixed-dim": "#c2def0",
+                    "on-secondary-fixed": "#3f3f3f",
+                    "on-secondary-fixed-variant": "#5c5b5b",
+                    "on-tertiary-container": "#3e5868",
+                    "secondary-fixed-dim": "#d6d4d3",
+                    "secondary-fixed": "#e4e2e1",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#2d3435",
+                    "surface": "#f9f9f9",
+                    "surface-variant": "#dde4e5",
+                    "tertiary-container": "#d0ecff",
+                    "surface-dim": "#d4dbdd",
+                    "on-primary-fixed-variant": "#5b5b5b",
+                    "primary-dim": "#525252",
+                    "on-surface-variant": "#5a6061",
+                    "error-dim": "#4e0309",
+                    "primary-fixed-dim": "#d4d4d4",
+                    "primary-container": "#e2e2e2",
+                    "secondary-container": "#e4e2e1",
+                    "secondary-dim": "#535353",
+                    "inverse-on-surface": "#9c9d9d",
+                    "surface-tint": "#5e5e5e",
+                    "error": "#9f403d",
+                    "on-primary-fixed": "#3f3f3f",
+                    "error-container": "#fe8983",
+                    "secondary": "#5f5f5f",
+                    "inverse-primary": "#ffffff",
+                    "on-tertiary": "#f4faff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 500ms ease-in-out, color 500ms ease-in-out;
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
+<nav class="fixed top-0 w-full z-50 bg-[#f9f9f9]/70 dark:bg-[#1A1A1A]/70 backdrop-blur-md flex justify-between items-center px-12 py-6 w-full transition-all duration-500 ease-in-out">
+<div class="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-50 tracking-tighter">
+            Architect Portfolio
+        </div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-neutral-900 dark:text-neutral-50 border-b border-neutral-900 dark:border-neutral-50 pb-1 font-serif text-2xl tracking-tighter" href="#">Home</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors font-serif text-2xl tracking-tighter" href="#">Projects</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors font-serif text-2xl tracking-tighter" href="#">About</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors font-serif text-2xl tracking-tighter" href="#">Contact</a>
+</div>
+<button class="p-2 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-all duration-500 ease-in-out">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</nav>
+<main class="pt-32">
+<section class="px-12 mb-32 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-7">
+<h1 class="text-7xl md:text-9xl font-bold tracking-tighter leading-none mb-12">
+                    CODE AS <br/> <span class="italic">STRUCTURE.</span>
+</h1>
+<p class="text-lg max-w-md leading-relaxed text-on-surface-variant font-body">
+                    Crafting digital monoliths through precise engineering and intentional design. We build systems that stand the test of temporal shift.
+                </p>
+<div class="mt-12 flex gap-4">
+<button class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-xs hover:bg-primary-dim transition-colors">
+                        Explore Works
+                    </button>
+</div>
+</div>
+<div class="md:col-span-5 self-center">
+<div class="bg-surface-container-highest p-8 relative overflow-hidden aspect-square flex flex-col justify-between">
+<div class="font-mono text-sm space-y-2 text-on-surface/60">
+<div class="flex gap-4">
+<span class="text-primary-dim">01</span>
+<span>const build = (site) =&gt; {</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">02</span>
+<span class="pl-4 text-on-surface">return site.map(layer =&gt; ({</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">03</span>
+<span class="pl-8">material: "Concrete",</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">04</span>
+<span class="pl-8">opacity: 1.0,</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">05</span>
+<span class="pl-8">shadow: "Ambient"</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">06</span>
+<span class="pl-4">}));</span>
+</div>
+<div class="flex gap-4">
+<span class="text-primary-dim">07</span>
+<span>};</span>
+</div>
+</div>
+<div class="text-on-surface-variant text-xs uppercase tracking-widest font-label border-t border-outline/20 pt-4">
+                        Terminal Output: System Stable
+                    </div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low py-24 px-12">
+<div class="flex flex-col md:flex-row gap-12 mb-24">
+<div class="md:w-1/2">
+<h2 class="text-4xl font-bold tracking-tight mb-8">THE MONOLITH PRINCIPLE</h2>
+</div>
+<div class="md:w-1/2">
+<p class="text-on-surface-variant leading-loose font-body">
+                        Architecture is the learned game, correct and magnificent, of forms assembled in light. Our development methodology mirrors this classic ethos, treating every line of code as a load-bearing beam.
+                    </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="group cursor-pointer">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 transition-transform duration-1000" data-alt="Monochrome architectural photography of a minimalist concrete skyscraper reaching into a gray sky with sharp dramatic shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQZTlsklrqPPStDjmU0NI63yUTXKjApBZYWuKCDQzBANmNDFLrCSPkGYb46vX7TkyPAyms3TUavnwJqBiDocvuwNIOLdOjStKYFpKAeqYSz-N0jjq5SF4pxar5yYi53ql9zWmK7ucRzvHC5CvlVWOpy0n8KrSuxomd-mSee6EWmEWUmYkTMWmxFaN4TMkjTDSTfHienDwpE0IjzPzxFFKnoHSU0tBKz3mkD4GGzxlnN-rqWX8BC5oEE8VdwLMmm0b5GNh_L7GvALbs"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-primary/20 backdrop-blur-sm">
+<span class="text-on-primary font-label uppercase tracking-[0.3em] text-sm">View Project</span>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-baseline">
+<h3 class="text-2xl">Vellum Engine</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Core Infrastructure</span>
+</div>
+</div>
+<div class="group cursor-pointer mt-24">
+<div class="relative aspect-[4/5] overflow-hidden bg-surface-dim">
+<img class="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 transition-transform duration-1000" data-alt="Interior view of a brutalist concrete building hall with geometric light patterns on the floor and high ceilings" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFyqjOXh1ySHAo0zL-xLVewslPHpVrj4l6MLOyo1to13scsaZww_MqVtynQOrZmGvFL_ADiwqGct6O1nSDpayoilYh1iN4jGA_73I5pssynEEEbSshUAMbtESb8yvUjoukaV0PXUzUDv66C-uX11E0v4a-bA9g3HZ7OjbdMVYPddQ7nZf4Dhrgfk-y_u3V1U7vAcQH0P5pktRbFAkVmm1nVrceSXh7eDBRQfqpyLBxC7fIbEdajXkWMvSuzVPvAo7ESI1GKaTb3ILz"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-primary/20 backdrop-blur-sm">
+<span class="text-on-primary font-label uppercase tracking-[0.3em] text-sm">View Project</span>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-baseline">
+<h3 class="text-2xl">Shadow Protocols</h3>
+<span class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">UI System</span>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-12 bg-surface">
+<div class="max-w-4xl mx-auto text-center">
+<span class="text-[10px] uppercase tracking-[0.5em] text-primary-dim mb-8 block font-label">Capabilities</span>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-left mt-16">
+<div class="border-t border-outline/10 pt-6">
+<h4 class="font-headline text-xl mb-4">Engineering</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">TypeScript, Rust, Go, System Architecture, API Design.</p>
+</div>
+<div class="border-t border-outline/10 pt-6">
+<h4 class="font-headline text-xl mb-4">Aesthetics</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Art Direction, Typographic Design, Interaction Design.</p>
+</div>
+<div class="border-t border-outline/10 pt-6">
+<h4 class="font-headline text-xl mb-4">Protocol</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Deployment Pipelines, Cloud Orchestration, Security.</p>
+</div>
+<div class="border-t border-outline/10 pt-6">
+<h4 class="font-headline text-xl mb-4">Strategy</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">Product Lifecycle, Scale Planning, User Psychology.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-inverse-surface text-on-primary py-32 px-12 flex flex-col items-center justify-center text-center">
+<h2 class="text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-12">LET'S BUILD THE <br/> UNYIELDING.</h2>
+<p class="text-inverse-on-surface mb-12 font-body max-w-sm">Open for collaboration on projects that demand structural integrity and visual soul.</p>
+<button class="border border-on-primary px-12 py-5 font-label uppercase tracking-widest text-xs hover:bg-on-primary hover:text-inverse-surface transition-all duration-500">
+                Initiate Sequence
+            </button>
+</section>
+</main>
+<footer class="bg-[#f2f4f4] dark:bg-[#121212] w-full py-12 px-12 flex flex-col md:flex-row justify-between items-center mt-auto opacity-80 hover:opacity-100 transition-opacity">
+<div class="font-sans text-[10px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400 mb-6 md:mb-0">
+            © 2024 Silent Monolith Studio
+        </div>
+<div class="flex gap-8">
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4" href="#">LinkedIn</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4" href="#">GitHub</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4" href="#">Layers</a>
+</div>
+</footer>
+</body></html>

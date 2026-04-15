@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Academic Curator | Home</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#b6d9f3",
+                      "secondary-fixed": "#c6e7ff",
+                      "on-tertiary": "#e5fff2",
+                      "surface-variant": "#dde4e3",
+                      "on-primary": "#e0ffff",
+                      "tertiary-fixed": "#98ffd9",
+                      "tertiary-fixed-dim": "#89f0cb",
+                      "on-primary-fixed": "#004748",
+                      "on-primary-container": "#185a5c",
+                      "surface-tint": "#296869",
+                      "primary-fixed": "#b0eeee",
+                      "on-tertiary-fixed": "#004f3b",
+                      "on-primary-fixed-variant": "#256466",
+                      "primary": "#296869",
+                      "surface": "#f8faf9",
+                      "on-tertiary-container": "#00634b",
+                      "tertiary-dim": "#005f48",
+                      "error": "#a83836",
+                      "secondary-container": "#c6e7ff",
+                      "on-error-container": "#6e0a12",
+                      "surface-bright": "#f8faf9",
+                      "on-secondary-fixed": "#1f4358",
+                      "surface-container": "#eaefee",
+                      "on-tertiary-fixed-variant": "#006e54",
+                      "on-surface": "#2d3433",
+                      "error-container": "#fa746f",
+                      "on-error": "#fff7f6",
+                      "primary-dim": "#1a5c5d",
+                      "background": "#f8faf9",
+                      "inverse-primary": "#b5f3f4",
+                      "surface-container-highest": "#dde4e3",
+                      "primary-container": "#b0eeee",
+                      "on-secondary-fixed-variant": "#3d5f75",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#596060",
+                      "outline-variant": "#acb3b2",
+                      "inverse-on-surface": "#9b9d9d",
+                      "secondary-dim": "#35576d",
+                      "primary-fixed-dim": "#a2dfe0",
+                      "surface-container-low": "#f0f4f3",
+                      "tertiary": "#006c53",
+                      "outline": "#757c7b",
+                      "surface-dim": "#d4dbda",
+                      "on-secondary": "#f5f9ff",
+                      "tertiary-container": "#98ffd9",
+                      "on-secondary-container": "#33566b",
+                      "inverse-surface": "#0b0f0f",
+                      "error-dim": "#67040d",
+                      "surface-container-high": "#e4e9e8",
+                      "secondary": "#416379",
+                      "on-background": "#2d3433"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 12px 40px rgba(45, 52, 51, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface-variant selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar from Shared Components -->
+<nav class="fixed top-0 w-full z-50 bg-emerald-50/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<span class="text-xl font-bold tracking-tighter text-emerald-900 dark:text-emerald-100 font-headline">The Academic Curator</span>
+<div class="hidden md:flex items-center gap-8 font-manrope text-sm font-medium tracking-tight">
+<!-- Home is active -->
+<a class="text-emerald-700 dark:text-emerald-300 border-b-2 border-emerald-500 pb-1 hover:opacity-80 transition-opacity duration-300" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-600 hover:opacity-80 transition-opacity duration-300" href="#">Projects</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-600 hover:opacity-80 transition-opacity duration-300" href="#">About</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-emerald-600 hover:opacity-80 transition-opacity duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4 text-emerald-800 dark:text-emerald-400">
+<button class="p-2 rounded-full hover:bg-emerald-100/50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-12">
+<!-- Hero Section: Editorial & Asymmetric -->
+<section class="max-w-7xl mx-auto px-8 mb-24 lg:mb-32">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7">
+<h1 class="font-headline text-[3.5rem] leading-[1.1] font-extrabold text-on-surface tracking-tighter mb-6">
+                        Curating the intersection of <span class="bg-gradient-to-r from-primary to-primary-container bg-clip-text text-transparent">Digital Design</span> and Social Impact.
+                    </h1>
+<p class="text-body-lg text-lg text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                        I am a Graduate Student at <span class="font-semibold text-primary">Stanford University</span> specializing in Human-Computer Interaction. My work explores how precise editorial design can improve academic accessibility.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary font-semibold rounded-xl editorial-shadow hover:scale-95 transition-transform" href="#projects">
+                            View Projects
+                        </a>
+<a class="px-8 py-3 bg-secondary-container text-on-secondary-container font-semibold rounded-xl hover:bg-opacity-80 transition-all" href="#about">
+                            About Me
+                        </a>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden editorial-shadow bg-surface-container-low">
+<img alt="Student Profile" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Modern professional portrait of a student in a minimalist office setting with soft sunlight and plants, editorial photography style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcdXkWaP4bz0FodSpVuxv5Vr4LW_kvN2aBLrfi9KPa3mumgLlWjmh5dHcGFbmtaO4mdMrSoV01Sjw-RIPRpDlUC9BEHlML_58ekvH9313nA1zCgfLDDI1e9YAQNysu4fUBp7_gC_EokLrB89vwpIOyAZpdiHlLOiQyIgCqjwX4duAk1yAgx4C0QIt47tiGAd22zuG1RZdglpFFqSVm_i424yS5un6ih8jt6fj7cb_S1BQh2vaJUPl7Yc3qnmgvteYWr1iCBnn-yt-p"/>
+</div>
+<!-- Floating Decoration Chips -->
+<div class="absolute -bottom-6 -left-6 bg-tertiary-container text-on-tertiary-container px-6 py-3 rounded-full font-label text-sm font-bold editorial-shadow">
+                        Class of 2024
+                    </div>
+</div>
+</div>
+</section>
+<!-- Highlights: Tonal Layering (Surface Container Low) -->
+<section class="bg-surface-container-low py-24 mb-24">
+<div class="max-w-7xl mx-auto px-8">
+<div class="mb-16">
+<span class="font-label text-xs uppercase tracking-widest text-primary font-bold">The Journey</span>
+<h2 class="font-headline text-3xl font-bold text-on-surface mt-2">Internship &amp; Coursework</h2>
+</div>
+<!-- Bento-like Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Internship Card -->
+<div class="md:col-span-2 bg-surface-container-lowest p-10 rounded-xl editorial-shadow flex flex-col md:flex-row gap-8 items-center">
+<div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden">
+<img alt="Internship" class="w-full h-full object-cover" data-alt="Abstract corporate branding with geometric shapes in teal and navy, minimalist modern logo design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1bBKHv-gxUlp37oQDfzzxk9BC1Vzs75ZVcZNmm6Klz6RkLw2JFWiQfpFbUOC8U7u93bwurtt6t89r7nmPXK6XG7Jp_SvEAEyuPYEEL-wwERTIo_35vJRbgB0bbRTff1BHZfxuusx7QmPFp0hsXIfN1ZWhvqLnbF1oYuIXa9pGDCOllTVae9_nyDOchvbOn9cbYU_C1b1qzWSj9LBXqSgQSupnboUWSDAtOUZD5O0c6DY9pYDVpClKqKImvgZrgyUg8HX7eCos16ve"/>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-[10px] font-bold uppercase tracking-wider">Experience</span>
+<span class="text-xs text-on-surface-variant font-medium">Summer 2023</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">UX Research Intern @ DesignLabs</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Led a multi-disciplinary team to redesign the onboarding flow for a health-tech platform, resulting in a 15% increase in user retention.</p>
+<a class="text-primary font-bold text-sm hover:underline flex items-center gap-1" href="#">
+                                View Case Study <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Coursework Card -->
+<div class="bg-surface-container-lowest p-10 rounded-xl editorial-shadow flex flex-col">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container self-start rounded-full text-[10px] font-bold uppercase tracking-wider mb-6">Coursework</span>
+<h3 class="font-headline text-xl font-bold text-on-surface mb-2">CS402: Behavioral Economics</h3>
+<p class="text-on-surface-variant text-sm mb-6 flex-1">Exploring the psychological drivers behind digital decision-making and ethical nudge theories in interface design.</p>
+<div class="p-4 bg-surface-container-low rounded-lg text-xs font-medium text-on-surface-variant">
+                            Grade: A+ | Final Project: 98%
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Grid: Asymmetric & Editorial -->
+<section class="max-w-7xl mx-auto px-8 mb-24" id="projects">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div class="max-w-xl">
+<span class="font-label text-xs uppercase tracking-widest text-primary font-bold">Portfolio</span>
+<h2 class="font-headline text-4xl font-extrabold text-on-surface mt-2 tracking-tight">Selected Works</h2>
+</div>
+<a class="group flex items-center gap-2 text-primary font-bold" href="#">
+                    Explore all projects 
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="east">east</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<!-- Project 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[16/10] bg-surface-container rounded-xl overflow-hidden mb-6 editorial-shadow">
+<img alt="Academic Planner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Clean mobile app interface design for an academic planning tool with mint accents and white space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbBqJKbp15Ihafpk9Cse46gxK7zY7Q9egy_nR0mEFtDa21XMNGX-s6gyECRPlhA2oCot4d4URY-2adh9XaWajMR1730h4qnDMUCH2zYTc4qRDFCju6g9rta-IKV4ulVI-65OqLFAvOHroICFsWFxReltxeJk9o7iDyXx8G2B5Kwu2_rnrnQ-n4wf4OJBxhKk7jU-gPY_eMhAJxh1KI6t6rQPEALtGdfGdoICvurawbdeUbtnie2IuMaFRefJfH5Ryr3cF4qnVN6Sbh"/>
+</div>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">UI/UX Design</span>
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">•</span>
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">Academic Research</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">The Scholar's Compass</h3>
+<p class="text-on-surface-variant max-w-md">An AI-driven research assistant designed to synthesize complex academic journals for undergraduate students.</p>
+</div>
+<!-- Project 2 -->
+<div class="group cursor-pointer md:mt-24">
+<div class="aspect-[16/10] bg-surface-container rounded-xl overflow-hidden mb-6 editorial-shadow">
+<img alt="Digital Editorial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Editorial layout for a digital magazine with bold typography and high-quality photography of nature" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2-J4aYK90_wVgVsiY3GgX_vf9TYGDjHRhZAnZakcNc7cRJbur0ISc4e7df8k0nmrkxYsBiGUBOb7INrba1uT0EMrG781rL564x-DORrgZ_Uksf361Qyr9omE6OJnXmSQ_JKbHGkHeSM0SXq_CQRGeF7wuryGapWDi25CWcHQhhdDyhXI6d2lTJSQYOjTb_3tihVeqDlMCyFVaYwCUMGDc6-pWsXAXwA_iuu3EfOQhGfN3hswpgX6edoBaSJuNDdViioQ-Ew1QruW0"/>
+</div>
+<div class="flex flex-wrap gap-2 mb-3">
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">Visual Identity</span>
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">•</span>
+<span class="text-[10px] font-bold text-primary-dim tracking-widest uppercase">Branding</span>
+</div>
+<h3 class="font-headline text-2xl font-bold text-on-surface mb-2">Veritas Journal</h3>
+<p class="text-on-surface-variant max-w-md">Reimagining the visual language of student-led publications through an editorial, high-contrast digital framework.</p>
+</div>
+</div>
+</section>
+<!-- Curator's Note: Special Component -->
+<section class="max-w-4xl mx-auto px-8 mb-24">
+<div class="bg-secondary-container p-12 rounded-xl relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-secondary"></div>
+<span class="material-symbols-outlined text-secondary absolute right-8 top-8 text-6xl opacity-20" data-icon="format_quote">format_quote</span>
+<h4 class="font-headline text-xl font-bold text-on-secondary-container mb-4">Curator's Note</h4>
+<p class="font-body text-on-secondary-container italic text-lg leading-relaxed">
+                    "Design in academia shouldn't just be about aesthetics; it should be a bridge to understanding. My goal is to transform dense information into digestible, beautiful experiences that invite curiosity rather than intimidation."
+                </p>
+<div class="mt-8 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-on-secondary-container/20">
+<img alt="Curator" data-alt="Small round headshot of a friendly young person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCetdRrtpAccNODFoiU02BrOoOG_iUkcmLSkbiLGdVLjOphtu_owlstRa65R_K35d6H0wQlYCVSaNrz3fM0Nk6rYCdsRUkrcziUi35ZlfUU6AhCnp27AzHsh60MFNRRitjdQjc-UimRu7qYIO_suBOwKM0Jew063970moUzLzm-XO_WKMinQALf2cbo3GCNkQUlEC3xWXkug19UUFDJ44CtbPXWrIR26py3DFrAb08IGLwf_-dbowc3qAi_QHfM246BYYobGl1l7T3U"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-secondary-container">The Academic Curator</p>
+<p class="text-[10px] uppercase tracking-widest text-on-secondary-container/60">Designer &amp; Researcher</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from Shared Components -->
+<footer class="w-full py-12 px-8 bg-emerald-50 dark:bg-slate-950">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-7xl mx-auto">
+<span class="font-inter text-xs uppercase tracking-widest text-slate-500">© 2024 The Academic Curator. Built with editorial precision.</span>
+<div class="flex gap-8">
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-emerald-500 transition-colors" href="#">LinkedIn</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-emerald-500 transition-colors" href="#">GitHub</a>
+<a class="font-inter text-xs uppercase tracking-widest text-slate-500 hover:text-emerald-500 transition-colors" href="#">Twitter</a>
+</div>
+</div>
+</footer>
+</body></html>

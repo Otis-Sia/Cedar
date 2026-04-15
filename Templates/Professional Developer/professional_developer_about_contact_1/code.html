@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error-container": "#752121",
+                        "on-secondary-container": "#525252",
+                        "tertiary": "#486272",
+                        "primary-fixed": "#e2e2e2",
+                        "on-surface": "#2d3435",
+                        "surface-container": "#ebeeef",
+                        "surface-container-low": "#f2f4f4",
+                        "on-primary-container": "#525252",
+                        "surface-container-highest": "#dde4e5",
+                        "tertiary-dim": "#3c5666",
+                        "outline-variant": "#adb3b4",
+                        "surface-bright": "#f9f9f9",
+                        "on-error": "#fff7f6",
+                        "primary": "#5e5e5e",
+                        "on-tertiary-fixed-variant": "#486272",
+                        "tertiary-fixed": "#d0ecff",
+                        "surface-container-high": "#e4e9ea",
+                        "background": "#f9f9f9",
+                        "outline": "#757c7d",
+                        "on-primary": "#f8f8f8",
+                        "inverse-surface": "#0c0f0f",
+                        "on-secondary": "#fbf8f8",
+                        "on-tertiary-fixed": "#2c4655",
+                        "tertiary-fixed-dim": "#c2def0",
+                        "on-secondary-fixed": "#3f3f3f",
+                        "on-secondary-fixed-variant": "#5c5b5b",
+                        "on-tertiary-container": "#3e5868",
+                        "secondary-fixed-dim": "#d6d4d3",
+                        "secondary-fixed": "#e4e2e1",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#2d3435",
+                        "surface": "#f9f9f9",
+                        "surface-variant": "#dde4e5",
+                        "tertiary-container": "#d0ecff",
+                        "surface-dim": "#d4dbdd",
+                        "on-primary-fixed-variant": "#5b5b5b",
+                        "primary-dim": "#525252",
+                        "on-surface-variant": "#5a6061",
+                        "error-dim": "#4e0309",
+                        "primary-fixed-dim": "#d4d4d4",
+                        "primary-container": "#e2e2e2",
+                        "secondary-container": "#e4e2e1",
+                        "secondary-dim": "#535353",
+                        "inverse-on-surface": "#9c9d9d",
+                        "surface-tint": "#5e5e5e",
+                        "error": "#9f403d",
+                        "on-primary-fixed": "#3f3f3f",
+                        "error-container": "#fe8983",
+                        "secondary": "#5f5f5f",
+                        "inverse-primary": "#ffffff",
+                        "on-tertiary": "#f4faff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background transition-colors duration-500 ease-in-out">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#f9f9f9]/70 dark:bg-[#1A1A1A]/70 backdrop-blur-md flex justify-between items-center px-12 py-6 w-full">
+<div class="font-serif text-xl font-bold text-neutral-900 dark:text-neutral-50">Architect Portfolio</div>
+<div class="hidden md:flex items-center space-x-8 font-serif text-2xl tracking-tighter">
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors" href="#">Home</a>
+<a class="text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors" href="#">Projects</a>
+<a class="text-neutral-900 dark:text-neutral-50 border-b border-neutral-900 dark:border-neutral-50 pb-1" href="#">About</a>
+<a class="text-neutral-900 dark:text-neutral-50 border-b border-neutral-900 dark:border-neutral-50 pb-1" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="material-symbols-outlined p-2 hover:bg-neutral-200/50 dark:hover:bg-neutral-800/50 transition-all duration-500 ease-in-out text-neutral-600 dark:text-neutral-400">dark_mode</button>
+</div>
+</nav>
+<main class="pt-40 pb-24 px-12 max-w-7xl mx-auto">
+<!-- Hero Section: Asymmetric Headline -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-32">
+<div class="md:col-span-8">
+<h1 class="text-6xl md:text-8xl tracking-tighter leading-[0.9] mb-8">Structural Elegance. Technical Rigor.</h1>
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+                    I build digital foundations with the precision of an architect. My work bridges the gap between raw functional engineering and the aesthetic purity of the web.
+                </p>
+</div>
+<div class="md:col-span-4 flex items-end">
+<div class="w-full h-[400px] bg-surface-container overflow-hidden">
+<img alt="Architect Profile" class="w-full h-full object-cover grayscale contrast-125" data-alt="Professional portrait of a developer in a minimalist architectural studio with large windows and soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD95V8So7FGar1v5bGLnQrne194DixEfo0xySaoCs3LFrdEmYnSjyXjop1n2z5lvwMKvUxq8RC-Uwybi0X4-AQ7KGcOC27_EaFUkLFMni9iJ-vI6e4XLkGudzrCs64O0I1khhH7fej8meKAwmp0YkwmKsCsbkOy86D-zzotOPHKNR6hwKM-N5te5tsfgNP8FqAWbI-RCfhx6tS9Ebht6fGq9r0gJehTXHaED7g-6QGdsLr463AU--XoYANybRTGN03RZTJXqDZdtOgb"/>
+</div>
+</div>
+</section>
+<!-- Bento Grid: Experience & Skills -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-0 mb-32">
+<!-- Work Experience -->
+<div class="md:col-span-2 bg-surface-container-low p-12 flex flex-col justify-between border-r border-background">
+<h2 class="text-3xl mb-12">Professional Timeline</h2>
+<div class="space-y-16">
+<div class="relative pl-8">
+<div class="absolute left-0 top-2 w-2 h-2 bg-primary"></div>
+<span class="font-label text-xs uppercase tracking-widest text-outline mb-2 block">2022 — Present</span>
+<h3 class="text-xl font-bold mb-2">Senior Systems Architect</h3>
+<p class="text-on-surface-variant font-body">Leading the development of high-scale cloud infrastructures at Monolith Systems. Focused on performance optimization and modular design patterns.</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-2 w-2 h-2 bg-outline"></div>
+<span class="font-label text-xs uppercase tracking-widest text-outline mb-2 block">2019 — 2022</span>
+<h3 class="text-xl font-bold mb-2">Full Stack Engineer</h3>
+<p class="text-on-surface-variant font-body">Developed complex financial dashboards and real-time data visualization tools for international fintech clients.</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-2 w-2 h-2 bg-outline"></div>
+<span class="font-label text-xs uppercase tracking-widest text-outline mb-2 block">2017 — 2019</span>
+<h3 class="text-xl font-bold mb-2">UI Developer</h3>
+<p class="text-on-surface-variant font-body">Crafted bespoke digital experiences for architectural firms, ensuring pixel-perfect translation of design intent.</p>
+</div>
+</div>
+</div>
+<!-- Skills List -->
+<div class="md:col-span-1 bg-surface-container-high p-12">
+<h2 class="text-3xl mb-12">Core Competencies</h2>
+<div class="space-y-8">
+<div>
+<h4 class="font-label text-xs uppercase tracking-widest mb-4">Foundations</h4>
+<ul class="space-y-2 font-body text-on-surface">
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>TypeScript / React</span> <span class="text-outline">01</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>Go / Node.js</span> <span class="text-outline">02</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>GraphQL / REST</span> <span class="text-outline">03</span></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs uppercase tracking-widest mb-4">Infrastructure</h4>
+<ul class="space-y-2 font-body text-on-surface">
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>AWS / Docker</span> <span class="text-outline">04</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>PostgreSQL / Redis</span> <span class="text-outline">05</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>CI/CD Pipelines</span> <span class="text-outline">06</span></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label text-xs uppercase tracking-widest mb-4">Design Philosophy</h4>
+<ul class="space-y-2 font-body text-on-surface">
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>Atomic Design</span> <span class="text-outline">07</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>Accessibility (WCAG)</span> <span class="text-outline">08</span></li>
+<li class="flex justify-between border-b border-outline/10 pb-1"><span>Performance First</span> <span class="text-outline">09</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-24 items-start">
+<div>
+<h2 class="text-5xl tracking-tighter mb-8 leading-tight">Initiate a Conversation.</h2>
+<p class="text-lg text-on-surface-variant font-body mb-12">Whether you have a specific project in mind or simply wish to discuss the future of the digital landscape, my door is open.</p>
+<div class="space-y-6">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span class="font-body text-on-surface">studio@silentmonolith.dev</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="font-body text-on-surface">Berlin / Remote</span>
+</div>
+</div>
+</div>
+<!-- Contact Form -->
+<div class="bg-surface-container-lowest p-12 border-l border-background">
+<form class="space-y-8">
+<div class="relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline mb-2">Identification</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline/20 focus:ring-0 focus:border-primary transition-all p-0 pb-2 font-body" placeholder="Full Name" type="text"/>
+</div>
+<div class="relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline mb-2">Electronic Address</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline/20 focus:ring-0 focus:border-primary transition-all p-0 pb-2 font-body" placeholder="Email Address" type="email"/>
+</div>
+<div class="relative">
+<label class="block font-label text-[10px] uppercase tracking-widest text-outline mb-2">The Brief</label>
+<textarea class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline/20 focus:ring-0 focus:border-primary transition-all p-0 pb-2 font-body" placeholder="Your Message" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary py-6 px-12 font-label text-xs uppercase tracking-[0.2em] hover:bg-primary-dim transition-all duration-300" type="submit">
+                        Dispatch Inquiry
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-12 bg-[#f2f4f4] dark:bg-[#121212] flex flex-col md:flex-row justify-between items-center w-full mt-auto">
+<div class="font-sans text-[10px] uppercase tracking-widest text-neutral-600 dark:text-neutral-400 opacity-80">
+            © 2024 Silent Monolith Studio
+        </div>
+<div class="flex space-x-8 mt-6 md:mt-0">
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity" href="#">LinkedIn</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity" href="#">GitHub</a>
+<a class="font-sans text-[10px] uppercase tracking-widest text-neutral-500 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-neutral-50 underline underline-offset-4 transition-opacity" href="#">Layers</a>
+</div>
+</footer>
+</body></html>

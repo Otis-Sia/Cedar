@@ -72,6 +72,9 @@
         .template-grid-item:nth-child(2) { transition-delay: 0.1s; }
         .template-grid-item:nth-child(3) { transition-delay: 0.2s; }
         .template-grid-item:nth-child(4) { transition-delay: 0.3s; }
+        .template-grid-item:nth-child(5) { transition-delay: 0.4s; }
+        .template-grid-item:nth-child(6) { transition-delay: 0.5s; }
+        .template-grid-item:nth-child(7) { transition-delay: 0.6s; }
 
         /* Floating badge pulse */
         @keyframes gentlePulse {
@@ -99,7 +102,7 @@
             </div>
             <a href="index.html" class="font-headline text-2xl font-bold tracking-tight text-cedar-forest">Cedar</a>
         </div>
-        
+
         <div class="hidden md:flex items-center gap-10">
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#services">Services</a>
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-forest border-b-2 border-cedar-bronze pb-0.5" href="templates.html">Templates</a>
@@ -107,7 +110,7 @@
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#pricing">Pricing</a>
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#faq">FAQ</a>
         </div>
-        
+
         <div class="flex items-center gap-6">
             <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
             <a href="signup.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
@@ -116,343 +119,168 @@
         </div>
     </nav>
 
-    <main class="pt-20 overflow-hidden">
-
-        <!-- Hero Section -->
-        <section class="relative py-24 md:py-32 lg:py-40 px-6 md:px-16 lg:px-24 bg-cedar-forest overflow-hidden">
-            <!-- Subtle noise texture -->
-            <div class="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay">
-                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                    <filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
-                    <rect width="100%" height="100%" filter="url(#noiseFilter)"/>
-                </svg>
-            </div>
-            <!-- Decorative gradient orbs -->
-            <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] rounded-full bg-cedar-bronze/10 blur-[120px] pointer-events-none"></div>
-            <div class="absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] rounded-full bg-white/5 blur-[80px] pointer-events-none"></div>
-
-            <div class="relative z-10 max-w-[1280px] mx-auto">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
-                    <div class="max-w-2xl">
-                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 shadow-sm mb-8">
-                            <span class="material-symbols-outlined text-cedar-bronze text-sm" style="font-variation-settings: 'FILL' 1;">palette</span>
-                            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white/90">Curated Template Collection</span>
-                        </div>
-
-                        <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 leading-[1.08] text-white">
-                            Templates that<br/>
-                            <span class="text-cedar-bronze italic">tell your story.</span>
-                        </h1>
-
-                        <p class="text-lg md:text-xl text-white/75 max-w-xl leading-relaxed">
-                            Every layout is art-directed by our design team and optimized by AI to showcase your unique professional journey.
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col items-start lg:items-end gap-6">
-                        <div class="flex items-center gap-8">
-                            <div class="text-center">
-                                <div class="font-headline text-4xl font-bold text-white">4</div>
-                                <div class="text-white/50 text-xs uppercase tracking-widest font-semibold mt-1">Templates</div>
-                            </div>
-                            <div class="w-px h-12 bg-white/15"></div>
-                            <div class="text-center">
-                                <div class="font-headline text-4xl font-bold text-white">∞</div>
-                                <div class="text-white/50 text-xs uppercase tracking-widest font-semibold mt-1">Customization</div>
-                            </div>
-                            <div class="w-px h-12 bg-white/15"></div>
-                            <div class="text-center">
-                                <div class="font-headline text-4xl font-bold text-cedar-bronze">AI</div>
-                                <div class="text-white/50 text-xs uppercase tracking-widest font-semibold mt-1">Powered</div>
-                            </div>
-                        </div>
-                        <a href="#templates" class="inline-flex items-center gap-3 text-white/80 hover:text-white text-sm font-semibold uppercase tracking-widest transition-colors group">
-                            Explore below
-                            <span class="material-symbols-outlined text-cedar-bronze group-hover:translate-y-1 transition-transform">arrow_downward</span>
-                        </a>
-                    </div>
-                </div>
+    <main class="pt-20">
+        <!-- Templates Hero & Filters -->
+        <section class="pt-20 pb-10 px-6 md:px-12 text-center max-w-4xl mx-auto">
+            <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Gallery</span>
+            <h1 class="font-headline text-4xl md:text-6xl font-bold text-cedar-midnight mb-6">Curated Templates</h1>
+            <p class="text-lg text-cedar-slate mb-12">Select from a collection of premium layouts designed by leading creative directors.</p>
+            
+            <div class="flex flex-wrap justify-center gap-3">
+                <button class="filter-btn active px-5 py-2.5 rounded-full bg-[#1B3022] text-[#F9F7F2] shadow-[0_4px_14px_rgba(27,48,34,0.25)] text-sm font-medium" data-filter="all">All</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="bold-creative">Bold Creative</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="high-contrast">High Contrast</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="minimalist-architect">Minimalist</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="playful-1-page">Playful</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="professional-developer">Professional</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="student">Student</button>
+                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="tech-1-page">Tech</button>
             </div>
         </section>
 
-        <!-- Filter Bar -->
-        <section class="sticky top-20 z-40 bg-white/95 backdrop-blur-xl border-b border-black/5">
-            <div class="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 py-5 flex flex-wrap items-center gap-3">
-                <span class="text-cedar-slate font-semibold text-[10px] sm:text-xs uppercase tracking-widest mr-3">Show:</span>
-                <button class="filter-btn active px-5 py-2.5 rounded-full text-sm font-semibold" data-filter="all">All Templates</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="minimalist">Minimalist</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="creative">Creative</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="corporate">Corporate</button>
-                <button class="filter-btn px-5 py-2.5 rounded-full bg-cedar-alabaster border border-black/5 text-cedar-slate hover:text-cedar-midnight text-sm font-medium" data-filter="experimental">Experimental</button>
-            </div>
-        </section>
-
-        <!-- Templates Grid -->
-        <section id="templates" class="py-20 md:py-28 px-6 md:px-12 lg:px-16">
-            <div class="max-w-[1280px] mx-auto">
-
-                <!-- Template 1: Minimalist -->
-                <div class="template-grid-item mb-24" data-category="minimalist">
-                    <div class="template-card group relative flex flex-col lg:flex-row bg-white rounded-[32px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
-                        <!-- Image -->
-                        <div class="lg:w-[60%] relative overflow-hidden">
-                            <div class="aspect-[16/10] lg:aspect-auto lg:h-full w-full">
-                                <img id="template-minimalist-preview" alt="Minimalist Portfolio Template — Clean, editorial layout with generous whitespace" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="template_minimalist.png"/>
-                            </div>
-                            <!-- Overlay on hover -->
-                            <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/70 via-cedar-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-8 lg:p-12 z-10">
-                                <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Whitespace-first</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Serif Typography</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Editorial Grid</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Responsive</span>
+        <!-- Template Grid -->
+        <section class="py-12 px-6 lg:px-12 max-w-[1400px] mx-auto min-h-[50vh]">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                        <div class="template-grid-item" data-category="bold-creative">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Bold Creative template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Bold%20Creative/bold_creative_home_1/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 </div>
-                            </div>
-                            <!-- Badge -->
-                            <div class="absolute top-6 left-6 z-20 badge-pulse">
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-widest text-cedar-forest shadow-md">
-                                    <span class="material-symbols-outlined text-cedar-bronze text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
-                                    Most Popular
-                                </span>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Bold Creative</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Bold Creative</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">High-impact layouts with expressive imagery and confident typography.</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="bold-creative">Live Preview</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Info Panel -->
-                        <div class="lg:w-[40%] p-8 lg:p-12 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-4 block">Template 01</span>
-                                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-cedar-midnight mb-4">Minimalist</h2>
-                                <p class="text-cedar-slate text-base leading-relaxed mb-8">
-                                    A layout that breathes. Generous whitespace meets refined serif typography to let your work command the stage. Ideal for writers, consultants, and brand strategists who value clarity over clutter.
-                                </p>
-
-                                <div class="space-y-4 mb-10">
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Single-page or multi-page layout options</span>
+                        <div class="template-grid-item" data-category="high-contrast">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="High Contrast 1 page template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/High%20Contrast%201%20page/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">High Contrast 1 page</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">High Contrast</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Monochrome visual language with striking spacing and editorial drama.</p>
                                     </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Built-in dark mode variant</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Optimized for readability & SEO performance</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Contact form with email notifications</span>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="high-contrast">Live Preview</button>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-4 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
-                                    Use This Template
-                                </a>
-                                <button class="flex-1 text-center border border-black/10 text-cedar-midnight py-4 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all preview-btn" data-template="minimalist">
-                                    Live Preview
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Template 2: Creative Director -->
-                <div class="template-grid-item mb-24" data-category="creative">
-                    <div class="template-card group relative flex flex-col lg:flex-row-reverse bg-white rounded-[32px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
-                        <!-- Image -->
-                        <div class="lg:w-[60%] relative overflow-hidden">
-                            <div class="aspect-[16/10] lg:aspect-auto lg:h-full w-full">
-                                <img id="template-creative-preview" alt="Creative Director Template — Bold, dramatic layout with high-contrast imagery" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="template_creative_director.png"/>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/70 via-cedar-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-8 lg:p-12 z-10">
-                                <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Full-bleed Hero</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Asymmetric Grid</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Dark Mode Default</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Case Studies</span>
-                                </div>
-                            </div>
-                            <div class="absolute top-6 right-6 z-20">
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cedar-midnight/90 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-widest text-white shadow-md border border-white/10">
-                                    <span class="material-symbols-outlined text-cedar-bronze text-xs" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-                                    Trending
-                                </span>
                             </div>
                         </div>
 
-                        <!-- Info Panel -->
-                        <div class="lg:w-[40%] p-8 lg:p-12 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-4 block">Template 02</span>
-                                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-cedar-midnight mb-4">Creative Director</h2>
-                                <p class="text-cedar-slate text-base leading-relaxed mb-8">
-                                    Maximum impact, zero apologies. Full-bleed photography meets dramatic typography for portfolios that demand attention. Built for photographers, art directors, and visual storytellers.
-                                </p>
-
-                                <div class="space-y-4 mb-10">
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Cinematic full-screen hero transitions</span>
+                        <div class="template-grid-item" data-category="minimalist-architect">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Minimalist Architect template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Minimalist%20Architect/minimalist_architect_home_1/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Minimalist Architect</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Minimalist Architect</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Calm, structured compositions built around whitespace and precise hierarchy.</p>
                                     </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Interactive case study deep-dives</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Scroll-triggered parallax animations</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Video background support</span>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="minimalist-architect">Live Preview</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-4 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
-                                    Use This Template
-                                </a>
-                                <button class="flex-1 text-center border border-black/10 text-cedar-midnight py-4 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all preview-btn" data-template="creative-director">
-                                    Live Preview
-                                </button>
+                        <div class="template-grid-item" data-category="playful-1-page">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Playful 1 page template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Playful%201%20page/playful_illustrator_one_page_1/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Playful 1 page</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Playful</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Bright, character-driven layouts with a lively single-page rhythm.</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="playful-1-page">Live Preview</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="template-grid-item" data-category="professional-developer">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Professional Developer template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Professional%20Developer/professional_developer_home_1/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Professional Developer</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Professional Developer</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Structured portfolio layouts for technical profiles and product teams.</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="professional-developer">Live Preview</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="template-grid-item" data-category="student">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Student template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Student/student_portfolio_home_1/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Student</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Student</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Editorial layouts that present academic work and projects with clarity.</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="student">Live Preview</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="template-grid-item" data-category="tech-1-page">
+                            <div class="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
+                                <div class="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                                    <img alt="Tech 1 page template thumbnail" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="../Templates/Tech%201%20page/screen.png"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="p-6 flex flex-col flex-1 justify-between gap-5">
+                                    <div>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">Tech 1 page</span>
+                                        <h2 class="font-headline text-2xl font-bold text-cedar-midnight mb-3">Tech 1 page</h2>
+                                        <p class="text-cedar-slate text-sm leading-relaxed">Concise one-page layouts for tools, startups, and product storytelling.</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">Use This Template</a>
+                                        <button class="preview-btn flex-1 text-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all" data-template="tech-1-page">Live Preview</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Template 3: Corporate Tech -->
-                <div class="template-grid-item mb-24" data-category="corporate">
-                    <div class="template-card group relative flex flex-col lg:flex-row bg-white rounded-[32px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
-                        <!-- Image -->
-                        <div class="lg:w-[60%] relative overflow-hidden">
-                            <div class="aspect-[16/10] lg:aspect-auto lg:h-full w-full">
-                                <img id="template-corporate-preview" alt="Corporate Tech Template — Structured grid with data visualizations" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="template_corporate_tech.png"/>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/70 via-cedar-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-8 lg:p-12 z-10">
-                                <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Structured Grid</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Data Viz Ready</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Timeline Layout</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">ATS Optimized</span>
-                                </div>
-                            </div>
-                            <div class="absolute top-6 left-6 z-20">
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-widest text-cedar-forest shadow-md">
-                                    <span class="material-symbols-outlined text-cedar-bronze text-xs" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
-                                    Enterprise Ready
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Info Panel -->
-                        <div class="lg:w-[40%] p-8 lg:p-12 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-4 block">Template 03</span>
-                                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-cedar-midnight mb-4">Corporate Tech</h2>
-                                <p class="text-cedar-slate text-base leading-relaxed mb-8">
-                                    Precision meets polish. Structured grids, clean data visualization, and an organized timeline layout designed for engineers, product managers, and tech professionals.
-                                </p>
-
-                                <div class="space-y-4 mb-10">
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Skills radar chart & progress indicators</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Interactive experience timeline</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">GitHub & project integration widgets</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Downloadable PDF resume export</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-4 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
-                                    Use This Template
-                                </a>
-                                <button class="flex-1 text-center border border-black/10 text-cedar-midnight py-4 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all preview-btn" data-template="corporate-tech">
-                                    Live Preview
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Template 4: Experimental -->
-                <div class="template-grid-item mb-12" data-category="experimental">
-                    <div class="template-card group relative flex flex-col lg:flex-row-reverse bg-white rounded-[32px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500">
-                        <!-- Image -->
-                        <div class="lg:w-[60%] relative overflow-hidden">
-                            <div class="aspect-[16/10] lg:aspect-auto lg:h-full w-full">
-                                <img id="template-experimental-preview" alt="Experimental Template — Avant-garde layout with unconventional navigation" class="w-full h-full object-cover transition-transform duration-[2s] ease-out group-hover:scale-105" src="template_experimental.png"/>
-                            </div>
-                            <div class="absolute inset-0 bg-gradient-to-t from-cedar-forest/70 via-cedar-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-8 lg:p-12 z-10">
-                                <div class="flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Split-screen</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Bold Typography</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">Custom Cursors</span>
-                                    <span class="feature-tag px-3 py-1.5 bg-white/20 backdrop-blur-md border border-white/25 rounded-full text-white text-xs font-semibold">GSAP Animations</span>
-                                </div>
-                            </div>
-                            <div class="absolute top-6 right-6 z-20">
-                                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-cedar-bronze to-cedar-bronze-light rounded-full text-[10px] font-bold uppercase tracking-widest text-white shadow-md">
-                                    <span class="material-symbols-outlined text-white text-xs" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
-                                    New
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Info Panel -->
-                        <div class="lg:w-[40%] p-8 lg:p-12 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-4 block">Template 04</span>
-                                <h2 class="font-headline text-3xl lg:text-4xl font-bold text-cedar-midnight mb-4">Experimental</h2>
-                                <p class="text-cedar-slate text-base leading-relaxed mb-8">
-                                    Break all the rules. Unconventional navigation, bold color clashes, and boundary-pushing layouts for artists, musicians, and creative rebels who refuse to blend in.
-                                </p>
-
-                                <div class="space-y-4 mb-10">
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Split-screen / collage hero layouts</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Custom cursor & micro-interactions</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Audio / SoundCloud integration</span>
-                                    </div>
-                                    <div class="flex items-start gap-3">
-                                        <span class="material-symbols-outlined text-cedar-bronze text-lg mt-0.5" style="font-variation-settings: 'FILL' 1;">check_circle</span>
-                                        <span class="text-sm text-cedar-midnight font-medium">Fully customizable color palette engine</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-col sm:flex-row gap-3">
-                                <a href="signup.html" class="flex-1 text-center bg-cedar-forest text-white py-4 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
-                                    Use This Template
-                                </a>
-                                <button class="flex-1 text-center border border-black/10 text-cedar-midnight py-4 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all preview-btn" data-template="experimental">
-                                    Live Preview
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
 
@@ -470,10 +298,10 @@
                         <thead>
                             <tr class="bg-cedar-forest text-white">
                                 <th class="text-left py-5 px-6 font-semibold text-sm rounded-tl-3xl">Feature</th>
-                                <th class="text-center py-5 px-4 font-semibold text-sm">Minimalist</th>
-                                <th class="text-center py-5 px-4 font-semibold text-sm">Creative Director</th>
-                                <th class="text-center py-5 px-4 font-semibold text-sm">Corporate Tech</th>
-                                <th class="text-center py-5 px-4 font-semibold text-sm rounded-tr-3xl">Experimental</th>
+                                <th class="text-center py-5 px-4 font-semibold text-sm">Minimalist Architect</th>
+                                <th class="text-center py-5 px-4 font-semibold text-sm">Bold Creative</th>
+                                <th class="text-center py-5 px-4 font-semibold text-sm">Professional</th>
+                                <th class="text-center py-5 px-4 font-semibold text-sm rounded-tr-3xl">Student</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-black/5">
@@ -528,10 +356,10 @@
                             </tr>
                             <tr class="compare-row bg-cedar-alabaster/40">
                                 <td class="py-4 px-6 text-sm font-medium text-cedar-midnight">Best For</td>
-                                <td class="text-center text-xs font-semibold text-cedar-slate">Writers & Consultants</td>
-                                <td class="text-center text-xs font-semibold text-cedar-slate">Photographers & Art Directors</td>
+                                <td class="text-center text-xs font-semibold text-cedar-slate">Architects & Consultants</td>
+                                <td class="text-center text-xs font-semibold text-cedar-slate">Designers & Artists</td>
                                 <td class="text-center text-xs font-semibold text-cedar-slate">Engineers & PMs</td>
-                                <td class="text-center text-xs font-semibold text-cedar-slate">Artists & Musicians</td>
+                                <td class="text-center text-xs font-semibold text-cedar-slate">Students & Grads</td>
                             </tr>
                         </tbody>
                     </table>
@@ -669,17 +497,23 @@
             const previewClose = document.getElementById('preview-close');
 
             const templateImages = {
-                'minimalist': 'template_minimalist.png',
-                'creative-director': 'template_creative_director.png',
-                'corporate-tech': 'template_corporate_tech.png',
-                'experimental': 'template_experimental.png'
+                'bold-creative': '../Templates/Bold%20Creative/bold_creative_home_1/screen.png',
+                'high-contrast': '../Templates/High%20Contrast%201%20page/screen.png',
+                'minimalist-architect': '../Templates/Minimalist%20Architect/minimalist_architect_home_1/screen.png',
+                'playful-1-page': '../Templates/Playful%201%20page/playful_illustrator_one_page_1/screen.png',
+                'professional-developer': '../Templates/Professional%20Developer/professional_developer_home_1/screen.png',
+                'student': '../Templates/Student/student_portfolio_home_1/screen.png',
+                'tech-1-page': '../Templates/Tech%201%20page/screen.png'
             };
 
             const templateUrls = {
-                'minimalist': 'cedar.portfolio/minimalist-demo',
-                'creative-director': 'cedar.portfolio/creative-director-demo',
-                'corporate-tech': 'cedar.portfolio/corporate-tech-demo',
-                'experimental': 'cedar.portfolio/experimental-demo'
+                'bold-creative': 'cedar.portfolio/bold-creative-demo',
+                'high-contrast': 'cedar.portfolio/high-contrast-demo',
+                'minimalist-architect': 'cedar.portfolio/minimalist-architect-demo',
+                'playful-1-page': 'cedar.portfolio/playful-1-page-demo',
+                'professional-developer': 'cedar.portfolio/professional-developer-demo',
+                'student': 'cedar.portfolio/student-demo',
+                'tech-1-page': 'cedar.portfolio/tech-1-page-demo'
             };
 
             document.querySelectorAll('.preview-btn').forEach(btn => {

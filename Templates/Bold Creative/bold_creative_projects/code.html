@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CURATOR | Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;900&amp;family=Plus+Jakarta+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#beee00",
+                    "on-secondary-fixed": "#003f43",
+                    "on-secondary": "#005359",
+                    "inverse-surface": "#fff8f7",
+                    "on-tertiary-fixed": "#3a4a00",
+                    "outline": "#a16565",
+                    "on-primary": "#5e1100",
+                    "surface-container-high": "#3f0e11",
+                    "background": "#240305",
+                    "tertiary-fixed": "#cafd00",
+                    "primary": "#ff8f73",
+                    "on-tertiary-fixed-variant": "#526900",
+                    "surface-bright": "#52171b",
+                    "on-error": "#490013",
+                    "outline-variant": "#6c393a",
+                    "tertiary-dim": "#beee00",
+                    "surface-container-highest": "#491216",
+                    "surface-container-low": "#2c0508",
+                    "on-primary-container": "#490b00",
+                    "primary-fixed": "#ff7856",
+                    "on-surface": "#ffdedd",
+                    "surface-container": "#36090c",
+                    "on-error-container": "#ffb2b9",
+                    "on-secondary-container": "#e3fdff",
+                    "tertiary": "#f3ffca",
+                    "secondary": "#00eefc",
+                    "inverse-primary": "#b52900",
+                    "on-tertiary": "#516700",
+                    "error": "#ff6e84",
+                    "on-primary-fixed": "#000000",
+                    "error-container": "#a70138",
+                    "inverse-on-surface": "#7b4646",
+                    "surface-tint": "#ff8f73",
+                    "primary-fixed-dim": "#ff5d33",
+                    "primary-container": "#ff7856",
+                    "secondary-container": "#006970",
+                    "secondary-dim": "#00deec",
+                    "on-surface-variant": "#dd9a99",
+                    "error-dim": "#d73357",
+                    "surface-dim": "#240305",
+                    "on-primary-fixed-variant": "#5a1000",
+                    "primary-dim": "#db3400",
+                    "tertiary-container": "#cafd00",
+                    "surface-variant": "#491216",
+                    "surface": "#240305",
+                    "on-background": "#ffdedd",
+                    "surface-container-lowest": "#000000",
+                    "secondary-fixed-dim": "#00deec",
+                    "on-tertiary-container": "#4a5e00",
+                    "secondary-fixed": "#00eefc",
+                    "on-secondary-fixed-variant": "#005e64"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Epilogue"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #240305;
+            color: #ffdedd;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+        @media (max-width: 1024px) {
+            .editorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#240305]/70 backdrop-blur-3xl flex justify-between items-center px-6 md:px-12 py-6 w-full shadow-[0px_24px_48px_rgba(0,0,0,0.4)]">
+<div class="text-3xl font-black tracking-tighter text-[#ff8f73] font-['Epilogue'] uppercase">CURATOR</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-white/60 hover:text-white transition-colors hover:scale-105 transition-transform duration-300" href="#">Home</a>
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-[#ff8f73] border-b-2 border-[#ff8f73] pb-1 hover:scale-105 transition-transform duration-300" href="#">Projects</a>
+<a class="font-['Epilogue'] tracking-tighter uppercase font-black text-white/60 hover:text-white transition-colors hover:scale-105 transition-transform duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-[#ff8f73] hover:scale-105 transition-transform duration-300" data-icon="dark_mode">dark_mode</button>
+<button class="md:hidden material-symbols-outlined text-[#ff8f73]" data-icon="menu">menu</button>
+</div>
+</nav>
+<main class="pt-32 pb-20 px-6 md:px-12">
+<!-- Hero Header -->
+<header class="mb-24">
+<h1 class="font-headline text-5xl md:text-[8rem] font-black leading-[0.85] tracking-tighter uppercase mb-8">
+                Selected<br/>
+<span class="text-primary italic">Works</span>
+</h1>
+<p class="font-body text-xl md:text-2xl max-w-2xl text-on-surface-variant leading-relaxed">
+                A curated selection of digital experiences, visual identities, and kinetic experiments where raw brutality meets sophisticated motion.
+            </p>
+</header>
+<!-- Dynamic Projects Grid (Bento Style) -->
+<div class="editorial-grid">
+<!-- Project 1: Large Feature -->
+<div class="md:col-span-3 md:row-span-2 group relative overflow-hidden bg-surface-container-low">
+<div class="aspect-[4/5] md:aspect-auto md:h-full w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Avant-garde fashion editorial photography with high contrast red lighting and sharp shadows, cinematic and dramatic aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXEa8idBENBAbZXWwbSi_34wVemOsJT7KnqQO2Xrgj9OHlmu_mAcA1P4zkbehHG67I60jnVCNoMKByFinIYtGLycD7v_duonn6vhY-QR--IXwpFgQqHkaVVHnERVTGUuvnDPgdikRRL_fHJr3AntetpTx8phbN9VoKBgqVHQBtR6CJAnWuD33mUY2FJScaZ3ydhFZajKkZBK0O87ky4dy20qrnMH0-PoWKQSjo2bLNT1lksz0-uuruJL8zH0hnbKCVO_wQOXvHhYkc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<span class="text-secondary font-headline font-bold tracking-widest uppercase text-sm mb-4 block">Experimental Design</span>
+<h3 class="font-headline text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-4">Aetherial Form</h3>
+<p class="font-body text-lg text-on-surface-variant max-w-md">Deconstructing modern silhouette through digital manipulation and kinetic textures.</p>
+</div>
+</div>
+</div>
+<!-- Project 2: High Contrast Accent -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container-high">
+<div class="aspect-square w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Cyberpunk inspired neon blue abstract geometric shapes floating in a dark void with glowing light trails and grain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPXMrkLBWClUSUlCO1gkFVj-9kYNrgYZ2RTB8GLlHlRw2ZW7s2nvIk_nlxm98iWKRtzoD8E4M7v12fEabSwgES0hLDjj53NWzXFb8LAdKnz2wQ6HFmbMv03ZjkqM2Tw8icenjTOHF4M9lqDsNTdtlvdmewEWs5R5oRu-YQHqt2tGe4b8REWTtA9NTadhObp9T_0S3tqzWTuKECVMuXwu6qu0wunejoWYw_DqY-qY_cqy8FKr6lwpjEoWckJWWYn34cB274yM9hubkl"/>
+<div class="absolute inset-0 bg-[#00eefc]/10 mix-blend-overlay"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-primary font-headline font-bold uppercase text-xs tracking-widest mb-2 block">Identity</span>
+<h3 class="font-headline text-3xl font-black uppercase tracking-tighter">Neon Pulse</h3>
+</div>
+</div>
+</div>
+<!-- Project 3: Wide Layout -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container">
+<div class="aspect-video w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Minimalist architectural shot of brutalist concrete building against a deep orange sunset sky with strong vertical lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmtSOxLljPhDrg8IIOO-5WcxEXIP4nRxqiPOKQwqT_Z6TniFhA382CeuWecOvyb2AOOQxWIsdnaRcbwDXJ98k2t0G0Oici6k8qfswQGGMav1QbgX69MXBxOg-eCnKZw03u6Ken-ldKswaQyl7-YW5ItqyiAR7k8TqnLA6O_MklrdGhrA5tYvTuOL9LDwjfbBMaxeFNOF6c7c8xCgKQMvL928vW2VLN7Ywq3Jmy-gEmQeIjoFAZEJphrb7Iua2J9HBLDPc--VZrcRrj"/>
+<div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-6xl" data-icon="play_circle" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-secondary font-headline font-bold uppercase text-xs tracking-widest mb-2 block">Motion</span>
+<h3 class="font-headline text-3xl font-black uppercase tracking-tighter">Brutal Flow</h3>
+</div>
+</div>
+</div>
+<!-- Project 4: Vertical Island -->
+<div class="md:col-span-2 md:row-span-2 group relative overflow-hidden bg-surface-container-low">
+<div class="aspect-[3/4] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up artistic macro photography of liquid chrome textures swirling with vibrant orange reflections and high gloss" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7QXqBcb_2vR4D1xg4C341niFdsoQz3Cdmi2ganAL9ezp_S9WmdRPE1xS7kEEDW_B7PLP94bii9zHJsWg1wRSysBhHcOGoNkH2IyT8zdTxCDXCKJDlYRfaa27hibcwFt5V1QFNa-XBiLoRoJ7TQiIIHw1qJ8xD5QYpzq_depgYmgae1a3KWGaB50WfityHdsOPNU_vZNukyx7qBlt9ulzcM7PeZORpI7GIfrdQQvai4ogMsB_Yd1ZjT0pEnI8-sP7YulyeVXzNB1Ic"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-secondary font-headline font-bold uppercase text-xs tracking-widest mb-2 block">Visuals</span>
+<h3 class="font-headline text-4xl font-black uppercase tracking-tighter">Molten Soul</h3>
+<p class="font-body text-sm mt-4 text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-500">Exploring the intersection of fluid dynamics and luxury branding.</p>
+</div>
+</div>
+</div>
+<!-- Project 5: Small Square -->
+<div class="md:col-span-1 group relative overflow-hidden bg-surface-container-highest">
+<div class="aspect-square w-full overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 group-hover:scale-110" data-alt="Abstract 3D render of tangled wires and electronic components with soft ambient occlusion in deep burgundy tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4_H81Lz_KpO5G5SFgMpkpLFOkgLYblfv4_9JD_sHGYnV9SEY1pWyNEnz5eZLbIGtHZG_7FzaM5rZowfr2mFpZwcLSogCh8Y5nwDkyBNjJ_nJ9zX-FwIUPZ9Metxhci9WSWvIOQ1mpLaT3ylHnE4-RZyzBkyCY3qA-7iZxQmovAfIeVprGyGutKeQs5OiKJzWaQC_QtA8obdXv5zBA_oW0ISQT4QT-VAlr2R8EupUOCvNAb4Fv7XSX-kcvk14AQHpGODUqpt5j_3vx"/>
+<div class="absolute top-4 right-4 bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-xl" data-icon="arrow_outward">arrow_outward</span>
+</div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-xl font-black uppercase tracking-tighter">Neural Network</h3>
+</div>
+</div>
+</div>
+<!-- Project 6: Medium Card -->
+<div class="md:col-span-2 group relative overflow-hidden bg-surface-container">
+<div class="aspect-[4/3] w-full overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Double exposure portrait of a man merged with a busy city street at night, neon lights and motion blur effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnXhJ3ChvbX8kySZKq1U81fwKMIehHN7Ye-BSzZzl8UJjPk7C6guS9glbPwYAcM6XZkuWEmytrGpnBQuwl6fMX_u9owKxN2XvX1XJEPYiMWbGnD-Eav0V3x6J-2X0iz_YCZt5dyR0-gH2vqvv3W7PLxn7mAxoO8KneFakDrK4RHQ6S4SZLMTI-cygCtDL4YsEUZp6hQ_ZQ97me4kylWuwf7IAUTsyJxJWbzf7s-pFh_LZtepdh4PrlG7NBYHxOU1CtbGn4jDQhafw7"/>
+<div class="absolute inset-0 bg-gradient-to-tr from-[#240305] via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<span class="text-secondary font-headline font-bold uppercase text-xs tracking-widest mb-2 block">Editorial</span>
+<h3 class="font-headline text-3xl font-black uppercase tracking-tighter">Urban Ghost</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Transition CTA -->
+<section class="mt-40 border-t border-outline-variant/20 pt-20 flex flex-col items-center text-center">
+<h2 class="font-headline text-4xl md:text-7xl font-black uppercase tracking-tighter mb-12">
+                Have a vision?<br/>
+<span class="text-secondary">Let's manifest it.</span>
+</h2>
+<a class="group relative px-12 py-6 bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-black text-xl uppercase tracking-widest rounded-full transition-transform hover:scale-105 active:scale-95 shadow-[0px_24px_48px_rgba(255,143,115,0.3)]" href="#">
+                Start a Project
+                <span class="material-symbols-outlined align-middle ml-2 group-hover:translate-x-2 transition-transform" data-icon="east">east</span>
+</a>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#240305] w-full py-20 px-12 mt-auto flex flex-col md:flex-row justify-between items-end border-t border-outline-variant/10">
+<div class="flex flex-col gap-4 mb-8 md:mb-0">
+<div class="text-2xl font-black text-[#ff8f73] font-headline uppercase tracking-tighter">KINETIC CURATOR</div>
+<p class="font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase text-[#6c393a]">© 2024 Kinetic Curator. No Borders. No Limits.</p>
+</div>
+<div class="flex gap-12 font-['Plus_Jakarta_Sans'] text-sm tracking-widest uppercase">
+<a class="text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">Instagram</a>
+<a class="text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">LinkedIn</a>
+<a class="text-[#6c393a] hover:text-[#ff8f73] transition-colors" href="#">Dribbble</a>
+</div>
+</footer>
+</body></html>

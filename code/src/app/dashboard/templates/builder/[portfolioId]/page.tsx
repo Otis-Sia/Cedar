@@ -286,7 +286,7 @@ export default function PortfolioBuilder() {
                 <div className="flex items-center gap-2 text-sm font-bold text-cedar-midnight mb-1">
                   <span className="material-symbols-outlined text-cedar-bronze text-[16px]">lock</span> Custom Domain
                 </div>
-                <p className="text-xs text-cedar-slate">Upgrade to Business to use your own custom domain.</p>
+                <p className="text-xs text-cedar-slate">Upgrade to Creator Pro to use your own custom domain.</p>
               </div>
             )}
           </div>
@@ -322,7 +322,7 @@ export default function PortfolioBuilder() {
                   <div className="font-bold text-cedar-midnight text-sm flex items-center justify-between">
                     Developer <span className="material-symbols-outlined text-cedar-slate text-[14px]">lock</span>
                   </div>
-                  <div className="text-xs text-cedar-slate">Upgrade to Pro to unlock.</div>
+                  <div className="text-xs text-cedar-slate">Upgrade to Career or Creator Pro to unlock.</div>
                 </div>
               )}
             </div>
