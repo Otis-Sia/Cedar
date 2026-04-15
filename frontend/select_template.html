@@ -34,6 +34,39 @@
     </style>
 </head>
 <body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30">
+<!-- Mobile Top Bar -->
+<div class="mobile-topbar md:hidden">
+    <button id="mobileDrawerBtn" class="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">C</div>
+        <span class="font-headline text-lg font-bold tracking-tight text-cedar-forest">Cedar</span>
+    </a>
+    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-cedar-alabaster border border-black/5">
+        <span class="material-symbols-outlined text-cedar-midnight text-xl">notifications</span>
+    </button>
+</div>
+<div id="drawerBackdrop" class="mobile-backdrop"></div>
+<div id="mobileDrawer" class="mobile-drawer bg-white flex flex-col py-6">
+    <div class="px-6 mb-8">
+        <a href="index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">C</div><h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1></a>
+    </div>
+    <nav class="flex-1 space-y-1">
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html"><span class="material-symbols-outlined">grid_view</span><span class="text-sm font-medium">Dashboard</span></a>
+        <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 shadow-md" href="select_template.html"><span class="material-symbols-outlined">auto_awesome_motion</span><span class="text-sm font-medium">Templates</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html"><span class="material-symbols-outlined">upload_file</span><span class="text-sm font-medium">Upload CV</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="portfolio_form.html"><span class="material-symbols-outlined">edit_note</span><span class="text-sm font-medium">Portfolio Builder</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html"><span class="material-symbols-outlined">folder_open</span><span class="text-sm font-medium">Assets</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html"><span class="material-symbols-outlined">insights</span><span class="text-sm font-medium">Insights</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="settings.html"><span class="material-symbols-outlined">settings_accessibility</span><span class="text-sm font-medium">Settings</span></a>
+    </nav>
+    <div class="px-4 mt-auto">
+        <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm mb-4 shadow-md text-center">New Portfolio</a>
+        <div class="border-t border-black/5 pt-4">
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html"><span class="material-symbols-outlined">help</span><span class="text-sm font-medium">Help Center</span></a>
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html"><span class="material-symbols-outlined">logout</span><span class="text-sm font-medium">Sign Out</span></a>
+        </div>
+    </div>
+</div>
 <div class="flex min-h-screen">
     <!-- SideNavBar -->
     <aside class="hidden md:flex flex-col h-screen w-64 bg-white border-r border-black/5 sticky top-0 shrink-0">
@@ -63,6 +96,10 @@
             <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html">
                 <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
                 <span class="text-sm font-medium">Upload CV</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="portfolio_form.html">
+                <span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+                <span class="text-sm font-medium">Portfolio Builder</span>
             </a>
             <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html">
                 <span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
@@ -98,7 +135,7 @@
     <!-- Main Content Area -->
     <main class="flex-1 min-w-0 overflow-y-auto">
         <!-- Header Section -->
-        <header class="pt-12 px-8 md:px-12 lg:px-16 pb-8">
+        <header class="pt-8 md:pt-12 px-4 sm:px-8 md:px-12 lg:px-16 pb-6 md:pb-8">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
                 <div>
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cedar-alabaster border border-cedar-bronze/20 text-cedar-bronze text-[10px] font-bold uppercase tracking-widest mb-4">
@@ -112,26 +149,28 @@
         </header>
 
         <!-- Sticky Filter Bar -->
-        <div class="sticky top-0 z-30 bg-cedar-alabaster/90 backdrop-blur-xl px-8 md:px-12 lg:px-16 py-4 flex flex-wrap items-center gap-3 lg:gap-4 border-b border-black/5">
-            <span class="text-cedar-slate font-medium text-[10px] sm:text-xs uppercase tracking-widest mr-2">Filter by:</span>
+        <div class="sticky top-0 z-30 bg-cedar-alabaster/90 backdrop-blur-xl px-4 sm:px-8 md:px-12 lg:px-16 py-4 border-b border-black/5">
+            <div class="flex flex-nowrap items-center gap-3 lg:gap-4 overflow-x-auto no-scrollbar pb-1">
+            <span class="text-cedar-slate font-medium text-[10px] sm:text-xs uppercase tracking-widest mr-2 shrink-0">Filter by:</span>
             
-            <button class="px-5 py-2 rounded-full bg-cedar-forest text-white text-sm font-semibold shadow-sm">All Templates</button>
-            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Bold Creative</button>
-            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">High Contrast 1 page</button>
+            <button class="px-5 py-2 rounded-full bg-cedar-forest text-white text-sm font-semibold shadow-sm shrink-0">All Templates</button>
+            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors shrink-0">Bold Creative</button>
+            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors shrink-0">High Contrast 1 page</button>
             <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Minimalist Architect</button>
             <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Playful 1 page</button>
             <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Professional Developer</button>
             <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Student</button>
-            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors">Tech 1 page</button>
+            <button class="px-5 py-2 rounded-full bg-white border border-black/5 text-cedar-slate hover:text-cedar-midnight hover:border-black/10 text-sm font-medium transition-colors shrink-0">Tech 1 page</button>
+            </div>
             
-            <div class="ml-auto mt-4 sm:mt-0 flex items-center bg-white border border-black/5 rounded-full px-4 py-2 w-full lg:w-auto">
+            <div class="mt-3 lg:mt-0 flex items-center bg-white border border-black/5 rounded-full px-4 py-2 w-full lg:w-auto">
                 <span class="material-symbols-outlined text-cedar-slate text-lg">search</span>
                 <input class="bg-transparent border-none focus:ring-0 text-sm text-cedar-midnight placeholder-cedar-slate/60 w-full sm:w-48 ml-2 outline-none" placeholder="Search layouts..." type="text"/>
             </div>
         </div>
 
         <!-- Template Grid -->
-        <div class="p-8 md:p-12 lg:p-16 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div class="p-4 sm:p-8 md:p-12 lg:p-16 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
             <div class="group relative flex flex-col bg-white rounded-3xl overflow-hidden hover:shadow-lg border border-black/5 transition-all duration-500">
                 <div class="aspect-[4/5] w-full relative overflow-hidden bg-gray-100">
                     <img alt="Bold Creative template preview" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105" src="../Templates/Bold%20Creative/bold_creative_home_1/screen.png"/>
@@ -211,7 +250,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="flex flex-col md:flex-row justify-between items-center px-8 md:px-12 py-10 w-full bg-white border-t border-black/5">
+        <footer class="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-12 py-8 md:py-10 w-full bg-white border-t border-black/5">
             <div class="text-[13px] font-medium text-cedar-slate mb-4 md:mb-0">
                 © 2026 Cedar. Curated with excellence in Nairobi.
             </div>
@@ -226,7 +265,7 @@
 </div>
 
 <!-- AI Floating Bar -->
-<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md border border-black/5 rounded-full px-8 py-4 flex flex-col sm:flex-row items-center gap-4 sm:gap-6 shadow-[0_10px_40px_rgba(27,48,34,0.1)]">
+<div class="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md border border-black/5 rounded-full px-4 sm:px-8 py-3 sm:py-4 flex flex-col sm:flex-row items-center gap-3 sm:gap-6 shadow-[0_10px_40px_rgba(27,48,34,0.1)] max-w-[calc(100vw-32px)]">
     <div class="flex items-center gap-3 w-full sm:w-auto shrink-0">
         <div class="w-2.5 h-2.5 rounded-full bg-cedar-bronze ai-pulse shadow-[0_0_10px_#AA8C55]"></div>
         <span class="text-sm font-semibold text-cedar-midnight whitespace-nowrap">Cedar Intelligence</span>
@@ -237,5 +276,7 @@
     </span>
     <button class="text-[13px] font-bold text-cedar-forest hover:text-cedar-forest-dark shrink-0 ml-2">Analyze More</button>
 </div>
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
 </body>
 </html>

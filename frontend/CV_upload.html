@@ -18,7 +18,45 @@
     <!-- Custom CSS Base -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased overflow-hidden selection:bg-cedar-bronze/30">
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30">
+<!-- Mobile Top Bar -->
+<div class="mobile-topbar md:hidden">
+    <button id="mobileDrawerBtn" class="hamburger-btn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">C</div>
+        <span class="font-headline text-lg font-bold tracking-tight text-cedar-forest">Cedar</span>
+    </a>
+    <button class="w-10 h-10 flex items-center justify-center rounded-full bg-cedar-alabaster border border-black/5">
+        <span class="material-symbols-outlined text-cedar-midnight text-xl">notifications</span>
+    </button>
+</div>
+<div id="drawerBackdrop" class="mobile-backdrop"></div>
+<div id="mobileDrawer" class="mobile-drawer bg-white flex flex-col py-6">
+    <div class="px-6 mb-8">
+        <a href="index.html" class="flex items-center gap-3 group">
+            <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">C</div>
+            <h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1>
+        </a>
+    </div>
+    <nav class="flex-1 space-y-1">
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html"><span class="material-symbols-outlined">grid_view</span><span class="text-sm font-medium">Dashboard</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html"><span class="material-symbols-outlined">auto_awesome_motion</span><span class="text-sm font-medium">Templates</span></a>
+        <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 shadow-md" href="CV_upload.html"><span class="material-symbols-outlined">upload_file</span><span class="text-sm font-medium">Upload CV</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="portfolio_form.html"><span class="material-symbols-outlined">edit_note</span><span class="text-sm font-medium">Portfolio Builder</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html"><span class="material-symbols-outlined">folder_open</span><span class="text-sm font-medium">Assets</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html"><span class="material-symbols-outlined">insights</span><span class="text-sm font-medium">Insights</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="settings.html"><span class="material-symbols-outlined">settings_accessibility</span><span class="text-sm font-medium">Settings</span></a>
+    </nav>
+    <div class="px-4 mt-auto">
+        <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm mb-4 shadow-md text-center">New Portfolio</a>
+        <div class="border-t border-black/5 pt-4">
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html"><span class="material-symbols-outlined">help</span><span class="text-sm font-medium">Help Center</span></a>
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html"><span class="material-symbols-outlined">logout</span><span class="text-sm font-medium">Sign Out</span></a>
+        </div>
+    </div>
+</div>
 <div class="flex h-screen overflow-hidden">
     <!-- SideNavBar -->
     <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
@@ -52,6 +90,10 @@
             <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="CV_upload.html">
                 <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
                 <span class="text-sm font-medium">Upload CV</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="portfolio_form.html">
+                <span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+                <span class="text-sm font-medium">Portfolio Builder</span>
             </a>
             <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html">
                 <span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
@@ -87,7 +129,7 @@
     <!-- Main Canvas -->
     <main class="flex-1 bg-cedar-alabaster overflow-y-auto no-scrollbar relative flex flex-col">
         <!-- Top Header Area -->
-        <header class="flex justify-between items-center px-8 md:px-12 py-10 shrink-0">
+        <header class="flex justify-between items-center px-4 sm:px-8 md:px-12 py-6 md:py-10 shrink-0">
             <div>
                 <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight text-cedar-forest">Upload CV</h2>
                 <p class="text-sm text-cedar-slate mt-1 italic font-medium">Auto-populating your portfolio structure.</p>
@@ -103,7 +145,7 @@
             </div>
         </header>
 
-        <div class="px-8 md:px-12 pb-20 flex-grow flex flex-col items-center justify-center max-w-[1280px] mx-auto w-full">
+        <div class="px-4 sm:px-8 md:px-12 pb-20 flex-grow flex flex-col items-center justify-center max-w-[1280px] mx-auto w-full">
         <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div class="lg:col-span-5 space-y-8 pt-8">
                 <div class="space-y-6">
@@ -234,7 +276,7 @@
 </div>
 
     <!-- Fixed Floating Status Indicator -->
-    <div class="fixed bottom-8 right-8 z-50">
+    <div class="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 z-50">
         <div class="bg-white/90 backdrop-blur-md px-5 py-3 rounded-2xl flex items-center gap-3 border border-black/5 shadow-[0_10px_30px_rgba(0,0,0,0.08)]">
             <div class="w-2.5 h-2.5 rounded-full bg-cedar-forest animate-pulse shadow-[0_0_8px_rgba(27,48,34,0.5)]"></div>
             <p class="text-xs font-bold text-cedar-midnight tracking-wide uppercase">Engine Ready</p>

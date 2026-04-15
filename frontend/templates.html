@@ -94,8 +94,7 @@
 </head>
 <body class="bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30">
 
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-nav flex justify-between items-center px-6 md:px-10 py-4 h-20">
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav flex justify-between items-center px-4 sm:px-6 md:px-10 py-3 md:py-4 h-16 md:h-20">
         <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">
                 C
@@ -111,17 +110,47 @@
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#faq">FAQ</a>
         </div>
 
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-4 md:gap-6">
             <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
-            <a href="signup.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
+            <a href="signup.html" class="hidden sm:inline-flex bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
                 Build Portfolio
             </a>
+            <button id="mobileMenuBtn" class="hamburger-btn md:hidden" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
-    <main class="pt-20">
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="mobile-backdrop"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenuPanel" class="mobile-menu-panel bg-white flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-black/5">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">C</div>
+                <div class="font-headline text-xl font-bold tracking-tight text-cedar-forest">Cedar</div>
+            </div>
+            <button id="mobileMenuClose" class="w-10 h-10 rounded-xl bg-cedar-alabaster flex items-center justify-center text-cedar-slate hover:text-cedar-midnight transition-colors" aria-label="Close menu">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="flex-1 p-5 space-y-1">
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="index.html#services"><span class="material-symbols-outlined text-cedar-forest">design_services</span> Services</a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl bg-cedar-alabaster text-cedar-forest font-semibold" href="templates.html"><span class="material-symbols-outlined text-cedar-forest">auto_awesome_motion</span> Templates</a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="index.html#showcase"><span class="material-symbols-outlined text-cedar-forest">photo_library</span> Showcase</a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="index.html#pricing"><span class="material-symbols-outlined text-cedar-forest">payments</span> Pricing</a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="index.html#faq"><span class="material-symbols-outlined text-cedar-forest">help</span> FAQ</a>
+        </nav>
+        <div class="p-5 border-t border-black/5 space-y-3">
+            <a href="login.html" class="block w-full text-center py-3.5 rounded-xl border border-black/10 text-cedar-midnight font-bold text-sm hover:bg-cedar-alabaster transition-all">Log In</a>
+            <a href="signup.html" class="block w-full text-center py-3.5 rounded-xl bg-cedar-forest text-white font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all">Build Portfolio</a>
+        </div>
+    </div>
+
+    <main class="pt-16 md:pt-20">
         <!-- Templates Hero & Filters -->
-        <section class="pt-20 pb-10 px-6 md:px-12 text-center max-w-4xl mx-auto">
+        <section class="pt-12 md:pt-20 pb-8 md:pb-10 px-4 sm:px-6 md:px-12 text-center max-w-4xl mx-auto">
             <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Gallery</span>
             <h1 class="font-headline text-4xl md:text-6xl font-bold text-cedar-midnight mb-6">Curated Templates</h1>
             <p class="text-lg text-cedar-slate mb-12">Select from a collection of premium layouts designed by leading creative directors.</p>

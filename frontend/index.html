@@ -38,7 +38,7 @@
 <body class="bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30">
 
     <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-nav flex justify-between items-center px-6 md:px-10 py-4 h-20">
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav flex justify-between items-center px-4 sm:px-6 md:px-10 py-3 md:py-4 h-16 md:h-20">
         <div class="flex items-center gap-3">
             <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">
                 C
@@ -54,17 +54,60 @@
             <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="#faq">FAQ</a>
         </div>
 
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-4 md:gap-6">
             <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
-            <a href="signup.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
+            <a href="signup.html" class="hidden sm:inline-flex bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
                 Build Portfolio
             </a>
+            <!-- Mobile hamburger -->
+            <button id="mobileMenuBtn" class="hamburger-btn md:hidden" aria-label="Open menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
-    <main class="pt-20 overflow-hidden">
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobileMenuBackdrop" class="mobile-backdrop"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobileMenuPanel" class="mobile-menu-panel bg-white flex flex-col">
+        <div class="flex items-center justify-between p-5 border-b border-black/5">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">C</div>
+                <div class="font-headline text-xl font-bold tracking-tight text-cedar-forest">Cedar</div>
+            </div>
+            <button id="mobileMenuClose" class="w-10 h-10 rounded-xl bg-cedar-alabaster flex items-center justify-center text-cedar-slate hover:text-cedar-midnight transition-colors" aria-label="Close menu">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="flex-1 p-5 space-y-1">
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="#services">
+                <span class="material-symbols-outlined text-cedar-forest">design_services</span> Services
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="templates.html">
+                <span class="material-symbols-outlined text-cedar-forest">auto_awesome_motion</span> Templates
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="#showcase">
+                <span class="material-symbols-outlined text-cedar-forest">photo_library</span> Showcase
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="#pricing">
+                <span class="material-symbols-outlined text-cedar-forest">payments</span> Pricing
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors" href="#faq">
+                <span class="material-symbols-outlined text-cedar-forest">help</span> FAQ
+            </a>
+        </nav>
+        <div class="p-5 border-t border-black/5 space-y-3">
+            <a href="login.html" class="block w-full text-center py-3.5 rounded-xl border border-black/10 text-cedar-midnight font-bold text-sm hover:bg-cedar-alabaster transition-all">Log In</a>
+            <a href="signup.html" class="block w-full text-center py-3.5 rounded-xl bg-cedar-forest text-white font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all">Build Portfolio</a>
+        </div>
+    </div>
+
+    <main class="pt-16 md:pt-20 overflow-hidden">
         <!-- Hero Section from landing_page.html -->
-        <section class="relative min-h-[95vh] flex items-center px-6 md:px-16 lg:px-24 py-20 bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1770110000509-6c8298224699?auto=format&fit=crop&w=2400&q=80');">
+        <section class="relative min-h-[85vh] md:min-h-[95vh] flex items-center px-4 sm:px-6 md:px-16 lg:px-24 py-12 md:py-20 bg-cover bg-center overflow-hidden" style="background-image: url('https://images.unsplash.com/photo-1770110000509-6c8298224699?auto=format&fit=crop&w=2400&q=80');">
             <!-- Dark Overlay for foggy forest -->
             <div class="absolute inset-0 bg-gradient-to-b from-[#121415]/50 via-[#121415]/70 to-[#1B3022]/85 z-0"></div>
 
@@ -74,7 +117,7 @@
                     <span class="text-xs font-semibold uppercase tracking-[0.2em] text-white">The New Standard for Creators</span>
                 </div>
 
-                <h1 class="font-headline text-5xl md:text-[80px] font-bold tracking-tight mb-8 leading-[1.05] text-white">
+                <h1 class="font-headline text-4xl sm:text-5xl md:text-[80px] font-bold tracking-tight mb-6 md:mb-8 leading-[1.05] text-white">
                     Your Story,<br/>
                     <span class="text-cedar-bronze italic">Curated</span> by Intelligence.
                 </h1>
@@ -95,7 +138,7 @@
         </section>
 
         <!-- Services Section from index.html -->
-        <section id="services" class="py-[100px] px-6 max-w-[1280px] mx-auto border-t border-black/5">
+        <section id="services" class="py-16 md:py-[100px] px-4 sm:px-6 max-w-[1280px] mx-auto border-t border-black/5">
             <div class="text-center max-w-[700px] mx-auto mb-20">
                 <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Our Services</span>
                 <h2 class="font-headline text-4xl md:text-5xl font-bold text-cedar-forest mt-4 mb-4">Everything you need to look professional online</h2>
@@ -104,7 +147,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Service Card -->
-                <div class="bg-white p-12 rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
+                <div class="bg-white p-8 md:p-12 rounded-[24px] md:rounded-[32px] border border-black/5 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.05)] transition-all duration-300">
                     <div class="w-16 h-16 bg-cedar-alabaster rounded-2xl mb-8 flex items-center justify-center text-2xl">✒️</div>
                     <h3 class="font-headline text-2xl font-bold mb-4 text-cedar-midnight">Bespoke Design</h3>
                     <p class="text-cedar-slate text-sm leading-relaxed">A clean, modern site designed around your personal brand, niche, and professional goals.</p>
@@ -128,7 +171,7 @@
         </section>
 
         <!-- How It Works - Bento Grid from landing_page.html -->
-        <section id="process" class="py-[120px] px-6 md:px-12 bg-white border-y border-black/5 relative z-10">
+        <section id="process" class="py-16 md:py-[120px] px-4 sm:px-6 md:px-12 bg-white border-y border-black/5 relative z-10">
             <div class="max-w-[1280px] mx-auto">
                 <div class="mb-20">
                     <h2 class="font-headline text-4xl md:text-5xl font-bold mb-6 text-cedar-midnight">The Evolution of Effort</h2>
@@ -194,7 +237,7 @@
         </section>
 
         <!-- Template Showcase from landing_page.html -->
-        <section id="showcase" class="py-[120px] px-6 lg:px-12 bg-cedar-alabaster overflow-hidden">
+        <section id="showcase" class="py-16 md:py-[120px] px-4 sm:px-6 lg:px-12 bg-cedar-alabaster overflow-hidden">
             <div class="max-w-[1280px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-end">
                 <div>
                     <h2 class="font-headline text-4xl md:text-5xl font-bold mb-4 text-cedar-midnight">The Showcase</h2>
@@ -246,7 +289,7 @@
         </section>
 
         <!-- Pricing Section from landing_page.html -->
-        <section id="pricing" class="py-[120px] px-6 lg:px-12 bg-white">
+        <section id="pricing" class="py-16 md:py-[120px] px-4 sm:px-6 lg:px-12 bg-white">
             <div class="max-w-[1280px] mx-auto text-center mb-20">
                 <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Plans</span>
                 <h2 class="font-headline text-4xl md:text-5xl font-bold mb-6 text-cedar-midnight">Built for Every Stage</h2>
@@ -269,7 +312,7 @@
                     <a href="signup.html" class="w-full text-center py-4 rounded-full border border-black/10 text-cedar-midnight font-bold shadow-sm hover:bg-gray-50 transition-all">Start Free</a>
                 </div>
 
-                <div class="bg-cedar-forest p-8 rounded-[32px] flex flex-col items-start relative overflow-hidden shadow-2xl md:scale-[1.02]">
+                <div class="bg-cedar-forest p-8 rounded-[32px] flex flex-col items-start relative overflow-hidden shadow-2xl lg:scale-[1.02]">
                     <div class="absolute top-6 right-6 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white border border-white/20">Most Popular</div>
                     <span class="text-cedar-bronze-light font-semibold text-[10px] uppercase tracking-[0.2em] mb-4">Student Pro</span>
                     <div class="font-headline font-bold text-[38px] text-white mb-1">KES 150</div>
@@ -349,7 +392,7 @@
         </section>
 
         <!-- FAQ Section from index.html -->
-        <section id="faq" class="py-[100px] px-6 max-w-[1280px] mx-auto border-t border-black/5">
+        <section id="faq" class="py-16 md:py-[100px] px-4 sm:px-6 max-w-[1280px] mx-auto border-t border-black/5">
             <div class="text-center max-w-[700px] mx-auto mb-20">
                 <span class="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">Clarity</span>
                 <h2 class="font-headline text-4xl md:text-5xl font-bold text-cedar-forest mt-4 mb-4">Common Questions</h2>
@@ -396,8 +439,8 @@
         </section>
 
         <!-- Final CTA (combined contact section) -->
-        <section id="contact" class="py-[120px] px-6 lg:px-12 bg-cedar-alabaster">
-            <div class="max-w-[1280px] mx-auto rounded-[40px] lg:rounded-[60px] bg-cedar-forest p-10 md:p-16 lg:p-24 relative overflow-hidden shadow-2xl">
+        <section id="contact" class="py-16 md:py-[120px] px-4 sm:px-6 lg:px-12 bg-cedar-alabaster">
+            <div class="max-w-[1280px] mx-auto rounded-[28px] md:rounded-[40px] lg:rounded-[60px] bg-cedar-forest p-6 sm:p-10 md:p-16 lg:p-24 relative overflow-hidden shadow-2xl">
                 <!-- Subtle Texture -->
                 <div class="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay bg-[#1B3022]">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
@@ -464,10 +507,10 @@
     </footer>
 
     <!-- AI Floating Bar (from landing_page) -->
-    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[100] px-6 py-4 rounded-full bg-white/95 backdrop-blur-md border border-black/5 flex items-center gap-6 shadow-[0_10px_40px_rgba(27,48,34,0.1)]">
+    <div class="fixed bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-[100] px-4 sm:px-6 py-3 sm:py-4 rounded-full bg-white/95 backdrop-blur-md border border-black/5 flex items-center gap-4 sm:gap-6 shadow-[0_10px_40px_rgba(27,48,34,0.1)] max-w-[calc(100vw-32px)]">
         <div class="flex items-center gap-3">
             <div class="w-2 h-2 rounded-full bg-cedar-bronze animate-pulse shadow-[0_0_8px_#AA8C55]"></div>
-            <span class="text-sm font-semibold text-cedar-midnight whitespace-nowrap">Cedar is ready</span>
+            <span class="text-xs sm:text-sm font-semibold text-cedar-midnight whitespace-nowrap">Cedar is ready</span>
         </div>
         <div class="hidden sm:block h-6 w-px bg-black/10"></div>
         <a href="signup.html" class="hidden sm:flex items-center gap-4 cursor-pointer group">

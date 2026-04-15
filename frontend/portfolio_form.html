@@ -93,7 +93,45 @@
         }
     </style>
 </head>
-<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased overflow-hidden selection:bg-cedar-bronze/30">
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30">
+<!-- Mobile Top Bar -->
+<div class="mobile-topbar md:hidden">
+    <button id="mobileDrawerBtn" class="hamburger-btn" aria-label="Open menu"><span></span><span></span><span></span></button>
+    <a href="index.html" class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">C</div>
+        <span class="font-headline text-lg font-bold tracking-tight text-cedar-forest">Cedar</span>
+    </a>
+    <!-- Mobile Progress Ring -->
+    <div class="flex items-center gap-2">
+        <svg class="w-7 h-7" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15" fill="none" stroke="#F9F7F2" stroke-width="3"/>
+            <circle id="progressRingMobile" class="progress-ring-circle" cx="18" cy="18" r="15" fill="none" stroke="#1B3022" stroke-width="3" stroke-linecap="round" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+        </svg>
+        <span id="progressTextMobile" class="text-[10px] font-bold text-cedar-midnight tracking-widest uppercase">0%</span>
+    </div>
+</div>
+<div id="drawerBackdrop" class="mobile-backdrop"></div>
+<div id="mobileDrawer" class="mobile-drawer bg-white flex flex-col py-6">
+    <div class="px-6 mb-8">
+        <a href="index.html" class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">C</div><h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1></a>
+    </div>
+    <nav class="flex-1 space-y-1">
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html"><span class="material-symbols-outlined">grid_view</span><span class="text-sm font-medium">Dashboard</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html"><span class="material-symbols-outlined">auto_awesome_motion</span><span class="text-sm font-medium">Templates</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html"><span class="material-symbols-outlined">upload_file</span><span class="text-sm font-medium">Upload CV</span></a>
+        <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 shadow-md" href="portfolio_form.html"><span class="material-symbols-outlined">edit_note</span><span class="text-sm font-medium">Portfolio Builder</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html"><span class="material-symbols-outlined">folder_open</span><span class="text-sm font-medium">Assets</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html"><span class="material-symbols-outlined">insights</span><span class="text-sm font-medium">Insights</span></a>
+        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="settings.html"><span class="material-symbols-outlined">settings_accessibility</span><span class="text-sm font-medium">Settings</span></a>
+    </nav>
+    <div class="px-4 mt-auto">
+        <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm mb-4 shadow-md text-center">New Portfolio</a>
+        <div class="border-t border-black/5 pt-4">
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html"><span class="material-symbols-outlined">help</span><span class="text-sm font-medium">Help Center</span></a>
+            <a class="text-cedar-slate px-4 py-3 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html"><span class="material-symbols-outlined">logout</span><span class="text-sm font-medium">Sign Out</span></a>
+        </div>
+    </div>
+</div>
 <div class="flex h-screen overflow-hidden">
     <!-- SideNavBar -->
     <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
@@ -166,7 +204,7 @@
     <!-- Main Canvas -->
     <main class="flex-1 bg-cedar-alabaster overflow-y-auto no-scrollbar relative flex flex-col">
         <!-- Top Header Area -->
-        <header class="flex justify-between items-center px-8 md:px-12 py-8 shrink-0">
+        <header class="flex justify-between items-center px-4 sm:px-6 md:px-12 py-6 md:py-8 shrink-0">
             <div>
                 <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight text-cedar-forest">Portfolio Builder</h2>
                 <p class="text-sm text-cedar-slate mt-1 italic font-medium">Craft your professional narrative, section by section.</p>
@@ -187,7 +225,7 @@
         </header>
 
         <!-- Form Content -->
-        <div class="px-6 md:px-12 pb-20 flex-grow">
+        <div class="px-4 sm:px-6 md:px-12 pb-20 flex-grow">
             <div class="max-w-[960px] mx-auto">
 
                 <!-- Step Progress Bar (Horizontal) -->
@@ -257,7 +295,7 @@
                                 <span class="material-symbols-outlined section-chevron text-cedar-slate rotated">expand_more</span>
                             </div>
                         </button>
-                        <div class="section-body open px-8 pb-8">
+                        <div class="section-body open px-4 sm:px-8 pb-6 sm:pb-8">
                             <div class="border-t border-black/5 pt-8">
                                 <!-- Professional Photo Upload -->
                                 <div class="flex flex-col sm:flex-row items-start gap-8 mb-10">
@@ -646,16 +684,16 @@
                     <!-- ═══════════════════════ -->
                     <!-- FORM ACTIONS           -->
                     <!-- ═══════════════════════ -->
-                    <div class="bg-white rounded-3xl border border-black/5 shadow-sm p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                    <div class="bg-white rounded-3xl border border-black/5 shadow-sm p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
                         <div class="flex items-center gap-3">
                             <span class="material-symbols-outlined text-cedar-forest text-xl">auto_awesome</span>
                             <p class="text-sm text-cedar-slate"><span class="font-bold text-cedar-midnight">Ready to build?</span> Your data is encrypted and used only for portfolio generation.</p>
                         </div>
-                        <div class="flex gap-3 shrink-0">
-                            <button type="button" id="saveDraftBtn" onclick="saveDraft()" class="px-6 py-3.5 rounded-xl border border-cedar-forest/20 text-cedar-forest font-bold text-sm hover:bg-cedar-forest hover:text-white transition-all">
+                        <div class="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto">
+                            <button type="button" id="saveDraftBtn" onclick="saveDraft()" class="px-6 py-3.5 rounded-xl border border-cedar-forest/20 text-cedar-forest font-bold text-sm hover:bg-cedar-forest hover:text-white transition-all w-full sm:w-auto">
                                 Save Draft
                             </button>
-                            <button type="submit" id="generateBtn" class="px-8 py-3.5 rounded-xl bg-cedar-forest text-white font-bold text-sm hover:bg-cedar-forest-dark transition-all shadow-md flex items-center gap-2 group">
+                            <button type="submit" id="generateBtn" class="px-8 py-3.5 rounded-xl bg-cedar-forest text-white font-bold text-sm hover:bg-cedar-forest-dark transition-all shadow-md flex items-center justify-center gap-2 group w-full sm:w-auto">
                                 <span class="material-symbols-outlined text-lg">rocket_launch</span>
                                 Generate Portfolio
                                 <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
@@ -668,7 +706,7 @@
         </div>
 
         <!-- Footer -->
-        <footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-8 w-full border-t border-black/5 mt-auto">
+        <footer class="bg-white flex flex-col md:flex-row justify-between items-center px-4 sm:px-6 lg:px-12 py-8 w-full border-t border-black/5 mt-auto">
             <div class="flex items-center gap-3 mb-6 md:mb-0">
                 <div class="w-6 h-6 rounded bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">
                     C

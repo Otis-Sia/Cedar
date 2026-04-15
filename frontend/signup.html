@@ -19,7 +19,8 @@
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
     </style>
 </head>
-<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30 overflow-hidden h-screen flex">
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased selection:bg-cedar-bronze/30 min-h-screen">
+    <div class="flex min-h-screen">
     
     <!-- Left: Visual Cover -->
     <div class="hidden lg:flex lg:w-1/2 relative bg-white flex-col justify-between p-12 overflow-hidden border-r border-black/5">
@@ -51,7 +52,7 @@
     </div>
 
     <!-- Right: Auth Form -->
-    <div class="w-full lg:w-1/2 h-full flex flex-col pt-8 px-6 sm:px-12 md:px-24 justify-between bg-white overflow-y-auto">
+    <div class="w-full lg:w-1/2 h-full flex flex-col pt-8 px-6 sm:px-12 md:px-24 justify-between bg-white">
         <!-- Logo (Mobile Only) -->
         <a href="index.html" class="lg:hidden flex items-center gap-3 w-fit group mb-8">
             <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
@@ -62,7 +63,7 @@
         
         <div class="w-full flex justify-end hidden lg:flex">
             <div class="text-sm text-cedar-slate font-medium">
-                Already have an account? <a href="login.html" class="font-bold text-cedar-forest hover:underline">Sign in</a>
+                Already have an account? <a href="login.html" class="font-bold text-cedar-forest hover:underline">Log in</a>
             </div>
         </div>
         
@@ -110,7 +111,7 @@
                 
                 <div class="pt-6 text-center text-sm text-cedar-slate lg:hidden">
                     Already have an account? 
-                    <a href="login.html" class="font-bold text-cedar-forest hover:underline">Sign in</a>
+                    <a href="login.html" class="font-bold text-cedar-forest hover:underline">Log in</a>
                 </div>
             </form>
         </div>
@@ -120,5 +121,6 @@
             © 2026 Cedar.
         </div>
     </div>
+</div>
 </body>
 </html>
