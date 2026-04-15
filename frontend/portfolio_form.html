@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Cedar | Portfolio Builder</title>
+    <meta name="description" content="Build your professional portfolio by filling in your career details. Cedar transforms your information into a stunning portfolio website.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS & Config -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-config.js"></script>
+
+    <!-- Custom CSS Base -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Section collapse animation */
+        .section-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            opacity: 0;
+        }
+        .section-body.open {
+            max-height: 4000px;
+            opacity: 1;
+        }
+
+        /* Chevron rotation */
+        .section-chevron {
+            transition: transform 0.3s ease;
+        }
+        .section-chevron.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Input focus animation */
+        .cedar-input:focus {
+            border-color: #AA8C55;
+            box-shadow: 0 0 0 3px rgba(170, 140, 85, 0.12);
+        }
+
+        /* Step progress line fill */
+        .step-line {
+            transition: background-color 0.4s ease;
+        }
+
+        /* Smooth entry for dynamically added items */
+        .entry-card {
+            animation: slideIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tag pill */
+        .skill-tag {
+            animation: popIn 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Photo upload hover */
+        .photo-upload-zone:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        /* Progress ring */
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased overflow-hidden selection:bg-cedar-bronze/30">
+<div class="flex h-screen overflow-hidden">
+    <!-- SideNavBar -->
+    <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
+        <div class="px-6 mb-10">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
+                    C
+                </div>
+                <h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1>
+            </a>
+            <div class="mt-6 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster">
+                    <img class="w-full h-full object-cover" data-alt="close-up portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"/>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-cedar-midnight">Project Alpha</p>
+                    <p class="text-[10px] text-cedar-slate uppercase tracking-widest font-semibold">Portfolio v2.1</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="flex-1 space-y-1">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
+                <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html">
+                <span class="material-symbols-outlined" data-icon="auto_awesome_motion">auto_awesome_motion</span>
+                <span class="text-sm font-medium">Templates</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html">
+                <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+                <span class="text-sm font-medium">Upload CV</span>
+            </a>
+            <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="portfolio_form.html">
+                <span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+                <span class="text-sm font-medium">Portfolio Builder</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html">
+                <span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+                <span class="text-sm font-medium">Assets</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html">
+                <span class="material-symbols-outlined" data-icon="insights">insights</span>
+                <span class="text-sm font-medium">Insights</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="settings.html">
+                <span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+                <span class="text-sm font-medium">Settings</span>
+            </a>
+        </nav>
+
+        <div class="px-4 mt-auto mb-6">
+            <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all text-center">
+                New Portfolio
+            </a>
+            <div class="mt-6 border-t border-black/5 pt-4">
+                <a class="text-cedar-slate px-4 py-2 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html">
+                    <span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                    <span class="text-xs font-medium">Help Center</span>
+                </a>
+                <a class="text-cedar-slate px-4 py-2 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html">
+                    <span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    <span class="text-xs font-medium">Sign Out</span>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main class="flex-1 bg-cedar-alabaster overflow-y-auto no-scrollbar relative flex flex-col">
+        <!-- Top Header Area -->
+        <header class="flex justify-between items-center px-8 md:px-12 py-8 shrink-0">
+            <div>
+                <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight text-cedar-forest">Portfolio Builder</h2>
+                <p class="text-sm text-cedar-slate mt-1 italic font-medium">Craft your professional narrative, section by section.</p>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+                <!-- Progress Ring -->
+                <div class="hidden md:flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-black/5 shadow-sm">
+                    <svg class="w-7 h-7" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" r="15" fill="none" stroke="#F9F7F2" stroke-width="3"/>
+                        <circle id="progressRing" class="progress-ring-circle" cx="18" cy="18" r="15" fill="none" stroke="#1B3022" stroke-width="3" stroke-linecap="round" stroke-dasharray="94.25" stroke-dashoffset="94.25"/>
+                    </svg>
+                    <span id="progressText" class="text-xs font-bold text-cedar-midnight tracking-widest uppercase">0%</span>
+                </div>
+                <button class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-black/5 shadow-sm hover:shadow-md transition-all">
+                    <span class="material-symbols-outlined text-cedar-midnight" data-icon="notifications">notifications</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Form Content -->
+        <div class="px-6 md:px-12 pb-20 flex-grow">
+            <div class="max-w-[960px] mx-auto">
+
+                <!-- Step Progress Bar (Horizontal) -->
+                <div class="mb-10 bg-white rounded-2xl p-6 border border-black/5 shadow-sm hidden md:block">
+                    <div class="flex items-center justify-between relative">
+                        <!-- Progress line background -->
+                        <div class="absolute top-5 left-[5%] right-[5%] h-[2px] bg-black/5 z-0"></div>
+                        <div id="progressLine" class="absolute top-5 left-[5%] h-[2px] bg-cedar-forest z-[1] transition-all duration-500" style="width: 0%"></div>
+
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="1" onclick="scrollToSection('identity')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-cedar-forest text-white flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">1</div>
+                            <span class="text-[10px] font-bold text-cedar-forest uppercase tracking-wider mt-2">Identity</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="2" onclick="scrollToSection('summary')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">2</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Summary</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="3" onclick="scrollToSection('experience')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">3</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Experience</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="4" onclick="scrollToSection('education')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">4</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Education</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="5" onclick="scrollToSection('skills')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">5</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Skills</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="6" onclick="scrollToSection('projects')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">6</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Projects</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="7" onclick="scrollToSection('about')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">7</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">About</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="8" onclick="scrollToSection('testimonials')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">8</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Proof</span>
+                        </div>
+                        <div class="step-item flex flex-col items-center z-10 cursor-pointer" data-step="9" onclick="scrollToSection('contact')">
+                            <div class="step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all">9</div>
+                            <span class="text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2">Contact</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="portfolioForm" class="space-y-6" novalidate>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 1: Identity & Contact Information  -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="identity" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-forest/10 flex items-center justify-center text-cedar-forest">
+                                    <span class="material-symbols-outlined">person</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Identity & Contact</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Your professional identity and how people reach you</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="section-status text-[10px] font-bold uppercase tracking-widest text-cedar-slate bg-cedar-alabaster px-3 py-1 rounded-full">Required</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate rotated">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body open px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8">
+                                <!-- Professional Photo Upload -->
+                                <div class="flex flex-col sm:flex-row items-start gap-8 mb-10">
+                                    <div class="photo-upload-zone relative w-28 h-28 rounded-2xl bg-cedar-alabaster border-2 border-dashed border-black/10 flex items-center justify-center cursor-pointer hover:border-cedar-bronze/50 transition-all overflow-hidden group shrink-0">
+                                        <input type="file" id="profilePhoto" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer z-10" aria-label="Upload profile photo"/>
+                                        <div class="photo-overlay absolute inset-0 bg-cedar-forest/60 flex items-center justify-center opacity-0 transition-opacity z-[5] rounded-2xl">
+                                            <span class="material-symbols-outlined text-white text-2xl">add_a_photo</span>
+                                        </div>
+                                        <div id="photoPlaceholder" class="flex flex-col items-center gap-1 text-cedar-slate">
+                                            <span class="material-symbols-outlined text-2xl">add_a_photo</span>
+                                            <span class="text-[9px] font-bold uppercase tracking-wider">Photo</span>
+                                        </div>
+                                        <img id="photoPreview" class="absolute inset-0 w-full h-full object-cover hidden rounded-2xl" alt="Profile photo preview"/>
+                                    </div>
+                                    <div class="flex-1 space-y-1">
+                                        <p class="text-sm font-bold text-cedar-midnight">Professional Photo</p>
+                                        <p class="text-xs text-cedar-slate leading-relaxed">A clear, professional headshot builds trust. Square format, minimum 400×400px. This is optional but strongly recommended.</p>
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                    <div>
+                                        <label for="fullName" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Full Name <span class="text-red-400">*</span></label>
+                                        <input type="text" id="fullName" name="fullName" required placeholder="e.g. Sarah Wanjiru Kimani" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="professionalTitle" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Title <span class="text-red-400">*</span></label>
+                                        <input type="text" id="professionalTitle" name="professionalTitle" required placeholder="e.g. UX Designer, UXPA Certified" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Email <span class="text-red-400">*</span></label>
+                                        <input type="email" id="email" name="email" required placeholder="first.last@domain.com" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="phone" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="+254 700 123 456" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="city" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">City</label>
+                                        <input type="text" id="city" name="city" placeholder="e.g. Nairobi" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="country" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Country / State</label>
+                                        <input type="text" id="country" name="country" placeholder="e.g. Kenya" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="linkedin" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">LinkedIn Profile</label>
+                                        <input type="url" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourname" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="github" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">GitHub / Portfolio URL</label>
+                                        <input type="url" id="github" name="github" placeholder="https://github.com/yourname" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="behance" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Behance / Dribbble</label>
+                                        <input type="url" id="behance" name="behance" placeholder="https://behance.net/yourname" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="website" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Personal Website</label>
+                                        <input type="url" id="website" name="website" placeholder="https://yourname.com" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 2: Professional Summary / Headline -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="summary" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-bronze/10 flex items-center justify-center text-cedar-bronze">
+                                    <span class="material-symbols-outlined">star</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Professional Summary</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Your headline, value proposition, and career snapshot</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="section-status text-[10px] font-bold uppercase tracking-widest text-cedar-slate bg-cedar-alabaster px-3 py-1 rounded-full">Required</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8 space-y-5">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                    <div>
+                                        <label for="roleTitle" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Role Title <span class="text-red-400">*</span></label>
+                                        <input type="text" id="roleTitle" name="roleTitle" required placeholder="e.g. Project Manager, PMP" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="yearsExperience" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Years of Relevant Experience <span class="text-red-400">*</span></label>
+                                        <input type="number" id="yearsExperience" name="yearsExperience" min="0" max="50" required placeholder="e.g. 8" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="valueProp" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Value Proposition <span class="text-red-400">*</span></label>
+                                    <p class="text-xs text-cedar-slate/70 mb-3">One sentence: what you help clients or employers achieve. Avoid generic statements like "hardworking professional."</p>
+                                    <input type="text" id="valueProp" name="valueProp" required placeholder="e.g. I help SaaS companies reduce churn by 30% through data-driven user experience redesigns." class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                </div>
+                                <div>
+                                    <label for="profileSummary" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Bio</label>
+                                    <p class="text-xs text-cedar-slate/70 mb-3">A concise 2–4 sentence summary of your expertise, focus areas, and key achievements.</p>
+                                    <textarea id="profileSummary" name="profileSummary" rows="4" placeholder="Write about your professional journey, what drives you, and how you make an impact..." class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 3: Work Experience                 -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="experience" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-forest/10 flex items-center justify-center text-cedar-forest">
+                                    <span class="material-symbols-outlined">work</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Work Experience</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Your career history in reverse chronological order</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="expCount" class="text-[10px] font-bold uppercase tracking-widest text-cedar-forest bg-cedar-forest/10 px-3 py-1 rounded-full">0 entries</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8">
+                                <div id="experienceEntries" class="space-y-6"></div>
+                                <button type="button" onclick="addExperience()" class="mt-6 w-full py-4 rounded-2xl border-2 border-dashed border-black/10 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/50 transition-all flex items-center justify-center gap-2 text-cedar-slate hover:text-cedar-bronze group">
+                                    <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">add_circle</span>
+                                    <span class="text-sm font-bold">Add Work Experience</span>
+                                </button>
+                                <p class="text-[11px] text-cedar-slate/60 mt-3 text-center italic">Tip: Use achievement-based descriptions. "Increased sales by 30%" is better than "Responsible for sales."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 4: Education                       -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="education" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-bronze/10 flex items-center justify-center text-cedar-bronze">
+                                    <span class="material-symbols-outlined">school</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Education</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Degrees, institutions, and relevant coursework</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="eduCount" class="text-[10px] font-bold uppercase tracking-widest text-cedar-bronze bg-cedar-bronze/10 px-3 py-1 rounded-full">0 entries</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8">
+                                <div id="educationEntries" class="space-y-6"></div>
+                                <button type="button" onclick="addEducation()" class="mt-6 w-full py-4 rounded-2xl border-2 border-dashed border-black/10 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/50 transition-all flex items-center justify-center gap-2 text-cedar-slate hover:text-cedar-bronze group">
+                                    <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">add_circle</span>
+                                    <span class="text-sm font-bold">Add Education</span>
+                                </button>
+                                <p class="text-[11px] text-cedar-slate/60 mt-3 text-center italic">Omit high school if you have a college degree.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 5: Key Skills                      -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="skills" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-forest/10 flex items-center justify-center text-cedar-forest">
+                                    <span class="material-symbols-outlined">build</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Skills & Tools</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Hard skills, software proficiencies, and industry keywords</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="skillCount" class="text-[10px] font-bold uppercase tracking-widest text-cedar-forest bg-cedar-forest/10 px-3 py-1 rounded-full">0 skills</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8 space-y-6">
+                                <!-- Skill Tags Display -->
+                                <div id="skillTagsContainer" class="flex flex-wrap gap-2 min-h-[40px]">
+                                    <p id="skillPlaceholder" class="text-sm text-cedar-slate/50 italic">Type a skill below and press Enter to add it...</p>
+                                </div>
+
+                                <!-- Skill Input -->
+                                <div class="flex gap-3">
+                                    <input type="text" id="skillInput" placeholder="e.g. Figma, React, Python, AWS..." class="cedar-input flex-1 bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all" onkeydown="if(event.key==='Enter'){event.preventDefault();addSkill();}"/>
+                                    <button type="button" onclick="addSkill()" class="px-5 py-3 bg-cedar-forest text-white rounded-xl font-bold text-sm hover:bg-cedar-forest-dark transition-all shadow-sm flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add</span>
+                                        Add
+                                    </button>
+                                </div>
+
+                                <p class="text-[11px] text-cedar-slate/60 italic">Focus on hard skills: software, languages, frameworks, tools. Avoid vague terms like "leadership" or "teamwork" without evidence.</p>
+
+                                <!-- Certifications -->
+                                <div class="pt-6 border-t border-black/5">
+                                    <label for="certifications" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Certifications & Awards</label>
+                                    <textarea id="certifications" name="certifications" rows="3" placeholder="e.g. PMP Certified (2024), Google UX Design Certificate, AWS Solutions Architect..." class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 6: Curated Work Samples / Projects -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="projects" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-bronze/10 flex items-center justify-center text-cedar-bronze">
+                                    <span class="material-symbols-outlined">cases</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Work Samples & Projects</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">3–6 curated case studies that showcase your best work</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="projCount" class="text-[10px] font-bold uppercase tracking-widest text-cedar-bronze bg-cedar-bronze/10 px-3 py-1 rounded-full">0 projects</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8">
+                                <div id="projectEntries" class="space-y-6"></div>
+                                <button type="button" onclick="addProject()" class="mt-6 w-full py-4 rounded-2xl border-2 border-dashed border-black/10 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/50 transition-all flex items-center justify-center gap-2 text-cedar-slate hover:text-cedar-bronze group">
+                                    <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">add_circle</span>
+                                    <span class="text-sm font-bold">Add Project</span>
+                                </button>
+                                <p class="text-[11px] text-cedar-slate/60 mt-3 text-center italic">Quality over quantity — include only your 3–6 strongest projects with measurable results.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 7: About / Bio                     -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="about" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-forest/10 flex items-center justify-center text-cedar-forest">
+                                    <span class="material-symbols-outlined">emoji_people</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">About You</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Your story, working style, and philosophy</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="section-status text-[10px] font-bold uppercase tracking-widest text-cedar-slate bg-cedar-alabaster px-3 py-1 rounded-full">Optional</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8 space-y-5">
+                                <div>
+                                    <label for="whoYouHelp" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Who You Help & How</label>
+                                    <textarea id="whoYouHelp" name="whoYouHelp" rows="3" placeholder="e.g. I help early-stage startups build scalable design systems that reduce development time by 40%..." class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                                </div>
+                                <div>
+                                    <label for="workingStyle" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Working Style / Philosophy</label>
+                                    <textarea id="workingStyle" name="workingStyle" rows="3" placeholder="e.g. I believe in user-centered design that balances business goals with empathy..." class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                    <div>
+                                        <label for="keyClients" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Key Clients / Companies</label>
+                                        <input type="text" id="keyClients" name="keyClients" placeholder="e.g. Google, Safaricom, UNDP" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="toolsUsed" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Primary Tools</label>
+                                        <input type="text" id="toolsUsed" name="toolsUsed" placeholder="e.g. Figma, VS Code, Notion, Jira" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 8: Testimonials / Social Proof     -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="testimonials" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-bronze/10 flex items-center justify-center text-cedar-bronze">
+                                    <span class="material-symbols-outlined">format_quote</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Testimonials & Social Proof</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">Quotes from clients, managers, and professional endorsements</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span id="testCount" class="text-[10px] font-bold uppercase tracking-widest text-cedar-bronze bg-cedar-bronze/10 px-3 py-1 rounded-full">0 quotes</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8">
+                                <div id="testimonialEntries" class="space-y-6"></div>
+                                <button type="button" onclick="addTestimonial()" class="mt-6 w-full py-4 rounded-2xl border-2 border-dashed border-black/10 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/50 transition-all flex items-center justify-center gap-2 text-cedar-slate hover:text-cedar-bronze group">
+                                    <span class="material-symbols-outlined text-lg group-hover:-translate-y-0.5 transition-transform">add_circle</span>
+                                    <span class="text-sm font-bold">Add Testimonial</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- SECTION 9: Contact & Availability          -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <div id="contact" class="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+                        <button type="button" class="section-toggle w-full flex items-center justify-between px-8 py-6 text-left" onclick="toggleSection(this)">
+                            <div class="flex items-center gap-4">
+                                <div class="w-11 h-11 rounded-xl bg-cedar-forest/10 flex items-center justify-center text-cedar-forest">
+                                    <span class="material-symbols-outlined">mail</span>
+                                </div>
+                                <div>
+                                    <h3 class="font-headline text-xl font-bold text-cedar-midnight">Contact & Availability</h3>
+                                    <p class="text-xs text-cedar-slate mt-0.5">How visitors can reach you and your current status</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="section-status text-[10px] font-bold uppercase tracking-widest text-cedar-slate bg-cedar-alabaster px-3 py-1 rounded-full">Optional</span>
+                                <span class="material-symbols-outlined section-chevron text-cedar-slate">expand_more</span>
+                            </div>
+                        </button>
+                        <div class="section-body px-8 pb-8">
+                            <div class="border-t border-black/5 pt-8 space-y-5">
+                                <div>
+                                    <label for="availability" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Availability Status</label>
+                                    <select id="availability" name="availability" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight focus:outline-none transition-all appearance-none cursor-pointer">
+                                        <option value="">Select your availability...</option>
+                                        <option value="freelance">Available for Freelance</option>
+                                        <option value="fulltime">Open to Full-Time Roles</option>
+                                        <option value="both">Open to Freelance & Full-Time</option>
+                                        <option value="contract">Available for Contract Work</option>
+                                        <option value="not_available">Not Currently Available</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="cta" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Call-to-Action Text</label>
+                                    <input type="text" id="cta" name="cta" placeholder="e.g. Let's build something great together" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                                    <div>
+                                        <label for="contactEmail" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Contact Form Email</label>
+                                        <p class="text-xs text-cedar-slate/60 mb-2">Where form submissions will be sent</p>
+                                        <input type="email" id="contactEmail" name="contactEmail" placeholder="Same as professional email" class="cedar-input w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                                    </div>
+                                    <div>
+                                        <label for="cvUpload" class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Downloadable CV / Resume</label>
+                                        <p class="text-xs text-cedar-slate/60 mb-2">Upload a PDF for visitors to download</p>
+                                        <div class="relative">
+                                            <input type="file" id="cvUpload" name="cvUpload" accept=".pdf,.docx" class="absolute inset-0 opacity-0 cursor-pointer z-10" aria-label="Upload CV"/>
+                                            <div class="bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-slate/50 flex items-center gap-2 cursor-pointer hover:border-cedar-bronze/50 transition-all">
+                                                <span class="material-symbols-outlined text-lg">upload_file</span>
+                                                <span id="cvFileName">Choose PDF or DOCX file...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 p-4 bg-cedar-alabaster rounded-xl border border-black/5">
+                                    <input type="checkbox" id="showContactForm" name="showContactForm" checked class="w-4 h-4 rounded border-black/20 text-cedar-forest focus:ring-cedar-bronze/30 cursor-pointer"/>
+                                    <label for="showContactForm" class="text-sm text-cedar-midnight font-medium cursor-pointer">Include a contact form on my portfolio (Name, Email, Message)</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ═══════════════════════ -->
+                    <!-- FORM ACTIONS           -->
+                    <!-- ═══════════════════════ -->
+                    <div class="bg-white rounded-3xl border border-black/5 shadow-sm p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-cedar-forest text-xl">auto_awesome</span>
+                            <p class="text-sm text-cedar-slate"><span class="font-bold text-cedar-midnight">Ready to build?</span> Your data is encrypted and used only for portfolio generation.</p>
+                        </div>
+                        <div class="flex gap-3 shrink-0">
+                            <button type="button" id="saveDraftBtn" onclick="saveDraft()" class="px-6 py-3.5 rounded-xl border border-cedar-forest/20 text-cedar-forest font-bold text-sm hover:bg-cedar-forest hover:text-white transition-all">
+                                Save Draft
+                            </button>
+                            <button type="submit" id="generateBtn" class="px-8 py-3.5 rounded-xl bg-cedar-forest text-white font-bold text-sm hover:bg-cedar-forest-dark transition-all shadow-md flex items-center gap-2 group">
+                                <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                                Generate Portfolio
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-8 w-full border-t border-black/5 mt-auto">
+            <div class="flex items-center gap-3 mb-6 md:mb-0">
+                <div class="w-6 h-6 rounded bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">
+                    C
+                </div>
+                <div class="text-[13px] font-medium text-cedar-slate">
+                    © 2026 Cedar. Curated with excellence in Nairobi.
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 lg:gap-10">
+                <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="privacy.html">Privacy Policy</a>
+                <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="terms.html">Terms & Conditions</a>
+                <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="support.html">Support</a>
+                <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="https://instagram.com/cedar">Instagram</a>
+            </div>
+        </footer>
+    </main>
+</div>
+
+<script>
+    // ═══════════════════════════════════════
+    // Section Toggle (Accordion)
+    // ═══════════════════════════════════════
+    function toggleSection(btn) {
+        const section = btn.closest('.form-section');
+        const body = section.querySelector('.section-body');
+        const chevron = section.querySelector('.section-chevron');
+        body.classList.toggle('open');
+        chevron.classList.toggle('rotated');
+    }
+
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Also open it if closed
+            const body = el.querySelector('.section-body');
+            const chevron = el.querySelector('.section-chevron');
+            if (!body.classList.contains('open')) {
+                body.classList.add('open');
+                chevron.classList.add('rotated');
+            }
+        }
+    }
+
+    // ═══════════════════════════════════════
+    // Profile Photo Preview
+    // ═══════════════════════════════════════
+    document.getElementById('profilePhoto').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const preview = document.getElementById('photoPreview');
+                const placeholder = document.getElementById('photoPlaceholder');
+                preview.src = ev.target.result;
+                preview.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // CV File name display
+    document.getElementById('cvUpload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            document.getElementById('cvFileName').textContent = file.name;
+        }
+    });
+
+    // ═══════════════════════════════════════
+    // Dynamic Entry Counters
+    // ═══════════════════════════════════════
+    let expId = 0, eduId = 0, projId = 0, testId = 0;
+
+    function updateCounts() {
+        const expEntries = document.querySelectorAll('#experienceEntries .entry-card').length;
+        const eduEntries = document.querySelectorAll('#educationEntries .entry-card').length;
+        const projEntries = document.querySelectorAll('#projectEntries .entry-card').length;
+        const testEntries = document.querySelectorAll('#testimonialEntries .entry-card').length;
+
+        document.getElementById('expCount').textContent = expEntries + (expEntries === 1 ? ' entry' : ' entries');
+        document.getElementById('eduCount').textContent = eduEntries + (eduEntries === 1 ? ' entry' : ' entries');
+        document.getElementById('projCount').textContent = projEntries + (projEntries === 1 ? ' project' : ' projects');
+        document.getElementById('testCount').textContent = testEntries + (testEntries === 1 ? ' quote' : ' quotes');
+        document.getElementById('skillCount').textContent = skills.length + (skills.length === 1 ? ' skill' : ' skills');
+        updateProgress();
+    }
+
+    // ═══════════════════════════════════════
+    // Add Work Experience Entry
+    // ═══════════════════════════════════════
+    function addExperience() {
+        expId++;
+        const container = document.getElementById('experienceEntries');
+        const card = document.createElement('div');
+        card.className = 'entry-card bg-cedar-alabaster rounded-2xl p-6 border border-black/5 relative group';
+        card.innerHTML = `
+            <button type="button" onclick="removeEntry(this)" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center text-cedar-slate hover:text-red-500 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Job Title <span class="text-red-400">*</span></label>
+                    <input type="text" name="exp_title_${expId}" required placeholder="e.g. Senior UX Designer" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Company Name <span class="text-red-400">*</span></label>
+                    <input type="text" name="exp_company_${expId}" required placeholder="e.g. Safaricom PLC" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Location</label>
+                    <input type="text" name="exp_location_${expId}" placeholder="e.g. Nairobi, Kenya" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Start Date</label>
+                        <input type="month" name="exp_start_${expId}" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-3 py-2.5 text-sm text-cedar-midnight focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">End Date</label>
+                        <input type="month" name="exp_end_${expId}" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-3 py-2.5 text-sm text-cedar-midnight focus:outline-none transition-all" placeholder="Present"/>
+                    </div>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Key Achievements & Responsibilities</label>
+                    <textarea name="exp_achievements_${expId}" rows="3" placeholder="Use numbers: 'Increased user retention by 25%' or 'Led a team of 8 designers across 3 product lines'..." class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+        updateCounts();
+    }
+
+    // ═══════════════════════════════════════
+    // Add Education Entry
+    // ═══════════════════════════════════════
+    function addEducation() {
+        eduId++;
+        const container = document.getElementById('educationEntries');
+        const card = document.createElement('div');
+        card.className = 'entry-card bg-cedar-alabaster rounded-2xl p-6 border border-black/5 relative group';
+        card.innerHTML = `
+            <button type="button" onclick="removeEntry(this)" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center text-cedar-slate hover:text-red-500 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Degree / Qualification <span class="text-red-400">*</span></label>
+                    <input type="text" name="edu_degree_${eduId}" required placeholder="e.g. BSc Computer Science" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Institution <span class="text-red-400">*</span></label>
+                    <input type="text" name="edu_institution_${eduId}" required placeholder="e.g. University of Nairobi" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Start Date</label>
+                        <input type="month" name="edu_start_${eduId}" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-3 py-2.5 text-sm text-cedar-midnight focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Graduation</label>
+                        <input type="month" name="edu_end_${eduId}" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-3 py-2.5 text-sm text-cedar-midnight focus:outline-none transition-all"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Honors / GPA</label>
+                    <input type="text" name="edu_honors_${eduId}" placeholder="e.g. First Class Honours, 3.8 GPA" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Relevant Coursework (Optional)</label>
+                    <input type="text" name="edu_coursework_${eduId}" placeholder="e.g. Data Structures, HCI, Machine Learning" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+        updateCounts();
+    }
+
+    // ═══════════════════════════════════════
+    // Add Project Entry
+    // ═══════════════════════════════════════
+    function addProject() {
+        projId++;
+        const container = document.getElementById('projectEntries');
+        const card = document.createElement('div');
+        card.className = 'entry-card bg-cedar-alabaster rounded-2xl p-6 border border-black/5 relative group';
+        card.innerHTML = `
+            <button type="button" onclick="removeEntry(this)" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center text-cedar-slate hover:text-red-500 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            <div class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Project Title <span class="text-red-400">*</span></label>
+                        <input type="text" name="proj_title_${projId}" required placeholder="e.g. E-Commerce Platform Redesign" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Your Role</label>
+                        <input type="text" name="proj_role_${projId}" placeholder="e.g. Lead Designer, Team of 5" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Context & Problem Solved</label>
+                    <textarea name="proj_problem_${projId}" rows="2" placeholder="What was the challenge? e.g. 'The client's checkout had a 78% abandonment rate...'" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Quantifiable Results</label>
+                    <input type="text" name="proj_results_${projId}" placeholder="e.g. Increased conversion by 25%, reduced load time by 40%" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Live Demo / URL</label>
+                        <input type="url" name="proj_url_${projId}" placeholder="https://project-demo.com" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Timeline</label>
+                        <input type="text" name="proj_timeline_${projId}" placeholder="e.g. 3 months, Q2 2025" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Project Image</label>
+                    <div class="relative border-2 border-dashed border-black/10 rounded-xl p-4 flex items-center gap-3 hover:border-cedar-bronze/50 transition-all cursor-pointer">
+                        <input type="file" name="proj_image_${projId}" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" aria-label="Upload project image"/>
+                        <span class="material-symbols-outlined text-cedar-slate">image</span>
+                        <span class="text-sm text-cedar-slate/60">Upload a screenshot or mockup</span>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+        updateCounts();
+    }
+
+    // ═══════════════════════════════════════
+    // Add Testimonial Entry
+    // ═══════════════════════════════════════
+    function addTestimonial() {
+        testId++;
+        const container = document.getElementById('testimonialEntries');
+        const card = document.createElement('div');
+        card.className = 'entry-card bg-cedar-alabaster rounded-2xl p-6 border border-black/5 relative group';
+        card.innerHTML = `
+            <button type="button" onclick="removeEntry(this)" class="absolute top-4 right-4 w-8 h-8 rounded-lg bg-white border border-black/10 flex items-center justify-center text-cedar-slate hover:text-red-500 hover:border-red-200 transition-all opacity-0 group-hover:opacity-100">
+                <span class="material-symbols-outlined text-sm">close</span>
+            </button>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Quote <span class="text-red-400">*</span></label>
+                    <textarea name="test_quote_${testId}" rows="3" required placeholder="e.g. 'Working with Sarah transformed our product. She brings rare clarity to complex design problems...'" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all resize-none"></textarea>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-x-5 gap-y-4">
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Person's Name <span class="text-red-400">*</span></label>
+                        <input type="text" name="test_name_${testId}" required placeholder="e.g. James Odhiambo" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Title</label>
+                        <input type="text" name="test_title_${testId}" placeholder="e.g. VP of Product" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold uppercase tracking-[0.15em] text-cedar-slate mb-1.5">Company</label>
+                        <input type="text" name="test_company_${testId}" placeholder="e.g. TechCorp Ltd" class="cedar-input w-full bg-white border border-black/10 rounded-xl px-4 py-2.5 text-sm text-cedar-midnight placeholder:text-cedar-slate/50 focus:outline-none transition-all"/>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
+        updateCounts();
+    }
+
+    // ═══════════════════════════════════════
+    // Remove Entry
+    // ═══════════════════════════════════════
+    function removeEntry(btn) {
+        const card = btn.closest('.entry-card');
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(-8px)';
+        card.style.transition = 'all 0.25s ease';
+        setTimeout(() => {
+            card.remove();
+            updateCounts();
+        }, 250);
+    }
+
+    // ═══════════════════════════════════════
+    // Skills Tag System
+    // ═══════════════════════════════════════
+    const skills = [];
+
+    function addSkill() {
+        const input = document.getElementById('skillInput');
+        const value = input.value.trim();
+        if (!value || skills.includes(value.toLowerCase())) {
+            input.value = '';
+            return;
+        }
+        skills.push(value.toLowerCase());
+
+        const container = document.getElementById('skillTagsContainer');
+        const placeholder = document.getElementById('skillPlaceholder');
+        if (placeholder) placeholder.remove();
+
+        const tag = document.createElement('span');
+        tag.className = 'skill-tag inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-cedar-forest/10 text-cedar-forest text-xs font-bold tracking-wide';
+        tag.innerHTML = `
+            ${escapeHtml(value)}
+            <button type="button" onclick="removeSkill(this, '${escapeHtml(value.toLowerCase())}')" class="ml-0.5 hover:text-red-500 transition-colors">
+                <span class="material-symbols-outlined text-[14px]">close</span>
+            </button>
+        `;
+        container.appendChild(tag);
+        input.value = '';
+        updateCounts();
+    }
+
+    function removeSkill(btn, skillName) {
+        const idx = skills.indexOf(skillName);
+        if (idx > -1) skills.splice(idx, 1);
+        btn.closest('.skill-tag').remove();
+        if (skills.length === 0) {
+            const container = document.getElementById('skillTagsContainer');
+            container.innerHTML = '<p id="skillPlaceholder" class="text-sm text-cedar-slate/50 italic">Type a skill below and press Enter to add it...</p>';
+        }
+        updateCounts();
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    // ═══════════════════════════════════════
+    // Progress Tracking
+    // ═══════════════════════════════════════
+    function updateProgress() {
+        const totalSections = 9;
+        let filledSections = 0;
+
+        // Section 1: Identity — check fullName & email
+        if (document.getElementById('fullName').value.trim() && document.getElementById('email').value.trim()) filledSections++;
+        // Section 2: Summary — check roleTitle & valueProp
+        if (document.getElementById('roleTitle').value.trim() && document.getElementById('valueProp').value.trim()) filledSections++;
+        // Section 3: Experience
+        if (document.querySelectorAll('#experienceEntries .entry-card').length > 0) filledSections++;
+        // Section 4: Education
+        if (document.querySelectorAll('#educationEntries .entry-card').length > 0) filledSections++;
+        // Section 5: Skills
+        if (skills.length > 0) filledSections++;
+        // Section 6: Projects
+        if (document.querySelectorAll('#projectEntries .entry-card').length > 0) filledSections++;
+        // Section 7: About
+        if (document.getElementById('whoYouHelp').value.trim()) filledSections++;
+        // Section 8: Testimonials
+        if (document.querySelectorAll('#testimonialEntries .entry-card').length > 0) filledSections++;
+        // Section 9: Contact
+        if (document.getElementById('availability').value) filledSections++;
+
+        const pct = Math.round((filledSections / totalSections) * 100);
+        const circumference = 94.25;
+        const offset = circumference - (pct / 100) * circumference;
+
+        const ring = document.getElementById('progressRing');
+        const text = document.getElementById('progressText');
+        if (ring) ring.style.strokeDashoffset = offset;
+        if (text) text.textContent = pct + '%';
+
+        // Update step dots
+        const steps = document.querySelectorAll('.step-item');
+        steps.forEach((step, i) => {
+            const dot = step.querySelector('.step-dot');
+            const label = step.querySelector('span:last-child');
+            if (i < filledSections) {
+                dot.className = 'step-dot w-10 h-10 rounded-full bg-cedar-forest text-white flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all';
+                label.className = 'text-[10px] font-bold text-cedar-forest uppercase tracking-wider mt-2';
+            } else {
+                dot.className = 'step-dot w-10 h-10 rounded-full bg-black/10 text-cedar-slate flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all';
+                label.className = 'text-[10px] font-bold text-cedar-slate uppercase tracking-wider mt-2';
+            }
+        });
+
+        // Update progress line
+        const line = document.getElementById('progressLine');
+        if (line) {
+            const linePct = filledSections > 0 ? ((filledSections - 1) / (totalSections - 1)) * 90 : 0;
+            line.style.width = linePct + '%';
+        }
+    }
+
+    // Attach input listeners for live progress
+    ['fullName', 'email', 'roleTitle', 'valueProp', 'whoYouHelp', 'availability'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', updateProgress);
+        if (el) el.addEventListener('change', updateProgress);
+    });
+
+    // ═══════════════════════════════════════
+    // Form Submission
+    // ═══════════════════════════════════════
+    document.getElementById('portfolioForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('generateBtn');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = `
+            <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
+            Generating...
+        `;
+        btn.disabled = true;
+        btn.classList.add('opacity-70');
+
+        setTimeout(() => {
+            btn.innerHTML = `
+                <span class="material-symbols-outlined text-lg">check_circle</span>
+                Portfolio Generated!
+            `;
+            btn.classList.remove('opacity-70');
+            btn.classList.add('bg-cedar-forest');
+
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+            }, 2500);
+        }, 2000);
+    });
+
+    // ═══════════════════════════════════════
+    // Save Draft
+    // ═══════════════════════════════════════
+    function saveDraft() {
+        const btn = document.getElementById('saveDraftBtn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Saving...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+            btn.textContent = 'Draft Saved ✓';
+            btn.classList.add('text-cedar-forest', 'border-cedar-forest/40');
+
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.disabled = false;
+                btn.classList.remove('text-cedar-forest', 'border-cedar-forest/40');
+            }, 2000);
+        }, 800);
+    }
+
+    // ═══════════════════════════════════════
+    // Initialize with progress
+    // ═══════════════════════════════════════
+    updateProgress();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
