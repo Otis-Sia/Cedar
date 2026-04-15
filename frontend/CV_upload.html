@@ -18,34 +18,92 @@
     <!-- Custom CSS Base -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-cedar-alabaster text-cedar-midnight font-body leading-relaxed antialiased selection:bg-cedar-bronze/30 min-h-screen flex flex-col">
-
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-10 py-4 h-20 bg-white/85 backdrop-blur-md border-b border-black/5">
-        <a href="index.html" class="flex items-center gap-3 group">
-            <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
-                C
-            </div>
-            <div class="font-headline text-2xl font-bold tracking-tight text-cedar-forest group-hover:text-cedar-forest-dark transition-colors">Cedar</div>
-        </a>
-        
-        <div class="hidden md:flex items-center gap-10">
-            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#services">Services</a>
-            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#process">Process</a>
-            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#showcase">Showcase</a>
-            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#pricing">Pricing</a>
-            <a class="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors" href="index.html#faq">FAQ</a>
-        </div>
-        
-        <div class="flex items-center gap-6">
-            <a href="login.html" class="hidden sm:block text-sm font-semibold text-cedar-slate hover:text-cedar-forest transition-colors uppercase tracking-widest">Log In</a>
-            <a href="dashboard.html" class="bg-cedar-forest text-cedar-alabaster px-7 py-3 rounded-full font-semibold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all">
-                Dashboard
+<body class="bg-cedar-alabaster text-cedar-midnight font-body antialiased overflow-hidden selection:bg-cedar-bronze/30">
+<div class="flex h-screen overflow-hidden">
+    <!-- SideNavBar -->
+    <aside class="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
+        <div class="px-6 mb-10">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
+                    C
+                </div>
+                <h1 class="font-headline font-bold text-cedar-forest text-2xl tracking-tight">Cedar</h1>
             </a>
+            <div class="mt-6 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster">
+                    <img class="w-full h-full object-cover" data-alt="close-up portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"/>
+                </div>
+                <div>
+                    <p class="text-sm font-bold text-cedar-midnight">Project Alpha</p>
+                    <p class="text-[10px] text-cedar-slate uppercase tracking-widest font-semibold">Portfolio v2.1</p>
+                </div>
+            </div>
         </div>
-    </nav>
+        
+        <nav class="flex-1 space-y-1">
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html">
+                <span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html">
+                <span class="material-symbols-outlined" data-icon="auto_awesome_motion">auto_awesome_motion</span>
+                <span class="text-sm font-medium">Templates</span>
+            </a>
+            <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="CV_upload.html">
+                <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
+                <span class="text-sm font-medium">Upload CV</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html">
+                <span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+                <span class="text-sm font-medium">Assets</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html">
+                <span class="material-symbols-outlined" data-icon="insights">insights</span>
+                <span class="text-sm font-medium">Insights</span>
+            </a>
+            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="settings.html">
+                <span class="material-symbols-outlined" data-icon="settings_accessibility">settings_accessibility</span>
+                <span class="text-sm font-medium">Settings</span>
+            </a>
+        </nav>
+        
+        <div class="px-4 mt-auto mb-6">
+            <a href="select_template.html" class="block w-full bg-cedar-forest text-white py-3 rounded-xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all text-center">
+                New Portfolio
+            </a>
+            <div class="mt-6 border-t border-black/5 pt-4">
+                <a class="text-cedar-slate px-4 py-2 flex items-center gap-3 hover:text-cedar-midnight transition-colors rounded-xl" href="index.html">
+                    <span class="material-symbols-outlined text-sm" data-icon="help">help</span>
+                    <span class="text-xs font-medium">Help Center</span>
+                </a>
+                <a class="text-cedar-slate px-4 py-2 flex items-center gap-3 hover:text-red-600 transition-colors rounded-xl" href="login.html">
+                    <span class="material-symbols-outlined text-sm" data-icon="logout">logout</span>
+                    <span class="text-xs font-medium">Sign Out</span>
+                </a>
+            </div>
+        </div>
+    </aside>
     
-    <main class="pt-32 pb-20 px-6 flex-grow flex flex-col items-center justify-center max-w-[1280px] mx-auto w-full">
+    <!-- Main Canvas -->
+    <main class="flex-1 bg-cedar-alabaster overflow-y-auto no-scrollbar relative flex flex-col">
+        <!-- Top Header Area -->
+        <header class="flex justify-between items-center px-8 md:px-12 py-10 shrink-0">
+            <div>
+                <h2 class="font-headline text-3xl md:text-4xl font-bold tracking-tight text-cedar-forest">Upload CV</h2>
+                <p class="text-sm text-cedar-slate mt-1 italic font-medium">Auto-populating your portfolio structure.</p>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+                <div class="hidden md:flex items-center bg-white px-4 py-2 rounded-full border border-black/5 shadow-sm">
+                    <span class="material-symbols-outlined text-cedar-bronze text-sm" data-icon="bolt">bolt</span>
+                    <span class="ml-2 text-xs font-bold text-cedar-midnight tracking-widest uppercase">Elite Tier</span>
+                </div>
+                <button class="w-12 h-12 flex items-center justify-center rounded-full bg-white border border-black/5 shadow-sm hover:shadow-md transition-all">
+                    <span class="material-symbols-outlined text-cedar-midnight" data-icon="notifications">notifications</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="px-8 md:px-12 pb-20 flex-grow flex flex-col items-center justify-center max-w-[1280px] mx-auto w-full">
         <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
             <div class="lg:col-span-5 space-y-8 pt-8">
                 <div class="space-y-6">
@@ -155,8 +213,6 @@
                 <img alt="Notion" class="h-6 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwBSzO0JHbsID0YgiJ_CuHZPU4I-o1JSUtEPwemEIgUhG60kezfZX64Ac6vos0orartFjhANVHP41rIiVlE4vWE7Iv3PUvJ1-7Fc3r7rVQT1t3xu94vemUbk7pKSi7S4CLliVGQ-dqzmuKI04FwLPDx6sV--AGcA_msCG7Iz27rxog5AYrgC7jLW4QwARESKRPAX3fTxMi0wWyFYM_8VvNAtoTR-xBqSHSegNkBN3AJpGQT5KORLeaL_XOCP3kin5VjFPwBpLU0zlF"/>
             </div>
         </div>
-    </main>
-
     <!-- Footer -->
     <footer class="bg-white flex flex-col md:flex-row justify-between items-center px-6 lg:px-12 py-8 w-full border-t border-black/5 mt-auto">
         <div class="flex items-center gap-3 mb-6 md:mb-0">
@@ -174,6 +230,8 @@
             <a class="text-[13px] font-medium text-cedar-slate hover:text-cedar-forest transition-colors" href="https://instagram.com/cedar">Instagram</a>
         </div>
     </footer>
+    </main>
+</div>
 
     <!-- Fixed Floating Status Indicator -->
     <div class="fixed bottom-8 right-8 z-50">
