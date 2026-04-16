@@ -93,7 +93,7 @@ export default function TemplatesPage() {
     [activeFilter]
   );
 
-  const useTemplate = (template: TemplateCard) => {
+  const handleUseTemplate = (template: TemplateCard) => {
     localStorage.setItem("cedar:selected-template", template.category);
     localStorage.setItem("cedar:selected-template-label", template.title);
     router.push("/dashboard/portfolio-builder");
@@ -161,7 +161,7 @@ export default function TemplatesPage() {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     type="button"
-                    onClick={() => useTemplate(template)}
+                    onClick={() => handleUseTemplate(template)}
                     className="flex-1 rounded-2xl bg-cedar-forest px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:bg-cedar-forest-dark"
                   >
                     Use in Builder
