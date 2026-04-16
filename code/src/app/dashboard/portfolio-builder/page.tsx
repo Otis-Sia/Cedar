@@ -1,13 +1,14 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import Image from "next/image";
 import { useAiScanner } from "@/hooks/useAiScanner";
 
 interface PortfolioState {
   fullName: string;
   professionalTitle: string;
   valueProp: string;
+  yearsExperience: string;
+  industryKeywords: string;
   email: string;
   phone: string;
   location: string;
@@ -15,25 +16,32 @@ interface PortfolioState {
   github: string;
   behance: string;
   website: string;
+  cvDownloadUrl: string;
   profileSummary: string;
-  yearsExperience: string;
+  relevantExperience: string;
+  professionalPhotoUrl: string;
   experience: Array<{ company: string; role: string; location: string; startDate: string; endDate: string; achievements: string }>;
   education: Array<{ degree: string; institution: string; gradDate: string; honors: string }>;
   skills: string;
   certifications: string;
-  projects: Array<{ title: string; role: string; problem: string; process: string; results: string; url: string }>;
+  projects: Array<{ title: string; role: string; teamSize: string; timeline: string; problem: string; process: string; results: string; url: string; prototypeAccess: string }>;
   whoYouHelp: string;
   workingStyle: string;
   keyClients: string;
   toolsUsed: string;
   testimonials: Array<{ quote: string; name: string; title: string; company: string }>;
+  socialProofLinks: string;
+  companyLogos: string;
+  contactFormName: string;
+  contactFormEmail: string;
+  contactFormMessage: string;
   availability: string;
   contactCta: string;
 }
 
 const emptyExperience = { company: "", role: "", location: "", startDate: "", endDate: "", achievements: "" };
 const emptyEducation = { degree: "", institution: "", gradDate: "", honors: "" };
-const emptyProject = { title: "", role: "", problem: "", process: "", results: "", url: "" };
+const emptyProject = { title: "", role: "", teamSize: "", timeline: "", problem: "", process: "", results: "", url: "", prototypeAccess: "" };
 const emptyTestimonial = { quote: "", name: "", title: "", company: "" };
 
 export default function PortfolioBuilderPage() {
@@ -41,6 +49,8 @@ export default function PortfolioBuilderPage() {
     fullName: "",
     professionalTitle: "",
     valueProp: "",
+    yearsExperience: "",
+    industryKeywords: "",
     email: "",
     phone: "",
     location: "",
@@ -48,8 +58,10 @@ export default function PortfolioBuilderPage() {
     github: "",
     behance: "",
     website: "",
+    cvDownloadUrl: "",
     profileSummary: "",
-    yearsExperience: "",
+    relevantExperience: "",
+    professionalPhotoUrl: "",
     experience: [],
     education: [],
     skills: "",
@@ -60,6 +72,11 @@ export default function PortfolioBuilderPage() {
     keyClients: "",
     toolsUsed: "",
     testimonials: [],
+    socialProofLinks: "",
+    companyLogos: "",
+    contactFormName: "",
+    contactFormEmail: "",
+    contactFormMessage: "",
     availability: "",
     contactCta: "",
   });
@@ -142,7 +159,11 @@ export default function PortfolioBuilderPage() {
       fullName: data.name || prev.fullName,
       professionalTitle: data.title || prev.professionalTitle,
       valueProp: data.valueProp || prev.valueProp,
+      yearsExperience: data.yearsExperience || prev.yearsExperience,
+      industryKeywords: data.industryKeywords || prev.industryKeywords,
       profileSummary: data.bio || prev.profileSummary,
+      relevantExperience: data.about?.relevantExperience || prev.relevantExperience,
+      professionalPhotoUrl: data.about?.professionalPhotoUrl || prev.professionalPhotoUrl,
       email: data.contactInfo?.email || prev.email,
       phone: data.contactInfo?.phone || prev.phone,
       location: (data.contactInfo?.city && data.contactInfo?.country) ? `${data.contactInfo.city}, ${data.contactInfo.country}` : prev.location,
@@ -150,6 +171,7 @@ export default function PortfolioBuilderPage() {
       github: data.contactInfo?.github || prev.github,
       behance: data.contactInfo?.behance || prev.behance,
       website: data.contactInfo?.website || prev.website,
+      cvDownloadUrl: data.contactInfo?.cvDownloadUrl || prev.cvDownloadUrl,
       skills: data.skills?.join(', ') || prev.skills,
       certifications: data.certifications || prev.certifications,
       experience: data.experience?.length ? data.experience : prev.experience,
@@ -160,13 +182,56 @@ export default function PortfolioBuilderPage() {
       keyClients: data.about?.keyClients || prev.keyClients,
       toolsUsed: data.about?.toolsUsed || prev.toolsUsed,
       testimonials: data.testimonials?.length ? data.testimonials : prev.testimonials,
+      socialProofLinks: data.socialProof?.links || prev.socialProofLinks,
+      companyLogos: data.socialProof?.logos || prev.companyLogos,
+      contactFormName: data.contact?.form?.name || prev.contactFormName,
+      contactFormEmail: data.contact?.form?.email || prev.contactFormEmail,
+      contactFormMessage: data.contact?.form?.message || prev.contactFormMessage,
       availability: data.contact?.availability || prev.availability,
       contactCta: data.contact?.cta || prev.contactCta,
     }));
     setOpenSection("identity");
   };
 
-  const SectionHeader = ({ id, icon, title, subtitle }: { id: string, icon: string, title: string, subtitle: string }) => (
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setOpenSection(id);
+    }
+  };
+
+  const filledSections = [
+    Boolean(formData.fullName.trim() && formData.email.trim()),
+    Boolean(formData.professionalTitle.trim() && formData.valueProp.trim()),
+    formData.experience.length > 0,
+    formData.education.length > 0,
+    Boolean(formData.skills.trim()),
+    formData.projects.length > 0,
+    Boolean(formData.whoYouHelp.trim() || formData.workingStyle.trim()),
+    formData.testimonials.length > 0,
+    Boolean(formData.availability.trim() || formData.contactCta.trim()),
+  ].filter(Boolean).length;
+
+  const totalSections = 9;
+  const progressPercent = Math.round((filledSections / totalSections) * 100);
+  const circumference = 94.25;
+  const ringOffset = circumference - (progressPercent / 100) * circumference;
+  const progressLineWidth = filledSections > 0 ? ((filledSections - 1) / (totalSections - 1)) * 90 : 0;
+
+  const stepItems = [
+    { id: "identity", label: "Identity" },
+    { id: "summary", label: "Summary" },
+    { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
+    { id: "skills", label: "Skills" },
+    { id: "projects", label: "Projects" },
+    { id: "about", label: "About" },
+    { id: "testimonials", label: "Proof" },
+    { id: "contact", label: "Contact" },
+  ];
+
+  const SectionHeader = ({ id, icon, title, subtitle, badge }: { id: string, icon: string, title: string, subtitle: string, badge?: string }) => (
     <button
       type="button"
       className="section-toggle w-full flex items-center justify-between px-8 py-6 text-left"
@@ -182,6 +247,9 @@ export default function PortfolioBuilderPage() {
         </div>
       </div>
       <div className="flex items-center gap-3">
+        {badge && (
+          <span className="text-[10px] font-bold uppercase tracking-widest text-cedar-slate bg-cedar-alabaster px-3 py-1 rounded-full">{badge}</span>
+        )}
         <span className="material-symbols-outlined section-chevron text-cedar-slate transition-transform">
           {openSection === id ? "expand_less" : "expand_more"}
         </span>
@@ -200,108 +268,122 @@ export default function PortfolioBuilderPage() {
             Craft your professional narrative, section by section.
           </p>
         </div>
+        <div className="hidden md:flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-black/5 shadow-sm">
+          <svg className="w-7 h-7" viewBox="0 0 36 36">
+            <circle cx="18" cy="18" r="15" fill="none" stroke="#F9F7F2" strokeWidth="3" />
+            <circle
+              cx="18"
+              cy="18"
+              r="15"
+              fill="none"
+              stroke="#1B3022"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeDasharray={circumference}
+              strokeDashoffset={ringOffset}
+              className="transition-all duration-500"
+              transform="rotate(-90 18 18)"
+            />
+          </svg>
+          <span className="text-xs font-bold text-cedar-midnight tracking-widest uppercase">{progressPercent}%</span>
+        </div>
       </header>
 
       <div className="px-4 sm:px-6 md:px-12 pb-20 flex-grow">
         <div className="max-w-[960px] mx-auto">
-          {/* CV Upload Section */}
-          <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
-            <div className="lg:col-span-5 space-y-8 pt-4 lg:pt-8">
-              <div className="space-y-6">
-                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/10 text-cedar-bronze font-semibold text-xs tracking-[0.2em] uppercase shadow-sm">
-                  <span className="material-symbols-outlined text-sm">auto_awesome</span>
-                  AI Personalization
-                </span>
-                <h1 className="font-headline text-4xl font-bold text-cedar-midnight tracking-tight leading-[1.1]">
-                  Let AI Curate Your <span className="text-cedar-bronze italic">Masterpiece.</span>
-                </h1>
-                <p className="text-cedar-slate text-base lg:text-lg leading-relaxed max-w-sm">
-                  Upload your CV, and our engine will distill your career into a high-end editorial portfolio in seconds.
-                </p>
-              </div>
+          <div className="mb-8 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
+            <div className="flex items-center justify-between gap-4">
+              <h3 className="font-headline text-2xl font-bold text-cedar-midnight">Import CV/Resume</h3>
+              <button
+                type="button"
+                onClick={() => selectedFile && startAiScan(selectedFile, onScanComplete)}
+                disabled={scanState.isScanning || !selectedFile}
+                className="bg-cedar-forest text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-cedar-forest-dark disabled:opacity-50 transition-all"
+              >
+                <span className="material-symbols-outlined text-base">{scanState.isScanning ? "progress_activity" : "bolt"}</span>
+                {scanState.isScanning ? "Scanning..." : "Start AI Scan"}
+              </button>
             </div>
-
-            <div className="lg:col-span-7 w-full">
-              <div className="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)] border border-black/5 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-cedar-bronze/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
-
-                <div className="relative z-10 space-y-8">
-                  <div className="flex justify-between items-center">
-                    <h3 className="font-headline text-2xl font-bold text-cedar-midnight">Import CV/Resume</h3>
-                  </div>
-
-                  {!selectedFile ? (
-                    <div
-                      onDragOver={handleDragOver}
-                      onDrop={handleDrop}
-                      onClick={() => fileInputRef.current?.click()}
-                      className="group relative border-2 border-dashed border-black/10 rounded-3xl p-12 transition-all duration-300 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/30 cursor-pointer flex flex-col items-center justify-center text-center"
-                    >
-                      <div className="w-16 h-16 rounded-full bg-cedar-alabaster flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border border-black/5 shadow-sm text-cedar-bronze">
-                        <span className="material-symbols-outlined text-3xl">cloud_upload</span>
-                      </div>
-                      <h4 className="font-headline text-xl font-bold text-cedar-midnight mb-2">Drag and drop your file here</h4>
-                      <p className="text-cedar-slate text-sm mb-6">Or click to browse from your computer</p>
-                      <input ref={fileInputRef} type="file" accept=".pdf,.docx" onChange={handleFileSelect} className="hidden" />
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-4 w-full border-2 border-transparent bg-cedar-alabaster rounded-3xl p-6">
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-cedar-midnight truncate">{selectedFile.name}</p>
-                      </div>
-                      <button onClick={() => setSelectedFile(null)} className="w-9 h-9 rounded-xl bg-white border border-black/10 flex items-center justify-center text-cedar-slate hover:text-red-500 transition-all shrink-0">
-                        <span className="material-symbols-outlined text-base">close</span>
-                      </button>
-                    </div>
-                  )}
-
-                  <div className="space-y-4">
-                    <button
-                      type="button"
-                      onClick={() => selectedFile && startAiScan(selectedFile, onScanComplete)}
-                      disabled={scanState.isScanning || !selectedFile}
-                      className="w-full bg-cedar-forest text-white font-semibold text-[15px] py-4 rounded-full flex items-center justify-center gap-2 hover:bg-cedar-forest-dark disabled:opacity-50 transition-all shadow-md group"
-                    >
-                      {scanState.isScanning ? (
-                        <span className="material-symbols-outlined animate-spin">refresh</span>
-                      ) : (
-                        <span className="material-symbols-outlined text-lg">bolt</span>
-                      )}
-                      {scanState.isScanning ? "SCANNING..." : "START AI SCAN & FILL FORM"}
-                    </button>
-                    {scanState.error && <p className="text-red-500 text-xs text-center">{scanState.error}</p>}
-                  </div>
+            <div className="mt-4">
+              {!selectedFile ? (
+                <div
+                  onDragOver={handleDragOver}
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                  className="border-2 border-dashed border-black/10 rounded-2xl p-6 cursor-pointer text-center hover:border-cedar-bronze/50 transition-all"
+                >
+                  <p className="text-sm text-cedar-slate">Drag/drop PDF/DOCX or click to browse</p>
+                  <input ref={fileInputRef} type="file" accept=".pdf,.docx" onChange={handleFileSelect} className="hidden" />
                 </div>
-              </div>
+              ) : (
+                <div className="flex items-center justify-between rounded-2xl bg-cedar-alabaster p-4">
+                  <p className="text-sm font-semibold text-cedar-midnight truncate">{selectedFile.name}</p>
+                  <button type="button" onClick={() => setSelectedFile(null)} className="text-cedar-slate hover:text-red-500">
+                    <span className="material-symbols-outlined">close</span>
+                  </button>
+                </div>
+              )}
+              {scanState.error && <p className="text-red-500 text-xs mt-2">{scanState.error}</p>}
+            </div>
+          </div>
+
+          <div className="mb-10 bg-white rounded-2xl p-6 border border-black/5 shadow-sm hidden md:block">
+            <div className="flex items-center justify-between relative">
+              <div className="absolute top-5 left-[5%] right-[5%] h-[2px] bg-black/5 z-0"></div>
+              <div className="absolute top-5 left-[5%] h-[2px] bg-cedar-forest z-[1] transition-all duration-500" style={{ width: `${progressLineWidth}%` }}></div>
+              {stepItems.map((step, idx) => {
+                const isComplete = idx < filledSections;
+                return (
+                  <button key={step.id} type="button" onClick={() => scrollToSection(step.id)} className="step-item flex flex-col items-center z-10 cursor-pointer">
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold border-[3px] border-white shadow-sm transition-all ${isComplete ? "bg-cedar-forest text-white" : "bg-black/10 text-cedar-slate"}`}>{idx + 1}</div>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider mt-2 ${isComplete ? "text-cedar-forest" : "text-cedar-slate"}`}>{step.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           <form className="space-y-6" noValidate>
             
             {/* 1. Identity & Contact */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="identity" icon="person" title="1. Identity &amp; Value" subtitle="Your professional identity, contact info, and summary." />
+            <div id="identity" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="identity" icon="person" title="Identity & Contact" subtitle="Your professional identity and how people reach you" badge="Required" />
               {openSection === "identity" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Full Name</label><input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight placeholder:text-cedar-slate/50" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Title / Headline</label><input type="text" name="professionalTitle" value={formData.professionalTitle} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
-                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">One-Sentence Value Prop</label><input type="text" name="valueProp" value={formData.valueProp} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
-                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Summary</label><textarea name="profileSummary" value={formData.profileSummary} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[100px]" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Email</label><input type="email" name="email" value={formData.email} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
-                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Phone</label><input type="text" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Phone (with voicemail)</label><input type="text" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Location (City, Country)</label><input type="text" name="location" value={formData.location} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
-                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">LinkedIn Profile</label><input type="url" name="linkedin" value={formData.linkedin} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">LinkedIn Profile (customized)</label><input type="url" name="linkedin" value={formData.linkedin} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">GitHub Profile</label><input type="url" name="github" value={formData.github} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Behance / Other Portfolio</label><input type="url" name="behance" value={formData.behance} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Portfolio Website</label><input type="url" name="website" value={formData.website} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* 2. Curated Work Samples */}
+            {/* 2. Summary */}
+            <div id="summary" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="summary" icon="star" title="Professional Summary" subtitle="Your headline, value proposition, and career snapshot" badge="Required" />
+              {openSection === "summary" && (
+                <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Role Title</label><input type="text" name="professionalTitle" value={formData.professionalTitle} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Years of Relevant Experience</label><input type="text" name="yearsExperience" value={formData.yearsExperience} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Value Proposition</label><input type="text" name="valueProp" value={formData.valueProp} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Professional Bio</label><textarea name="profileSummary" value={formData.profileSummary} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[100px]" /></div>
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Industry Keywords</label><input type="text" name="industryKeywords" value={formData.industryKeywords} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 3. Curated Work Samples */}
             <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="projects" icon="work" title="2. Curated Work Samples" subtitle="Your 3-6 best projects. Showcase problem solving and results." />
+              <SectionHeader id="projects" icon="work" title="Work Samples & Projects" subtitle="3-6 curated case studies that showcase your best work" badge={`${formData.projects.length} ${formData.projects.length === 1 ? "project" : "projects"}`} />
               {openSection === "projects" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8 space-y-8">
                   {formData.projects.map((proj, idx) => (
@@ -311,10 +393,13 @@ export default function PortfolioBuilderPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Title</label><input type="text" value={proj.title || ""} onChange={e => handleArrayChange("projects", idx, "title", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Role & Context</label><input type="text" value={proj.role || ""} onChange={e => handleArrayChange("projects", idx, "role", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
+                        <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Team Size</label><input type="text" value={proj.teamSize || ""} onChange={e => handleArrayChange("projects", idx, "teamSize", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
+                        <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Timeline</label><input type="text" value={proj.timeline || ""} onChange={e => handleArrayChange("projects", idx, "timeline", e.target.value)} placeholder="e.g. 8 weeks" className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">The Problem Solved</label><textarea value={proj.problem || ""} onChange={e => handleArrayChange("projects", idx, "problem", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm min-h-[60px]" /></div>
                         <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">The Process (Wireframes, sketches, etc.)</label><textarea value={proj.process || ""} onChange={e => handleArrayChange("projects", idx, "process", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm min-h-[60px]" /></div>
                         <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Quantifiable Results</label><input type="text" value={proj.results || ""} onChange={e => handleArrayChange("projects", idx, "results", e.target.value)} placeholder="e.g. Increased conversion by 25%" className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Live Demo Link</label><input type="url" value={proj.url || ""} onChange={e => handleArrayChange("projects", idx, "url", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
+                        <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Password / Prototype Access Note</label><input type="text" value={proj.prototypeAccess || ""} onChange={e => handleArrayChange("projects", idx, "prototypeAccess", e.target.value)} placeholder="e.g. Password: cedar2026" className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                       </div>
                     </div>
                   ))}
@@ -324,8 +409,8 @@ export default function PortfolioBuilderPage() {
             </div>
 
             {/* 3. Work Experience */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="experience" icon="history" title="3. Work Experience" subtitle="Reverse chronological list of roles and achievements." />
+            <div id="experience" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="experience" icon="history" title="Work Experience" subtitle="Your career history in reverse chronological order" badge={`${formData.experience.length} ${formData.experience.length === 1 ? "entry" : "entries"}`} />
               {openSection === "experience" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8 space-y-8">
                   {formData.experience.map((exp, idx) => (
@@ -335,9 +420,10 @@ export default function PortfolioBuilderPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Company</label><input type="text" value={exp.company || ""} onChange={e => handleArrayChange("experience", idx, "company", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Job Title</label><input type="text" value={exp.role || ""} onChange={e => handleArrayChange("experience", idx, "role", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
+                        <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Location</label><input type="text" value={exp.location || ""} onChange={e => handleArrayChange("experience", idx, "location", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Start Date (MM/YYYY)</label><input type="text" value={exp.startDate || ""} onChange={e => handleArrayChange("experience", idx, "startDate", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
                         <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">End Date (or Present)</label><input type="text" value={exp.endDate || ""} onChange={e => handleArrayChange("experience", idx, "endDate", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
-                        <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Achievements & Duties</label><textarea value={exp.achievements || ""} onChange={e => handleArrayChange("experience", idx, "achievements", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm min-h-[80px]" placeholder="Use numbers, e.g. Increased sales by 30%" /></div>
+                        <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Achievements (quantified)</label><textarea value={exp.achievements || ""} onChange={e => handleArrayChange("experience", idx, "achievements", e.target.value)} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm min-h-[80px]" placeholder="Use numbers, e.g. Increased sales by 30%" /></div>
                       </div>
                     </div>
                   ))}
@@ -347,8 +433,8 @@ export default function PortfolioBuilderPage() {
             </div>
 
             {/* 4. Education */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="education" icon="school" title="4. Education" subtitle="Degrees, institutions, and dates." />
+            <div id="education" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="education" icon="school" title="Education" subtitle="Degrees, institutions, and relevant coursework" badge={`${formData.education.length} ${formData.education.length === 1 ? "entry" : "entries"}`} />
               {openSection === "education" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8 space-y-8">
                   {formData.education.map((edu, idx) => (
@@ -369,37 +455,45 @@ export default function PortfolioBuilderPage() {
             </div>
 
             {/* 5. Key Skills, Tools & Badges */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="skills" icon="star" title="5. Technical & Trust Badges" subtitle="Skills, tools, and certifications." />
+            <div id="skills" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="skills" icon="star" title="Skills & Tools" subtitle="Hard skills, software proficiencies, and industry keywords" badge={`${formData.skills.split(",").filter((s) => s.trim()).length} skills`} />
               {openSection === "skills" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8">
                   <div className="grid grid-cols-1 gap-y-5">
                     <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Key Skills & Tools (Comma separated)</label><input type="text" name="skills" value={formData.skills} onChange={handleInputChange} placeholder="e.g. Figma, React, WordPress" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Tools Stack (Detailed)</label><input type="text" name="toolsUsed" value={formData.toolsUsed} onChange={handleInputChange} placeholder="e.g. React, Next.js, Tailwind, Firebase" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Certifications / Awards</label><input type="text" name="certifications" value={formData.certifications} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Downloadable CV / PDF Link</label><input type="url" name="cvDownloadUrl" value={formData.cvDownloadUrl} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* 6. About Page */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="about" icon="info" title="6. About Page" subtitle="Who you help, philosophy, and professional photo." />
+            <div id="about" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="about" icon="info" title="About You" subtitle="Your story, working style, and philosophy" badge="Optional" />
               {openSection === "about" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-5">
                     <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Who you help and how</label><textarea name="whoYouHelp" value={formData.whoYouHelp} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[80px]" /></div>
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Relevant Experience (years, key clients, tools)</label><textarea name="relevantExperience" value={formData.relevantExperience} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[80px]" /></div>
                     <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Working Style or Philosophy</label><textarea name="workingStyle" value={formData.workingStyle} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[80px]" /></div>
                     <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Key Clients</label><input type="text" name="keyClients" value={formData.keyClients} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Professional Photo URL (optional)</label><input type="url" name="professionalPhotoUrl" value={formData.professionalPhotoUrl} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                   </div>
                 </div>
               )}
             </div>
 
             {/* 7. Testimonials */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="testimonials" icon="format_quote" title="7. Testimonials / Social Proof" subtitle="Quotes from past clients or managers." />
+            <div id="testimonials" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="testimonials" icon="format_quote" title="Testimonials & Social Proof" subtitle="Quotes from clients, managers, and professional endorsements" badge={`${formData.testimonials.length} ${formData.testimonials.length === 1 ? "quote" : "quotes"}`} />
               {openSection === "testimonials" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8 space-y-8">
+                  <div className="p-6 bg-cedar-alabaster rounded-2xl border border-black/5 shadow-sm grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">LinkedIn Recommendations / Case Study Approval Links</label><textarea name="socialProofLinks" value={formData.socialProofLinks} onChange={handleInputChange} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm min-h-[80px]" placeholder="Add one link per line" /></div>
+                    <div className="md:col-span-2"><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Company Logos (URLs, comma separated)</label><input type="text" name="companyLogos" value={formData.companyLogos} onChange={handleInputChange} className="w-full bg-white border border-black/10 rounded-xl px-4 py-3 text-sm" /></div>
+                  </div>
                   {formData.testimonials.map((test, idx) => (
                     <div key={idx} className="p-6 bg-cedar-alabaster rounded-2xl border border-black/5 relative shadow-sm">
                       <button type="button" onClick={() => removeArrayItem("testimonials", idx)} className="absolute top-4 right-4 text-red-400 hover:text-red-600"><span className="material-symbols-outlined">delete</span></button>
@@ -418,12 +512,15 @@ export default function PortfolioBuilderPage() {
             </div>
 
             {/* 8. Availability */}
-            <div className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
-              <SectionHeader id="availability" icon="event_available" title="8. Clear Contact & Availability" subtitle="Call-to-action and current availability." />
-              {openSection === "availability" && (
+            <div id="contact" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
+              <SectionHeader id="contact" icon="event_available" title="Contact & Availability" subtitle="How visitors can reach you and your current status" badge="Optional" />
+              {openSection === "contact" && (
                 <div className="section-body px-8 pb-8 animate-in slide-in-from-top-2 border-t border-black/5 pt-8">
                   <div className="grid grid-cols-1 gap-y-5">
-                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Current Availability</label><input type="text" name="availability" value={formData.availability} onChange={handleInputChange} placeholder="e.g. Open to roles, Available for freelance" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Contact Form: Name</label><input type="text" name="contactFormName" value={formData.contactFormName} onChange={handleInputChange} placeholder="Your full name" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Contact Form: Email</label><input type="email" name="contactFormEmail" value={formData.contactFormEmail} onChange={handleInputChange} placeholder="name@domain.com" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Contact Form: Message</label><textarea name="contactFormMessage" value={formData.contactFormMessage} onChange={handleInputChange} placeholder="How can I help you?" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight min-h-[100px]" /></div>
+                    <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Availability Status</label><input type="text" name="availability" value={formData.availability} onChange={handleInputChange} placeholder="e.g. Open to roles, Available for freelance" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Call to Action (CTA)</label><input type="text" name="contactCta" value={formData.contactCta} onChange={handleInputChange} placeholder="e.g. Let's work together!" className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                   </div>
                 </div>
