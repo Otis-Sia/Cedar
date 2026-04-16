@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-// Configure CDN imports for pdf.js and mammoth
-const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs';
-const PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs';
-const MAMMOTH_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js';
+const ALLOWED_FILE_REGEX = /\.(pdf|docx)$/i;
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+const PDFJS_WORKER_VERSION = "5.6.205";
+
+type ScanResult = Record<string, unknown>;
+type ParseCvResponse = {
+  portfolio?: ScanResult;
+  error?: string;
+};
 
 export interface ScanStatus {
   isScanning: boolean;
@@ -16,126 +21,140 @@ export function useAiScanner() {
   const [scanState, setScanState] = useState<ScanStatus>({
     isScanning: false,
     progress: 0,
-    statusText: '',
+    statusText: "",
     error: null,
   });
 
-  const loadPdfJs = async () => {
-    // @ts-ignore
-    if (window.pdfjsLib) return window.pdfjsLib;
-    try {
-      const module = await import(/* webpackIgnore: true */ PDFJS_CDN);
-      module.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
-      // @ts-ignore
-      window.pdfjsLib = module;
-      return module;
-    } catch (err) {
-      console.error('Failed to load pdf.js:', err);
-      throw new Error('Could not load PDF parser. Please try again.');
-    }
-  };
-
-  const loadMammoth = () => {
-    return new Promise((resolve, reject) => {
-      // @ts-ignore
-      if (window.mammoth) {
-        // @ts-ignore
-        resolve(window.mammoth);
-        return;
-      }
-      const script = document.createElement('script');
-      script.src = MAMMOTH_CDN;
-      script.onload = () => {
-        // @ts-ignore
-        resolve(window.mammoth);
-      };
-      script.onerror = () => reject(new Error('Could not load DOCX parser.'));
-      document.head.appendChild(script);
-    });
-  };
-
   const extractText = async (file: File) => {
-    const ext = file.name.split('.').pop()?.toLowerCase();
+    const extension = file.name.split(".").pop()?.toLowerCase();
 
-    if (ext === 'pdf') {
-      const pdfjs = await loadPdfJs();
+    if (extension === "pdf") {
+      const pdfjsLib = await import("pdfjs-dist");
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_WORKER_VERSION}/pdf.worker.min.mjs`;
       const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjs.getDocument({ data: arrayBuffer }).promise;
-      let fullText = '';
+      const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+      let fullText = "";
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
-        const content = await page.getTextContent();
-        // @ts-ignore
-        const pageText = content.items.filter(item => 'str' in item).map(item => item.str).join(' ');
-        fullText += pageText + '\n';
+        const textContent = await page.getTextContent();
+        const pageText = textContent.items
+          .map((item) => ("str" in item ? item.str : ""))
+          .filter(Boolean)
+          .join(" ");
+        fullText += `${pageText}\n`;
       }
       return fullText;
     }
 
-    if (ext === 'docx') {
-      const mammoth = await loadMammoth();
+    if (extension === "docx") {
+      const mammoth = await import("mammoth");
       const arrayBuffer = await file.arrayBuffer();
-      // @ts-ignore
-      const result = await mammoth.extractRawText({ arrayBuffer });
+      const result = await mammoth.default.extractRawText({ arrayBuffer });
       return result.value;
     }
 
-    throw new Error('Unsupported file type. Please upload a PDF or DOCX file.');
+    throw new Error("Unsupported file format. Please upload a PDF or DOCX file.");
   };
 
-  const startAiScan = async (file: File, onComplete: (data: any) => void) => {
+  const startAiScan = async (
+    file: File,
+    onComplete: (data: ScanResult) => void
+  ) => {
     if (!file) {
-      setScanState(prev => ({ ...prev, error: 'Please upload a CV/Resume file first.' }));
+      setScanState((prev) => ({
+        ...prev,
+        error: "Please upload a CV/Resume file first.",
+      }));
+      return;
+    }
+
+    if (!ALLOWED_FILE_REGEX.test(file.name)) {
+      setScanState((prev) => ({
+        ...prev,
+        error: "Only PDF and DOCX files are supported.",
+      }));
+      return;
+    }
+
+    if (file.size > MAX_FILE_SIZE_BYTES) {
+      setScanState((prev) => ({
+        ...prev,
+        error: "File is too large. Maximum size is 10MB.",
+      }));
       return;
     }
 
     setScanState({
       isScanning: true,
       progress: 5,
-      statusText: 'Reading your document…',
+      statusText: "Validating document…",
       error: null,
     });
 
     try {
-      setScanState(prev => ({ ...prev, progress: 15, statusText: 'Extracting text from document…' }));
+      setScanState((prev) => ({
+        ...prev,
+        progress: 20,
+        statusText: "Extracting raw text layer…",
+      }));
       const cvText = await extractText(file);
 
       if (!cvText.trim()) {
-        throw new Error('Could not extract any text from the document.');
+        throw new Error("Could not extract any text from the document.");
       }
 
-      setScanState(prev => ({ ...prev, progress: 35, statusText: 'Text extracted. Sending to AI engine…' }));
-      
-      // MOCK CALL for migration: Replace with actual Gemini endpoint in phase 5
-      // Wait for 2 seconds
-      await new Promise(r => setTimeout(r, 2000));
-      
-      // Simulate successful parsing
-      const mockResult = {
-        portfolio: {
-          name: "Generated Name",
-          title: "AI Parsed Role",
-          contactInfo: { email: "ai@example.com" }
-        }
-      };
+      setScanState((prev) => ({
+        ...prev,
+        progress: 55,
+        statusText: "Mapping extracted data to portfolio fields…",
+      }));
 
-      setScanState(prev => ({ ...prev, progress: 80, statusText: 'Populating your form…' }));
-      await new Promise(r => setTimeout(r, 500));
+      const response = await fetch("/api/parse-cv", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cvText,
+          fileName: file.name,
+        }),
+      });
 
-      onComplete(mockResult.portfolio);
-      
-      setScanState(prev => ({ ...prev, progress: 100, statusText: 'Complete! Your form has been filled.' }));
-      
+      const payload = (await response.json()) as ParseCvResponse;
+      if (!response.ok) {
+        throw new Error(payload.error ?? "Failed to parse CV.");
+      }
+      if (!payload.portfolio) {
+        throw new Error("Parser returned no portfolio data.");
+      }
+
+      setScanState((prev) => ({
+        ...prev,
+        progress: 85,
+        statusText: "Generating verification form…",
+      }));
+
+      onComplete(payload.portfolio);
+
+      setScanState((prev) => ({
+        ...prev,
+        progress: 100,
+        statusText: "Scan complete. Please review and confirm extracted data.",
+      }));
+
       setTimeout(() => {
-        setScanState(prev => ({ ...prev, isScanning: false }));
+        setScanState((prev) => ({ ...prev, isScanning: false }));
       }, 1200);
-
-    } catch (error: any) {
-      console.error('[AI Scan Error]', error);
-      setScanState(prev => ({
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again.";
+      console.error("[AI Scan Error]", error);
+      setScanState((prev) => ({
         ...prev,
         isScanning: false,
-        error: error.message || 'Something went wrong. Please try again.',
+        error: message,
       }));
     }
   };
@@ -143,6 +162,6 @@ export function useAiScanner() {
   return {
     scanState,
     startAiScan,
-    clearError: () => setScanState(prev => ({ ...prev, error: null }))
+    clearError: () => setScanState((prev) => ({ ...prev, error: null })),
   };
 }
