@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"/>
     
     <!-- Tailwind CSS & Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -40,7 +40,7 @@
                 <p class="text-cedar-slate text-sm">Curate your legacy. Access your dashboard and portfolios.</p>
             </div>
             
-            <form class="space-y-5" action="dashboard.html">
+            <form id="loginForm" class="space-y-5" action="dashboard.html">
                 <div>
                     <label class="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2" for="email">Email Address</label>
                     <input id="email" type="email" placeholder="hello@example.com" required class="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight">
@@ -112,5 +112,22 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const loggedInUser = {
+            uid: 'user-' + email,
+            email: email,
+            displayName: null,
+            emailVerified: true,
+            isAnonymous: false,
+            tenantId: null,
+            providerData: []
+        };
+        localStorage.setItem('cedar:auth-user', JSON.stringify(loggedInUser));
+        window.location.href = 'dashboard.html';
+    });
+</script>
 </body>
 </html>

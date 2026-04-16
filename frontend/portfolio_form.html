@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"/>
 
     <!-- Tailwind CSS & Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -118,7 +118,7 @@
     <nav class="flex-1 space-y-1">
         <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="dashboard.html"><span class="material-symbols-outlined">grid_view</span><span class="text-sm font-medium">Dashboard</span></a>
         <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="select_template.html"><span class="material-symbols-outlined">auto_awesome_motion</span><span class="text-sm font-medium">Templates</span></a>
-        <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html"><span class="material-symbols-outlined">upload_file</span><span class="text-sm font-medium">Upload CV</span></a>
+
         <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 shadow-md" href="portfolio_form.html"><span class="material-symbols-outlined">edit_note</span><span class="text-sm font-medium">Portfolio Builder</span></a>
         <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="assets.html"><span class="material-symbols-outlined">folder_open</span><span class="text-sm font-medium">Assets</span></a>
         <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="insights.html"><span class="material-symbols-outlined">insights</span><span class="text-sm font-medium">Insights</span></a>
@@ -162,10 +162,7 @@
                 <span class="material-symbols-outlined" data-icon="auto_awesome_motion">auto_awesome_motion</span>
                 <span class="text-sm font-medium">Templates</span>
             </a>
-            <a class="text-cedar-slate px-4 py-3 mx-2 flex items-center gap-3 hover:bg-cedar-alabaster hover:text-cedar-midnight transition-colors rounded-xl" href="CV_upload.html">
-                <span class="material-symbols-outlined" data-icon="upload_file">upload_file</span>
-                <span class="text-sm font-medium">Upload CV</span>
-            </a>
+
             <a class="bg-cedar-forest text-white rounded-xl px-4 py-3 mx-2 flex items-center gap-3 transition-all shadow-md" href="portfolio_form.html">
                 <span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
                 <span class="text-sm font-medium">Portfolio Builder</span>
@@ -227,6 +224,94 @@
         <!-- Form Content -->
         <div class="px-4 sm:px-6 md:px-12 pb-20 flex-grow">
             <div class="max-w-[960px] mx-auto">
+
+                <!-- CV Upload Section -->
+                <div class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+                    <div class="lg:col-span-5 space-y-8 pt-4 lg:pt-8">
+                        <div class="space-y-6">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-black/10 text-cedar-bronze font-semibold text-xs tracking-[0.2em] uppercase shadow-sm">
+                                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                                AI Personalization
+                            </span>
+                            <h1 class="font-headline text-4xl font-bold text-cedar-midnight tracking-tight leading-[1.1]">
+                                Let AI Curate Your <span class="text-cedar-bronze italic">Masterpiece.</span>
+                            </h1>
+                            <p class="text-cedar-slate text-base lg:text-lg leading-relaxed max-w-sm">
+                                Upload your CV, and our engine will distill your career into a high-end editorial portfolio in seconds.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-8 pt-4">
+                            <div class="flex gap-5 items-start">
+                                <div class="mt-1 w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center flex-shrink-0 text-cedar-bronze shadow-sm">
+                                    <span class="material-symbols-outlined text-xl">description</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Smart Parsing</h4>
+                                    <p class="text-cedar-slate text-sm leading-relaxed">We extract roles, skills, and achievements with 99% accuracy from your document.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-5 items-start">
+                                <div class="mt-1 w-10 h-10 rounded-xl bg-white border border-black/5 flex items-center justify-center flex-shrink-0 text-cedar-forest shadow-sm">
+                                    <span class="material-symbols-outlined text-xl">palette</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Visual Synthesis</h4>
+                                    <p class="text-cedar-slate text-sm leading-relaxed">Your professional history is seamlessly mapped to our exclusive editorial layouts.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7 w-full">
+                        <div class="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_20px_40px_rgba(0,0,0,0.04)] border border-black/5 relative overflow-hidden">
+                            <!-- Subtle background decoration -->
+                            <div class="absolute top-0 right-0 w-64 h-64 bg-cedar-bronze/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none"></div>
+                            
+                            <div class="relative z-10 space-y-8">
+                                <div class="flex justify-between items-center">
+                                    <h3 class="font-headline text-2xl font-bold text-cedar-midnight">Import CV/Resume</h3>
+                                    <div class="flex gap-1.5">
+                                        <div class="w-2.5 h-2.5 rounded-full bg-cedar-bronze"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-black/10"></div>
+                                        <div class="w-2.5 h-2.5 rounded-full bg-black/10"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="group relative border-2 border-dashed border-black/10 rounded-3xl p-12 transition-all duration-300 hover:border-cedar-bronze/50 hover:bg-cedar-alabaster/30 cursor-pointer flex flex-col items-center justify-center text-center">
+                                    <div class="w-16 h-16 rounded-full bg-cedar-alabaster flex items-center justify-center mb-6 group-hover:-translate-y-1 transition-transform border border-black/5 shadow-sm text-cedar-bronze">
+                                        <span class="material-symbols-outlined text-3xl">cloud_upload</span>
+                                    </div>
+                                    <h4 class="font-headline text-xl font-bold text-cedar-midnight mb-2">Drag and drop your file here</h4>
+                                    <p class="text-cedar-slate text-sm mb-6">Or click to browse from your computer</p>
+                                    <div class="flex gap-3">
+                                        <span class="px-4 py-1.5 rounded-lg bg-white text-cedar-slate text-[10px] font-bold tracking-widest uppercase border border-black/10 shadow-sm">PDF</span>
+                                        <span class="px-4 py-1.5 rounded-lg bg-white text-cedar-slate text-[10px] font-bold tracking-widest uppercase border border-black/10 shadow-sm">DOCX</span>
+                                    </div>
+                                    <input class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" type="file" accept=".pdf,.docx" aria-label="File upload" />
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <button type="button" class="w-full bg-cedar-forest text-white font-semibold text-[15px] py-4 rounded-full flex items-center justify-center gap-2 hover:bg-cedar-forest-dark active:scale-[0.98] transition-all shadow-md group">
+                                        <span class="material-symbols-outlined text-lg">bolt</span>
+                                        START AI SCAN & FILL FORM
+                                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                                    </button>
+                                </div>
+                                
+                                <p class="text-center text-xs text-cedar-slate/70 font-medium px-4">
+                                    By uploading, you agree to our <a class="underline hover:text-cedar-forest transition-colors" href="terms.html">Data Processing Agreement</a>. Your data is encrypted and used only for portfolio generation.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center my-12 hidden md:flex opacity-50">
+                    <div class="flex-grow h-px bg-black"></div>
+                    <span class="px-6 text-xs font-bold text-cedar-midnight uppercase tracking-[0.2em]">Or build manually</span>
+                    <div class="flex-grow h-px bg-black"></div>
+                </div>
 
                 <!-- Step Progress Bar (Horizontal) -->
                 <div class="mb-10 bg-white rounded-2xl p-6 border border-black/5 shadow-sm hidden md:block">
@@ -780,7 +865,7 @@
     // ═══════════════════════════════════════
     // Dynamic Entry Counters
     // ═══════════════════════════════════════
-    let expId = 0, eduId = 0, projId = 0, testId = 0;
+    var expId = 0, eduId = 0, projId = 0, testId = 0;
 
     function updateCounts() {
         const expEntries = document.querySelectorAll('#experienceEntries .entry-card').length;
@@ -995,7 +1080,7 @@
     // ═══════════════════════════════════════
     // Skills Tag System
     // ═══════════════════════════════════════
-    const skills = [];
+    var skills = [];
 
     function addSkill() {
         const input = document.getElementById('skillInput');
@@ -1074,6 +1159,12 @@
         const text = document.getElementById('progressText');
         if (ring) ring.style.strokeDashoffset = offset;
         if (text) text.textContent = pct + '%';
+
+        // Also update mobile progress ring
+        const ringMobile = document.getElementById('progressRingMobile');
+        const textMobile = document.getElementById('progressTextMobile');
+        if (ringMobile) ringMobile.style.strokeDashoffset = offset;
+        if (textMobile) textMobile.textContent = pct + '%';
 
         // Update step dots
         const steps = document.querySelectorAll('.step-item');
@@ -1158,8 +1249,20 @@
     // Initialize with progress
     // ═══════════════════════════════════════
     updateProgress();
+
+    // ═══════════════════════════════════════
+    // Expose functions globally for AI scan
+    // ═══════════════════════════════════════
+    window.addExperience = addExperience;
+    window.addEducation = addEducation;
+    window.addProject = addProject;
+    window.addTestimonial = addTestimonial;
+    window.addSkill = addSkill;
+    window.updateProgress = updateProgress;
+    window.updateCounts = updateCounts;
 </script>
 
 <script src="script.js"></script>
+<script src="ai-scan.js"></script>
 </body>
 </html>

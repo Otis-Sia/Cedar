@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block" rel="stylesheet"/>
     
     <!-- Tailwind CSS & Config -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -75,7 +75,7 @@
                 <p class="text-cedar-slate text-sm">Fill in your details to start curating your professional presence.</p>
             </div>
             
-            <form class="space-y-5" action="dashboard.html">
+            <form id="signupForm" class="space-y-5" action="dashboard.html">
                 <div>
                     <label class="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2" for="name">Full Name</label>
                     <input id="name" type="text" placeholder="Sarah Jenkins" required class="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight">
@@ -122,5 +122,23 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const name = document.getElementById('name').value;
+        const newUser = {
+            uid: 'user-' + Date.now(),
+            email: email,
+            displayName: name,
+            emailVerified: false,
+            isAnonymous: false,
+            tenantId: null,
+            providerData: []
+        };
+        localStorage.setItem('cedar:auth-user', JSON.stringify(newUser));
+        window.location.href = 'dashboard.html';
+    });
+</script>
 </body>
 </html>
