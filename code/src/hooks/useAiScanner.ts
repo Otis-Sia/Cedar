@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const ALLOWED_FILE_REGEX = /\.(pdf|docx)$/i;
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024;
+const PDFJS_WORKER_VERSION = "5.6.205";
 
 type ScanResult = Record<string, unknown>;
 type ParseCvResponse = {
@@ -29,7 +30,7 @@ export function useAiScanner() {
 
     if (extension === "pdf") {
       const pdfjsLib = await import("pdfjs-dist");
-      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_WORKER_VERSION}/pdf.worker.min.mjs`;
       const arrayBuffer = await file.arrayBuffer();
       const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
       let fullText = "";

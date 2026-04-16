@@ -236,13 +236,13 @@ export default function PortfolioBuilderPage() {
   const handleArrayChange = <K extends "experience" | "education" | "projects" | "testimonials">(
     arrayName: K,
     index: number,
-    field: keyof PortfolioState[K][number],
+    fieldName: keyof PortfolioState[K][number],
     value: string
   ) => {
     setFormData((prev) => ({
       ...prev,
       [arrayName]: prev[arrayName].map((item, itemIndex) =>
-        itemIndex === index ? { ...item, [field]: value } : item
+        itemIndex === index ? { ...item, [fieldName]: value } : item
       ),
     }));
   };
@@ -576,7 +576,9 @@ export default function PortfolioBuilderPage() {
                     onClick={() => fileInputRef.current?.click()}
                     className="border-2 border-dashed border-black/10 rounded-2xl p-6 cursor-pointer text-center hover:border-cedar-bronze/50 transition-all"
                   >
-                    <p className="text-sm text-cedar-slate">Drag/drop PDF/DOCX (max {maxCvUploadMb}MB) or click to browse</p>
+                    <p className="text-sm text-cedar-slate">
+                      Drag/drop PDF/DOCX (max {maxCvUploadMb}MB) or click to browse
+                    </p>
                     <input ref={fileInputRef} type="file" accept=".pdf,.docx" onChange={handleFileSelect} className="hidden" />
                   </div>
                 ) : (
