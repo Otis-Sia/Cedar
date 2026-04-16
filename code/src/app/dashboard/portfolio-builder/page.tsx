@@ -92,6 +92,8 @@ const emptyProject: ProjectEntry = { title: "", role: "", teamSize: "", timeline
 const emptyTestimonial: TestimonialEntry = { quote: "", name: "", title: "", company: "" };
 
 const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024;
+const MAX_MEDIA_FILE_SIZE_BYTES = 5 * 1024 * 1024;
+const MAX_PROJECT_MEDIA_TOTAL_BYTES = 25 * 1024 * 1024;
 const templatePreviewImages: Record<TemplateCategory, string> = {
   "bold-creative": "/template_creative_director.png",
   "high-contrast": "/template_experimental.png",
@@ -215,6 +217,7 @@ export default function PortfolioBuilderPage() {
   const [brandTypography, setBrandTypography] = useState("Inter");
   const [headshotFile, setHeadshotFile] = useState<File | null>(null);
   const [projectImageFiles, setProjectImageFiles] = useState<File[]>([]);
+  const [mediaError, setMediaError] = useState("");
 
   const { scanState, startAiScan } = useAiScanner();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -452,6 +455,41 @@ export default function PortfolioBuilderPage() {
     setIsPublishing(false);
   };
 
+  const maxCvUploadMb = Math.round(MAX_UPLOAD_SIZE_BYTES / (1024 * 1024));
+
+  const handleHeadshotUpload = (file: File | null) => {
+    if (!file) {
+      setHeadshotFile(null);
+      setMediaError("");
+      return;
+    }
+
+    if (file.size > MAX_MEDIA_FILE_SIZE_BYTES) {
+      setMediaError("Headshot is too large. Maximum size per image is 5MB.");
+      return;
+    }
+
+    setHeadshotFile(file);
+    setMediaError("");
+  };
+
+  const handleProjectImagesUpload = (files: File[]) => {
+    const oversizedFile = files.find((file) => file.size > MAX_MEDIA_FILE_SIZE_BYTES);
+    if (oversizedFile) {
+      setMediaError(`"${oversizedFile.name}" is too large. Maximum size per image is 5MB.`);
+      return;
+    }
+
+    const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
+    if (totalBytes > MAX_PROJECT_MEDIA_TOTAL_BYTES) {
+      setMediaError("Project images are too large in total. Maximum combined size is 25MB.");
+      return;
+    }
+
+    setProjectImageFiles(files);
+    setMediaError("");
+  };
+
   return (
     <div className="flex flex-col h-full relative">
       <header className="flex justify-between items-center px-4 sm:px-6 md:px-12 py-6 md:py-8 shrink-0">
@@ -538,7 +576,7 @@ export default function PortfolioBuilderPage() {
                     onClick={() => fileInputRef.current?.click()}
                     className="border-2 border-dashed border-black/10 rounded-2xl p-6 cursor-pointer text-center hover:border-cedar-bronze/50 transition-all"
                   >
-                    <p className="text-sm text-cedar-slate">Drag/drop PDF/DOCX (max 10MB) or click to browse</p>
+                    <p className="text-sm text-cedar-slate">Drag/drop PDF/DOCX (max {maxCvUploadMb}MB) or click to browse</p>
                     <input ref={fileInputRef} type="file" accept=".pdf,.docx" onChange={handleFileSelect} className="hidden" />
                   </div>
                 ) : (
@@ -620,15 +658,16 @@ export default function PortfolioBuilderPage() {
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Headshot</label>
-                  <input type="file" accept="image/*" onChange={(e) => setHeadshotFile(e.target.files?.[0] ?? null)} className="w-full text-sm text-cedar-slate" />
+                  <input type="file" accept="image/*" onChange={(e) => handleHeadshotUpload(e.target.files?.[0] ?? null)} className="w-full text-sm text-cedar-slate" />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase text-cedar-slate mb-2">Project Images</label>
-                  <input type="file" accept="image/*" multiple onChange={(e) => setProjectImageFiles(Array.from(e.target.files ?? []))} className="w-full text-sm text-cedar-slate" />
+                  <input type="file" accept="image/*" multiple onChange={(e) => handleProjectImagesUpload(Array.from(e.target.files ?? []))} className="w-full text-sm text-cedar-slate" />
                 </div>
                 <p className="text-xs text-cedar-slate">
                   {headshotFile ? `Headshot: ${headshotFile.name}` : "No headshot uploaded"} • {projectImageFiles.length} project image(s)
                 </p>
+                {mediaError && <p className="text-xs text-red-500">{mediaError}</p>}
               </div>
             </div>
           </div>
