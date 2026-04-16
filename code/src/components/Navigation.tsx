@@ -35,7 +35,7 @@ export default function Navigation() {
           </Link>
           <Link
             className="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors"
-            href="/dashboard/templates"
+            href="/templates"
           >
             Templates
           </Link>
@@ -127,7 +127,7 @@ export default function Navigation() {
             Services
           </Link>
           <Link
-            href="/dashboard/templates"
+            href="/templates"
             className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >

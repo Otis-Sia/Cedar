@@ -10,6 +10,11 @@ export default function SignupPage() {
   const [name, setName] = useState("");
   const router = useRouter();
 
+  const setAuthSession = (user: Record<string, unknown>) => {
+    localStorage.setItem("cedar:auth-user", JSON.stringify(user));
+    document.cookie = `cedar-auth-session=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax`;
+  };
+
   const handleSignup = (e: React.FormEvent) => {
     e.preventDefault();
     const newUser = {
@@ -21,8 +26,9 @@ export default function SignupPage() {
       tenantId: null,
       providerData: [],
     };
-    localStorage.setItem("cedar:auth-user", JSON.stringify(newUser));
-    router.push("/dashboard");
+    setAuthSession(newUser);
+    const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
+    router.push(redirectTarget);
   };
 
   return (

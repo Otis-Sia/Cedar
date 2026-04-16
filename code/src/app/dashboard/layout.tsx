@@ -14,13 +14,20 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
 
+  const clearAuthSession = () => {
+    localStorage.removeItem("cedar:auth-user");
+    document.cookie = "cedar-auth-session=; path=/; max-age=0; samesite=lax";
+  };
+
+  const hasAuthSession = () =>
+    document.cookie.split("; ").some((cookie) => cookie.startsWith("cedar-auth-session="));
+
   useEffect(() => {
-    // Basic Auth Check
     const userData = localStorage.getItem("cedar:auth-user");
-    if (!userData) {
+    if (!userData && !hasAuthSession()) {
       router.push("/login");
     } else {
-      setUser(JSON.parse(userData));
+      setUser(userData ? JSON.parse(userData) : null);
     }
   }, [router]);
 
@@ -42,7 +49,7 @@ export default function DashboardLayout({
   ];
 
   const handleSignOut = () => {
-    localStorage.removeItem("cedar:auth-user");
+    clearAuthSession();
     router.push("/login");
   };
 

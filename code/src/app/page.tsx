@@ -258,7 +258,7 @@ export default function Home() {
             </div>
             <Link
               className="text-cedar-forest font-semibold text-sm uppercase tracking-widest border-b border-cedar-forest pb-1 mt-6 md:mt-0 hover:text-cedar-forest-dark transition-colors"
-              href="/dashboard/templates"
+              href="/templates"
             >
               Browse All Templates
             </Link>
