@@ -12,49 +12,49 @@ const templatesList = [
     name: "Bold Creative",
     category: "bold-creative",
     description: "High-impact layouts with expressive imagery and confident typography.",
-    image: "/Templates/Bold Creative/bold_creative_home_1/screen.png",
+    image: "/template_creative_director.png",
   },
   {
     id: "high-contrast",
     name: "High Contrast",
     category: "high-contrast",
     description: "Monochrome visual language with striking spacing and editorial drama.",
-    image: "/Templates/High Contrast 1 page/screen.png",
+    image: "/template_experimental.png",
   },
   {
     id: "minimalist-architect",
     name: "Minimalist Architect",
     category: "minimalist-architect",
     description: "Calm, structured compositions built around whitespace and precise hierarchy.",
-    image: "/Templates/Minimalist Architect/minimalist_architect_home_1/screen.png",
+    image: "/template_minimalist.png",
   },
   {
     id: "playful-1-page",
     name: "Playful",
     category: "playful-1-page",
     description: "Bright, character-driven layouts with a lively single-page rhythm.",
-    image: "/Templates/Playful 1 page/playful_illustrator_one_page_1/screen.png",
+    image: "/hero.png",
   },
   {
     id: "professional-developer",
     name: "Professional Developer",
     category: "professional-developer",
     description: "Structured portfolio layouts for technical profiles and product teams.",
-    image: "/Templates/Professional Developer/professional_developer_home_1/screen.png",
+    image: "/template_corporate_tech.png",
   },
   {
     id: "student",
     name: "Student",
     category: "student",
     description: "Editorial layouts that present academic work and projects with clarity.",
-    image: "/Templates/Student/student_portfolio_home_1/screen.png",
+    image: "/template_minimalist.png",
   },
   {
     id: "tech-1-page",
     name: "Tech 1 page",
     category: "tech-1-page",
     description: "Concise one-page layouts for tools, startups, and product storytelling.",
-    image: "/Templates/Tech 1 page/screen.png",
+    image: "/template_corporate_tech.png",
   },
 ];
 
@@ -74,6 +74,7 @@ export default function PublicTemplatesPage() {
   ];
 
   const filteredTemplates = filter === "all" ? templatesList : templatesList.filter(t => t.category === filter);
+  const activePreview = templatesList.find((template) => template.id === selectedPreview) ?? null;
 
   useEffect(() => {
     if (selectedPreview) {
@@ -125,11 +126,15 @@ export default function PublicTemplatesPage() {
                 style={{ animationDelay: `${idx * 100}ms` }}
               >
                 <div className="relative overflow-hidden aspect-[4/5] bg-gray-100">
-                  {/* Note: since static images aren't all present in the frontend tree, using a generic placeholder for demo if path fails. In a real app we'd load correct images. Let's just use the actual src or the placeholder if not found. For now we use the src string from static HTML */}
                   <div className="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-                  <div className="w-full h-full bg-cedar-alabaster flex items-center justify-center text-cedar-slate font-medium p-4 text-center">
-                    Template: {template.name}
-                  </div>
+                  <Image
+                    src={template.image}
+                    alt={`${template.name} template preview`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                    priority={idx < 2}
+                  />
                 </div>
                 <div className="p-6 flex flex-col flex-1 justify-between gap-5 relative z-20 bg-white">
                   <div>
@@ -208,7 +213,7 @@ export default function PublicTemplatesPage() {
       </main>
 
       {/* Preview Modal */}
-      {selectedPreview && (
+      {activePreview && (
         <div className="fixed inset-0 z-[200] bg-cedar-midnight/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
           <button
             onClick={() => setSelectedPreview(null)}
@@ -224,12 +229,34 @@ export default function PublicTemplatesPage() {
               <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
               <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
               <span className="ml-4 text-xs text-cedar-slate font-medium">
-                cedar.portfolio/{selectedPreview}
+                cedar.portfolio/{activePreview.id}
               </span>
             </div>
-            <div className="relative overflow-y-auto max-h-[80vh] flex items-center justify-center">
-              <div className="p-20 text-cedar-slate font-medium text-center">
-                Preview of Template: {selectedPreview}
+            <div className="relative overflow-y-auto max-h-[80vh]">
+              <div className="relative aspect-[16/10] w-full bg-cedar-alabaster">
+                <Image
+                  src={activePreview.image}
+                  alt={`${activePreview.name} preview`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-t border-black/5">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-cedar-bronze font-bold mb-2">
+                    {activePreview.category}
+                  </p>
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-cedar-midnight">
+                    {activePreview.name}
+                  </h3>
+                </div>
+                <Link
+                  href="/signup"
+                  className="inline-flex justify-center items-center bg-cedar-forest text-white px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all"
+                >
+                  Use This Template
+                </Link>
               </div>
             </div>
           </div>
