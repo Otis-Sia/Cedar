@@ -360,7 +360,7 @@ export default function PortfolioBuilderPage() {
         ? portfolio.education.map((edu) => ({
             degree: edu.degree,
             institution: edu.institution,
-            gradDate: edu.endDate || edu.startDate || "",
+            gradDate: edu.endDate || "",
             honors: edu.honors,
           }))
         : prev.education,
@@ -440,8 +440,7 @@ export default function PortfolioBuilderPage() {
     setIsPublishing(true);
     setPublishedUrl("");
 
-    await new Promise((resolve) => setTimeout(resolve, 900));
-    await new Promise((resolve) => setTimeout(resolve, 900));
+    await new Promise((resolve) => setTimeout(resolve, 1800));
 
     const slug = (formData.fullName || "portfolio")
       .toLowerCase()
