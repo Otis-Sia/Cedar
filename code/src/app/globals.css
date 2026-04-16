@@ -1,9 +1,24 @@
-/* Cedar Design System - Unified Tailwind */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
 
-/* Additional global styles can go here if needed */
-html {
+@theme {
+  --color-cedar-forest: #1B3022;
+  --color-cedar-forest-dark: #122117;
+  --color-cedar-alabaster: #F9F7F2;
+  --color-cedar-bronze: #AA8C55;
+  --color-cedar-bronze-light: #C5AC81;
+  --color-cedar-midnight: #121415;
+  --color-cedar-slate: #4A5568;
+  --color-cedar-glass: rgba(255, 255, 255, 0.8);
+
+  --font-headline: '"Playfair Display"', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-label: 'Inter', sans-serif;
+}
+
+@layer base {
+  html {
     scroll-behavior: smooth;
+  }
 }
 
 /* ═══════════════════════════════════════════
