@@ -140,6 +140,8 @@ export default function TemplatesPage() {
                   src={template.image}
                   alt={`${template.title} template preview`}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index === 0}
                   className="object-cover transition-transform duration-[1.4s] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cedar-midnight/70 via-transparent to-transparent" />
