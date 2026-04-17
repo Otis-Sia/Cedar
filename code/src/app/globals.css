@@ -104,6 +104,11 @@ body.menu-open {
     gap: 5px;
     -webkit-tap-highlight-color: transparent;
 }
+@media (min-width: 768px) {
+    .hamburger-btn {
+        display: none !important;
+    }
+}
 .hamburger-btn span {
     display: block;
     width: 20px;

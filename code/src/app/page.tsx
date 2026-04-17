@@ -1,16 +1,81 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
+const templatesList = [
+  {
+    id: "bold-creative",
+    name: "Bold Creative",
+    category: "bold-creative",
+    description: "High-impact layouts with expressive imagery and confident typography.",
+    image: "/templates/bold-creative.png",
+  },
+  {
+    id: "high-contrast",
+    name: "High Contrast",
+    category: "high-contrast",
+    description: "Monochrome visual language with striking spacing and editorial drama.",
+    image: "/templates/high-contrast.png",
+  },
+  {
+    id: "minimalist-architect",
+    name: "Minimalist Architect",
+    category: "minimalist-architect",
+    description: "Calm, structured compositions built around whitespace and precise hierarchy.",
+    image: "/templates/minimalist-architect.png",
+  },
+  {
+    id: "playful-1-page",
+    name: "Playful",
+    category: "playful-1-page",
+    description: "Bright, character-driven layouts with a lively single-page rhythm.",
+    image: "/templates/playful-1-page.png",
+  },
+  {
+    id: "professional-developer",
+    name: "Professional Developer",
+    category: "professional-developer",
+    description: "Structured portfolio layouts for technical profiles and product teams.",
+    image: "/templates/professional-developer.png",
+  },
+  {
+    id: "student",
+    name: "Student",
+    category: "student",
+    description: "Editorial layouts that present academic work and projects with clarity.",
+    image: "/templates/student.png",
+  },
+  {
+    id: "tech-1-page",
+    name: "Tech 1 page",
+    category: "tech-1-page",
+    description: "Concise one-page layouts for tools, startups, and product storytelling.",
+    image: "/templates/tech-1-page.png",
+  },
+];
+
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
+  const [selectedPreview, setSelectedPreview] = useState<string | null>(null);
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
   };
+
+  const filteredTemplates = templatesList.slice(0, 3);
+  const activePreview = templatesList.find((template) => template.id === selectedPreview) ?? null;
+
+  useEffect(() => {
+    if (selectedPreview) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [selectedPreview]);
 
   return (
     <>
@@ -242,90 +307,70 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Showcase Section */}
-        <section
-          id="showcase"
-          className="py-16 md:py-[120px] px-4 sm:px-6 lg:px-12 bg-cedar-alabaster overflow-hidden"
-        >
-          <div className="max-w-[1280px] mx-auto mb-16 flex flex-col md:flex-row justify-between items-end">
-            <div>
-              <h2 className="font-headline text-4xl md:text-5xl font-bold mb-4 text-cedar-midnight">
-                The Showcase
-              </h2>
-              <p className="text-cedar-slate text-lg">
-                Crafted for every creative discipline.
-              </p>
-            </div>
-            <Link
-              className="text-cedar-forest font-semibold text-sm uppercase tracking-widest border-b border-cedar-forest pb-1 mt-6 md:mt-0 hover:text-cedar-forest-dark transition-colors"
-              href="/templates"
-            >
-              Browse All Templates
-            </Link>
+        {/* Templates Database Section */}
+        <section id="showcase" className="py-16 md:py-[120px] px-4 sm:px-6 lg:px-12 bg-white">
+          <div className="max-w-[1280px] mx-auto text-center mb-16">
+            <span className="block text-xs uppercase tracking-[0.3em] text-cedar-bronze font-semibold mb-6">
+              Gallery
+            </span>
+            <h2 className="font-headline text-4xl md:text-5xl font-bold text-cedar-midnight mb-6">
+              Curated Templates
+            </h2>
+            <p className="text-lg text-cedar-slate mb-12 max-w-2xl mx-auto">
+              Select from a collection of premium layouts designed by leading
+              creative directors.
+            </p>
+
           </div>
 
-          <div className="flex gap-8 overflow-x-auto pb-12 pt-4 px-6 lg:px-0 max-w-[1280px] mx-auto no-scrollbar snap-x">
-            <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
-              <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt="high-end fashion portfolio layout"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB05_snhJLPD4RWwvY5WrXK_v1EKrY3_UfsyrH5kALM4YUSGmHJ43qUt0O1a4tA9jmC-4NSK35XTS_teLpMSYAeqq3RcTPEp_S-l9JlUNEuMgiuErds9CHeGaDgOOf_G-VaBSMgtQ3l8iHT5dZOqTNz5NLjE3bjdnoNYCpKxtovwcZ_HosPk8UOttwI8P_zplNedFpCReBNMHhO5GYAJEADlQbrhiK3Ze5k4pj68E-KOrdDMxIhiV9j3_0rOTGuHF266cXVrnqygleZ"
-                />
-                <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    Preview Layout
-                  </button>
+          <div className="max-w-[1400px] mx-auto min-h-[50vh]">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+              {filteredTemplates.map((template, idx) => (
+                <div
+                  key={template.id}
+                  className="template-card group relative flex flex-col h-full bg-white rounded-[28px] overflow-hidden border border-black/5 hover:shadow-2xl transition-all duration-500 animate-in fade-in slide-in-from-bottom-8"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <div className="relative overflow-hidden aspect-[4/5] bg-gray-100">
+                    <div className="absolute inset-0 bg-gradient-to-t from-cedar-forest/80 via-cedar-forest/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+                    <Image
+                      src={template.image}
+                      alt={`${template.name} template preview`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+                      priority={idx < 2}
+                    />
+                  </div>
+                  <div className="p-6 flex flex-col flex-1 justify-between gap-5 relative z-20 bg-white">
+                    <div>
+                      <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-cedar-bronze mb-3 block">
+                        {template.name}
+                      </span>
+                      <h2 className="font-headline text-2xl font-bold text-cedar-midnight mb-3">
+                        {template.name}
+                      </h2>
+                      <p className="text-cedar-slate text-sm leading-relaxed">
+                        {template.description}
+                      </p>
+                    </div>
+                    <div className="flex gap-3">
+                      <Link
+                        href="/signup"
+                        className="flex-1 flex justify-center items-center bg-cedar-forest text-white py-3.5 rounded-2xl font-bold text-sm shadow-md hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all"
+                      >
+                        Use This Template
+                      </Link>
+                      <button
+                        onClick={() => setSelectedPreview(template.id)}
+                        className="flex-1 flex justify-center items-center border border-black/10 text-cedar-midnight py-3.5 rounded-2xl font-semibold text-sm hover:bg-cedar-alabaster transition-all"
+                      >
+                        Live Preview
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <h4 className="font-headline text-2xl font-bold text-cedar-midnight">
-                Vanguard Editorial
-              </h4>
-              <p className="text-cedar-slate text-sm mt-2 uppercase tracking-widest font-medium text-[10px]">
-                Best for Fashion & Lifestyle
-              </p>
-            </div>
-
-            <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0 md:mt-24">
-              <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt="clean tech design"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYHdS04CrbPyBYQIV5VKk-nF6obqlYT2cY9G-bGQY3eQafWRyOcS_hNVyy022DYWGfFSSXi4ELwyKdzU4tczw5oi3NPHTBEMUUeyjVw6IXsEUKHFRiNOi6-ImeYXAiOQysl3q_15qkoHSLPD7wMtllYHaw0FAHDqu63oYJIfKFRiCQ77l8lZLUWFcE2AVAhHaiHQ8qeQQ7J3hhi4SApI_6IOLEVFo5biL9hun4yeWJR2exZV6JvFAjC8RdYUv7GCe4ikgIIffF4ErM"
-                />
-                <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    Preview Layout
-                  </button>
-                </div>
-              </div>
-              <h4 className="font-headline text-2xl font-bold text-cedar-midnight">
-                System Neutral
-              </h4>
-              <p className="text-cedar-slate text-sm mt-2 uppercase tracking-widest font-medium text-[10px]">
-                Best for Product Design & UX
-              </p>
-            </div>
-
-            <div className="min-w-[85vw] sm:min-w-[450px] group snap-center shrink-0">
-              <div className="aspect-[16/10] bg-white rounded-3xl overflow-hidden mb-6 relative border border-black/5 shadow-sm">
-                <img
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  alt="modern bold web layout"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1zJh5mUz9dE2ajcuvUZB6XpehcQsXSfypUsUWYC8DttAskH4lMpsTVYwpZoxjRcYaLGEQ63uCAKN5-hnV_BvRof-awnvNSAMqXEfKMImVqfVMKexiyhjk5QSgW_ZCGr-XS0xhKXVOu6oIy9FbZYo6g6jq_64_FkFzuZBT2lCcnJsUza7V38eOjbqkTNqaPEQ_uPxOoFfEn51LnKdG7u2WxwegYqVZ4PO685Q_UJlkdD33bw5HpdGfFS0YzN5HC5oVyBE2vTxiFhGC"
-                />
-                <div className="absolute inset-0 bg-cedar-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                  <button className="bg-white text-cedar-forest px-8 py-3 rounded-full font-bold shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    Preview Layout
-                  </button>
-                </div>
-              </div>
-              <h4 className="font-headline text-2xl font-bold text-cedar-midnight">
-                Modern Theory
-              </h4>
-              <p className="text-cedar-slate text-sm mt-2 uppercase tracking-widest font-medium text-[10px]">
-                Best for Visual Artists
-              </p>
+              ))}
             </div>
           </div>
         </section>
@@ -750,6 +795,57 @@ export default function Home() {
           </span>
         </Link>
       </div>
+
+      {/* Preview Modal */}
+      {activePreview && (
+        <div className="fixed inset-0 z-[200] bg-cedar-midnight/95 backdrop-blur-xl flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-300">
+          <button
+            onClick={() => setSelectedPreview(null)}
+            className="absolute top-6 right-6 md:top-8 md:right-8 z-10 w-12 h-12 rounded-full bg-white/10 border border-white/15 flex items-center justify-center hover:bg-white/20 transition-colors"
+          >
+            <span className="material-symbols-outlined text-white text-2xl">
+              close
+            </span>
+          </button>
+          <div className="w-full max-w-6xl bg-white rounded-3xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300">
+            <div className="bg-cedar-alabaster flex items-center gap-2 px-5 py-3 border-b border-black/5">
+              <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
+              <div className="w-3 h-3 rounded-full bg-green-400/80"></div>
+              <span className="ml-4 text-xs text-cedar-slate font-medium">
+                cedar.portfolio/{activePreview.id}
+              </span>
+            </div>
+            <div className="relative overflow-y-auto max-h-[80vh]">
+              <div className="relative aspect-[16/10] w-full bg-cedar-alabaster">
+                <Image
+                  src={activePreview.image}
+                  alt={`${activePreview.name} preview`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-t border-black/5">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.25em] text-cedar-bronze font-bold mb-2">
+                    {activePreview.category}
+                  </p>
+                  <h3 className="font-headline text-2xl md:text-3xl font-bold text-cedar-midnight">
+                    {activePreview.name}
+                  </h3>
+                </div>
+                <Link
+                  href="/signup"
+                  className="inline-flex justify-center items-center bg-cedar-forest text-white px-6 py-3 rounded-full font-bold text-sm shadow-md hover:bg-cedar-forest-dark transition-all"
+                >
+                  Use This Template
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -35,15 +35,9 @@ export default function Navigation() {
           </Link>
           <Link
             className="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors"
-            href="/templates"
-          >
-            Templates
-          </Link>
-          <Link
-            className="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors"
             href="/#showcase"
           >
-            Showcase
+            Templates
           </Link>
           <Link
             className="text-sm tracking-widest font-semibold uppercase text-cedar-slate hover:text-cedar-forest transition-colors"
@@ -127,7 +121,7 @@ export default function Navigation() {
             Services
           </Link>
           <Link
-            href="/templates"
+            href="/#showcase"
             className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
@@ -135,16 +129,6 @@ export default function Navigation() {
               auto_awesome_motion
             </span>{" "}
             Templates
-          </Link>
-          <Link
-            href="/#showcase"
-            className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-cedar-midnight font-medium hover:bg-cedar-alabaster transition-colors"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            <span className="material-symbols-outlined text-cedar-forest">
-              photo_library
-            </span>{" "}
-            Showcase
           </Link>
           <Link
             href="/#pricing"

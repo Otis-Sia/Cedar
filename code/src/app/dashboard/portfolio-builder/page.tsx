@@ -95,13 +95,13 @@ const MAX_UPLOAD_SIZE_BYTES = 10 * 1024 * 1024;
 const MAX_MEDIA_FILE_SIZE_BYTES = 5 * 1024 * 1024;
 const MAX_PROJECT_MEDIA_TOTAL_BYTES = 25 * 1024 * 1024;
 const templatePreviewImages: Record<TemplateCategory, string> = {
-  "bold-creative": "/template_creative_director.png",
-  "high-contrast": "/template_experimental.png",
-  "minimalist-architect": "/template_minimalist.png",
-  "playful-1-page": "/hero.png",
-  "professional-developer": "/template_corporate_tech.png",
-  student: "/template_minimalist.png",
-  "tech-1-page": "/template_corporate_tech.png",
+  "bold-creative": "/templates/bold-creative.png",
+  "high-contrast": "/templates/high-contrast.png",
+  "minimalist-architect": "/templates/minimalist-architect.png",
+  "playful-1-page": "/templates/playful-1-page.png",
+  "professional-developer": "/templates/professional-developer.png",
+  student: "/templates/student.png",
+  "tech-1-page": "/templates/tech-1-page.png",
 };
 
 function toTemplateCategory(value: string | null): TemplateCategory | null {
