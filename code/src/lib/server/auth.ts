@@ -39,15 +39,5 @@ export async function requireUser(request: NextRequest): Promise<SessionUser> {
     };
   }
 
-  const hasSessionCookie = request.cookies.get("cedar-auth-session")?.value;
-  if (hasSessionCookie) {
-    return {
-      uid: "session-user",
-      email: null,
-      name: null,
-      picture: null,
-    };
-  }
-
   throw new AuthError("Missing authentication session.", 401);
 }

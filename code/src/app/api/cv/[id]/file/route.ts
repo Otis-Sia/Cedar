@@ -21,8 +21,11 @@ export async function PUT(
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 
-    await request.arrayBuffer();
-    updateUpload(id, { status: "uploaded_file_received" });
+    const body = await request.arrayBuffer();
+    updateUpload(id, {
+      status: "uploaded_file_received",
+      uploadedBytes: body.byteLength,
+    });
 
     return new NextResponse(null, { status: 200 });
   } catch (error) {

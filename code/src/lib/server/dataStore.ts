@@ -30,6 +30,7 @@ export interface UploadRecord {
   sizeBytes: number;
   storagePath: string;
   status: UploadStatus;
+  uploadedBytes: number;
   parsedData: Record<string, unknown> | null;
   createdAt: string;
   updatedAt: string;
@@ -126,6 +127,7 @@ export function createUpload(input: {
     sizeBytes: input.sizeBytes,
     storagePath: input.storagePath,
     status: "pending_upload",
+    uploadedBytes: 0,
     parsedData: null,
     createdAt: timestamp,
     updatedAt: timestamp,
