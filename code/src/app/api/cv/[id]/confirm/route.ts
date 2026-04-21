@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { FieldValue } from "firebase-admin/firestore";
 import { AuthError, requireUser } from "@/lib/server/auth";
-import { adminDb } from "@/lib/server/firebaseAdmin";
+import { getUpload, updateUpload } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
@@ -13,22 +12,17 @@ export async function POST(
     const user = await requireUser(request);
     const { id } = await context.params;
 
-    const uploadRef = adminDb.collection("cv_uploads").doc(id);
-    const uploadSnapshot = await uploadRef.get();
+    const upload = getUpload(id);
 
-    if (!uploadSnapshot.exists) {
+    if (!upload) {
       return NextResponse.json({ error: "Upload not found." }, { status: 404 });
     }
 
-    const uploadData = uploadSnapshot.data();
-    if (!uploadData || uploadData.userId !== user.uid) {
+    if (upload.userId !== user.uid) {
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 
-    await uploadRef.update({
-      status: "uploaded",
-      updatedAt: FieldValue.serverTimestamp(),
-    });
+    updateUpload(id, { status: "uploaded" });
 
     return NextResponse.json({ ok: true, upload: { id, status: "uploaded" } });
   } catch (error) {

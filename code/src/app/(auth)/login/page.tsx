@@ -9,12 +9,20 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const router = useRouter();
 
-  const setAuthSession = (user: Record<string, unknown>) => {
+  const setAuthSession = async (user: Record<string, unknown>) => {
     localStorage.setItem("cedar:auth-user", JSON.stringify(user));
-    document.cookie = `cedar-auth-session=1; path=/; max-age=${60 * 60 * 24 * 7}; samesite=lax`;
+    await fetch("/api/auth/session", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        uid: user.uid,
+        email: user.email,
+        name: user.displayName ?? null,
+      }),
+    });
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     const loggedInUser = {
       uid: "user-" + email,
@@ -25,7 +33,7 @@ export default function LoginPage() {
       tenantId: null,
       providerData: [],
     };
-    setAuthSession(loggedInUser);
+    await setAuthSession(loggedInUser);
     const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
     router.push(redirectTarget);
   };
