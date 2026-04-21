@@ -55,6 +55,7 @@ declare global {
 
 function getState(): DataStoreState {
   // Temporary local store used after Firebase removal; data resets on server restart.
+  // TODO: Replace with a persistent database store for production usage.
   if (!globalThis.__cedarDataStore) {
     globalThis.__cedarDataStore = {
       projects: new Map<string, ProjectRecord>(),
@@ -175,4 +176,8 @@ export function createSession(user: SessionUser) {
 
 export function getSessionUser(token: string) {
   return getState().sessions.get(token) ?? null;
+}
+
+export function deleteSession(token: string) {
+  getState().sessions.delete(token);
 }

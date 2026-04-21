@@ -24,6 +24,7 @@ export async function POST(
 
     updateUpload(id, { status: "processing" });
 
+    // Placeholder parsing payload until real CV parsing is wired in.
     const parsedData = {
       summary: "Parsing scheduled.",
       sourceFile: upload.fileName ?? null,

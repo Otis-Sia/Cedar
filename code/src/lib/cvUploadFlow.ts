@@ -8,7 +8,7 @@ interface CreateUploadInput {
 
 interface CreateUploadResponse {
   data: {
-    uploadUrl?: string;
+    uploadUrl: string;
     signedUploadUrl: string;
     upload: {
       id: string;
