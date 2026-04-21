@@ -1,4 +1,5 @@
 import { NextRequest } from "next/server";
+import { getSessionUser } from "@/lib/server/dataStore";
 
 export class AuthError extends Error {
   readonly status: number;
@@ -9,35 +10,23 @@ export class AuthError extends Error {
   }
 }
 
-interface SessionUser {
+export interface SessionUser {
   uid: string;
   email?: string | null;
   name?: string | null;
   picture?: string | null;
 }
 
-function parseBearerToken(request: NextRequest) {
-  const authorization = request.headers.get("authorization");
-
-  if (!authorization?.startsWith("Bearer ")) {
-    return null;
-  }
-
-  const token = authorization.slice("Bearer ".length).trim();
-  return token || null;
-}
-
 export async function requireUser(request: NextRequest): Promise<SessionUser> {
-  const uid = parseBearerToken(request);
-
-  if (uid) {
-    return {
-      uid,
-      email: null,
-      name: null,
-      picture: null,
-    };
+  const sessionToken = request.cookies.get("cedar-auth-session")?.value;
+  if (!sessionToken) {
+    throw new AuthError("Missing authentication session.", 401);
   }
 
-  throw new AuthError("Missing authentication session.", 401);
+  const user = getSessionUser(sessionToken);
+  if (!user) {
+    throw new AuthError("Invalid authentication session.", 401);
+  }
+
+  return user;
 }

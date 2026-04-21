@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       data: {
+        // Keep signedUploadUrl for backward compatibility with existing client calls.
         uploadUrl: `/api/cv/${upload.id}/file`,
         signedUploadUrl: `/api/cv/${upload.id}/file`,
         upload: {

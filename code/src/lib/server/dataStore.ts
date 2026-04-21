@@ -39,6 +39,14 @@ export interface UploadRecord {
 interface DataStoreState {
   projects: Map<string, ProjectRecord>;
   uploads: Map<string, UploadRecord>;
+  sessions: Map<string, SessionUser>;
+}
+
+interface SessionUser {
+  uid: string;
+  email: string | null;
+  name: string | null;
+  picture: string | null;
 }
 
 declare global {
@@ -46,10 +54,12 @@ declare global {
 }
 
 function getState(): DataStoreState {
+  // Temporary local store used after Firebase removal; data resets on server restart.
   if (!globalThis.__cedarDataStore) {
     globalThis.__cedarDataStore = {
       projects: new Map<string, ProjectRecord>(),
       uploads: new Map<string, UploadRecord>(),
+      sessions: new Map<string, SessionUser>(),
     };
   }
 
@@ -155,4 +165,14 @@ export function updateUpload(id: string, updates: Partial<UploadRecord>) {
 
   getState().uploads.set(id, updatedUpload);
   return updatedUpload;
+}
+
+export function createSession(user: SessionUser) {
+  const token = randomUUID();
+  getState().sessions.set(token, user);
+  return token;
+}
+
+export function getSessionUser(token: string) {
+  return getState().sessions.get(token) ?? null;
 }
