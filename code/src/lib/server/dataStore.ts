@@ -55,7 +55,7 @@ declare global {
 
 function getState(): DataStoreState {
   // Temporary local store used after Firebase removal; data resets on server restart.
-  // TODO: Replace with a persistent database store for production usage.
+  // TODO: Replace with a persistent database (for example PostgreSQL) with migrations for production usage.
   if (!globalThis.__cedarDataStore) {
     globalThis.__cedarDataStore = {
       projects: new Map<string, ProjectRecord>(),

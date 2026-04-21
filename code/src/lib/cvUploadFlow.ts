@@ -10,7 +10,7 @@ interface CreateUploadResponse {
   data: {
     /** Preferred local upload endpoint used after Firebase removal. */
     uploadUrl: string;
-    /** Deprecated compatibility field; mirrors uploadUrl for older clients. */
+    /** @deprecated Will be removed in v2.0.0; use uploadUrl instead. */
     signedUploadUrl: string;
     upload: {
       id: string;
