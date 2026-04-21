@@ -4,7 +4,7 @@ import { getUpload, updateUpload } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
-export async function POST(
+export async function PUT(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
@@ -13,7 +13,6 @@ export async function POST(
     const { id } = await context.params;
 
     const upload = getUpload(id);
-
     if (!upload) {
       return NextResponse.json({ error: "Upload not found." }, { status: 404 });
     }
@@ -22,31 +21,15 @@ export async function POST(
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 
-    updateUpload(id, { status: "processing" });
+    await request.arrayBuffer();
+    updateUpload(id, { status: "uploaded_file_received" });
 
-    const parsedData = {
-      summary: "Parsing scheduled.",
-      sourceFile: upload.fileName ?? null,
-    };
-
-    updateUpload(id, {
-      status: "complete",
-      parsedData,
-    });
-
-    return NextResponse.json({
-      ok: true,
-      upload: {
-        id,
-        status: "complete",
-        parsedData,
-      },
-    });
+    return new NextResponse(null, { status: 200 });
   } catch (error) {
     if (error instanceof AuthError) {
       return NextResponse.json({ error: error.message }, { status: error.status });
     }
 
-    return NextResponse.json({ error: "Failed to parse upload." }, { status: 500 });
+    return NextResponse.json({ error: "Failed to upload file." }, { status: 500 });
   }
 }

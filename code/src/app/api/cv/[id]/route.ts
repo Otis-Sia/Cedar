@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AuthError, requireUser } from "@/lib/server/auth";
-import { adminDb } from "@/lib/server/firebaseAdmin";
+import { getUpload } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
@@ -12,14 +12,13 @@ export async function GET(
     const user = await requireUser(request);
     const { id } = await context.params;
 
-    const uploadSnapshot = await adminDb.collection("cv_uploads").doc(id).get();
+    const upload = getUpload(id);
 
-    if (!uploadSnapshot.exists) {
+    if (!upload) {
       return NextResponse.json({ error: "Upload not found." }, { status: 404 });
     }
 
-    const upload = uploadSnapshot.data();
-    if (!upload || upload.userId !== user.uid) {
+    if (upload.userId !== user.uid) {
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 

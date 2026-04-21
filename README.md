@@ -7,7 +7,7 @@ Cedar is a high-end, intelligent portfolio creation platform designed to transfo
 This project is divided into two primary environments:
 
 - **[/frontend](file:///home/sia/Desktop/Code/Cedar/frontend/)**: Legacy static HTML/CSS/JS frontend environment.
-- **[/code](file:///home/sia/Desktop/Code/Cedar/code/)**: Modern Next.js application environment (React/TypeScript/Firebase).
+- **[/code](file:///home/sia/Desktop/Code/Cedar/code/)**: Modern Next.js application environment (React/TypeScript).
 
 ### Legacy Frontend (./frontend)
 

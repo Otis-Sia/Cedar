@@ -1,8 +1,6 @@
-import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { FieldValue } from "firebase-admin/firestore";
 import { AuthError, requireUser } from "@/lib/server/auth";
-import { adminDb } from "@/lib/server/firebaseAdmin";
+import { createProject } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
@@ -24,31 +22,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "templateId is required." }, { status: 400 });
     }
 
-    const now = FieldValue.serverTimestamp();
-    const docRef = adminDb.collection("projects").doc(randomUUID());
-
-    await docRef.set({
+    const project = createProject({
       title: body.title.trim(),
       templateId: body.templateId.trim(),
       userId: user.uid,
-      status: "draft",
-      settings: {
-        isPublic: false,
-      },
-      createdAt: now,
-      updatedAt: now,
     });
 
-    return NextResponse.json({
-      project: {
-        id: docRef.id,
-        title: body.title.trim(),
-        templateId: body.templateId.trim(),
-        userId: user.uid,
-        status: "draft",
-        settings: { isPublic: false },
-      },
-    });
+    return NextResponse.json({ project });
   } catch (error) {
     if (error instanceof AuthError) {
       return NextResponse.json({ error: error.message }, { status: error.status });

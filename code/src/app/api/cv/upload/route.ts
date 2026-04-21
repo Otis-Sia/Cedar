@@ -1,8 +1,6 @@
-import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { FieldValue } from "firebase-admin/firestore";
 import { AuthError, requireUser } from "@/lib/server/auth";
-import { adminDb, adminStorage } from "@/lib/server/firebaseAdmin";
+import { createUpload } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
@@ -38,39 +36,21 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const uploadId = randomUUID();
-    const storagePath = `cv_uploads/${user.uid}/${uploadId}/${body.fileName}`;
-    const bucket = adminStorage.bucket();
-    const file = bucket.file(storagePath);
-
-    const [signedUploadUrl] = await file.getSignedUrl({
-      version: "v4",
-      action: "write",
-      expires: Date.now() + 15 * 60 * 1000,
-      contentType: body.mimeType,
-    });
-
-    const now = FieldValue.serverTimestamp();
-
-    await adminDb.collection("cv_uploads").doc(uploadId).set({
-      id: uploadId,
+    const upload = createUpload({
       userId: user.uid,
       fileName: body.fileName,
       mimeType: body.mimeType,
       sizeBytes: body.sizeBytes,
-      storagePath,
-      status: "pending_upload",
-      createdAt: now,
-      updatedAt: now,
+      storagePath: `cv_uploads/${user.uid}/${body.fileName}`,
     });
 
     return NextResponse.json({
       data: {
-        signedUploadUrl,
+        signedUploadUrl: `/api/cv/${upload.id}/file`,
         upload: {
-          id: uploadId,
-          status: "pending_upload",
-          storagePath,
+          id: upload.id,
+          status: upload.status,
+          storagePath: upload.storagePath,
         },
       },
     });

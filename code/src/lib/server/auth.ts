@@ -1,5 +1,4 @@
 import { NextRequest } from "next/server";
-import { adminAuth } from "@/lib/server/firebaseAdmin";
 
 export class AuthError extends Error {
   readonly status: number;
@@ -10,21 +9,45 @@ export class AuthError extends Error {
   }
 }
 
-export async function requireUser(request: NextRequest) {
+interface SessionUser {
+  uid: string;
+  email?: string | null;
+  name?: string | null;
+  picture?: string | null;
+}
+
+function parseBearerToken(request: NextRequest) {
   const authorization = request.headers.get("authorization");
 
   if (!authorization?.startsWith("Bearer ")) {
-    throw new AuthError("Missing Bearer token.", 401);
+    return null;
   }
 
   const token = authorization.slice("Bearer ".length).trim();
-  if (!token) {
-    throw new AuthError("Missing Firebase ID token.", 401);
+  return token || null;
+}
+
+export async function requireUser(request: NextRequest): Promise<SessionUser> {
+  const uid = parseBearerToken(request);
+
+  if (uid) {
+    return {
+      uid,
+      email: null,
+      name: null,
+      picture: null,
+    };
   }
 
-  try {
-    return await adminAuth.verifyIdToken(token);
-  } catch {
-    throw new AuthError("Invalid Firebase ID token.", 401);
+  const hasSessionCookie = request.cookies.get("cedar-auth-session")?.value;
+  if (hasSessionCookie) {
+    return {
+      uid: "session-user",
+      email: null,
+      name: null,
+      picture: null,
+    };
   }
+
+  throw new AuthError("Missing authentication session.", 401);
 }

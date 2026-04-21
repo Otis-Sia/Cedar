@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { FieldValue } from "firebase-admin/firestore";
 import { AuthError, requireUser } from "@/lib/server/auth";
-import { adminDb } from "@/lib/server/firebaseAdmin";
+import { getProject, updateProjectStatus } from "@/lib/server/dataStore";
 
 export const runtime = "nodejs";
 
@@ -22,35 +21,23 @@ export async function PATCH(
       return NextResponse.json({ error: "action is required." }, { status: 400 });
     }
 
-    const projectRef = adminDb.collection("projects").doc(id);
-    const projectSnapshot = await projectRef.get();
+    const project = getProject(id);
 
-    if (!projectSnapshot.exists) {
+    if (!project) {
       return NextResponse.json({ error: "Project not found." }, { status: 404 });
     }
 
-    const projectData = projectSnapshot.data();
-    if (!projectData || projectData.userId !== user.uid) {
+    if (project.userId !== user.uid) {
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 
     if (body.action === "publish") {
-      await projectRef.update({
-        status: "published",
-        "settings.isPublic": true,
-        updatedAt: FieldValue.serverTimestamp(),
-      });
-
+      updateProjectStatus(id, "published");
       return NextResponse.json({ ok: true, projectId: id, status: "published" });
     }
 
     if (body.action === "unpublish") {
-      await projectRef.update({
-        status: "draft",
-        "settings.isPublic": false,
-        updatedAt: FieldValue.serverTimestamp(),
-      });
-
+      updateProjectStatus(id, "draft");
       return NextResponse.json({ ok: true, projectId: id, status: "draft" });
     }
 
