@@ -1,18 +1,21 @@
 {
-  "emulators": {
+    "emulators": {
+        "dataconnect": {
+            "dataDir": "dataconnect/.dataconnect/pgliteData"
+        }
+    },
     "dataconnect": {
-      "dataDir": "dataconnect/.dataconnect/pgliteData"
+        "source": "dataconnect"
+    },
+    "firestore": {
+        "rules": "code/firestore.rules"
+    },
+    "hosting": {
+        "public": "otis-sia/Cedar",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ]
     }
-  },
-  "dataconnect": {
-    "source": "dataconnect"
-  },
-  "hosting": {
-    "public": "otis-sia/Cedar",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ]
-  }
 }
