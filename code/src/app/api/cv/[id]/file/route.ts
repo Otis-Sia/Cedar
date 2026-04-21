@@ -21,6 +21,7 @@ export async function PUT(
       return NextResponse.json({ error: "Forbidden." }, { status: 403 });
     }
 
+    // Intentionally not persisted yet; this temporary endpoint only tracks upload receipt metadata.
     const body = await request.arrayBuffer();
     updateUpload(id, {
       status: "uploaded_file_received",
