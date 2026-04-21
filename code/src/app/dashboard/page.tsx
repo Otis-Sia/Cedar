@@ -110,7 +110,7 @@ export default function DashboardOverview() {
                     </span>
                   </Link>
                   <a
-                    href="#"
+                    href="/dashboard/projects"
                     className="bg-white text-cedar-forest p-2 rounded-lg shadow-sm hover:bg-cedar-forest hover:text-white transition-colors flex items-center justify-center"
                   >
                     <span className="material-symbols-outlined text-sm">
