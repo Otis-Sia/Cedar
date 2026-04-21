@@ -8,6 +8,9 @@ interface CreateUploadInput {
 
 interface CreateUploadResponse {
   data: {
+    /** Preferred local upload endpoint used after Firebase removal. */
+    uploadUrl: string;
+    /** @deprecated Will be removed in v2.0.0; use uploadUrl instead. */
     signedUploadUrl: string;
     upload: {
       id: string;
@@ -39,11 +42,11 @@ export async function createCvUpload(input: CreateUploadInput) {
 }
 
 export async function uploadFileToSignedUrl(
-  signedUploadUrl: string,
+  uploadUrl: string,
   file: File,
   mimeType: string
 ) {
-  const uploadResponse = await fetch(signedUploadUrl, {
+  const uploadResponse = await fetch(uploadUrl, {
     method: "PUT",
     body: file,
     headers: { "Content-Type": mimeType },

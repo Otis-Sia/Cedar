@@ -14,17 +14,14 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const router = useRouter();
 
-  const clearAuthSession = () => {
+  const clearAuthSession = async () => {
     localStorage.removeItem("cedar:auth-user");
-    document.cookie = "cedar-auth-session=; path=/; max-age=0; samesite=lax";
+    await fetch("/api/auth/logout", { method: "POST" });
   };
-
-  const hasAuthSession = () =>
-    document.cookie.split("; ").some((cookie) => cookie.startsWith("cedar-auth-session="));
 
   useEffect(() => {
     const userData = localStorage.getItem("cedar:auth-user");
-    if (!userData && !hasAuthSession()) {
+    if (!userData) {
       router.push("/login");
     } else {
       setUser(userData ? JSON.parse(userData) : null);
@@ -48,8 +45,8 @@ export default function DashboardLayout({
     { href: "/dashboard/settings", icon: "settings_accessibility", label: "Settings" },
   ];
 
-  const handleSignOut = () => {
-    clearAuthSession();
+  const handleSignOut = async () => {
+    await clearAuthSession();
     router.push("/login");
   };
 
