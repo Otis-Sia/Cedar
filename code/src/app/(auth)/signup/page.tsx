@@ -3,11 +3,14 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { createUserProfile, signUp } from "@/services/auth.service";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const setAuthSession = async (user: Record<string, unknown>) => {
@@ -25,18 +28,49 @@ export default function SignupPage() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser = {
-      uid: "user-" + Date.now(),
-      email: email,
-      displayName: name,
-      emailVerified: false,
-      isAnonymous: false,
-      tenantId: null,
-      providerData: [],
-    };
-    await setAuthSession(newUser);
-    const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
-    router.push(redirectTarget);
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const { data, error } = await signUp(email, password);
+
+    if (error) {
+      setErrorMessage(error.message || "Unable to create account.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const user = data?.user;
+
+    if (user) {
+      const profileResult = await createUserProfile(user, name || "New User");
+      const profileErrorCode =
+        profileResult.error && "code" in profileResult.error
+          ? String(profileResult.error.code)
+          : null;
+
+      if (profileResult.error && profileErrorCode !== "23505") {
+        setErrorMessage(profileResult.error.message || "Unable to create profile.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      await setAuthSession({
+        uid: user.id,
+        email: user.email,
+        displayName: name || user.user_metadata?.display_name,
+      });
+
+      const redirectTarget =
+        new URLSearchParams(window.location.search).get("redirect") ||
+        "/dashboard";
+      router.push(redirectTarget);
+      return;
+    }
+
+    setErrorMessage(
+      "Check your inbox to verify your email before continuing."
+    );
+    setIsSubmitting(false);
   };
 
   return (
@@ -170,6 +204,8 @@ export default function SignupPage() {
                   type="password"
                   placeholder="Min. 8 characters"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
                 />
                 <button
@@ -213,11 +249,17 @@ export default function SignupPage() {
             </div>
 
             <div className="pt-4">
+              {errorMessage && (
+                <p className="mb-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                  {errorMessage}
+                </p>
+              )}
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full flex justify-center items-center gap-2 bg-cedar-forest text-white py-4 rounded-xl font-bold text-base shadow-[0_4px_20px_rgba(27,48,34,0.15)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all"
               >
-                Create Account{" "}
+                {isSubmitting ? "Creating account..." : "Create Account"}{" "}
                 <span className="material-symbols-outlined text-[18px]">
                   arrow_forward
                 </span>
