@@ -31,7 +31,7 @@ export default function SignupPage() {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    const { data, error } = await signUp(email, password);
+    const { data, error } = await signUp(email, password, name);
 
     if (error) {
       setErrorMessage(error.message || "Unable to create account.");

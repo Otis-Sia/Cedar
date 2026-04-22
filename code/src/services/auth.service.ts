@@ -2,7 +2,7 @@ import { supabase, supabaseConfigError } from "@/lib/supabaseClient";
 
 const missingSupabaseError = { message: supabaseConfigError };
 
-export const signUp = async (email: string, password: string) => {
+export const signUp = async (email: string, password: string, name?: string) => {
   if (!supabase) {
     return { data: null, error: missingSupabaseError };
   }
@@ -10,6 +10,11 @@ export const signUp = async (email: string, password: string) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
+    options: {
+      data: {
+        full_name: name,
+      },
+    },
   });
 
   return { data, error };
