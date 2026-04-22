@@ -1,4 +1,5 @@
 import { randomUUID } from "node:crypto";
+import { logger } from "../logger";
 
 type ProjectStatus = "draft" | "published";
 
@@ -93,10 +94,12 @@ export function createProject(input: {
   };
 
   getState().projects.set(id, project);
+  logger.db("Project created", { id, title: input.title });
   return project;
 }
 
 export function getProject(id: string) {
+  logger.db("Get project", { id });
   return getState().projects.get(id) ?? null;
 }
 
@@ -117,6 +120,7 @@ export function updateProjectStatus(id: string, status: ProjectStatus) {
   };
 
   getState().projects.set(id, updatedProject);
+  logger.db("Project updated", { id, status });
   return updatedProject;
 }
 
@@ -145,10 +149,12 @@ export function createUpload(input: {
   };
 
   getState().uploads.set(id, upload);
+  logger.db("Upload created", { id, fileName: input.fileName });
   return upload;
 }
 
 export function getUpload(id: string) {
+  logger.db("Get upload", { id });
   return getState().uploads.get(id) ?? null;
 }
 
@@ -165,12 +171,14 @@ export function updateUpload(id: string, updates: Partial<UploadRecord>) {
   };
 
   getState().uploads.set(id, updatedUpload);
+  logger.db("Upload updated", { id, updates });
   return updatedUpload;
 }
 
 export function createSession(user: SessionUser) {
   const token = randomUUID();
   getState().sessions.set(token, user);
+  logger.db("Session created", { uid: user.uid });
   return token;
 }
 
@@ -180,4 +188,5 @@ export function getSessionUser(token: string) {
 
 export function deleteSession(token: string) {
   getState().sessions.delete(token);
+  logger.db("Session deleted");
 }

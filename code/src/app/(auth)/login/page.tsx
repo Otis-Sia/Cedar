@@ -4,9 +4,13 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { signIn } from "@/services/auth.service";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
   const setAuthSession = async (user: Record<string, unknown>) => {
@@ -24,18 +28,31 @@ export default function LoginPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    const loggedInUser = {
-      uid: "user-" + email,
-      email: email,
-      displayName: null,
-      emailVerified: true,
-      isAnonymous: false,
-      tenantId: null,
-      providerData: [],
-    };
-    await setAuthSession(loggedInUser);
-    const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
-    router.push(redirectTarget);
+    setIsSubmitting(true);
+    setErrorMessage("");
+
+    const { data, error } = await signIn(email, password);
+
+    if (error) {
+      setErrorMessage(error.message || "Invalid email or password.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const user = data?.user;
+    if (user) {
+      await setAuthSession({
+        uid: user.id,
+        email: user.email,
+        displayName: user.user_metadata?.display_name || user.user_metadata?.full_name || null,
+      });
+
+      const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
+      router.push(redirectTarget);
+    } else {
+      setErrorMessage("Something went wrong. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -105,6 +122,8 @@ export default function LoginPage() {
                   type="password"
                   placeholder="••••••••"
                   required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full p-4 pr-14 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
                 />
                 <button
@@ -134,11 +153,17 @@ export default function LoginPage() {
             </div>
 
             <div className="pt-4">
+              {errorMessage && (
+                <p className="mb-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2">
+                  {errorMessage}
+                </p>
+              )}
               <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full flex justify-center items-center gap-2 bg-cedar-forest text-white py-4 rounded-xl font-bold text-base shadow-[0_4px_20px_rgba(27,48,34,0.15)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all"
               >
-                Log In{" "}
+                {isSubmitting ? "Logging in..." : "Log In"}{" "}
                 <span className="material-symbols-outlined text-[18px]">
                   arrow_forward
                 </span>

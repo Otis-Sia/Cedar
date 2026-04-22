@@ -34,7 +34,11 @@ export default function SignupPage() {
     const { data, error } = await signUp(email, password, name);
 
     if (error) {
-      setErrorMessage(error.message || "Unable to create account.");
+      if (error.message.toLowerCase().includes("already registered")) {
+        setErrorMessage("This email is already registered. Please log in instead.");
+      } else {
+        setErrorMessage(error.message || "Unable to create account.");
+      }
       setIsSubmitting(false);
       return;
     }

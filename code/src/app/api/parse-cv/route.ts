@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { parseCVToPortfolio } from '@/lib/gemini';
+import { logger } from '@/lib/logger';
 
 export const runtime = 'nodejs';
 
@@ -13,8 +14,10 @@ interface ParseCVRequestBody {
 export async function POST(request: Request) {
   try {
     const body = (await request.json()) as ParseCVRequestBody;
+    logger.server('/api/parse-cv', 'POST', { fileName: body.fileName });
 
     if (typeof body.cvText !== 'string' || !body.cvText.trim()) {
+      logger.warn('/api/parse-cv: Missing cvText');
       return NextResponse.json(
         { error: 'cvText is required.' },
         { status: 400 }
@@ -22,6 +25,7 @@ export async function POST(request: Request) {
     }
 
     const portfolio = await parseCVToPortfolio(body.cvText.slice(0, MAX_CV_TEXT_LENGTH));
+    logger.info('/api/parse-cv: CV parsed successfully');
 
     return NextResponse.json({
       portfolio,
@@ -29,6 +33,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Failed to parse CV.';
+    logger.error('/api/parse-cv: Failed to parse CV', { error: message });
 
     return NextResponse.json(
       { error: message },
