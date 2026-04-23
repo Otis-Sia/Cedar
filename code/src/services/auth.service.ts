@@ -3,17 +3,25 @@ import { logger } from "@/lib/logger";
 
 const missingSupabaseError = { message: supabaseConfigError };
 
-export const signUp = async (email: string, password: string, name?: string) => {
+export const signUp = async (
+  email: string,
+  password: string,
+  firstName: string,
+  lastName: string
+) => {
   if (!supabase) {
     return { data: null, error: missingSupabaseError };
   }
 
+  const name = `${firstName} ${lastName}`.trim();
   logger.db("Supabase auth signUp", { email, name });
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
+        first_name: firstName,
+        last_name: lastName,
         display_name: name,
       },
     },
@@ -50,6 +58,24 @@ export const createUserProfile = async (
   return { data, error };
 };
 
+export const getUserProfile = async (userId: string) => {
+  if (!supabase) {
+    return { data: null, error: missingSupabaseError };
+  }
+
+  logger.db("Supabase get user profile", { userId });
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  if (error) logger.error("Supabase get user profile failed", { error });
+  else logger.info("Supabase get user profile succeeded", { id: data?.id });
+
+  return { data, error };
+};
+
 export const signIn = async (email: string, password: string) => {
   if (!supabase) {
     return { data: null, error: missingSupabaseError };
@@ -79,4 +105,34 @@ export const signOut = async () => {
   else logger.info("Supabase auth signOut succeeded");
 
   return { error };
+};
+
+export const updateUserProfile = async (
+  userId: string,
+  updates: {
+    display_name?: string;
+    bio?: string;
+    location?: string;
+    website?: string;
+    linkedin?: string;
+    github?: string;
+    avatar_url?: string;
+  }
+) => {
+  if (!supabase) {
+    return { data: null, error: missingSupabaseError };
+  }
+
+  logger.db("Supabase update user profile", { userId, updates });
+  const { data, error } = await supabase
+    .from("users")
+    .update(updates)
+    .eq("id", userId)
+    .select()
+    .single();
+
+  if (error) logger.error("Supabase update user profile failed", { error });
+  else logger.info("Supabase update user profile succeeded", { id: data?.id });
+
+  return { data, error };
 };

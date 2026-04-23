@@ -9,6 +9,7 @@ import { signIn } from "@/services/auth.service";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
@@ -119,7 +120,7 @@ export default function LoginPage() {
               <div className="relative">
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   required
                   value={password}
@@ -128,11 +129,12 @@ export default function LoginPage() {
                 />
                 <button
                   type="button"
+                  onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-cedar-slate hover:text-cedar-midnight transition-colors w-11 h-11 flex items-center justify-center"
                   aria-label="Toggle password visibility"
                 >
                   <span className="material-symbols-outlined text-[20px]">
-                    visibility_off
+                    {showPassword ? "visibility" : "visibility_off"}
                   </span>
                 </button>
               </div>

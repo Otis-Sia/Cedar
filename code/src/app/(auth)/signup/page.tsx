@@ -7,8 +7,12 @@ import { createUserProfile, signUp } from "@/services/auth.service";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
@@ -31,7 +35,14 @@ export default function SignupPage() {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    const { data, error } = await signUp(email, password, name);
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    const fullName = `${firstName} ${lastName}`.trim();
+    const { data, error } = await signUp(email, password, firstName, lastName);
 
     if (error) {
       if (error.message.toLowerCase().includes("already registered")) {
@@ -46,7 +57,7 @@ export default function SignupPage() {
     const user = data?.user;
 
     if (user) {
-      const profileResult = await createUserProfile(user, name || "New User");
+      const profileResult = await createUserProfile(user, fullName || "New User");
       const profileErrorCode =
         profileResult.error && "code" in profileResult.error
           ? String(profileResult.error.code)
@@ -61,7 +72,7 @@ export default function SignupPage() {
       await setAuthSession({
         uid: user.id,
         email: user.email,
-        displayName: name || user.user_metadata?.display_name,
+        displayName: fullName || user.user_metadata?.display_name,
       });
 
       const redirectTarget =
@@ -123,7 +134,7 @@ export default function SignupPage() {
       </div>
 
       {/* Right: Auth Form */}
-      <div className="w-full lg:w-1/2 h-full flex flex-col pt-8 px-6 sm:px-12 md:px-24 justify-between bg-white">
+      <div className="w-full lg:w-1/2 h-full flex flex-col pt-8 px-6 sm:px-12 md:px-24 justify-between bg-white overflow-y-auto">
         <Link href="/" className="lg:hidden flex items-center gap-3 w-fit group mb-8">
           <div className="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
             C
@@ -159,22 +170,41 @@ export default function SignupPage() {
           </div>
 
           <form className="space-y-5" onSubmit={handleSignup}>
-            <div>
-              <label
-                className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
-                htmlFor="name"
-              >
-                Full Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Sarah Jenkins"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
-              />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label
+                  className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
+                  htmlFor="firstName"
+                >
+                  First Name
+                </label>
+                <input
+                  id="firstName"
+                  type="text"
+                  placeholder="Sarah"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
+                />
+              </div>
+              <div>
+                <label
+                  className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
+                  htmlFor="lastName"
+                >
+                  Last Name
+                </label>
+                <input
+                  id="lastName"
+                  type="text"
+                  placeholder="Jenkins"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
+                />
+              </div>
             </div>
 
             <div>
@@ -195,31 +225,63 @@ export default function SignupPage() {
               />
             </div>
 
-            <div>
-              <label
-                className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Min. 8 characters"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
-                />
-                <button
-                  type="button"
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-cedar-slate hover:text-cedar-midnight focus:outline-none"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
+                  htmlFor="password"
                 >
-                  <span className="material-symbols-outlined text-[20px]">
-                    visibility_off
-                  </span>
-                </button>
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Min. 8 characters"
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full p-4 pr-12 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-cedar-slate hover:text-cedar-midnight focus:outline-none"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      {showPassword ? "visibility" : "visibility_off"}
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
+                  htmlFor="confirmPassword"
+                >
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="confirmPassword"
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Repeat password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="w-full p-4 pr-12 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-cedar-slate hover:text-cedar-midnight focus:outline-none"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">
+                      {showConfirmPassword ? "visibility" : "visibility_off"}
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
 
