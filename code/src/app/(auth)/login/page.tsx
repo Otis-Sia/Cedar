@@ -15,9 +15,9 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
 
-  const setAuthSession = async (user: Record<string, unknown>) => {
+  const setAuthSession = async (user: Record<string, unknown>): Promise<string> => {
     localStorage.setItem("cedar:auth-user", JSON.stringify(user));
-    await fetch("/api/auth/session", {
+    const res = await fetch("/api/auth/session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -26,6 +26,9 @@ export default function LoginPage() {
         name: user.displayName ?? null,
       }),
     });
+    const json = (await res.json()) as { ok?: boolean; role?: string };
+    // The server resolves the role from the DB — use it for redirect
+    return json.role ?? "user";
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -43,12 +46,13 @@ export default function LoginPage() {
 
     const user = data?.user;
     if (user) {
+      // Check student onboarding via client-side (role check happens server-side)
       if (supabase) {
         const { data: userData } = await supabase
           .from("users")
           .select("is_student, onboarding_completed")
           .eq("id", user.id)
-          .single();
+          .maybeSingle();
 
         if (userData?.is_student && !userData.onboarding_completed) {
           router.push("/onboarding/student");
@@ -56,14 +60,20 @@ export default function LoginPage() {
         }
       }
 
-      await setAuthSession({
+      // setAuthSession returns the server-resolved role
+      const resolvedRole = await setAuthSession({
         uid: user.id,
         email: user.email,
         displayName: user.user_metadata?.display_name || user.user_metadata?.full_name || null,
       });
 
-      const redirectTarget = new URLSearchParams(window.location.search).get("redirect") || "/dashboard";
-      router.push(redirectTarget);
+      const redirectParam = new URLSearchParams(window.location.search).get("redirect");
+
+      if (resolvedRole === "admin") {
+        router.push(redirectParam || "/admin/dashboard");
+      } else {
+        router.push(redirectParam || "/dashboard");
+      }
     } else {
       setErrorMessage("Something went wrong. Please try again.");
       setIsSubmitting(false);

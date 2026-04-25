@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { createUserProfile, signUp } from "@/services/auth.service";
+import { checkStudent, createUserProfile, signUp } from "@/services/auth.service";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -58,10 +58,12 @@ export default function SignupPage() {
     const user = data?.user;
 
     if (user) {
+      const isStudent = await checkStudent(email);
       const profileResult = await createUserProfile(
         user,
         fullName || "New User",
-        studentEmail
+        studentEmail,
+        isStudent
       );
       const profileErrorCode =
         profileResult.error && "code" in profileResult.error

@@ -43,11 +43,12 @@ interface DataStoreState {
   sessions: Map<string, SessionUser>;
 }
 
-interface SessionUser {
+export interface SessionUser {
   uid: string;
   email: string | null;
   name: string | null;
   picture: string | null;
+  role: string;
 }
 
 declare global {
@@ -175,9 +176,15 @@ export function updateUpload(id: string, updates: Partial<UploadRecord>) {
   return updatedUpload;
 }
 
-export function createSession(user: SessionUser) {
+export function createSession(user: Omit<SessionUser, "role"> & { role?: string | null }) {
   const token = randomUUID();
-  getState().sessions.set(token, user);
+  getState().sessions.set(token, {
+    uid: user.uid,
+    email: user.email,
+    name: user.name,
+    picture: user.picture,
+    role: user.role?.trim() || "user",
+  });
   logger.db("Session created", { uid: user.uid });
   return token;
 }

@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
         email: user.email ?? null,
         name: user.name ?? null,
         picture: user.picture ?? null,
+        role: user.role,
       },
     });
   } catch (error) {

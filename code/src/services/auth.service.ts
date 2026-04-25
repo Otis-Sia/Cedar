@@ -3,9 +3,35 @@ import { logger } from "@/lib/logger";
 
 const missingSupabaseError = { message: supabaseConfigError };
 
-export function determinePlan(studentEmail?: string) {
-  return studentEmail?.trim() ? "student" : "free";
-}
+
+export const checkStudent = async (email: string) => {
+  if (!supabase) {
+    return false;
+  }
+
+  const domain = email.split("@")[1]?.toLowerCase().trim();
+  if (!domain) {
+    return false;
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from("student_domains")
+      .select("domain")
+      .eq("domain", domain)
+      .maybeSingle();
+
+    if (error) {
+      logger.warn("Student domain lookup failed", { error, domain });
+      return false;
+    }
+
+    return Boolean(data);
+  } catch (err) {
+    logger.error("Error in checkStudent", { err, domain });
+    return false;
+  }
+};
 
 export const signUp = async (
   email: string,
@@ -40,28 +66,41 @@ export const signUp = async (
 export const createUserProfile = async (
   user: { id: string; email?: string | null },
   displayName = "New User",
-  studentEmail?: string
+  studentEmail?: string,
+  isStudent = false
 ) => {
   if (!supabase) {
     return { data: null, error: missingSupabaseError };
   }
 
   const normalizedStudentEmail = studentEmail?.trim() || null;
-  const plan = determinePlan(normalizedStudentEmail ?? undefined);
+  
+  // Verify student status:
+  // 1. If isStudent is already true (passed from primary email check)
+  // 2. Or if normalizedStudentEmail is provided and its domain is whitelisted
+  let effectiveIsStudent = isStudent;
+  if (!effectiveIsStudent && normalizedStudentEmail) {
+    effectiveIsStudent = await checkStudent(normalizedStudentEmail);
+  }
+
+  const plan = effectiveIsStudent ? "student" : "free";
+  const effectiveStudentEmail = normalizedStudentEmail || (effectiveIsStudent ? user.email ?? null : null);
 
   logger.db("Supabase upsert user profile", {
     id: user.id,
     plan,
     hasStudentEmail: Boolean(normalizedStudentEmail),
+    isStudent: effectiveIsStudent,
   });
+
   const { data, error } = await supabase
     .from("users")
     .upsert({
       id: user.id,
       email: user.email,
       display_name: displayName,
-      student_email: normalizedStudentEmail,
-      is_student: plan === "student",
+      student_email: effectiveStudentEmail,
+      is_student: effectiveIsStudent,
       plan,
     })
     .select()

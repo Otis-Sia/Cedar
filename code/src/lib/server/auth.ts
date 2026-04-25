@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { getSessionUser } from "@/lib/server/dataStore";
+import { getSessionUser, type SessionUser } from "@/lib/server/dataStore";
 
 export class AuthError extends Error {
   readonly status: number;
@@ -8,13 +8,6 @@ export class AuthError extends Error {
     super(message);
     this.status = status;
   }
-}
-
-export interface SessionUser {
-  uid: string;
-  email?: string | null;
-  name?: string | null;
-  picture?: string | null;
 }
 
 export async function requireUser(request: NextRequest): Promise<SessionUser> {
