@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { signIn } from "@/services/auth.service";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -42,6 +43,19 @@ export default function LoginPage() {
 
     const user = data?.user;
     if (user) {
+      if (supabase) {
+        const { data: userData } = await supabase
+          .from("users")
+          .select("is_student, onboarding_completed")
+          .eq("id", user.id)
+          .single();
+
+        if (userData?.is_student && !userData.onboarding_completed) {
+          router.push("/onboarding/student");
+          return;
+        }
+      }
+
       await setAuthSession({
         uid: user.id,
         email: user.email,

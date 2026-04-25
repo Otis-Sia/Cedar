@@ -7,6 +7,7 @@ import { createUserProfile, signUp } from "@/services/auth.service";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -57,7 +58,11 @@ export default function SignupPage() {
     const user = data?.user;
 
     if (user) {
-      const profileResult = await createUserProfile(user, fullName || "New User");
+      const profileResult = await createUserProfile(
+        user,
+        fullName || "New User",
+        studentEmail
+      );
       const profileErrorCode =
         profileResult.error && "code" in profileResult.error
           ? String(profileResult.error.code)
@@ -221,6 +226,23 @@ export default function SignupPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
+              />
+            </div>
+
+            <div>
+              <label
+                className="block text-xs font-bold text-cedar-midnight uppercase tracking-widest mb-2"
+                htmlFor="studentEmail"
+              >
+                Student Email (optional)
+              </label>
+              <input
+                id="studentEmail"
+                type="email"
+                placeholder="Student Email (optional)"
+                value={studentEmail}
+                onChange={(e) => setStudentEmail(e.target.value)}
                 className="w-full p-4 rounded-xl border border-black/10 bg-cedar-alabaster/50 font-body text-base outline-none focus:border-cedar-bronze focus:ring-4 focus:ring-cedar-bronze/10 transition-all text-cedar-midnight"
               />
             </div>

@@ -3,6 +3,10 @@ import { logger } from "@/lib/logger";
 
 const missingSupabaseError = { message: supabaseConfigError };
 
+export function determinePlan(studentEmail?: string) {
+  return studentEmail?.trim() ? "student" : "free";
+}
+
 export const signUp = async (
   email: string,
   password: string,
@@ -35,25 +39,36 @@ export const signUp = async (
 
 export const createUserProfile = async (
   user: { id: string; email?: string | null },
-  displayName = "New User"
+  displayName = "New User",
+  studentEmail?: string
 ) => {
   if (!supabase) {
     return { data: null, error: missingSupabaseError };
   }
 
-  logger.db("Supabase insert user profile", { id: user.id });
+  const normalizedStudentEmail = studentEmail?.trim() || null;
+  const plan = determinePlan(normalizedStudentEmail ?? undefined);
+
+  logger.db("Supabase upsert user profile", {
+    id: user.id,
+    plan,
+    hasStudentEmail: Boolean(normalizedStudentEmail),
+  });
   const { data, error } = await supabase
     .from("users")
-    .insert({
+    .upsert({
       id: user.id,
       email: user.email,
       display_name: displayName,
+      student_email: normalizedStudentEmail,
+      is_student: plan === "student",
+      plan,
     })
     .select()
     .maybeSingle();
 
-  if (error) logger.error("Supabase insert user profile failed", { error });
-  else logger.info("Supabase insert user profile succeeded", { id: data?.id });
+  if (error) logger.error("Supabase upsert user profile failed", { error });
+  else logger.info("Supabase upsert user profile succeeded", { id: data?.id });
 
   return { data, error };
 };

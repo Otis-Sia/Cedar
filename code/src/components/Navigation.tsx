@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -18,9 +19,14 @@ export default function Navigation() {
     <>
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-[20px] border-b border-black/5 flex justify-between items-center px-4 sm:px-6 md:px-10 py-3 md:py-4 h-16 md:h-20">
         <Link href="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">
-            C
-          </div>
+          <Image
+            src="/brand-mark.svg"
+            alt="Cedar brand mark"
+            width={32}
+            height={32}
+            className="rounded-lg"
+            priority
+          />
           <div className="font-headline text-2xl font-bold tracking-tight text-cedar-forest">
             Cedar
           </div>
@@ -94,9 +100,14 @@ export default function Navigation() {
       >
         <div className="flex items-center justify-between p-5 border-b border-black/5">
           <Link href="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-            <div className="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic">
-              C
-            </div>
+            <Image
+              src="/brand-mark.svg"
+              alt="Cedar brand mark"
+              width={32}
+              height={32}
+              className="rounded-lg"
+              priority
+            />
             <div className="font-headline text-xl font-bold tracking-tight text-cedar-forest">
               Cedar
             </div>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 import { getUserPortfolios } from "@/services/portfolio.service";
 import { getActiveSubscription } from "@/services/subscription.service";
@@ -18,6 +19,7 @@ export default function DashboardOverview() {
   const [portfolios, setPortfolios] = useState<DashboardPortfolio[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hasActiveSubscription, setHasActiveSubscription] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const loadDashboardData = async () => {
@@ -34,6 +36,18 @@ export default function DashboardOverview() {
         return;
       }
 
+      const { data: userProfile } = await supabase
+        .from("users")
+        .select("is_student, onboarding_completed")
+        .eq("id", user.id)
+        .single();
+
+      if (userProfile?.is_student && !userProfile.onboarding_completed) {
+        router.push("/onboarding/student");
+        setIsLoading(false);
+        return;
+      }
+
       const [portfolioResult, subscriptionResult] = await Promise.all([
         getUserPortfolios(user.id),
         getActiveSubscription(user.id),
@@ -45,7 +59,7 @@ export default function DashboardOverview() {
     };
 
     void loadDashboardData();
-  }, []);
+  }, [router]);
 
   return (
     <>

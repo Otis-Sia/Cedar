@@ -228,3 +228,10 @@ a, button, [role="button"] {
         display: none;
     }
 }
+
+.input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 6px;
+}
