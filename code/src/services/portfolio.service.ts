@@ -9,7 +9,7 @@ export const createPortfolio = async (userId: string) => {
       is_published: false,
     })
     .select()
-    .single();
+    .maybeSingle();
 
   return { data, error };
 };
@@ -29,7 +29,7 @@ export const getPublicPortfolioBySlug = async (slug: string) => {
     .from("portfolios")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .maybeSingle();
 
   return { data, error };
 };

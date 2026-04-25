@@ -50,7 +50,7 @@ export const createUserProfile = async (
       display_name: displayName,
     })
     .select()
-    .single();
+    .maybeSingle();
 
   if (error) logger.error("Supabase insert user profile failed", { error });
   else logger.info("Supabase insert user profile succeeded", { id: data?.id });
@@ -68,10 +68,11 @@ export const getUserProfile = async (userId: string) => {
     .from("users")
     .select("*")
     .eq("id", userId)
-    .single();
+    .maybeSingle();
 
   if (error) logger.error("Supabase get user profile failed", { error });
-  else logger.info("Supabase get user profile succeeded", { id: data?.id });
+  else if (!data) logger.warn("Supabase get user profile not found", { userId });
+  else logger.info("Supabase get user profile succeeded", { id: data.id });
 
   return { data, error };
 };
@@ -117,6 +118,7 @@ export const updateUserProfile = async (
     linkedin?: string;
     github?: string;
     avatar_url?: string;
+    profile_picture_url?: string;
   }
 ) => {
   if (!supabase) {
@@ -129,7 +131,7 @@ export const updateUserProfile = async (
     .update(updates)
     .eq("id", userId)
     .select()
-    .single();
+    .maybeSingle();
 
   if (error) logger.error("Supabase update user profile failed", { error });
   else logger.info("Supabase update user profile succeeded", { id: data?.id });

@@ -22,7 +22,6 @@ The current application logic is built with Next.js and integrates AI-driven par
 Each subdirectory contains the source code for a specific portfolio style:
 - `Bold Creative`, `Minimalist Architect`, `Tech 1 page`, etc.
 - These templates include individual `DESIGN.md` files that guide their aesthetic implementation.
-
 ## Running Locally
 
 ### Next.js Application (Active Development)

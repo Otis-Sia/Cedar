@@ -24,7 +24,7 @@ export const addSection = async (
       order_index: orderIndex,
     })
     .select()
-    .single();
+    .maybeSingle();
 
   return { data, error };
 };

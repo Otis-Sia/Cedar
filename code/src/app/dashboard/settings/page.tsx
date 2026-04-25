@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { getUserProfile, updateUserProfile } from "@/services/auth.service";
+import { uploadFile, getPublicUrl, saveMediaAsset } from "@/services/media.service";
 import { motion, AnimatePresence } from "motion/react";
 
 type UserProfile = {
@@ -14,6 +15,7 @@ type UserProfile = {
   linkedin: string | null;
   github: string | null;
   avatar_url: string | null;
+  profile_picture_url: string | null;
 };
 
 export default function SettingsPage() {
@@ -21,7 +23,10 @@ export default function SettingsPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [localAvatarUrl, setLocalAvatarUrl] = useState<string | null>(null);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   // Form states
   const [firstName, setFirstName] = useState("");
@@ -94,6 +99,61 @@ export default function SettingsPage() {
     setSaving(false);
   };
 
+  const handleProfilePictureUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !profile) return;
+
+    // Show an instant local preview before the upload finishes
+    const objectUrl = URL.createObjectURL(file);
+    setLocalAvatarUrl(objectUrl);
+    setUploading(true);
+    setMessage(null);
+
+    try {
+      const path = await uploadFile(file, profile.id);
+      const publicUrl = getPublicUrl(path);
+
+      const { data, error } = await updateUserProfile(profile.id, {
+        profile_picture_url: path,
+        avatar_url: publicUrl,
+      });
+
+      if (error) throw error;
+
+      // Save to media_assets as well for history/dashboard
+      await saveMediaAsset(profile.id, null, {
+        path,
+        type: file.type,
+        name: file.name,
+        size: file.size,
+      });
+
+      // Switch from local blob to the real remote URL (with cache-bust)
+      const cacheBustedUrl = `${publicUrl}?t=${Date.now()}`;
+      setLocalAvatarUrl(null);
+      URL.revokeObjectURL(objectUrl);
+
+      if (data) {
+        setProfile({ ...data, avatar_url: cacheBustedUrl });
+      } else {
+        // Fallback: keep existing profile data but update avatar_url
+        setProfile((prev) => prev ? { ...prev, avatar_url: cacheBustedUrl } : prev);
+      }
+
+      setMessage({ type: "success", text: "Profile picture updated!" });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Failed to upload image.";
+      console.error("Upload failed:", err);
+      setLocalAvatarUrl(null);
+      URL.revokeObjectURL(objectUrl);
+      setMessage({ type: "error", text: msg });
+    } finally {
+      setUploading(false);
+      // Reset input so the same file can be re-selected after an error
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -103,12 +163,12 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="px-4 sm:px-8 md:px-12 py-10 max-w-5xl mx-auto">
-      <div className="mb-10">
-        <h2 className="font-headline text-4xl font-bold text-cedar-midnight mb-2">
+    <div className="px-4 sm:px-8 md:px-12 py-6 md:py-10 max-w-5xl mx-auto">
+      <div className="mb-8 md:mb-10">
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-cedar-midnight mb-2">
           Settings
         </h2>
-        <p className="text-cedar-slate text-lg font-medium">
+        <p className="text-cedar-slate text-base md:text-lg font-medium">
           Personalize your professional sanctuary and manage your presence.
         </p>
       </div>
@@ -116,28 +176,28 @@ export default function SettingsPage() {
       <div className="flex flex-col md:flex-row gap-12">
         {/* Sidebar Nav */}
         <aside className="w-full md:w-64 shrink-0">
-          <nav className="flex md:flex-col gap-2 p-1 bg-black/5 rounded-2xl md:bg-transparent md:p-0">
+          <nav className="flex md:flex-col gap-1 md:gap-2 p-1.5 bg-black/5 rounded-2xl md:bg-transparent md:p-0">
             <button
               onClick={() => setActiveTab("profile")}
-              className={`flex-1 md:flex-none flex items-center gap-3 px-6 py-4 rounded-xl font-bold text-sm transition-all ${
+              className={`flex-1 md:flex-none flex items-center justify-center md:justify-start gap-3 px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold text-xs md:text-sm transition-all ${
                 activeTab === "profile"
                   ? "bg-white shadow-md text-cedar-forest md:bg-cedar-forest md:text-white md:shadow-lg md:-translate-y-0.5"
                   : "text-cedar-slate hover:bg-white/50 hover:text-cedar-midnight"
               }`}
             >
-              <span className="material-symbols-outlined text-[20px]">person</span>
+              <span className="material-symbols-outlined text-[18px] md:text-[20px]">person</span>
               Profile
             </button>
             <button
               onClick={() => setActiveTab("socials")}
-              className={`flex-1 md:flex-none flex items-center gap-3 px-6 py-4 rounded-xl font-bold text-sm transition-all ${
+              className={`flex-1 md:flex-none flex items-center justify-center md:justify-start gap-3 px-4 md:px-6 py-3 md:py-4 rounded-xl font-bold text-xs md:text-sm transition-all ${
                 activeTab === "socials"
                   ? "bg-white shadow-md text-cedar-forest md:bg-cedar-forest md:text-white md:shadow-lg md:-translate-y-0.5"
                   : "text-cedar-slate hover:bg-white/50 hover:text-cedar-midnight"
               }`}
             >
-              <span className="material-symbols-outlined text-[20px]">share</span>
-              Social Presence
+              <span className="material-symbols-outlined text-[18px] md:text-[20px]">share</span>
+              Socials
             </button>
           </nav>
         </aside>
@@ -152,27 +212,65 @@ export default function SettingsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="bg-white rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-sm space-y-8"
+                  className="bg-white rounded-3xl md:rounded-[2rem] p-5 sm:p-8 md:p-10 border border-black/5 shadow-sm space-y-8"
                 >
-                  <div className="flex flex-col md:flex-row items-center gap-8 pb-8 border-b border-black/5">
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 pb-8 border-b border-black/5 text-center md:text-left">
                     <div className="relative group">
-                      <div className="w-24 h-24 rounded-3xl bg-cedar-alabaster overflow-hidden border-2 border-black/5 shadow-inner">
-                        <img
-                          src={profile?.avatar_url || `https://ui-avatars.com/api/?name=${profile?.display_name || "User"}&background=1B3022&color=fff`}
-                          alt="avatar"
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="w-24 h-24 rounded-3xl bg-cedar-alabaster overflow-hidden border-2 border-black/5 shadow-inner flex items-center justify-center">
+                        {uploading ? (
+                          <div className="w-8 h-8 border-3 border-cedar-forest border-t-transparent rounded-full animate-spin"></div>
+                        ) : (
+                          <img
+                            src={localAvatarUrl || profile?.avatar_url || `https://ui-avatars.com/api/?name=${profile?.display_name || "User"}&background=1B3022&color=fff`}
+                            alt="avatar"
+                            className="w-full h-full object-cover"
+                          />
+                        )}
                       </div>
-                      <button type="button" className="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-white border border-black/5 shadow-md flex items-center justify-center text-cedar-forest hover:bg-cedar-forest hover:text-white transition-all">
+                      <button 
+                        type="button" 
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={uploading}
+                        className="absolute -bottom-2 -right-2 w-8 h-8 rounded-xl bg-white border border-black/5 shadow-md flex items-center justify-center text-cedar-forest hover:bg-cedar-forest hover:text-white transition-all"
+                      >
                         <span className="material-symbols-outlined text-[18px]">edit</span>
                       </button>
+                      <input 
+                        type="file" 
+                        ref={fileInputRef} 
+                        onChange={handleProfilePictureUpload} 
+                        className="hidden" 
+                        accept="image/*"
+                      />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-cedar-midnight mb-1">Profile Picture</h3>
+                      <h3 className="text-lg md:text-xl font-bold text-cedar-midnight mb-1">Profile Picture</h3>
                       <p className="text-sm text-cedar-slate">Upload a professional headshot for your portfolio.</p>
-                      <div className="flex gap-3 mt-4">
-                        <button type="button" className="text-xs font-bold text-cedar-forest hover:underline">Change photo</button>
-                        <button type="button" className="text-xs font-bold text-red-500 hover:underline">Remove</button>
+                      <div className="flex justify-center md:justify-start gap-4 mt-4">
+                        <button 
+                          type="button" 
+                          onClick={() => fileInputRef.current?.click()}
+                          disabled={uploading}
+                          className="text-xs font-bold text-cedar-forest hover:underline disabled:opacity-50"
+                        >
+                          {uploading ? "Uploading..." : "Change photo"}
+                        </button>
+                        <button 
+                          type="button" 
+                          className="text-xs font-bold text-red-500 hover:underline"
+                          onClick={async () => {
+                            if (!profile) return;
+                            if (confirm("Are you sure you want to remove your profile picture?")) {
+                              const { data, error } = await updateUserProfile(profile.id, {
+                                profile_picture_url: "",
+                                avatar_url: ""
+                              });
+                              if (!error) setProfile(data);
+                            }
+                          }}
+                        >
+                          Remove
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -239,7 +337,7 @@ export default function SettingsPage() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="bg-white rounded-[2rem] p-8 md:p-10 border border-black/5 shadow-sm space-y-8"
+                  className="bg-white rounded-3xl md:rounded-[2rem] p-5 sm:p-8 md:p-10 border border-black/5 shadow-sm space-y-8"
                 >
                   <div className="space-y-6">
                     <div className="flex items-start gap-4">
@@ -294,8 +392,8 @@ export default function SettingsPage() {
               )}
             </AnimatePresence>
 
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-4">
-              <div className="flex-1">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6 pt-4">
+              <div className="w-full md:flex-1">
                 {message && (
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
@@ -310,17 +408,17 @@ export default function SettingsPage() {
                   </motion.div>
                 )}
               </div>
-              <div className="flex gap-4 w-full md:w-auto">
+              <div className="flex flex-col-reverse md:flex-row gap-3 md:gap-4 w-full md:w-auto">
                 <button
                   type="button"
-                  className="flex-1 md:flex-none px-8 py-4 rounded-2xl font-bold text-sm text-cedar-slate hover:bg-black/5 transition-all"
+                  className="w-full md:w-auto px-8 py-4 rounded-2xl font-bold text-sm text-cedar-slate hover:bg-black/5 transition-all"
                 >
                   Discard
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="flex-1 md:flex-none flex items-center justify-center gap-2 px-10 py-4 rounded-2xl bg-cedar-forest text-white font-bold text-sm shadow-lg shadow-cedar-forest/20 hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full md:w-auto flex items-center justify-center gap-2 px-10 py-4 rounded-2xl bg-cedar-forest text-white font-bold text-sm shadow-lg shadow-cedar-forest/20 hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {saving ? (
                     <>

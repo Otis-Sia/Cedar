@@ -6,7 +6,7 @@ export const getActiveSubscription = async (userId: string) => {
     .select("*")
     .eq("user_id", userId)
     .eq("status", "active")
-    .single();
+    .maybeSingle();
 
   return { data, error };
 };
