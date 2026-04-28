@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
 
 export default function DashboardLayout({
   children,
@@ -20,12 +21,28 @@ export default function DashboardLayout({
   };
 
   useEffect(() => {
-    const userData = localStorage.getItem("cedar:auth-user");
-    if (!userData) {
-      router.push("/login");
-    } else {
-      setUser(userData ? JSON.parse(userData) : null);
-    }
+    const checkUser = async () => {
+      const { data: { user: supabaseUser } } = await supabase.auth.getUser();
+      if (!supabaseUser) {
+        // Fallback to localStorage check if needed, but primary is Supabase
+        const userData = localStorage.getItem("cedar:auth-user");
+        if (!userData) {
+          router.push("/login");
+          return;
+        }
+        setUser(JSON.parse(userData));
+      } else {
+        const userData = {
+          uid: supabaseUser.id,
+          email: supabaseUser.email,
+          displayName: supabaseUser.user_metadata?.display_name || supabaseUser.user_metadata?.full_name || null,
+        };
+        setUser(userData);
+        // Sync to localStorage for consistency with other parts of the app
+        localStorage.setItem("cedar:auth-user", JSON.stringify(userData));
+      }
+    };
+    checkUser();
   }, [router]);
 
   useEffect(() => {

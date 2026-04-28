@@ -192,3 +192,9 @@ export const updateUserProfile = async (
 
   return { data, error };
 };
+
+export const getCurrentUser = async () => {
+  if (!supabase) return null;
+  const { data: { user } } = await supabase.auth.getUser();
+  return user;
+};

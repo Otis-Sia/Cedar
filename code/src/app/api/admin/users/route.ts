@@ -43,16 +43,21 @@ export async function PATCH(request: NextRequest) {
     }
 
     const adminClient = getAdminClient();
-    const { error } = await adminClient
+    
+    // Non-negotiable logging & selection
+    const { data, error } = await adminClient
       .from("users")
       .update(updates)
-      .eq("id", body.userId);
+      .eq("id", body.userId)
+      .select();
+
+    console.log("Admin User Update Result:", { data, error });
 
     if (error) {
       throw error;
     }
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, data });
   } catch (error) {
     if (error instanceof AuthError) {
       return NextResponse.json({ error: error.message }, { status: error.status });

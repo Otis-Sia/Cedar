@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabaseClient";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 
@@ -61,6 +63,7 @@ const templatesList = [
 export default function Home() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [selectedPreview, setSelectedPreview] = useState<string | null>(null);
+  const router = useRouter();
 
   const toggleFaq = (index: number) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -68,6 +71,27 @@ export default function Home() {
 
   const filteredTemplates = templatesList.slice(0, 3);
   const activePreview = templatesList.find((template) => template.id === selectedPreview) ?? null;
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        // Fetch role to determine redirect path
+        const { data: profile } = await supabase
+          .from("users")
+          .select("role")
+          .eq("id", user.id)
+          .maybeSingle();
+        
+        if (profile?.role === "admin") {
+          router.push("/admin/dashboard");
+        } else {
+          router.push("/dashboard");
+        }
+      }
+    };
+    checkUser();
+  }, [router]);
 
   useEffect(() => {
     if (selectedPreview) {
