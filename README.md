@@ -7,15 +7,13 @@ Cedar is a high-end, intelligent portfolio creation platform designed to transfo
 This project is organized into several key directories:
 
 - **[/code](file:///c:/Users/Administrator/Desktop/Code/Cedar/code/)**: Modern Next.js application environment (React/TypeScript). This is the active development workspace.
-- **[/Templates](file:///c:/Users/Administrator/Desktop/Code/Cedar/Templates/)**: Source HTML/CSS for portfolio templates. These serve as the blueprint for AI-generated portfolios.
-- **[/dataconnect](file:///c:/Users/Administrator/Desktop/Code/Cedar/dataconnect/)**: Firebase Data Connect configuration, schemas, and connectors for PostgreSQL integration.
+- **[/Templates](file:///c:/Users/Administrator/Desktop/Code/Cedar/Templates/)**: Source HTML/CSS for portfolio templates. These serve as the blueprint for user portfolios.
 
 ### Modern Application (./code)
 
-The current application logic is built with Next.js and integrates AI-driven parsing and generation services. It uses:
+The current application logic is built with Next.js and integrates parsing and generation services. It uses:
 - **Next.js 15+** for the frontend and API routes.
 - **Supabase** for database operations and authentication.
-- **Firebase** for AI scanning (Gemini) and additional backend services.
 
 ### Templates (./Templates)
 

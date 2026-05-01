@@ -74,6 +74,7 @@ export default function Home() {
 
   useEffect(() => {
     const checkUser = async () => {
+      if (!supabase) return;
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         // Fetch role to determine redirect path
@@ -123,7 +124,7 @@ export default function Home() {
                 className="material-symbols-outlined text-cedar-bronze text-sm"
                 style={{ fontVariationSettings: "'FILL' 1" }}
               >
-                auto_awesome
+                verified
               </span>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white">
                 The New Standard for Creators
@@ -133,11 +134,11 @@ export default function Home() {
             <h1 className="font-headline text-4xl sm:text-5xl md:text-[80px] font-bold tracking-tight mb-6 md:mb-8 leading-[1.05] text-white">
               Your Story,
               <br />
-              <span className="text-cedar-bronze italic">Curated</span> by Intelligence.
+              <span className="text-cedar-bronze italic">Curated</span> by Design.
             </h1>
 
             <p className="text-lg md:text-xl text-white/80 max-w-2xl mb-12 leading-relaxed">
-              Stop fighting with grids. Cedar analyzes your experience and crafts a high-end, editorial portfolio that commands attention.
+              Stop fighting with grids. Cedar helps you curate your experience and crafts a high-end, editorial portfolio that commands attention.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-5">
@@ -145,7 +146,7 @@ export default function Home() {
                 href="/signup"
                 className="inline-flex justify-center items-center bg-cedar-forest text-white px-10 py-5 rounded-full font-semibold text-[15px] shadow-[0_8px_30px_rgba(27,48,34,0.5)] hover:bg-cedar-forest-dark hover:-translate-y-0.5 transition-all w-full sm:w-auto"
               >
-                Build Your Auto-Portfolio
+                Build Your Portfolio
               </Link>
               <Link
                 href="#showcase"
@@ -242,15 +243,15 @@ export default function Home() {
                     01
                   </span>
                   <h3 className="font-headline text-3xl font-bold mt-6 mb-4 text-cedar-midnight">
-                    Upload CV
+                    Define Identity
                   </h3>
                   <p className="text-cedar-slate text-base leading-relaxed">
-                    Simply drop your LinkedIn PDF or CV. Our engine extracts the essence of your professional journey instantly.
+                    Set your professional foundation. Our intuitive builder helps you structure your journey with precision.
                   </p>
                 </div>
                 <div className="mt-8 flex justify-end relative z-10">
                   <span className="material-symbols-outlined text-[80px] text-cedar-forest/40 group-hover:text-cedar-forest transition-colors">
-                    upload_file
+                    edit_note
                   </span>
                 </div>
               </div>
@@ -261,10 +262,10 @@ export default function Home() {
                     02
                   </span>
                   <h3 className="font-headline text-3xl font-bold mt-6 mb-4 text-white">
-                    AI Scan & Strategy
+                    Strategic Curation
                   </h3>
                   <p className="text-white/80 text-base max-w-md leading-relaxed">
-                    Our AI doesn&apos;t just read text; it understands your industry context, identifying your unique selling points to structure your narrative.
+                    Choose what defines you. Structure your work samples and achievements to highlight your unique value proposition.
                   </p>
                 </div>
                 <div className="absolute bottom-[-10%] right-[-5%] opacity-10">
@@ -272,7 +273,7 @@ export default function Home() {
                     className="material-symbols-outlined text-[300px] text-white"
                     style={{ fontVariationSettings: "'FILL' 1" }}
                   >
-                    neurology
+                    view_quilt
                   </span>
                 </div>
               </div>

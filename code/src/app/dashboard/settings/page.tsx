@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { getUserProfile, updateUserProfile } from "@/services/auth.service";
+import { supabase } from "@/lib/supabaseClient";
 import { uploadFile, getPublicUrl, saveMediaAsset } from "@/services/media.service";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -43,20 +44,35 @@ export default function SettingsPage() {
       if (!userData) return;
       
       const { uid } = JSON.parse(userData);
-      const { data, error } = await getUserProfile(uid);
       
-      if (data) {
-        setProfile(data);
-        const [fName, ...lNames] = (data.display_name || "").split(" ");
-        setFirstName(fName || "");
-        setLastName(lNames.join(" ") || "");
-        setBio(data.bio || "");
-        setLocation(data.location || "");
-        setWebsite(data.website || "");
-        setLinkedin(data.linkedin || "");
-        setGithub(data.github || "");
+      if (!supabase) {
+        setLoading(false);
+        setMessage({ type: "error", text: "Database connection not configured. Please check your .env.local file." });
+        return;
       }
-      setLoading(false);
+
+      try {
+        const { data, error } = await getUserProfile(uid);
+        
+        if (error) {
+          console.error("[Settings] Error loading profile:", error.message);
+          setMessage({ type: "error", text: "Could not load profile. " + error.message });
+        } else if (data) {
+          setProfile(data);
+          const [fName, ...lNames] = (data.display_name || "").split(" ");
+          setFirstName(fName || "");
+          setLastName(lNames.join(" ") || "");
+          setBio(data.bio || "");
+          setLocation(data.location || "");
+          setWebsite(data.website || "");
+          setLinkedin(data.linkedin || "");
+          setGithub(data.github || "");
+        }
+      } catch (err) {
+        console.error("[Settings] Unexpected error loading profile:", err);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadProfile();
@@ -110,8 +126,8 @@ export default function SettingsPage() {
     setMessage(null);
 
     try {
-      const path = await uploadFile(file, profile.id);
-      const publicUrl = getPublicUrl(path);
+      const path = await uploadFile(file, profile.id, "user_avatar");
+      const publicUrl = getPublicUrl(path, "user_avatar");
 
       const { data, error } = await updateUserProfile(profile.id, {
         profile_picture_url: path,
@@ -138,6 +154,16 @@ export default function SettingsPage() {
       } else {
         // Fallback: keep existing profile data but update avatar_url
         setProfile((prev) => prev ? { ...prev, avatar_url: cacheBustedUrl } : prev);
+      }
+
+      // Update local storage so layout can reflect the new avatar
+      const userData = localStorage.getItem("cedar:auth-user");
+      if (userData) {
+        const parsed = JSON.parse(userData);
+        localStorage.setItem("cedar:auth-user", JSON.stringify({
+          ...parsed,
+          avatarUrl: cacheBustedUrl,
+        }));
       }
 
       setMessage({ type: "success", text: "Profile picture updated!" });
@@ -265,7 +291,18 @@ export default function SettingsPage() {
                                 profile_picture_url: "",
                                 avatar_url: ""
                               });
-                              if (!error) setProfile(data);
+                              if (!error) {
+                                setProfile(data);
+                                // Update local storage
+                                const userData = localStorage.getItem("cedar:auth-user");
+                                if (userData) {
+                                  const parsed = JSON.parse(userData);
+                                  localStorage.setItem("cedar:auth-user", JSON.stringify({
+                                    ...parsed,
+                                    avatarUrl: "",
+                                  }));
+                                }
+                              }
                             }
                           }}
                         >

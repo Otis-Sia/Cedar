@@ -8,7 +8,7 @@ interface CreateUploadInput {
 
 interface CreateUploadResponse {
   data: {
-    /** Preferred local upload endpoint used after Firebase removal. */
+    /** Preferred local upload endpoint. */
     uploadUrl: string;
     /** @deprecated Will be removed in v2.0.0; use uploadUrl instead. */
     signedUploadUrl: string;
@@ -24,7 +24,6 @@ interface UploadStatusResponse {
   upload: {
     id: string;
     status: string;
-    parsedData: Record<string, unknown> | null;
   };
 }
 
@@ -64,12 +63,7 @@ export async function confirmCvUpload(uploadId: string) {
   }
 }
 
-export async function triggerCvParse(uploadId: string) {
-  const response = await apiFetch(`/cv/${uploadId}/parse`, { method: "POST" });
-  if (!response.ok) {
-    throw new Error("Failed to start parsing.");
-  }
-}
+
 
 export async function getCvUploadStatus(uploadId: string) {
   const response = await apiFetch(`/cv/${uploadId}`);

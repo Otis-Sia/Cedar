@@ -1,9 +1,0 @@
-connectorId: example
-generate:
-  javascriptSdk:
-    - outputDir: ..\..\code\src\dataconnect-generated
-      package: "@dataconnect/generated"
-      packageJsonDir: ..\..\code
-      react: true
-      angular: false
-      clientCache: {}

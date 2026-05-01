@@ -7,8 +7,7 @@ type UploadStatus =
   | "pending_upload"
   | "uploaded_file_received"
   | "uploaded"
-  | "processing"
-  | "complete";
+  | "uploaded";
 
 export interface ProjectRecord {
   id: string;
@@ -32,7 +31,7 @@ export interface UploadRecord {
   storagePath: string;
   status: UploadStatus;
   uploadedBytes: number;
-  parsedData: Record<string, unknown> | null;
+
   createdAt: string;
   updatedAt: string;
 }
@@ -56,7 +55,7 @@ declare global {
 }
 
 function getState(): DataStoreState {
-  // Temporary local store used after Firebase removal; data resets on server restart.
+  // Temporary local store; data resets on server restart.
   // TODO(v2.0.0): Replace with a persistent database (for example PostgreSQL) and schema migrations for production usage.
   if (!globalThis.__cedarDataStore) {
     globalThis.__cedarDataStore = {
@@ -144,7 +143,6 @@ export function createUpload(input: {
     storagePath: input.storagePath,
     status: "pending_upload",
     uploadedBytes: 0,
-    parsedData: null,
     createdAt: timestamp,
     updatedAt: timestamp,
   };

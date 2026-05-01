@@ -5,7 +5,7 @@
  */
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 // Service role key bypasses RLS — keep this server-side only
 const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
@@ -15,11 +15,12 @@ const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
  * your RLS policies allow the query).
  */
 export function getAdminClient() {
-  if (serviceRoleKey) {
+  if (serviceRoleKey && supabaseUrl) {
     return createClient(supabaseUrl, serviceRoleKey, {
       auth: { persistSession: false },
     });
   }
+
   // Fallback to anon — role queries may fail if RLS blocks them
   const { supabase } = require("@/lib/supabaseClient") as { supabase: ReturnType<typeof createClient> };
   return supabase;

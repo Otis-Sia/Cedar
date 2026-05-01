@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { useAiScanner } from "@/hooks/useAiScanner";
+
 
 type TemplateCategory =
   | "bold-creative"
@@ -48,7 +48,7 @@ interface TestimonialEntry {
   company: string;
 }
 
-type DataEntryMethod = "upload-cv" | "scratch" | null;
+
 
 interface PortfolioState {
   fullName: string;
@@ -196,30 +196,25 @@ export default function PortfolioBuilderPage() {
 
   const [openSection, setOpenSection] = useState<string>("identity");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [dataEntryMethod, setDataEntryMethod] = useState<DataEntryMethod>(null);
-  const [isDataVerified, setIsDataVerified] = useState(false);
-  const [hasScanResult, setHasScanResult] = useState(false);
+
   const [isPublishing, setIsPublishing] = useState(false);
   const [publishedUrl, setPublishedUrl] = useState("");
-  const [selectedTemplateLabel] = useState(() => {
-    if (typeof window === "undefined") {
-      return "";
-    }
-    return localStorage.getItem("cedar:selected-template-label") ?? "";
-  });
-  const [selectedTemplateCategory] = useState<TemplateCategory | null>(() => {
-    if (typeof window === "undefined") {
-      return null;
-    }
-    return toTemplateCategory(localStorage.getItem("cedar:selected-template"));
-  });
+  const [selectedTemplateLabel, setSelectedTemplateLabel] = useState("");
+  const [selectedTemplateCategory, setSelectedTemplateCategory] = useState<TemplateCategory | null>(null);
+
+  useEffect(() => {
+    const label = localStorage.getItem("cedar:selected-template-label") ?? "";
+    const category = toTemplateCategory(localStorage.getItem("cedar:selected-template"));
+    setSelectedTemplateLabel(label);
+    setSelectedTemplateCategory(category);
+  }, []);
   const [brandColor, setBrandColor] = useState("#1B3022");
   const [brandTypography, setBrandTypography] = useState("Inter");
   const [headshotFile, setHeadshotFile] = useState<File | null>(null);
   const [projectImageFiles, setProjectImageFiles] = useState<File[]>([]);
   const [mediaError, setMediaError] = useState("");
 
-  const { scanState, startAiScan } = useAiScanner();
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const toggleSection = (section: string) => {
@@ -267,124 +262,9 @@ export default function PortfolioBuilderPage() {
     }));
   };
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      if (!file.name.match(/\.(pdf|docx)$/i)) {
-        alert("Please upload a PDF or DOCX file.");
-        return;
-      }
-      if (file.size > MAX_UPLOAD_SIZE_BYTES) {
-        alert("File is too large. Maximum size is 10MB.");
-        return;
-      }
-      setSelectedFile(file);
-      setHasScanResult(false);
-      setIsDataVerified(false);
-    }
-  };
 
-  const handleDragOver = (e: React.DragEvent) => {
-    e.preventDefault();
-  };
 
-  const handleDrop = (e: React.DragEvent) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files?.[0];
-    if (file) {
-      if (!file.name.match(/\.(pdf|docx)$/i)) {
-        alert("Please upload a PDF or DOCX file.");
-        return;
-      }
-      if (file.size > MAX_UPLOAD_SIZE_BYTES) {
-        alert("File is too large. Maximum size is 10MB.");
-        return;
-      }
-      setSelectedFile(file);
-      setHasScanResult(false);
-      setIsDataVerified(false);
-    }
-  };
 
-  const onScanComplete = (data: Record<string, unknown>) => {
-    const portfolio = data as Partial<{
-      name: string;
-      title: string;
-      valueProp: string;
-      yearsExperience: number;
-      industryKeywords: string;
-      bio: string;
-      contactInfo: {
-        email?: string;
-        phone?: string;
-        city?: string;
-        country?: string;
-        linkedin?: string;
-        github?: string;
-        behance?: string;
-        website?: string;
-        cvDownloadUrl?: string;
-      };
-      skills: string[];
-      certifications: string;
-      experience: ExperienceEntry[];
-      education: Array<{ degree: string; institution: string; startDate: string; endDate: string; honors: string }>;
-      projects: ProjectEntry[];
-      about: { relevantExperience?: string; professionalPhotoUrl?: string; whoYouHelp?: string; workingStyle?: string; keyClients?: string; toolsUsed?: string };
-      testimonials: TestimonialEntry[];
-      socialProof: { links?: string; logos?: string };
-      contact: { form?: { name?: string; email?: string; message?: string }; availability?: string; cta?: string };
-    }>;
-
-    setFormData((prev) => ({
-      ...prev,
-      fullName: portfolio.name || prev.fullName,
-      professionalTitle: portfolio.title || prev.professionalTitle,
-      valueProp: portfolio.valueProp || prev.valueProp,
-      yearsExperience: portfolio.yearsExperience ? String(portfolio.yearsExperience) : prev.yearsExperience,
-      industryKeywords: portfolio.industryKeywords || prev.industryKeywords,
-      profileSummary: portfolio.bio || prev.profileSummary,
-      relevantExperience: portfolio.about?.relevantExperience || prev.relevantExperience,
-      professionalPhotoUrl: portfolio.about?.professionalPhotoUrl || prev.professionalPhotoUrl,
-      email: portfolio.contactInfo?.email || prev.email,
-      phone: portfolio.contactInfo?.phone || prev.phone,
-      location: (portfolio.contactInfo?.city && portfolio.contactInfo?.country)
-        ? `${portfolio.contactInfo.city}, ${portfolio.contactInfo.country}`
-        : prev.location,
-      linkedin: portfolio.contactInfo?.linkedin || prev.linkedin,
-      github: portfolio.contactInfo?.github || prev.github,
-      behance: portfolio.contactInfo?.behance || prev.behance,
-      website: portfolio.contactInfo?.website || prev.website,
-      cvDownloadUrl: portfolio.contactInfo?.cvDownloadUrl || prev.cvDownloadUrl,
-      skills: portfolio.skills?.join(", ") || prev.skills,
-      certifications: portfolio.certifications || prev.certifications,
-      experience: portfolio.experience?.length ? portfolio.experience : prev.experience,
-      education: portfolio.education?.length
-        ? portfolio.education.map((edu) => ({
-            degree: edu.degree,
-            institution: edu.institution,
-            gradDate: edu.endDate || "",
-            honors: edu.honors,
-          }))
-        : prev.education,
-      projects: portfolio.projects?.length ? portfolio.projects : prev.projects,
-      whoYouHelp: portfolio.about?.whoYouHelp || prev.whoYouHelp,
-      workingStyle: portfolio.about?.workingStyle || prev.workingStyle,
-      keyClients: portfolio.about?.keyClients || prev.keyClients,
-      toolsUsed: portfolio.about?.toolsUsed || prev.toolsUsed,
-      testimonials: portfolio.testimonials?.length ? portfolio.testimonials : prev.testimonials,
-      socialProofLinks: portfolio.socialProof?.links || prev.socialProofLinks,
-      companyLogos: portfolio.socialProof?.logos || prev.companyLogos,
-      contactFormName: portfolio.contact?.form?.name || prev.contactFormName,
-      contactFormEmail: portfolio.contact?.form?.email || prev.contactFormEmail,
-      contactFormMessage: portfolio.contact?.form?.message || prev.contactFormMessage,
-      availability: portfolio.contact?.availability || prev.availability,
-      contactCta: portfolio.contact?.cta || prev.contactCta,
-    }));
-    setOpenSection("identity");
-    setHasScanResult(true);
-    setIsDataVerified(false);
-  };
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -424,14 +304,12 @@ export default function PortfolioBuilderPage() {
     { id: "contact", label: "Contact" },
   ];
 
-  const canEditForms =
-    dataEntryMethod === "scratch" || (dataEntryMethod === "upload-cv" && isDataVerified);
+
 
   const canPublish =
     Boolean(formData.fullName.trim()) &&
     Boolean(formData.email.trim()) &&
     Boolean(selectedTemplateCategory) &&
-    (dataEntryMethod !== "upload-cv" || isDataVerified) &&
     !isPublishing;
 
   const publishPortfolio = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -524,92 +402,7 @@ export default function PortfolioBuilderPage() {
 
       <div className="px-4 sm:px-6 md:px-12 pb-20 flex-grow">
         <div className="max-w-[960px] mx-auto">
-          <div className="mb-8 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-            <h3 className="font-headline text-2xl font-bold text-cedar-midnight">Data Entry Method</h3>
-            <p className="text-sm text-cedar-slate mt-1">Choose how to start your portfolio data.</p>
-            <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <button
-                type="button"
-                onClick={() => {
-                  setDataEntryMethod("upload-cv");
-                  setIsDataVerified(false);
-                }}
-                className={`rounded-2xl border p-5 text-left transition-all ${dataEntryMethod === "upload-cv" ? "border-cedar-forest bg-cedar-forest/5" : "border-black/10 hover:border-cedar-bronze/50"}`}
-              >
-                <p className="font-bold text-cedar-midnight">Upload CV</p>
-                <p className="text-xs text-cedar-slate mt-2">Validate format and size, extract text, map fields, then verify.</p>
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setDataEntryMethod("scratch");
-                  setIsDataVerified(true);
-                  setHasScanResult(false);
-                }}
-                className={`rounded-2xl border p-5 text-left transition-all ${dataEntryMethod === "scratch" ? "border-cedar-forest bg-cedar-forest/5" : "border-black/10 hover:border-cedar-bronze/50"}`}
-              >
-                <p className="font-bold text-cedar-midnight">Start from Scratch</p>
-                <p className="text-xs text-cedar-slate mt-2">Manually fill all sections and continue directly.</p>
-              </button>
-            </div>
-          </div>
 
-          {dataEntryMethod === "upload-cv" && (
-            <div className="mb-8 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-              <div className="flex items-center justify-between gap-4">
-                <h3 className="font-headline text-2xl font-bold text-cedar-midnight">Import CV/Resume</h3>
-                <button
-                  type="button"
-                  onClick={() => selectedFile && startAiScan(selectedFile, onScanComplete)}
-                  disabled={scanState.isScanning || !selectedFile}
-                  className="bg-cedar-forest text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-full flex items-center justify-center gap-2 hover:bg-cedar-forest-dark disabled:opacity-50 transition-all"
-                >
-                  <span className="material-symbols-outlined text-base">{scanState.isScanning ? "progress_activity" : "bolt"}</span>
-                  {scanState.isScanning ? "Scanning..." : "Start AI Scan"}
-                </button>
-              </div>
-              <div className="mt-4">
-                {!selectedFile ? (
-                  <div
-                    onDragOver={handleDragOver}
-                    onDrop={handleDrop}
-                    onClick={() => fileInputRef.current?.click()}
-                    className="border-2 border-dashed border-black/10 rounded-2xl p-6 cursor-pointer text-center hover:border-cedar-bronze/50 transition-all"
-                  >
-                    <p className="text-sm text-cedar-slate">
-                      Drag/drop PDF/DOCX (max {maxCvUploadMb}MB) or click to browse
-                    </p>
-                    <input ref={fileInputRef} type="file" accept=".pdf,.docx" onChange={handleFileSelect} className="hidden" />
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-between rounded-2xl bg-cedar-alabaster p-4">
-                    <p className="text-sm font-semibold text-cedar-midnight truncate">{selectedFile.name}</p>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setSelectedFile(null);
-                        setHasScanResult(false);
-                        setIsDataVerified(false);
-                      }}
-                      className="text-cedar-slate hover:text-red-500"
-                    >
-                      <span className="material-symbols-outlined">close</span>
-                    </button>
-                  </div>
-                )}
-                {scanState.error && <p className="text-red-500 text-xs mt-2">{scanState.error}</p>}
-                {hasScanResult && !isDataVerified && (
-                  <button
-                    type="button"
-                    onClick={() => setIsDataVerified(true)}
-                    className="mt-4 px-4 py-2 rounded-xl border border-cedar-forest/30 text-cedar-forest text-xs font-bold uppercase tracking-wider hover:bg-cedar-forest hover:text-white transition-colors"
-                  >
-                    Confirm Extracted Data
-                  </button>
-                )}
-              </div>
-            </div>
-          )}
 
           <div className="mb-8 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -691,17 +484,7 @@ export default function PortfolioBuilderPage() {
           </div>
 
           <form className="space-y-6" noValidate onSubmit={publishPortfolio}>
-            {!dataEntryMethod && (
-              <div className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-xs text-amber-900">
-                Choose a data entry method first to continue.
-              </div>
-            )}
-            {dataEntryMethod === "upload-cv" && !isDataVerified && (
-              <div className="rounded-2xl border border-amber-300 bg-amber-50 px-4 py-3 text-xs text-amber-900">
-                Review/edit extracted data, then click <strong>Confirm Extracted Data</strong> to continue and publish.
-              </div>
-            )}
-            <fieldset disabled={!canEditForms} className="space-y-6 disabled:opacity-70">
+            <div className="space-y-6">
             {/* 1. Identity & Contact */}
             <div id="identity" className="form-section bg-white rounded-3xl border border-black/5 shadow-sm overflow-hidden transition-all hover:shadow-md">
               <SectionHeader id="identity" icon="person" title="Identity & Contact" subtitle="Your professional identity and how people reach you" badge="Required" openSection={openSection} onToggle={toggleSection} />
@@ -717,6 +500,7 @@ export default function PortfolioBuilderPage() {
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">GitHub Profile</label><input type="url" name="github" value={formData.github} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Behance / Other Portfolio</label><input type="url" name="behance" value={formData.behance} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                     <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">Portfolio Website</label><input type="url" name="website" value={formData.website} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
+                    <div><label className="block text-xs font-bold uppercase tracking-[0.15em] text-cedar-slate mb-2">CV / Resume Link (Google Drive, Dropbox, etc.)</label><input type="url" name="cvDownloadUrl" value={formData.cvDownloadUrl} onChange={handleInputChange} className="w-full bg-cedar-alabaster border border-black/10 rounded-xl px-4 py-3 text-sm text-cedar-midnight" /></div>
                   </div>
                 </div>
               )}
@@ -883,7 +667,7 @@ export default function PortfolioBuilderPage() {
                 </div>
               )}
             </div>
-            </fieldset>
+            </div>
 
             {/* Form Actions */}
             <div className="bg-white rounded-3xl border border-black/5 shadow-sm p-5 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 mt-8">
@@ -912,18 +696,7 @@ export default function PortfolioBuilderPage() {
         </div>
       </div>
 
-      {scanState.isScanning && (
-        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#1B3022]/65 backdrop-blur-md">
-          <div className="bg-white rounded-3xl p-10 max-w-md w-full mx-4 shadow-2xl text-center space-y-6 relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-1 bg-black/5"><div className="h-full bg-gradient-to-r from-cedar-forest to-cedar-bronze transition-all duration-700 ease-out" style={{ width: `${scanState.progress}%` }}></div></div>
-            <div className="w-20 h-20 rounded-full bg-cedar-forest/10 flex items-center justify-center mx-auto"><span className="material-symbols-outlined text-4xl text-cedar-forest animate-spin">auto_awesome</span></div>
-            <div>
-              <h3 className="font-headline text-2xl font-bold text-cedar-midnight mb-2">AI Scan in Progress</h3>
-              <p className="text-sm text-cedar-slate">{scanState.statusText}</p>
-            </div>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }

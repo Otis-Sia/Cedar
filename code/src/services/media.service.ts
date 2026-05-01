@@ -1,6 +1,6 @@
 import { supabase, supabaseConfigError } from "@/lib/supabaseClient";
 
-export const uploadFile = async (file: File, userId: string): Promise<string> => {
+export const uploadFile = async (file: File, userId: string, bucket = "portfolio-assets"): Promise<string> => {
   if (!supabase) throw new Error(supabaseConfigError);
 
   // Debug check: ensure userId is present for RLS policies
@@ -9,7 +9,7 @@ export const uploadFile = async (file: File, userId: string): Promise<string> =>
   const filePath = `${userId}/${file.name}`;
 
   const { data, error } = await supabase.storage
-    .from("portfolio-assets")
+    .from(bucket)
     .upload(filePath, file, { upsert: true });
 
   if (error) throw error;
@@ -69,11 +69,11 @@ export const getMediaAssets = async (portfolioId: string) => {
   return { data: data ?? [], error };
 };
 
-export const getPublicUrl = (path: string): string => {
+export const getPublicUrl = (path: string, bucket = "portfolio-assets"): string => {
   if (!supabase) return "";
 
   const { data } = supabase.storage
-    .from("portfolio-assets")
+    .from(bucket)
     .getPublicUrl(path);
 
   return data.publicUrl;

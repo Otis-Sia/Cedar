@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
+import { getUserProfile } from "@/services/auth.service";
 
 export default function DashboardLayout({
   children,
@@ -12,7 +13,7 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
-  const [user, setUser] = useState<{ displayName?: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ displayName?: string; email?: string; avatarUrl?: string } | null>(null);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -23,7 +24,14 @@ export default function DashboardLayout({
 
   useEffect(() => {
     const checkUser = async () => {
-      const { data: { user: supabaseUser } } = await supabase.auth.getUser();
+      let supabaseUser = null;
+      if (supabase) {
+        const { data } = await supabase.auth.getUser();
+        supabaseUser = data?.user;
+      }
+      
+      let userDataToSet = null;
+
       if (!supabaseUser) {
         // Fallback to localStorage check if needed, but primary is Supabase
         const userData = localStorage.getItem("cedar:auth-user");
@@ -31,17 +39,36 @@ export default function DashboardLayout({
           router.push("/login");
           return;
         }
-        setUser(JSON.parse(userData));
+        userDataToSet = JSON.parse(userData);
       } else {
-        const userData = {
+        userDataToSet = {
           uid: supabaseUser.id,
           email: supabaseUser.email,
           displayName: supabaseUser.user_metadata?.display_name || supabaseUser.user_metadata?.full_name || null,
         };
-        setUser(userData);
         // Sync to localStorage for consistency with other parts of the app
-        localStorage.setItem("cedar:auth-user", JSON.stringify(userData));
+        localStorage.setItem("cedar:auth-user", JSON.stringify(userDataToSet));
       }
+
+      if (supabase && userDataToSet?.uid) {
+        try {
+          // Fetch the user's profile to get the avatar URL
+          const { data: profile, error } = await getUserProfile(userDataToSet.uid);
+          
+          if (error) {
+            console.error("[DashboardLayout] Error fetching user profile:", error.message);
+          } else if (profile) {
+            userDataToSet.avatarUrl = profile.avatar_url;
+            userDataToSet.displayName = profile.display_name || userDataToSet.displayName;
+            // Update localStorage with fresh data
+            localStorage.setItem("cedar:auth-user", JSON.stringify(userDataToSet));
+          }
+        } catch (err) {
+          console.error("[DashboardLayout] Unexpected error fetching user profile:", err);
+        }
+      }
+      
+      setUser(userDataToSet);
     };
     checkUser();
   }, [router]);
@@ -89,7 +116,7 @@ export default function DashboardLayout({
             width={28}
             height={28}
             className="rounded-lg"
-            style={{ height: "auto" }}
+            style={{ width: "auto", height: "auto" }}
           />
           <span className="font-headline text-lg font-bold tracking-tight text-cedar-forest">
             Cedar
@@ -129,11 +156,11 @@ export default function DashboardLayout({
             </h1>
           </Link>
           <div className="mt-5 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster border border-black/5 flex items-center justify-center shrink-0">
               <img
                 className="w-full h-full object-cover"
                 alt="portrait"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"
+                src={user?.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || "User")}&background=1B3022&color=fff`}
               />
             </div>
             <div>
@@ -210,11 +237,11 @@ export default function DashboardLayout({
             </h1>
           </Link>
           <div className="mt-6 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster">
+            <div className="w-10 h-10 rounded-full overflow-hidden bg-cedar-alabaster border border-black/5 flex items-center justify-center shrink-0">
               <img
                 className="w-full h-full object-cover"
                 alt="portrait"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCz7R0o4_SwDScB_gU1LxAzSxZhpqjml-7YKu3L6IgONXpA4Bcq6I_aPRXl1eQyo0z6wCPJ8YChJLWycJPuaZjtDQz2tO8NgRQHry0R6Bpo9jjPrY3Ow8VaGiDWEOqYW_m_qy5kRQVHiMqszoaReVLVd37DyGMGtHQG1NClhd5O1mexvI6WfAS1eZoP0j95mvHR4VlkgWVuDuTiph2eCQPtwy8kSZxLwLU5_7IP42RszVL4bT8ogiBuBL47tPxRs-QVY-vmWgclv1hA"
+                src={user?.avatarUrl || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.displayName || "User")}&background=1B3022&color=fff`}
               />
             </div>
             <div>

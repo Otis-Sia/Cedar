@@ -40,14 +40,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 This app now exposes local backend routes through the Next.js server:
 
 - `GET /api/health` checks whether the backend is running.
-- `POST /api/parse-cv` accepts `{ cvText, fileName }` and returns structured portfolio data.
 
 To run it on your device:
 
 ```bash
 cd code
 npm install
-set GEMINI_API_KEY=your_key_here
 npm run dev
 ```
 
