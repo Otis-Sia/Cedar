@@ -1,5 +1,11 @@
 import "./globals.css";
 import React from "react";
+import type { Viewport } from "next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata = {
   title: "Cedar | Premium Portfolio Creation & Hosting",
