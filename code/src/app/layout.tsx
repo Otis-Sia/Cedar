@@ -4,6 +4,9 @@ import React from "react";
 export const metadata = {
   title: "Cedar | Premium Portfolio Creation & Hosting",
   description: "Your Story, Curated by Intelligence.",
+  icons: {
+    icon: "/brand-mark.svg",
+  },
 };
 
 export default function RootLayout({

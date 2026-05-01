@@ -12,6 +12,7 @@ export default function Footer() {
           width={24}
           height={24}
           className="rounded"
+          style={{ height: "auto" }}
         />
         <div className="text-[13px] font-medium text-cedar-slate">
           © 2026 Cedar. Curated with excellence in Nairobi.

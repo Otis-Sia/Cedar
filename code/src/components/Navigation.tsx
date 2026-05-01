@@ -74,6 +74,7 @@ export default function Navigation() {
             width={32}
             height={32}
             className="rounded-lg"
+            style={{ height: "auto" }}
             priority
           />
           <div className="font-headline text-2xl font-bold tracking-tight text-cedar-forest">
@@ -171,6 +172,7 @@ export default function Navigation() {
               width={32}
               height={32}
               className="rounded-lg"
+              style={{ height: "auto" }}
               priority
             />
             <div className="font-headline text-xl font-bold tracking-tight text-cedar-forest">

@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -82,9 +83,14 @@ export default function DashboardLayout({
           <span></span>
         </button>
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic text-xs">
-            C
-          </div>
+          <Image
+            src="/brand-mark.svg"
+            alt="Cedar brand mark"
+            width={28}
+            height={28}
+            className="rounded-lg"
+            style={{ height: "auto" }}
+          />
           <span className="font-headline text-lg font-bold tracking-tight text-cedar-forest">
             Cedar
           </span>
@@ -110,9 +116,14 @@ export default function DashboardLayout({
       >
         <div className="px-6 mb-8">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
-              C
-            </div>
+            <Image
+              src="/brand-mark.svg"
+              alt="Cedar brand mark"
+              width={32}
+              height={32}
+              className="rounded-lg"
+              style={{ height: "auto" }}
+            />
             <h1 className="font-headline font-bold text-cedar-forest text-2xl tracking-tight">
               Cedar
             </h1>
@@ -186,9 +197,14 @@ export default function DashboardLayout({
       <aside className="hidden md:flex flex-col h-full py-6 w-64 bg-white border-r border-black/5 shrink-0">
         <div className="px-6 mb-10">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-8 h-8 rounded-lg bg-cedar-forest flex justify-center items-center text-white font-headline font-bold italic group-hover:bg-cedar-forest-dark transition-colors">
-              C
-            </div>
+            <Image
+              src="/brand-mark.svg"
+              alt="Cedar brand mark"
+              width={32}
+              height={32}
+              className="rounded-lg"
+              style={{ height: "auto" }}
+            />
             <h1 className="font-headline font-bold text-cedar-forest text-2xl tracking-tight">
               Cedar
             </h1>
