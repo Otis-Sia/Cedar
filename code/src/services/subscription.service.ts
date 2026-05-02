@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 
 export const getActiveSubscription = async (userId: string) => {
+  if (!supabase) return { data: null, error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("user_subscriptions")
     .select("*")

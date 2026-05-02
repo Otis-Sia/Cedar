@@ -17,7 +17,7 @@ export default function Navigation() {
       const currentUser = await getCurrentUser();
       setUser(currentUser);
       
-      if (currentUser) {
+      if (currentUser && supabase) {
         // Fetch role if user exists
         const { data } = await supabase
           .from("users")
@@ -34,9 +34,14 @@ export default function Navigation() {
 
     getInitialAuth();
 
+    if (!supabase) {
+      setIsLoading(false);
+      return;
+    }
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
       setUser(session?.user || null);
-      if (session?.user) {
+      if (session?.user && supabase) {
         const { data } = await supabase
           .from("users")
           .select("role")

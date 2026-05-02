@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 
 export const getSections = async (portfolioId: string) => {
+  if (!supabase) return { data: [], error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("sections")
     .select("*")
@@ -15,6 +16,7 @@ export const addSection = async (
   type = "about",
   orderIndex = 1
 ) => {
+  if (!supabase) return { data: null, error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("sections")
     .insert({

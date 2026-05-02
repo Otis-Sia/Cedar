@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabaseClient";
 
 export const createPortfolio = async (userId: string) => {
+  if (!supabase) return { data: null, error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("portfolios")
     .insert({
@@ -15,6 +16,7 @@ export const createPortfolio = async (userId: string) => {
 };
 
 export const getUserPortfolios = async (userId: string) => {
+  if (!supabase) return { data: [], error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("portfolios")
     .select("*")
@@ -25,6 +27,7 @@ export const getUserPortfolios = async (userId: string) => {
 };
 
 export const getPublicPortfolioBySlug = async (slug: string) => {
+  if (!supabase) return { data: null, error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("portfolios")
     .select("*")
@@ -35,6 +38,7 @@ export const getPublicPortfolioBySlug = async (slug: string) => {
 };
 
 export const getPortfolioProjects = async (portfolioId: string) => {
+  if (!supabase) return { data: [], error: { message: "Supabase not configured" } };
   const { data, error } = await supabase
     .from("projects")
     .select("*")
