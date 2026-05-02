@@ -26,7 +26,6 @@ export async function GET(
       upload: {
         id,
         status: upload.status ?? "unknown",
-        parsedData: upload.parsedData ?? null,
       },
     });
   } catch (error) {
